@@ -10,6 +10,7 @@ import Foundation
 
 struct FlowOperation
 {
+    let id: Int
     private(set) var date: Date
     private(set) var value: Double
     private(set) var currency: Currency = .rub
@@ -18,6 +19,7 @@ struct FlowOperation
     private(set) var comment: String?
     
     init(_ value: Double, for category: String, with account: String) {
+        id = Operations.shared.idGenerator()
         date = Date()
         self.value = value
         self.category = category
@@ -29,6 +31,15 @@ struct FlowOperation
         self.currency = currency
         self.comment = comment
         self.date = date
+    }
+    
+    var description: String {
+        var result = ""
+        result += "ID: \(id)\n"
+        result += "Date: \(date.description)\n"
+        result += "Value: \(value)\n"
+        
+        return result
     }
 }
 
