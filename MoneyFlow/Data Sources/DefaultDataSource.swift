@@ -44,6 +44,8 @@ class DefaultDataSource: DataSource {
                 defaults.set(encoded, forKey: UserDefaultsKeys.debtOperations)
             }
             thereAreUnsavedChanges = false
+        } else {
+            print("not saved: Data is actual")
         }
     }
     
@@ -93,7 +95,7 @@ private extension DefaultDataSource {
     
     private func generateFlowOperations() -> [FlowOperation] {
         var ops = [FlowOperation]()
-        for _ in 1...30 {
+        for _ in 1...50 {
             let operation = FlowOperation(date: Date(), value: randomValue, currency: currencies.randomElement()!, category: categories.randomElement()!, account: accounts.randomElement()!)
             ops.append(operation)
         }
@@ -101,7 +103,7 @@ private extension DefaultDataSource {
     }
     private func generateDebtOperations() -> [DebtOperation] {
         var ops = [DebtOperation]()
-        for _ in 1...10 {
+        for _ in 1...15 {
             let operation = DebtOperation(date: Date(), value: randomValue, currency: currencies.randomElement()!, contact: contacts.randomElement()!, account: accounts.randomElement()!)
             ops.append(operation)
         }

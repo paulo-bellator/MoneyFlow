@@ -14,53 +14,32 @@ class Presenter {
         return MainData.source.operations
     }
     
+    func add(operation: Operation) {
+        MainData.source.add(operation: operation)
+    }
+    func removeOperationWith(identifier: Int) {
+        MainData.source.removeOperation(with: identifier)
+    }
+    func syncronize() {
+        MainData.source.save()
+    }
+    
     /// Return all operations in given boundaries (included)
     func all(since: Date? = nil, until: Date? = nil) -> [Operation] {
-        var result = operations
-        if let startDate = since {
-            result = result.filter { $0.date >= startDate }
-        }
-        if let endDate = until {
-            result = result.filter { $0.date <= endDate }
-        }
-        return result
+        return filter(since: since, until: until)
     }
     
     /// Return debt operations operations in given boundaries (included)
     func debtOperations(since: Date? = nil, until: Date? = nil) -> [Operation] {
-        var result = operations.filter { $0 is DebtOperation }
-        if let startDate = since {
-            result = result.filter { $0.date >= startDate }
-        }
-        if let endDate = until {
-            result = result.filter { $0.date <= endDate }
-        }
-        return result
+        return filter(since: since, until: until, debtOperations: true, flowOperations: false)
     }
     
     /// Return flow operations in given boundaries (included)
     func flowOperations(since: Date? = nil, until: Date? = nil) -> [Operation] {
-        var result = operations.filter { $0 is FlowOperation }
-        if let startDate = since {
-            result = result.filter { $0.date >= startDate }
-        }
-        if let endDate = until {
-            result = result.filter { $0.date <= endDate }
-        }
-        return result
+        return filter(since: since, until: until, debtOperations: false, flowOperations: true)
     }
     
-    func add(operation: Operation) {
-        MainData.source.add(operation: operation)
-    }
     
-    func removeOperationWith(identifier: Int) {
-        MainData.source.removeOperation(with: identifier)
-    }
-    
-    func syncronize() {
-        MainData.source.save()
-    }
     
     //    func change(value: Double, forIdentifier identifier: Int) {
     //        for var operation in operations {
