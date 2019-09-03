@@ -58,6 +58,10 @@ class Presenter {
         MainData.source.removeOperation(with: identifier)
     }
     
+    func syncronize() {
+        MainData.source.save()
+    }
+    
     //    func change(value: Double, forIdentifier identifier: Int) {
     //        for var operation in operations {
     //            if operation.id == identifier {

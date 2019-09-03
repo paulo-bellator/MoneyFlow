@@ -17,12 +17,18 @@ class DefaultIDGenerator: IDGenerator {
     func generateID() -> Int {
         let id = nextID
         nextID += 1
-        defaults.set(nextID, forKey: Constants.defaultIDGeneratorUserDefaultsKey)
+        defaults.set(nextID, forKey: UserDefaultsKeys.nextID)
         return id
     }
 
     private init() {
-        nextID = defaults.integer(forKey: Constants.defaultIDGeneratorUserDefaultsKey)
+        nextID = defaults.integer(forKey: UserDefaultsKeys.nextID)
     }
     
+}
+
+extension DefaultIDGenerator {
+    private struct UserDefaultsKeys {
+        static let nextID = "nextID"
+    }
 }

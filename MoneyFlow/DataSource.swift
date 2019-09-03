@@ -12,6 +12,7 @@ protocol DataSource {
     var operations: [Operation] { get }
     func add(operation: Operation)
     func removeOperation(with identifier: Int)
+    func save()
 }
 
 class MainData {

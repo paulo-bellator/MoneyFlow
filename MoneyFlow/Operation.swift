@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Operation: CustomStringConvertible {
+protocol Operation: CustomStringConvertible, Codable {
     var id: Int { get }
     var date: Date { get }
     var value: Double { get }

@@ -18,30 +18,48 @@ class DefaultDataSource: DataSource {
     func add(operation: Operation) {
         if !operations.contains(where: { $0.id == operation.id }) {
             operations.append(operation)
-            defaults.set(operations as Any, forKey: Constants.defaultDataSourceUserDefaultsKey)
+//            save()
         }
     }
     
     func removeOperation(with identifier: Int) {
         operations = operations.filter { $0.id != identifier }
-        defaults.set(operations, forKey: Constants.defaultDataSourceUserDefaultsKey)
+//        save()
+    }
+    
+    func save() {
+        let encoder = JSONEncoder()
+        let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
+        let debtOperation = operations.filter { $0 is DebtOperation } as! [DebtOperation]
+        if let encoded = try? encoder.encode(flowOperations) {
+            defaults.set(encoded, forKey: UserDefaultsKeys.flowOperations)
+        }
+        if let encoded = try? encoder.encode(debtOperation) {
+            defaults.set(encoded, forKey: UserDefaultsKeys.debtOperations)
+        }
     }
     
     private init() {
-        let data = defaults.data(forKey: Constants.defaultDataSourceUserDefaultsKey)
-        if let data = data {
-//            let decodedData = NSKeyedUnarchiver.unat
-            
+        let decoder = JSONDecoder()
+        var flowOperations = [Operation]()
+        var debtOperations = [Operation]()
+        
+        if let data = defaults.data(forKey: UserDefaultsKeys.flowOperations) {
+            flowOperations = (try? decoder.decode([FlowOperation].self, from: data)) ?? []
         }
-        operations = defaults.array(forKey: Constants.defaultDataSourceUserDefaultsKey) as? [Operation] ?? []
+        if let data = defaults.data(forKey: UserDefaultsKeys.debtOperations) {
+            debtOperations = (try? decoder.decode([FlowOperation].self, from: data)) ?? []
+        }
+        operations = flowOperations + debtOperations
     }
     
-    private func saveInUserDefaults() {
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: operations)
-//        let encodedData = try! NSKeyedArchiver.archivedData(withRootObject: operations, requiringSecureCoding: false)
-        defaults.set(encodedData, forKey: Constants.defaultDataSourceUserDefaultsKey)
+}
+
+extension DefaultDataSource {
+    private struct UserDefaultsKeys {
+        static let flowOperations = "flowOperations"
+        static let debtOperations = "debtOperations"
     }
-    
 }
 
 
