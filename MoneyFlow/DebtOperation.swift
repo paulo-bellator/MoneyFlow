@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DebtOperation
+class DebtOperation: Operation, Codable
 {
     let id: Int
     private(set) var date: Date
@@ -19,26 +19,18 @@ struct DebtOperation
     private(set) var comment: String?
     
     init(_ value: Double, contact: String, with account: String) {
-        id = Operations.shared.idGenerator()
+        id = MainGenerator.generator.generateID()
         date = Date()
         self.value = value
         self.contact = contact
         self.account = account
     }
     
-    init(date: Date, value: Double, currency: Currency = .rub, contact: String, account: String, comment: String? = nil ) {
+    convenience init(date: Date, value: Double, currency: Currency = .rub, contact: String, account: String, comment: String? = nil ) {
         self.init(value, contact: contact, with: account)
         self.currency = currency
         self.comment = comment
         self.date = date
     }
     
-    var description: String {
-        var result = ""
-        result += "ID: \(id)\n"
-        result += "Date: \(date.description)\n"
-        result += "Value: \(value)\n"
-        
-        return result
-    }
 }

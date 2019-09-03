@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FlowOperation
+struct FlowOperation: Operation, Codable
 {
     let id: Int
     private(set) var date: Date
@@ -19,7 +19,7 @@ struct FlowOperation
     private(set) var comment: String?
     
     init(_ value: Double, for category: String, with account: String) {
-        id = Operations.shared.idGenerator()
+        id = MainGenerator.generator.generateID()
         date = Date()
         self.value = value
         self.category = category
@@ -32,18 +32,23 @@ struct FlowOperation
         self.comment = comment
         self.date = date
     }
-    
+}
+
+extension FlowOperation {
     var description: String {
-        var result = ""
+        var result = "\n"
         result += "ID: \(id)\n"
         result += "Date: \(date.description)\n"
-        result += "Value: \(value)\n"
+        result += "Value: \(value.rounded())\n"
+        result += "Currency: \(currency.rawValue)\n"
+        result += "Account: \(account)\n"
+        result += "Category: \(category)\n"
         
         return result
     }
 }
 
-enum Currency: String {
+enum Currency: String, Codable {
     case usd = "USD"
     case eur = "EUR"
     case rub = "RUB"

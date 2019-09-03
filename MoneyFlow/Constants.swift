@@ -9,6 +9,6 @@
 import Foundation
 
 struct Constants {
-    static let operationsUserDefaultsKey = "0000"
-    static let idForNextOperationsUserDefatultsKey = "0001"
+    static let defaultDataSourceUserDefaultsKey = "0000"
+    static let defaultIDGeneratorUserDefaultsKey = "0001"
 }

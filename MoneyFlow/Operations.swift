@@ -8,42 +8,20 @@
 
 import Foundation
 
-protocol Operation: CustomStringConvertible {
-    var id: Int { get }
-    var date: Date { get }
-    var value: Double { get }
-    var currency: Currency { get }
-    var account: String { get }
-}
-
-extension FlowOperation: Operation {}
-extension DebtOperation: Operation {}
-
-
 class Operations
 {
     static let shared = Operations()
     
-    private var idForNextOperations: Int
     private var operations: [Operation]
     private let defaults = UserDefaults()
     
     // TODO: ID generator for operation
     
     private init() {
-        operations = (defaults.array(forKey: Constants.operationsUserDefaultsKey) as? [Operation]) ?? [Operation]()
-        idForNextOperations = defaults.integer(forKey: Constants.idForNextOperationsUserDefatultsKey)
+        operations = (defaults.array(forKey: Constants.defaultDataSourceUserDefaultsKey) as? [Operation]) ?? [Operation]()
     }
     deinit {
-        defaults.set(operations, forKey: Constants.operationsUserDefaultsKey)
-        defaults.set(idForNextOperations, forKey: Constants.idForNextOperationsUserDefatultsKey)
-    }
-    
-    /// Return unique identifier for new operation
-    func idGenerator() -> Int {
-        let id = idForNextOperations
-        idForNextOperations += 1
-        return id
+        defaults.set(operations, forKey: Constants.defaultDataSourceUserDefaultsKey)
     }
     
     /// Return all operations in given boundaries (included)
@@ -115,7 +93,7 @@ class Operations
             result = result.filter { requiredAccounts.contains($0.account) }
         }
         if let requiredCategories = categories {
-            result = result.filter { ($0 is FlowOperation) && requiredCategories.contains(($0 as! FlowOperation).account) }
+            result = result.filter { ($0 is FlowOperation) && requiredCategories.contains(($0 as! FlowOperation).category) }
         }
         if let requiredContacts = contacts {
             result = result.filter { ($0 is DebtOperation) && requiredContacts.contains(($0 as! DebtOperation).contact) }
