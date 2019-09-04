@@ -39,7 +39,7 @@ extension DebtOperation {
     var description: String {
         var result = "\n"
         result += "ID: \(id)\n"
-        result += "Date: \(date.description)\n"
+        result += "Date: \(date.formattedDescription)\n"
         result += "Value: \(value.rounded())\n"
         result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"

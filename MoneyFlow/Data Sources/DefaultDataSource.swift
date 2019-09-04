@@ -26,8 +26,10 @@ class DefaultDataSource: DataSource {
     
     func removeOperation(with identifier: Int) {
         let previosCount = operations.count
+        print(previosCount)
         operations = operations.filter { $0.id != identifier }
         if previosCount != operations.count { thereAreUnsavedChanges = true }
+        print(operations.count)
 //        save()
     }
     
@@ -73,6 +75,7 @@ extension DefaultDataSource {
     }
 }
 
+
 private extension DefaultDataSource {
     
     private var currencies: [Currency] {
@@ -92,19 +95,25 @@ private extension DefaultDataSource {
         return Double.random(in: -100000...100000)
     }
     
+    private var comments: [String?] {
+        return [nil, "Вика зубы", "За такси на тусу", "Не помню", "Вчера выиграл в покер, но нужно вернуть"]
+    }
+    
     
     private func generateFlowOperations() -> [FlowOperation] {
         var ops = [FlowOperation]()
-        for _ in 1...50 {
-            let operation = FlowOperation(date: Date(), value: randomValue, currency: currencies.randomElement()!, category: categories.randomElement()!, account: accounts.randomElement()!)
+        for _ in 1...500 {
+            let date = Date() + TimeInterval(60*60*1*Int.random(in: -700...0))
+            let operation = FlowOperation(date: date, value: randomValue, currency: currencies.randomElement()!, category: categories.randomElement()!, account: accounts.randomElement()!, comment: comments.randomElement()!)
             ops.append(operation)
         }
         return ops
     }
     private func generateDebtOperations() -> [DebtOperation] {
         var ops = [DebtOperation]()
-        for _ in 1...15 {
-            let operation = DebtOperation(date: Date(), value: randomValue, currency: currencies.randomElement()!, contact: contacts.randomElement()!, account: accounts.randomElement()!)
+        for _ in 1...50 {
+            let date = Date() + TimeInterval(60*60*1*Int.random(in: -400...0))
+            let operation = DebtOperation(date: date, value: randomValue, currency: currencies.randomElement()!, contact: contacts.randomElement()!, account: accounts.randomElement()!, comment: comments.randomElement()!)
             ops.append(operation)
         }
         return ops

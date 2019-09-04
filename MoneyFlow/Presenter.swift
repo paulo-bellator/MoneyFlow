@@ -73,4 +73,114 @@ class Presenter {
         }
         return result
     }
+    
+    /// Return the array of tuples, containg period and array [Operation] included in period. Can't handle dates after now
+    func operationFiltred2(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
+        var result = [ ( String, [Operation] ) ]()
+        
+        var tempOperations = operations.sorted { $0.date > $1.date }
+        var operationsForPeriod = [Operation]()
+        var formattedPeriod = ""
+        let calendar = Calendar.current
+        
+        var components: DateComponents
+        switch period {
+        case .days: components = calendar.dateComponents([.day, .month, .year], from: Date())
+        case .months: components = calendar.dateComponents([.month, .year], from: Date())
+        }
+        var minimumDate = calendar.date(from: components)!
+        
+        while !tempOperations.isEmpty {
+            while !tempOperations.isEmpty && tempOperations.first!.date >= minimumDate {
+                operationsForPeriod.append(tempOperations.removeFirst())
+            }
+            formattedPeriod = formatted(date: minimumDate, forFilterUnit: period)
+            result.append((formattedPeriod, operationsForPeriod))
+            switch period {
+            case .days: components.day! -= 1
+            case .months: components.month! -= 1
+            }
+            minimumDate = calendar.date(from: components)!
+            operationsForPeriod = []
+        }
+        return result
+    }
+    
+    /// Return the array of tuples, containg period and array [Operation] included in period
+    func operationFiltred(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
+        var result = [ ( String, [Operation] ) ]()
+        
+        var tempOperations = operations.sorted { $0.date > $1.date }
+        var operationsForPeriod = [Operation]()
+        var formattedPeriod = ""
+        
+        let calendar = Calendar.current
+        var currentComponents: DateComponents
+        var date: Date
+        var currentComponentValue: Int
+        
+        while !tempOperations.isEmpty {
+            date = tempOperations.first!.date
+            currentComponents = calendar.dateComponents([.day, .month, .year], from: date)
+            currentComponentValue = period == .days ? currentComponents.day! : currentComponents.month!
+            
+            while !tempOperations.isEmpty {
+                let components = calendar.dateComponents([.day, .month], from: tempOperations.first!.date)
+                let componentValue = period == .days ? components.day! : components.month!
+                
+                if componentValue == currentComponentValue {
+                    operationsForPeriod.append(tempOperations.removeFirst())
+                } else {
+                    break
+                }
+            }
+            formattedPeriod = formatted(date: date, forFilterUnit: period)
+            result.append((formattedPeriod, operationsForPeriod))
+            operationsForPeriod = []
+        }
+        return result
+    }
+    
+    
+    /// Return formatted string representation of Date depending on filterUnit
+    private func formatted(date: Date, forFilterUnit unit: DateFilterUnit) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        
+        if date > Date() {
+            formatter.dateFormat = unit == .days ? "dd MMMM yyyy" : "LLLL yyyy"
+        } else {
+            let calendar = Calendar.current
+            let componentsOfDate = calendar.dateComponents([.day, .month, .year], from: date)
+            let componentsOfNow = calendar.dateComponents([.day, .month, .year], from: Date())
+            let interval = DateInterval.init(start: date, end: Date())
+            
+            switch unit {
+            case .days:
+                switch interval.duration {
+                case let duration where duration < 24*60*60 && componentsOfNow.day == componentsOfDate.day:
+                    return "Сегодня"
+                case let duration where duration < 2*24*60*60 && (componentsOfNow.day ?? 0)-1 == componentsOfDate.day:
+                    return "Вчера"
+                case let duration where duration < 7*24*60*60:
+                    formatter.dateFormat = "EEEE, dd MMMM"
+                case let duration where duration > 7*24*60*60 && componentsOfNow.year == componentsOfDate.year:
+                    formatter.dateFormat = "dd MMMM"
+                default:
+                    formatter.dateFormat = "dd MMMM yyyy"
+                }
+            case .months:
+                if componentsOfNow.year == componentsOfDate.year { formatter.dateFormat = "LLLL" }
+                else { formatter.dateFormat = "LLLL yyyy" }
+            }
+        }
+        var result = formatter.string(from: date)
+        result = result.prefix(1).capitalized + result.dropFirst()
+        return result
+    }
+    
+    
+    enum DateFilterUnit {
+        case days, months
+    }
 }

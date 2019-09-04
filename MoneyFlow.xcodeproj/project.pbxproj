@@ -13,6 +13,8 @@
 		F957AFDF231E970B0055CFC8 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F957AFDE231E970B0055CFC8 /* Presenter.swift */; };
 		F968D4E0231E814E00538E6F /* IDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F968D4DF231E814E00538E6F /* IDGenerator.swift */; };
 		F968D4E2231E855300538E6F /* DefaultIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F968D4E1231E855300538E6F /* DefaultIDGenerator.swift */; };
+		F9977BF62320047200E785D6 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9977BF52320047200E785D6 /* OperationTableViewCell.swift */; };
+		F9977BF823201B4800E785D6 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9977BF723201B4800E785D6 /* OperationPresenter.swift */; };
 		F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2FE67231B227400ABF7AC /* AppDelegate.swift */; };
 		F9B2FE6A231B227400ABF7AC /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2FE69231B227400ABF7AC /* SummaryViewController.swift */; };
 		F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6B231B227400ABF7AC /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 		F957AFDE231E970B0055CFC8 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		F968D4DF231E814E00538E6F /* IDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IDGenerator.swift; path = ../../IDGenerator.swift; sourceTree = "<group>"; };
 		F968D4E1231E855300538E6F /* DefaultIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultIDGenerator.swift; path = ../DefaultIDGenerator.swift; sourceTree = "<group>"; };
+		F9977BF52320047200E785D6 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OperationTableViewCell.swift; path = "Supporting files/OperationTableViewCell.swift"; sourceTree = "<group>"; };
+		F9977BF723201B4800E785D6 /* OperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
 		F9B2FE64231B227400ABF7AC /* MoneyFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B2FE67231B227400ABF7AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9B2FE69231B227400ABF7AC /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			children = (
 				F9B2FE69231B227400ABF7AC /* SummaryViewController.swift */,
 				F957AFDE231E970B0055CFC8 /* Presenter.swift */,
+				F9977BF52320047200E785D6 /* OperationTableViewCell.swift */,
+				F9977BF723201B4800E785D6 /* OperationPresenter.swift */,
 				F957AFDD231E949B0055CFC8 /* Operation Models */,
 				F957AFD8231E89ED0055CFC8 /* Data Sources */,
 				F968D4E3231E86E600538E6F /* ID Generators */,
@@ -198,9 +204,11 @@
 				F957AFDA231E8A160055CFC8 /* DefaultDataSource.swift in Sources */,
 				F9B2FE6A231B227400ABF7AC /* SummaryViewController.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
+				F9977BF823201B4800E785D6 /* OperationPresenter.swift in Sources */,
 				F968D4E0231E814E00538E6F /* IDGenerator.swift in Sources */,
 				F957AFD7231E89870055CFC8 /* DataSource.swift in Sources */,
 				F957AFDF231E970B0055CFC8 /* Presenter.swift in Sources */,
+				F9977BF62320047200E785D6 /* OperationTableViewCell.swift in Sources */,
 				F9B2FE7D231C55CF00ABF7AC /* DebtOperation.swift in Sources */,
 				F968D4E2231E855300538E6F /* DefaultIDGenerator.swift in Sources */,
 				F9B2FE7B231B22BA00ABF7AC /* FlowOperation.swift in Sources */,

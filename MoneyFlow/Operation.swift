@@ -20,12 +20,23 @@ extension Operation {
     var description: String {
         var result = "\n"
         result += "ID: \(id)\n"
-        result += "Date: \(date.description)\n"
+        result += "Date: \(date.formattedDescription)\n"
         result += "Value: \(value.rounded())\n"
         result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         
         return result
+    }
+}
+
+extension Date {
+    var formattedDescription: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        
+        return formatter.string(from: self)
     }
 }
 
