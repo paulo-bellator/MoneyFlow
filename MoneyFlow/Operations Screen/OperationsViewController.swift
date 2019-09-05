@@ -13,6 +13,7 @@ class OperationsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     let operationTableViewCellIdentifier = "OperationCell"
+    let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     
     private let presenter = Presenter()
     private lazy var operationsByDays = presenter.operationsSorted(by: .days)
@@ -44,8 +45,17 @@ class OperationsViewController: UIViewController, UITableViewDelegate, UITableVi
         return operationsByDays.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return operationsByDays[section].formattedPeriod
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return operationsByDays[section].formattedPeriod
+//    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell
+        header.periodLabel.text = operationsByDays[section].formattedPeriod
+        let sum = operationsByDays[section].ops.valuesSum(.rub)
+        header.sumLabel.text = (sum > 0 ? "+" : "") + sum.currencyFormattedDescription(.rub)
+        
+        return header.contentView
     }
     
     
@@ -65,7 +75,7 @@ class OperationsViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.sectionHeaderHeight = 50
+        tableView.sectionHeaderHeight = 55
     }
     
     

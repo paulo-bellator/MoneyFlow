@@ -134,7 +134,7 @@ class Presenter {
                     break
                 }
             }
-            formattedPeriod = formatted(date: date, forFilterUnit: period) + " " + operationsForPeriod.valuesSum(.rub).currencyFormattedDescription(.rub)
+            formattedPeriod = formatted(date: date, forFilterUnit: period)
             result.append((formattedPeriod, operationsForPeriod))
             operationsForPeriod = []
         }
