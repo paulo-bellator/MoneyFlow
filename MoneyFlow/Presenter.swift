@@ -184,3 +184,12 @@ class Presenter {
         case days, months
     }
 }
+
+extension Array where Element: Operation {
+    var valuesSum: Double {
+        var result = 0.0
+        for operation in self { result += operation.value }
+        return result
+    }
+    
+}

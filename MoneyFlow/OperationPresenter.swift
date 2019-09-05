@@ -27,7 +27,7 @@ class OperationPresenter {
     }()
     
     lazy var valueString: String = {
-        return operation.value.currencyFormatted(operation.currency)
+        return operation.value.currencyFormattedDescription(operation.currency)
     }()
     
     lazy var contactString: String? = {
