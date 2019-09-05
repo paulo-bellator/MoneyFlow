@@ -12,7 +12,6 @@ class OperationPresenter {
 
     private let operation: Operation
     
-    private let signForCurrency: [Currency: String] = [.rub: "₽", .eur: "€", .usd: "$"]
     private let emojiForCategory: [String: String] = ["Продукты": "🥦", "Развлечения": "🎮", "Здоровье": "💊", "Проезд": "🚎", "Связь и интернет": "📡"]
     private let defaultEmojiForCategory = "❓"
     private let emojiForContact: [String: String] = ["ООО МояРабота": "🏢", "Вася": "👨‍🍳", "Петя": "🤵", "Тигран": "👳🏻‍♂️"]
