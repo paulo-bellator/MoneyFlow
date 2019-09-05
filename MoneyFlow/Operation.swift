@@ -21,8 +21,8 @@ extension Operation {
         var result = "\n"
         result += "ID: \(id)\n"
         result += "Date: \(date.formattedDescription)\n"
-        result += "Value: \(value.rounded())\n"
-        result += "Currency: \(currency.rawValue)\n"
+        result += "Value: \(value.currencyFormatted(currency))\n"
+        //        result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         
         return result
@@ -37,6 +37,21 @@ extension Date {
         formatter.timeStyle = .short
         
         return formatter.string(from: self)
+    }
+}
+
+extension Double {
+    func currencyFormatted(_ currency: Currency) -> String {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .decimal
+        let formattedNumberString = formatter.string(from: NSNumber(value: Int(self)))
+        
+        if let numberString = formattedNumberString {
+            return numberString + " " + currency.rawValue
+        } else {
+            return self.description
+        }
     }
 }
 

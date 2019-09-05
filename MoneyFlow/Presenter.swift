@@ -75,7 +75,7 @@ class Presenter {
     }
     
     /// Return the array of tuples, containg period and array [Operation] included in period. Can't handle dates after now
-    func operationFiltred2(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
+    func operationsSorted2(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
         var result = [ ( String, [Operation] ) ]()
         
         var tempOperations = operations.sorted { $0.date > $1.date }
@@ -107,7 +107,7 @@ class Presenter {
     }
     
     /// Return the array of tuples, containg period and array [Operation] included in period
-    func operationFiltred(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
+    func operationsSorted(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
         var result = [ ( String, [Operation] ) ]()
         
         var tempOperations = operations.sorted { $0.date > $1.date }

@@ -14,12 +14,8 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let operationTableViewCellIdentifier = "OperationCell"
     
-    let emojiForCategory: [String: String] = ["Продукты": "🥦", "Развлечения": "🎮", "Здоровье": "💊", "Проезд": "🚎", "Связь и интернет": "📡"]
-    let sighForCurrency: [Currency: String] = [.rub: "₽", .eur: "€", .usd: "$"]
-    let defautlEmoji = "🙎‍♂️"
-    
     private let presenter = Presenter()
-    private lazy var operationsByDays = presenter.operationFiltred(by: .days)
+    private lazy var operationsByDays = presenter.operationsSorted(by: .days)
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
