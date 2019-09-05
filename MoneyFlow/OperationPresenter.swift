@@ -22,19 +22,12 @@ class OperationPresenter {
         return operation.id.description
     }()
     
-    private(set) var dateString: String?
+    lazy var dateString: String = {
+        return operation.date.formattedDescription
+    }()
     
     lazy var valueString: String = {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .decimal
-        let formattedNumberString = formatter.string(from: NSNumber(value: Int(operation.value)))
-        
-        if let numberString = formattedNumberString {
-            return numberString + " " + signForCurrency[operation.currency]!
-        } else {
-            return "error"
-        }
+        return operation.value.currencyFormatted(operation.currency)
     }()
     
     lazy var contactString: String? = {
@@ -65,7 +58,7 @@ class OperationPresenter {
 //        if let op = operation as? FlowOperation { return op.comment }
 //        if let op = operation as? DebtOperation { return op.comment }
 //        return nil
-        return operation.date.formattedDescription
+        return dateString
     }()
     
     init(_ operation: Operation) {
