@@ -39,7 +39,7 @@ extension FlowOperation {
         var result = "\n"
         result += "ID: \(id)\n"
         result += "Date: \(date.formattedDescription)\n"
-        result += "Value: \(value.currencyFormatted(currency))\n"
+        result += "Value: \(value.currencyFormattedDescription(currency))\n"
 //        result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         result += "Category: \(category)\n"

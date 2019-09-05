@@ -21,7 +21,7 @@ extension Operation {
         var result = "\n"
         result += "ID: \(id)\n"
         result += "Date: \(date.formattedDescription)\n"
-        result += "Value: \(value.currencyFormatted(currency))\n"
+        result += "Value: \(value.currencyFormattedDescription(currency))\n"
         //        result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         
@@ -41,7 +41,7 @@ extension Date {
 }
 
 extension Double {
-    func currencyFormatted(_ currency: Currency) -> String {
+    func currencyFormattedDescription(_ currency: Currency) -> String {
         let formatter = NumberFormatter()
         formatter.usesGroupingSeparator = true
         formatter.numberStyle = .decimal
