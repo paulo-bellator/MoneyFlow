@@ -134,7 +134,7 @@ class Presenter {
                     break
                 }
             }
-            formattedPeriod = formatted(date: date, forFilterUnit: period)
+            formattedPeriod = formatted(date: date, forFilterUnit: period) + " " + operationsForPeriod.valuesSum(.rub).currencyFormattedDescription(.rub)
             result.append((formattedPeriod, operationsForPeriod))
             operationsForPeriod = []
         }
@@ -185,10 +185,14 @@ class Presenter {
     }
 }
 
-extension Array where Element: Operation {
-    var valuesSum: Double {
+extension Array where Element == Operation {
+    func valuesSum(_ currency: Currency? = nil) -> Double {
         var result = 0.0
-        for operation in self { result += operation.value }
+        if let cur = currency {
+            self.forEach { if $0.currency == cur  { result += $0.value } }
+        } else {
+            self.forEach { result += $0.value }
+        }
         return result
     }
     

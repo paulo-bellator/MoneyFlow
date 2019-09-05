@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F9063DE0232139FE00F08E84 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD1232139FD00F08E84 /* Presenter.swift */; };
-		F9063DE1232139FE00F08E84 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD2232139FD00F08E84 /* SummaryViewController.swift */; };
-		F9063DE3232139FE00F08E84 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD4232139FD00F08E84 /* OperationPresenter.swift */; };
 		F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD6232139FE00F08E84 /* DebtOperation.swift */; };
 		F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD7232139FE00F08E84 /* FlowOperation.swift */; };
 		F9063DE6232139FE00F08E84 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD8232139FE00F08E84 /* Operation.swift */; };
@@ -17,8 +14,11 @@
 		F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDB232139FE00F08E84 /* DefaultIDGenerator.swift */; };
 		F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */; };
 		F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDE232139FE00F08E84 /* DataSource.swift */; };
-		F9063DEB232139FE00F08E84 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDF232139FE00F08E84 /* OperationTableViewCell.swift */; };
 		F9063DED23213A1000F08E84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DEC23213A0F00F08E84 /* Constants.swift */; };
+		F9A980FF2321409700F630F9 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* SummaryViewController.swift */; };
+		F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */; };
+		F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981032321410900F630F9 /* OperationPresenter.swift */; };
+		F9A981062321416000F630F9 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981052321416000F630F9 /* Presenter.swift */; };
 		F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2FE67231B227400ABF7AC /* AppDelegate.swift */; };
 		F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6B231B227400ABF7AC /* Main.storyboard */; };
 		F9B2FE6F231B227700ABF7AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6E231B227700ABF7AC /* Assets.xcassets */; };
@@ -26,9 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F9063DD1232139FD00F08E84 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Presenter.swift; path = ../../MyMoneyFlow/MyMoneyFlow/Presenter.swift; sourceTree = "<group>"; };
-		F9063DD2232139FD00F08E84 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = ../../MyMoneyFlow/MyMoneyFlow/SummaryViewController.swift; sourceTree = "<group>"; };
-		F9063DD4232139FD00F08E84 /* OperationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OperationPresenter.swift; path = ../../MyMoneyFlow/MyMoneyFlow/OperationPresenter.swift; sourceTree = "<group>"; };
 		F9063DD6232139FE00F08E84 /* DebtOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtOperation.swift; sourceTree = "<group>"; };
 		F9063DD7232139FE00F08E84 /* FlowOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowOperation.swift; sourceTree = "<group>"; };
 		F9063DD8232139FE00F08E84 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
@@ -36,8 +33,11 @@
 		F9063DDB232139FE00F08E84 /* DefaultIDGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIDGenerator.swift; sourceTree = "<group>"; };
 		F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultDataSource.swift; sourceTree = "<group>"; };
 		F9063DDE232139FE00F08E84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		F9063DDF232139FE00F08E84 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationTableViewCell.swift; sourceTree = "<group>"; };
 		F9063DEC23213A0F00F08E84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Supporting files/Constants.swift"; sourceTree = "<group>"; };
+		F9A980FB2321409600F630F9 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationTableViewCell.swift; sourceTree = "<group>"; };
+		F9A981032321410900F630F9 /* OperationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
+		F9A981052321416000F630F9 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		F9B2FE64231B227400ABF7AC /* MoneyFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B2FE67231B227400ABF7AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9B2FE6C231B227400ABF7AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,10 +104,10 @@
 		F9B2FE66231B227400ABF7AC /* MoneyFlow */ = {
 			isa = PBXGroup;
 			children = (
-				F9063DD2232139FD00F08E84 /* SummaryViewController.swift */,
-				F9063DD1232139FD00F08E84 /* Presenter.swift */,
-				F9063DD4232139FD00F08E84 /* OperationPresenter.swift */,
-				F9063DDF232139FE00F08E84 /* OperationTableViewCell.swift */,
+				F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */,
+				F9A981032321410900F630F9 /* OperationPresenter.swift */,
+				F9A980FB2321409600F630F9 /* SummaryViewController.swift */,
+				F9A981052321416000F630F9 /* Presenter.swift */,
 				F9063DDC232139FE00F08E84 /* Date Sources */,
 				F9063DD9232139FE00F08E84 /* ID Generators */,
 				F9063DD5232139FE00F08E84 /* Operation Models */,
@@ -200,19 +200,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9063DE3232139FE00F08E84 /* OperationPresenter.swift in Sources */,
-				F9063DE0232139FE00F08E84 /* Presenter.swift in Sources */,
+				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
 				F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */,
-				F9063DE1232139FE00F08E84 /* SummaryViewController.swift in Sources */,
-				F9063DEB232139FE00F08E84 /* OperationTableViewCell.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
+				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
 				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
+				F9A981062321416000F630F9 /* Presenter.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
+				F9A980FF2321409700F630F9 /* SummaryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
