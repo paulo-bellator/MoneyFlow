@@ -17,6 +17,15 @@ class OperationPresenter {
     private let emojiForContact: [String: String] = ["ООО МояРабота": "🏢", "Вася": "👨‍🍳", "Петя": "🤵", "Тигран": "👳🏻‍♂️"]
     private let defaultEmojiForContact = "❓"
 
+    // temporarly use data placeholder
+    
+        static let allCategories = ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет"]
+        static let allContacts = ["ООО МояРабота", "Вася", "Петя", "Тигран"]
+        static let allCurrencies = ["₽","€","$"]
+        static let allAccounts = ["Наличные", "Сбербанк МСК", "Альфа", "Хоум Кредит", "Сбербанк РНД"]
+    
+    // temporarly use data placeholder
+    
     lazy var idString: String = {
         return operation.id.description
     }()

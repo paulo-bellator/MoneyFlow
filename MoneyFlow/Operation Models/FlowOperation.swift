@@ -48,9 +48,4 @@ extension FlowOperation {
     }
 }
 
-enum Currency: String, Codable {
-    case usd = "$"
-    case eur = "€"
-    case rub = "₽"
-}
 

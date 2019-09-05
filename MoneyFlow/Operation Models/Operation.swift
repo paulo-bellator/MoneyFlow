@@ -16,6 +16,12 @@ protocol Operation: CustomStringConvertible, Codable {
     var account: String { get }
 }
 
+enum Currency: String, Codable {
+    case usd = "$"
+    case eur = "€"
+    case rub = "₽"
+}
+
 extension Operation {
     var description: String {
         var result = "\n"
@@ -54,5 +60,6 @@ extension Double {
         }
     }
 }
+
 
 
