@@ -39,8 +39,8 @@ extension FlowOperation {
         var result = "\n"
         result += "ID: \(id)\n"
         result += "Date: \(date.formattedDescription)\n"
-        result += "Value: \(value.rounded())\n"
-        result += "Currency: \(currency.rawValue)\n"
+        result += "Value: \(value.currencyFormatted(currency))\n"
+//        result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         result += "Category: \(category)\n"
         
@@ -49,7 +49,7 @@ extension FlowOperation {
 }
 
 enum Currency: String, Codable {
-    case usd = "USD"
-    case eur = "EUR"
-    case rub = "RUB"
+    case usd = "$"
+    case eur = "€"
+    case rub = "₽"
 }
