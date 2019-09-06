@@ -39,16 +39,6 @@ class Presenter {
         return filter(since: since, until: until, debtOperations: false, flowOperations: true)
     }
     
-    
-    
-    //    func change(value: Double, forIdentifier identifier: Int) {
-    //        for var operation in operations {
-    //            if operation.id == identifier {
-    //                operation.value = value
-    //            }
-    //        }
-    //    }
-    
     func filter(since: Date? = nil, until: Date? = nil, debtOperations: Bool = true, flowOperations: Bool = true, currencies: [Currency]? = nil, categories: [String]? = nil, contacts: [String]? = nil, accounts: [String]? = nil) -> [Operation] {
         var result = operations
         if let startDate = since {

@@ -21,7 +21,7 @@ class OperationPresenter {
     
         static let allCategories = ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет"]
         static let allContacts = ["ООО МояРабота", "Вася", "Петя", "Тигран"]
-        static let allCurrencies = ["₽","€","$"]
+        static let allCurrencies = Currency.allSignes
         static let allAccounts = ["Наличные", "Сбербанк МСК", "Альфа", "Хоум Кредит", "Сбербанк РНД"]
     
     // temporarly use data placeholder

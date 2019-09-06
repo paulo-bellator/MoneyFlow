@@ -18,11 +18,14 @@ class OperationsViewController: UIViewController {
     let operationTableViewCellIdentifier = "OperationCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let filterCollectionViewCellIdentifier = "filterCell"
-    var mainCurrency: Currency = .rub
+    let tableViewSectionHeaderHeight: CGFloat = 35
+    let tableViewRowHeight: CGFloat = 100
+    
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(by: .days)
     var tableViewScrollOffset: CGFloat = 0
+    var mainCurrency: Currency = Currency.all.first!
     
     var appliedFilterCells = [IndexPath(row: 0, section: 0)] {
         didSet { applyFilter()  }
@@ -32,23 +35,23 @@ class OperationsViewController: UIViewController {
         var result = [FilterUnit]()
         
         result.append(FilterUnit.all("Все"))
-        for cur in OperationPresenter.allCurrencies { result.append(FilterUnit.currency(cur)) }
-        for acc in OperationPresenter.allAccounts { result.append(FilterUnit.account(acc)) }
-        for cat in OperationPresenter.allCategories { result.append(FilterUnit.category(cat)) }
-        for con in OperationPresenter.allContacts { result.append(FilterUnit.contact(con)) }
+        for currency in OperationPresenter.allCurrencies { result.append(FilterUnit.currency(currency)) }
+        for account in OperationPresenter.allAccounts { result.append(FilterUnit.account(account)) }
+        for category in OperationPresenter.allCategories { result.append(FilterUnit.category(category)) }
+        for contact in OperationPresenter.allContacts { result.append(FilterUnit.contact(contact)) }
         
         return result
     }()
 
     
     
-    func applyFilter() {
+    private func applyFilter() {
         if appliedFilterCells.count == 1 {
             let filterUnit = arrayOfAllFilterUnits[appliedFilterCells.first!.row]
             switch filterUnit {
             case .all:
                 operationsByDays = presenter.operationsSorted(by: .days)
-                mainCurrency = .rub
+                mainCurrency = Currency.all.first!
                 tableView.reloadData()
                 return
             default: break
@@ -75,11 +78,8 @@ class OperationsViewController: UIViewController {
         
         switch requiredCurrencies.count {
         case 1: mainCurrency = requiredCurrencies.first!
-        case 2:
-            if requiredCurrencies.contains(.rub) { mainCurrency = .rub; break }
-            if requiredCurrencies.contains(.usd) { mainCurrency = .usd; break }
-            mainCurrency = .eur
-        default: mainCurrency = .rub
+        case 2: for currency in Currency.all { if requiredCurrencies.contains(currency) { mainCurrency = currency; break } }
+        default: mainCurrency = Currency.all.first!
         }
         
         tableView.reloadData()
@@ -90,7 +90,7 @@ class OperationsViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.sectionHeaderHeight = 35
+        tableView.sectionHeaderHeight = tableViewSectionHeaderHeight
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)

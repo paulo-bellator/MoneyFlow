@@ -28,7 +28,16 @@ class FilterCollectionViewCell: UICollectionViewCell {
     var isApplied: Bool = false {
         didSet {
             if isApplied {
-                label?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+                if let unit = filterUnit {
+                    switch unit {
+                    case .all: label?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+                    case .account: label?.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                    case .category: label?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+                    case .currency: label?.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                    case .contact: label?.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+                    }
+                }
+//                label?.textColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
                 layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 layer.borderWidth = 0
             } else {
@@ -42,10 +51,8 @@ class FilterCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        label?.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        layer.borderColor = #colorLiteral(red: 0.9646214843, green: 0.9647598863, blue: 0.9645912051, alpha: 1)
-        layer.borderWidth = 0
         layer.cornerRadius = 15
+        isApplied = false
     }
 }

@@ -20,6 +20,13 @@ enum Currency: String, Codable {
     case usd = "$"
     case eur = "€"
     case rub = "₽"
+    
+    static var all: [Currency] {
+        return [.rub, .usd, .eur]
+    }
+    static var allSignes: [String] {
+        return ["₽", "$", "€"]
+    }
 }
 
 extension Operation {
