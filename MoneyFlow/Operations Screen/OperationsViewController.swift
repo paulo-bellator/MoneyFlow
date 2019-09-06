@@ -16,6 +16,7 @@ class OperationsViewController: UIViewController {
     @IBOutlet weak var talbeViewTopSafeAreaTopConstrain: NSLayoutConstraint!
     
     let operationTableViewCellIdentifier = "OperationCell"
+    let empryListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let filterCollectionViewCellIdentifier = "filterCell"
     let tableViewSectionHeaderHeight: CGFloat = 35

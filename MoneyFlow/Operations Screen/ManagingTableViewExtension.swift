@@ -11,11 +11,17 @@ import UIKit
 
 extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  {
     
+    private var operationListIsEmpty: Bool {
+        return operationsByDays.isEmpty
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return operationsByDays[section].ops.count
+        return operationListIsEmpty ? 1 : operationsByDays[section].ops.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if operationListIsEmpty { return tableView.dequeueReusableCell(withIdentifier: empryListTableViewCellIdentifier)! }
+        
         let operation = operationsByDays[indexPath.section].ops[indexPath.row]
         let operationPresenter = OperationPresenter(operation)
         let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCellIdentifier, for: indexPath) as! OperationTableViewCell
@@ -34,10 +40,11 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return operationsByDays.count
+        return operationListIsEmpty ? 1 : operationsByDays.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if operationListIsEmpty { return nil }
         let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell
         header.periodLabel.text = operationsByDays[section].formattedPeriod
         let sum = operationsByDays[section].ops.valuesSum(mainCurrency)
