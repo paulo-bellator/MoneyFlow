@@ -37,10 +37,6 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         return operationsByDays.count
     }
     
-    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return operationsByDays[section].formattedPeriod
-    //    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell
         header.periodLabel.text = operationsByDays[section].formattedPeriod
@@ -66,7 +62,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView is UITableView {
             let contentOffset = scrollView.contentOffset.y
-            let maxAllowableContentOffset = scrollView.contentSize.height - scrollView.frame.height - tableView.rowHeight
+            let maxAllowableContentOffset = scrollView.contentSize.height - scrollView.frame.height - tableView.rowHeight/2
             
             if contentOffset >= 0 && contentOffset <= maxAllowableContentOffset {
             // scrolling up
@@ -75,7 +71,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
                         let constantValue = talbeViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
                         talbeViewTopSafeAreaTopConstrain.constant = min(constantValue, collectionView.frame.height)
                     }
-                    // scrolling down
+            // scrolling down
                 } else {
                     if tableView.frame.origin.y > collectionView.frame.origin.y {
                         let constantValue = talbeViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)

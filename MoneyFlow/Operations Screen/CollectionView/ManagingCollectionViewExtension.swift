@@ -10,17 +10,13 @@ import UIKit
 
 extension OperationsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    private var arrayOfAllFilterUnits: [String] {
-        return ["Все"] + OperationPresenter.allCurrencies + OperationPresenter.allAccounts + OperationPresenter.allCategories + OperationPresenter.allContacts
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrayOfAllFilterUnits.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filterCollectionViewCellIdentifier, for: indexPath) as! FilterCollectionViewCell
-        cell.label.text = arrayOfAllFilterUnits[indexPath.row]
+        cell.filterUnit = arrayOfAllFilterUnits[indexPath.row]
         
         if appliedFilterCells.contains(indexPath) {
             cell.isApplied = true
@@ -33,7 +29,7 @@ extension OperationsViewController: UICollectionViewDataSource, UICollectionView
     // set size of cells
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel()
-        label.text = "!    " + arrayOfAllFilterUnits[indexPath.row] + "    !"
+        label.text = "!    " + arrayOfAllFilterUnits[indexPath.row].value + "    !"
         label.sizeToFit()
         
         let widthOfCell = label.intrinsicContentSize.width
@@ -55,11 +51,9 @@ extension OperationsViewController: UICollectionViewDataSource, UICollectionView
             
         case false:
             cell.isApplied = true
-            
             if appliedFilterCells.count == 1 && appliedFilterCells.first!.row == 0 {
                 appliedFilterCells.removeAll()
             }
-            
             appliedFilterCells.append(indexPath)
             generateFeedbackFor(.selectUnit)
             collectionView.reloadData()

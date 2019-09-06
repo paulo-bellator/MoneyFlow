@@ -60,17 +60,30 @@ class Presenter {
         if !debtOperations { result = result.filter { !($0 is DebtOperation) } }
         if !flowOperations { result = result.filter { !($0 is FlowOperation) } }
         if let requiredCurrencies = currencies {
-            result = result.filter { requiredCurrencies.contains($0.currency) }
+            if !requiredCurrencies.isEmpty {
+                result = result.filter { requiredCurrencies.contains($0.currency) }
+            }
         }
         if let requiredAccounts = accounts {
-            result = result.filter { requiredAccounts.contains($0.account) }
+            if !requiredAccounts.isEmpty {
+                result = result.filter { requiredAccounts.contains($0.account) }
+            }
         }
+        var filtredWithCategories: [Operation]?
         if let requiredCategories = categories {
-            result = result.filter { ($0 is FlowOperation) && requiredCategories.contains(($0 as! FlowOperation).category) }
+            if !requiredCategories.isEmpty {
+                filtredWithCategories = result.filter { ($0 is FlowOperation) && requiredCategories.contains(($0 as! FlowOperation).category) }
+            }
         }
+        var filtredWithContacts: [Operation]?
         if let requiredContacts = contacts {
-            result = result.filter { ($0 is DebtOperation) && requiredContacts.contains(($0 as! DebtOperation).contact) }
+            if !requiredContacts.isEmpty {
+                filtredWithContacts = result.filter { ($0 is DebtOperation) && requiredContacts.contains(($0 as! DebtOperation).contact) }
+            }
         }
+        result = filtredWithCategories ?? result
+        result = filtredWithCategories == nil ?  (filtredWithContacts ?? result) : result + (filtredWithContacts ?? [])
+        
         return result
     }
     
@@ -107,10 +120,13 @@ class Presenter {
     }
     
     /// Return the array of tuples, containg period and array [Operation] included in period
-    func operationsSorted(by period: DateFilterUnit) -> [(formattedPeriod: String, ops: [Operation])] {
+    func operationsSorted(by period: DateFilterUnit, operations ops: [Operation]? = nil) -> [(formattedPeriod: String, ops: [Operation])] {
         var result = [ ( String, [Operation] ) ]()
         
-        var tempOperations = operations.sorted { $0.date > $1.date }
+        var tempOperations = [Operation]()
+        if let ops = ops { tempOperations = ops.sorted { $0.date > $1.date } }
+        else { tempOperations = operations.sorted { $0.date > $1.date } }
+        
         var operationsForPeriod = [Operation]()
         var formattedPeriod = ""
         
@@ -163,9 +179,11 @@ class Presenter {
                 case let duration where duration < 2*24*60*60 && (componentsOfNow.day ?? 0)-1 == componentsOfDate.day:
                     return "Вчера"
                 case let duration where duration < 7*24*60*60:
-                    formatter.dateFormat = "EEEE, dd MMMM"
+//                    formatter.dateFormat = "EEEE, dd MMMM"
+                    formatter.dateFormat = "dd MMMM, EE"
                 case let duration where duration > 7*24*60*60 && componentsOfNow.year == componentsOfDate.year:
-                    formatter.dateFormat = "dd MMMM"
+//                    formatter.dateFormat = "dd MMMM"
+                    formatter.dateFormat = "dd MMMM, EE"
                 default:
                     formatter.dateFormat = "dd MMMM yyyy"
                 }
@@ -183,6 +201,7 @@ class Presenter {
     enum DateFilterUnit {
         case days, months
     }
+
 }
 
 extension Array where Element == Operation {
