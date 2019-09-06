@@ -95,81 +95,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="hG9-MH-3mA" customClass="OperationTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="414" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hG9-MH-3mA" id="CtB-RB-7Ew">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FL4-oE-ybr">
-                                                    <rect key="frame" x="306.66666666666669" y="31.999999999999996" width="87.333333333333314" height="35.666666666666657"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcW-wu-yrg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vT-Pl-JhG">
-                                                            <rect key="frame" x="0.0" y="21.333333333333336" width="87.333333333333329" height="14.333333333333336"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="S4a-Js-DSw"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wyT-Jc-hg9">
-                                                    <rect key="frame" x="66" y="39.666666666666664" width="141" height="20.333333333333336"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Уход и здоровье" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4o-pH-1P0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="141" height="20.333333333333332"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDo-N7-QMa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="141" height="0.0"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="VDo-N7-QMa" firstAttribute="width" secondItem="wyT-Jc-hg9" secondAttribute="width" id="8xt-DB-8SX"/>
-                                                        <constraint firstItem="l4o-pH-1P0" firstAttribute="width" secondItem="wyT-Jc-hg9" secondAttribute="width" id="eCA-eO-Quq"/>
-                                                    </constraints>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huF-iN-qp3">
-                                                    <rect key="frame" x="17" y="30.666666666666668" width="36" height="38.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="FL4-oE-ybr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l4o-pH-1P0" secondAttribute="trailing" constant="50" id="AXH-cC-XwS"/>
-                                                <constraint firstItem="l4o-pH-1P0" firstAttribute="leading" secondItem="huF-iN-qp3" secondAttribute="trailing" constant="13" id="BMl-Kj-4av"/>
-                                                <constraint firstItem="FL4-oE-ybr" firstAttribute="centerY" secondItem="CtB-RB-7Ew" secondAttribute="centerY" id="Diu-su-kxd"/>
-                                                <constraint firstItem="wyT-Jc-hg9" firstAttribute="centerY" secondItem="CtB-RB-7Ew" secondAttribute="centerY" id="HL3-AE-2oB"/>
-                                                <constraint firstItem="huF-iN-qp3" firstAttribute="leading" secondItem="CtB-RB-7Ew" secondAttribute="leading" constant="17" id="hKO-ai-bE7"/>
-                                                <constraint firstAttribute="trailing" secondItem="FL4-oE-ybr" secondAttribute="trailing" constant="20" id="jyJ-rM-3QK"/>
-                                                <constraint firstItem="huF-iN-qp3" firstAttribute="centerY" secondItem="CtB-RB-7Ew" secondAttribute="centerY" id="nWt-vi-bUT"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="accountLabel" destination="9vT-Pl-JhG" id="QMM-Sd-MaE"/>
-                                            <outlet property="commentLabel" destination="VDo-N7-QMa" id="kex-c3-MdD"/>
-                                            <outlet property="emojiLabel" destination="huF-iN-qp3" id="714-4c-zf4"/>
-                                            <outlet property="mainLabel" destination="l4o-pH-1P0" id="oJn-iA-coH"/>
-                                            <outlet property="valueLabel" destination="LcW-wu-yrg" id="ax5-7l-k05"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="55" id="FIw-IB-6Qk" customClass="OperationsHeaderTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="414" height="55"/>
+                                        <rect key="frame" x="0.0" y="128" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FIw-IB-6Qk" id="dj2-EB-YbK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="54.666666666666664"/>
@@ -206,7 +133,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OperationCell" rowHeight="100" id="Nh7-cZ-JUM" customClass="OperationTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="283" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="183" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nh7-cZ-JUM" id="50s-gx-w2n">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>

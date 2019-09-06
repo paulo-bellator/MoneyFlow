@@ -79,7 +79,7 @@ extension DefaultDataSource {
 private extension DefaultDataSource {
     
     private var currencies: [Currency] {
-        return [.eur, .rub, .usd]
+        return Currency.all
     }
     private var categories: [String] {
         return ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет"]

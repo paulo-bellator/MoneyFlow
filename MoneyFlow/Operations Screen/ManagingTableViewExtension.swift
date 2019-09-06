@@ -71,7 +71,15 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
             let contentOffset = scrollView.contentOffset.y
             let maxAllowableContentOffset = scrollView.contentSize.height - scrollView.frame.height - tableView.rowHeight/2
             
-            if contentOffset >= 0 && contentOffset <= maxAllowableContentOffset {
+//            print("\n")
+//            print("maxAllowableContentOffset = \(maxAllowableContentOffset)")
+//            print("NEWcontentOffset = \(contentOffset)")
+//            print("OLDcontentOffset = \(tableViewScrollOffset)")
+//            print("constraint = \(talbeViewTopSafeAreaTopConstrain.constant)")
+//            print("collectionsViewHeight = \(collectionView.frame.height)")
+//            print("drasticallyChanged: \(isDirectionOfContentOffsetDramaticallyChanged(newOffset: contentOffset))")
+            
+            if contentOffset >= 0 && contentOffset <= maxAllowableContentOffset && !isDirectionOfContentOffsetDramaticallyChanged(newOffset: contentOffset) {
             // scrolling up
                 if contentOffset < tableViewScrollOffset {
                     if tableView.frame.origin.y < collectionView.frame.maxY {
@@ -88,6 +96,21 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
             }
             tableViewScrollOffset = contentOffset
         }
+    }
+    
+    // i don't know why, by tableView for somereson drastically change contentOffset,
+    // when i use filter and reloadDate in tableView
+    // and this is happening a lot of times, when i scroll up
+    // i think this may be becouse of reuseing cells
+    // and when i reloadData in the middle of list, and start scrollin up
+    // new cells creating and it changes offset
+    // so when it happends, i just forbid to change constrain
+    private func isDirectionOfContentOffsetDramaticallyChanged(newOffset: CGFloat) -> Bool {
+        let isDirectionChanged = lastButOneTableViewScrollOffset >= tableViewScrollOffset && tableViewScrollOffset < newOffset
+        if isDirectionChanged {
+            return (newOffset - tableViewScrollOffset) > 10.0
+        }
+        return false
     }
     
 }

@@ -25,7 +25,10 @@ class OperationsViewController: UIViewController {
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(by: .days)
-    var tableViewScrollOffset: CGFloat = 0
+    var tableViewScrollOffset: CGFloat = 0 {
+        willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
+    }
+    var lastButOneTableViewScrollOffset: CGFloat = 0
     var mainCurrency: Currency = Currency.all.first!
     
     var appliedFilterCells = [IndexPath(row: 0, section: 0)] {
@@ -53,7 +56,7 @@ class OperationsViewController: UIViewController {
             case .all:
                 operationsByDays = presenter.operationsSorted(by: .days)
                 mainCurrency = Currency.all.first!
-                tableView.reloadData()
+                reloadTableView()
                 return
             default: break
             }
@@ -83,7 +86,14 @@ class OperationsViewController: UIViewController {
         default: mainCurrency = Currency.all.first!
         }
         
+        reloadTableView()
+    }
+    
+    private func reloadTableView() {
+        print("Offset before reload: \(tableView.contentOffset.y)")
         tableView.reloadData()
+        tableViewScrollOffset = tableView.contentOffset.y
+        print("Offset after reload: \(tableViewScrollOffset)")
     }
     
     
