@@ -63,4 +63,28 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView is UITableView {
+            let contentOffset = scrollView.contentOffset.y
+            let maxAllowableContentOffset = scrollView.contentSize.height - scrollView.frame.height - tableView.rowHeight
+            
+            if contentOffset >= 0 && contentOffset <= maxAllowableContentOffset {
+            // scrolling up
+                if contentOffset < tableViewScrollOffset {
+                    if tableView.frame.origin.y < collectionView.frame.maxY {
+                        let constantValue = talbeViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
+                        talbeViewTopSafeAreaTopConstrain.constant = min(constantValue, collectionView.frame.height)
+                    }
+                    // scrolling down
+                } else {
+                    if tableView.frame.origin.y > collectionView.frame.origin.y {
+                        let constantValue = talbeViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
+                        talbeViewTopSafeAreaTopConstrain.constant = max(constantValue, 0)
+                    }
+                }
+            }
+            tableViewScrollOffset = contentOffset
+        }
+    }
+    
 }

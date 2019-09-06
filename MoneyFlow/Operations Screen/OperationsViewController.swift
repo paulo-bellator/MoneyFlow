@@ -13,6 +13,7 @@ class OperationsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var talbeViewTopSafeAreaTopConstrain: NSLayoutConstraint!
     
     let operationTableViewCellIdentifier = "OperationCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
@@ -22,6 +23,7 @@ class OperationsViewController: UIViewController {
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(by: .days)
     var appliedFilterCells = [IndexPath(row: 0, section: 0)]
+    var tableViewScrollOffset: CGFloat = 0
 
     
     override func viewDidLoad() {
@@ -32,8 +34,9 @@ class OperationsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
+        
+        tableView.refreshControl?.isUserInteractionEnabled = false
     }
-    
     
 
 }
