@@ -8,13 +8,14 @@
 
 import UIKit
 
-class OperationsViewController: UIViewController {
+class OperationsViewController: UIViewController, AddOperationViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var tableViewTopSafeAreaTopConstrain: NSLayoutConstraint!
     
+    let addOperationSegueIdentifier = "ShowAddOperation"
     let operationTableViewCellIdentifier = "OperationCell"
     let empryListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
@@ -107,6 +108,51 @@ class OperationsViewController: UIViewController {
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
     }
+    
+    @IBAction func addOperation(_ sender: UIButton) {
+        self.tabBarController?.tabBar.isHidden = true
+        self.overlayBlurredBackgroundView()
+    }
+    
+    func overlayBlurredBackgroundView() {
+        let blurredBackgroundView = UIVisualEffectView()
+        blurredBackgroundView.frame = view.frame
+        blurredBackgroundView.effect = UIBlurEffect(style: .dark)
+        blurredBackgroundView.alpha = 0.0
+        view.addSubview(blurredBackgroundView)
+        
+        UIView.animate(withDuration: 0.25) {
+            blurredBackgroundView.alpha = 0.95
+        }
+    }
+    
+    func removeBlurredBackgroundView() {
+        for subview in view.subviews {
+            if subview.isKind(of: UIVisualEffectView.self) {
+                UIView.animate(
+                    withDuration: 0.3,
+                    animations: { subview.alpha = 0.0 },
+                    completion: {
+                        [weak self] ended in
+                        if ended { subview.removeFromSuperview()
+                            self?.tabBarController?.tabBar.isHidden = false
+                        }
+                    }
+                )
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == addOperationSegueIdentifier {
+                if let viewController = segue.destination as? AddOperationViewController {
+                    viewController.delegate = self
+                }
+            }
+        }
+    }
+    
     
 
 }

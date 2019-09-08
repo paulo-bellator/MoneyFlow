@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol AddOperationViewControllerDelegate: class {
+    func removeBlurredBackgroundView()
+}
+
 class AddOperationViewController: UIViewController {
+    
+    weak var delegate: AddOperationViewControllerDelegate?
     
     let presenter = Presenter()
     let settingsPresenter = SettingsPresenter.shared
@@ -29,8 +35,7 @@ class AddOperationViewController: UIViewController {
     @IBOutlet weak var categoryOrContactTextField: UITextField!
     @IBOutlet weak var categoryOrContactEmojiLabel: UILabel!
     @IBOutlet weak var currencySignButton: UIButton!
-    
-    
+    @IBOutlet weak var visibleView: UIView!
     
     
     @IBAction func currencyButtonTouched(_ sender: UIButton) {
@@ -55,13 +60,29 @@ class AddOperationViewController: UIViewController {
         
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
-        valueTextField.becomeFirstResponder()
+        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { [weak self] (_) in
+            self?.valueTextField.becomeFirstResponder()
+        }
+//        valueTextField.becomeFirstResponder()
         accountTextField.inputView = pickerView
         accountTextField.text = settingsPresenter.accounts.first
         categoryOrContactTextField.inputView = pickerView
         categoryOrContactTextField.text = settingsPresenter.categories.first
         currencySignButton.titleLabel?.text = settingsPresenter.currenciesSignes.first
-
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized(recognizer:)))
+        view.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc func tapGestureRecognized(recognizer: UITapGestureRecognizer) {
+        print("dd")
+        let tapPoint = recognizer.location(in: view)
+        if !visibleView.frame.contains(tapPoint) {
+//            resignFirstResponder()
+            view.endEditing(true)
+            self.dismiss(animated: true)
+            delegate?.removeBlurredBackgroundView()
+        }
     }
     
     @objc func datePickerValueChanged() {

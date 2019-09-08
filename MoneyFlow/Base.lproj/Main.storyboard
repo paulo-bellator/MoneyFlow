@@ -16,11 +16,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="OperationsViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tqx-7M-aCx">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="mw6-nO-jVj"/>
@@ -58,7 +58,7 @@
                                 </cells>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VqW-fa-Ih6">
-                                <rect key="frame" x="0.0" y="55" width="414" height="568"/>
+                                <rect key="frame" x="0.0" y="75" width="414" height="612"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyOperationsListCell" rowHeight="100" id="Pny-lf-fCN">
@@ -203,25 +203,39 @@
                                             <outlet property="emojiLabel" destination="RZ4-XQ-T4F" id="6mU-0Z-f1E"/>
                                             <outlet property="mainLabel" destination="GrW-t9-gqZ" id="nAa-BX-v6Y"/>
                                             <outlet property="valueLabel" destination="wup-1l-ysA" id="26o-io-FZI"/>
-                                            <segue destination="Ubl-rN-blb" kind="show" id="Dfn-c5-AHo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJV-Tq-bcc">
+                                <rect key="frame" x="309" y="639" width="75" height="28"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="  Добавить  ">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zmk-sk-fac"/>
+                                    <segue destination="Ubl-rN-blb" kind="presentation" identifier="ShowAddOperation" modalPresentationStyle="overCurrentContext" id="Kvn-nn-5LG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iJV-Tq-bcc" secondAttribute="bottom" constant="20" id="Eo7-Dj-ssy"/>
                             <constraint firstItem="VqW-fa-Ih6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XfL-6F-Fbw"/>
                             <constraint firstItem="tqx-7M-aCx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YEV-ZF-qn9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VqW-fa-Ih6" secondAttribute="bottom" id="o0p-2c-fZe"/>
                             <constraint firstItem="VqW-fa-Ih6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="qjv-M8-S1q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VqW-fa-Ih6" secondAttribute="trailing" id="rSc-TU-c50"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iJV-Tq-bcc" secondAttribute="trailing" constant="30" id="vhB-F0-UzJ"/>
                             <constraint firstItem="tqx-7M-aCx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yGh-g9-OxV"/>
                             <constraint firstItem="tqx-7M-aCx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yS4-21-qnM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Nbv-h4-ooc"/>
                     <navigationItem key="navigationItem" title="Операции" id="vzz-7o-enw"/>
                     <connections>
                         <outlet property="collectionView" destination="tqx-7M-aCx" id="ZmI-gn-ZMd"/>
@@ -232,21 +246,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1926.0869565217392" y="114.94565217391305"/>
+            <point key="canvasLocation" x="1108.6956521739132" y="114.94565217391305"/>
         </scene>
         <!--Add Operation View Controller-->
         <scene sceneID="Dw4-Z1-CTP">
             <objects>
                 <viewController id="Ubl-rN-blb" customClass="AddOperationViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Bl-ga-hPd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="5Bl-ga-hPd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72Q-BF-LE2">
                                 <rect key="frame" x="70" y="53.333333333333343" width="274" height="369.66666666666663"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7t-NV-uc8">
-                                        <rect key="frame" x="92.666666666666657" y="296" width="89" height="36"/>
+                                        <rect key="frame" x="92.666666666666657" y="331" width="89" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Добавить"/>
                                         <connections>
@@ -254,7 +268,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwh-bF-EyO">
-                                        <rect key="frame" x="71" y="96" width="30" height="48"/>
+                                        <rect key="frame" x="71" y="107.66666666666666" width="30" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="kPa-QD-oVl"/>
                                         </constraints>
@@ -273,25 +287,25 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="35 321" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGG-2V-Elk">
-                                        <rect key="frame" x="109" y="102" width="96" height="36"/>
+                                        <rect key="frame" x="109" y="113.66666666666666" width="96" height="36"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5q-K5-DgE">
-                                        <rect key="frame" x="59" y="206.66666666666669" width="28" height="30"/>
+                                        <rect key="frame" x="59" y="228" width="28" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Наличные" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vG-rb-gcW">
-                                        <rect key="frame" x="100.66666666666666" y="155.66666666666669" width="73" height="17"/>
+                                        <rect key="frame" x="100.66666666666666" y="167.33333333333334" width="73" height="17"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Продукты" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2a-o9-dcO">
-                                        <rect key="frame" x="95" y="208.33333333333331" width="104" height="27"/>
+                                        <rect key="frame" x="95" y="229.33333333333331" width="104" height="27"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -319,7 +333,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hRq-Vx-dw1" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="bottom" constant="150" id="BaL-V1-smp"/>
                             <constraint firstItem="72Q-BF-LE2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hRq-Vx-dw1" secondAttribute="leading" constant="20" id="M1N-vQ-VYj"/>
@@ -336,33 +350,12 @@
                         <outlet property="currencySignButton" destination="rwh-bF-EyO" id="vP5-lS-Xgc"/>
                         <outlet property="dateTextField" destination="3Mr-xA-gWa" id="MP3-PT-W5E"/>
                         <outlet property="valueTextField" destination="lGG-2V-Elk" id="ERF-RS-Brp"/>
+                        <outlet property="visibleView" destination="72Q-BF-LE2" id="l0H-H0-Wg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewY-Th-r0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753.6231884057975" y="114.94565217391305"/>
-        </scene>
-        <!--Операции-->
-        <scene sceneID="dwZ-1A-OAt">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ugn-eR-fMT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Операции" id="uZ7-of-ny1"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="uhB-cd-UpF">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WIH-Ei-uiV">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="UqV-Mu-8ay"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="og9-0T-SZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1018.840579710145" y="114.94565217391305"/>
+            <point key="canvasLocation" x="2049" y="115"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cpg-DF-oJn">
@@ -375,7 +368,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Ugn-eR-fMT" kind="relationship" relationship="viewControllers" id="uHs-IH-Yhs"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bna-aQ-RRZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztz-Tf-TNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
