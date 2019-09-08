@@ -50,10 +50,10 @@ class OperationPresenter {
     }()
     
     lazy var commentString: String? = {
-        if let op = operation as? FlowOperation { return op.comment }
-        if let op = operation as? DebtOperation { return op.comment }
-        return nil
-//        return dateString
+//        if let op = operation as? FlowOperation { return op.comment }
+//        if let op = operation as? DebtOperation { return op.comment }
+//        return nil
+        return idString + " " + dateString
     }()
     
     init(_ operation: Operation) {
