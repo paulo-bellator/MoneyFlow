@@ -25,6 +25,8 @@
 		F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6B231B227400ABF7AC /* Main.storyboard */; };
 		F9B2FE6F231B227700ABF7AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6E231B227700ABF7AC /* Assets.xcassets */; };
 		F9B2FE72231B227700ABF7AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE70231B227700ABF7AC /* LaunchScreen.storyboard */; };
+		F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */; };
+		F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8B23253EA90008109E /* SettingsPresenter.swift */; };
 		F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */; };
 		F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		F9B2FE6E231B227700ABF7AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B2FE71231B227700ABF7AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9B2FE73231B227700ABF7AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
+		F9D08D8B23253EA90008109E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingTableViewExtension.swift; path = ../ManagingTableViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */,
+				F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */,
 				F9063DDE232139FE00F08E84 /* DataSource.swift */,
 			);
 			path = "Date Sources";
@@ -99,6 +104,7 @@
 				F9A980FB2321409600F630F9 /* OperationsViewController.swift */,
 				F9A981052321416000F630F9 /* Presenter.swift */,
 				F9A981032321410900F630F9 /* OperationPresenter.swift */,
+				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9D3A9F9232165BB00895A80 /* TableView */,
 				F9D3A9FA232165D400895A80 /* CollectionView */,
 			);
@@ -243,6 +249,8 @@
 				F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */,
 				F95B2E7223214F0200808558 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
+				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,
+				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
 				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,

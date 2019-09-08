@@ -11,20 +11,7 @@ import UIKit
 class OperationPresenter {
 
     private let operation: Operation
-    
-    private let emojiForCategory: [String: String] = ["Продукты": "🥦", "Развлечения": "🎮", "Здоровье": "💊", "Проезд": "🚎", "Связь и интернет": "📡"]
-    private let defaultEmojiForCategory = "❓"
-    private let emojiForContact: [String: String] = ["ООО МояРабота": "🏢", "Вася": "👨‍🍳", "Петя": "🤵", "Тигран": "👳🏻‍♂️"]
-    private let defaultEmojiForContact = "❓"
-
-    // temporarly use data placeholder
-    
-        static let allCategories = ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет"]
-        static let allContacts = ["ООО МояРабота", "Вася", "Петя", "Тигран"]
-        static let allCurrencies = Currency.allSignes
-        static let allAccounts = ["Наличные", "Сбербанк МСК", "Альфа", "Хоум Кредит", "Сбербанк РНД"]
-    
-    // temporarly use data placeholder
+    private let settingsPresenter = SettingsPresenter.shared
     
     lazy var idString: String = {
         return operation.id.description
@@ -44,7 +31,7 @@ class OperationPresenter {
     }()
     
     lazy var contactEmoji: String? = {
-        if let op = operation as? DebtOperation { return emojiForContact[op.contact] ?? defaultEmojiForContact }
+        if let op = operation as? DebtOperation { return settingsPresenter.emojiFor(contact: op.contact) }
         else { return nil }
     }()
     
@@ -54,7 +41,7 @@ class OperationPresenter {
     }()
     
     lazy var categoryEmoji: String? = {
-        if let op = operation as? FlowOperation { return emojiForCategory[op.category] ?? defaultEmojiForCategory }
+        if let op = operation as? FlowOperation { return settingsPresenter.emojiFor(category: op.category) }
         else { return nil }
     }()
     

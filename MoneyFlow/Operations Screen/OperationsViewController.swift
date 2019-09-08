@@ -13,7 +13,7 @@ class OperationsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var talbeViewTopSafeAreaTopConstrain: NSLayoutConstraint!
+    @IBOutlet weak var tableViewTopSafeAreaTopConstrain: NSLayoutConstraint!
     
     let operationTableViewCellIdentifier = "OperationCell"
     let empryListTableViewCellIdentifier = "emptyOperationsListCell"
@@ -24,6 +24,7 @@ class OperationsViewController: UIViewController {
     
     
     let presenter = Presenter()
+    let settingsPresenter = SettingsPresenter.shared
     lazy var operationsByDays = presenter.operationsSorted(by: .days)
     var tableViewScrollOffset: CGFloat = 0 {
         willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
@@ -39,10 +40,10 @@ class OperationsViewController: UIViewController {
         var result = [FilterUnit]()
         
         result.append(FilterUnit.all("Все"))
-        for currency in OperationPresenter.allCurrencies { result.append(FilterUnit.currency(currency)) }
-        for account in OperationPresenter.allAccounts { result.append(FilterUnit.account(account)) }
-        for category in OperationPresenter.allCategories { result.append(FilterUnit.category(category)) }
-        for contact in OperationPresenter.allContacts { result.append(FilterUnit.contact(contact)) }
+        for currency in settingsPresenter.currenciesSignes { result.append(FilterUnit.currency(currency)) }
+        for account in settingsPresenter.accounts { result.append(FilterUnit.account(account)) }
+        for category in settingsPresenter.categories { result.append(FilterUnit.category(category)) }
+        for contact in settingsPresenter.contacts { result.append(FilterUnit.contact(contact)) }
         
         return result
     }()
@@ -90,10 +91,10 @@ class OperationsViewController: UIViewController {
     }
     
     private func reloadTableView() {
-        print("Offset before reload: \(tableView.contentOffset.y)")
         tableView.reloadData()
-        tableViewScrollOffset = tableView.contentOffset.y
-        print("Offset after reload: \(tableViewScrollOffset)")
+        tableView.contentOffset.y = 0.0
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        tableViewScrollOffset = 0
     }
     
     

@@ -83,14 +83,14 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
             // scrolling up
                 if contentOffset < tableViewScrollOffset {
                     if tableView.frame.origin.y < collectionView.frame.maxY {
-                        let constantValue = talbeViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
-                        talbeViewTopSafeAreaTopConstrain.constant = min(constantValue, collectionView.frame.height)
+                        let constantValue = tableViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
+                        tableViewTopSafeAreaTopConstrain.constant = min(constantValue, collectionView.frame.height)
                     }
             // scrolling down
                 } else {
                     if tableView.frame.origin.y > collectionView.frame.origin.y {
-                        let constantValue = talbeViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
-                        talbeViewTopSafeAreaTopConstrain.constant = max(constantValue, 0)
+                        let constantValue = tableViewTopSafeAreaTopConstrain.constant + (tableViewScrollOffset - contentOffset)
+                        tableViewTopSafeAreaTopConstrain.constant = max(constantValue, 0)
                     }
                 }
             }
@@ -98,11 +98,11 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         }
     }
     
-    // i don't know why, by tableView for somereson drastically change contentOffset,
-    // when i use filter and reloadDate in tableView
+    // i don't know why, but tableView for some reason drastically change contentOffset,
+    // when i use filter and reloadData in tableView
     // and this is happening a lot of times, when i scroll up
     // i think this may be becouse of reuseing cells
-    // and when i reloadData in the middle of list, and start scrollin up
+    // and when i reloadData in the middle of the list, and start scrollin up
     // new cells creating and it changes offset
     // so when it happends, i just forbid to change constrain
     private func isDirectionOfContentOffsetDramaticallyChanged(newOffset: CGFloat) -> Bool {

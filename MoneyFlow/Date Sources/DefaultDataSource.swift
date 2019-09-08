@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DefaultDataSource: DataSource {
+class DefaultDataSource: OperationDataSource {
     
     static let shared = DefaultDataSource()
     
@@ -79,16 +79,16 @@ extension DefaultDataSource {
 private extension DefaultDataSource {
     
     private var currencies: [Currency] {
-        return Currency.all
+        return MainData.settings.currencies
     }
     private var categories: [String] {
-        return ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет"]
+        return MainData.settings.categories
     }
     private var contacts: [String] {
-        return ["ООО МояРабота", "Вася", "Петя", "Тигран"]
+        return MainData.settings.contacts
     }
     private var accounts: [String] {
-        return ["Наличные", "Сбербанк МСК", "Альфа", "Хоум Кредит", "Сбербанк РНД"]
+        return MainData.settings.accounts
     }
     
     private var randomValue: Double {
