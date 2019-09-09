@@ -143,6 +143,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         }
     }
     
+    func updateData() {
+        applyFilter()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == addOperationSegueIdentifier {

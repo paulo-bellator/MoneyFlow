@@ -16,6 +16,8 @@
 		F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDE232139FE00F08E84 /* DataSource.swift */; };
 		F9063DED23213A1000F08E84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DEC23213A0F00F08E84 /* Constants.swift */; };
 		F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */; };
+		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
+		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
 		F95B2E7223214F0200808558 /* OperationsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B2E7123214F0200808558 /* OperationsHeaderTableViewCell.swift */; };
 		F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */; };
 		F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* OperationsViewController.swift */; };
@@ -42,6 +44,8 @@
 		F9063DDE232139FE00F08E84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F9063DEC23213A0F00F08E84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Supporting files/Constants.swift"; sourceTree = "<group>"; };
 		F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingCollectionViewExtension.swift; sourceTree = "<group>"; };
+		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
+		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
 		F95B2E7123214F0200808558 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OperationsHeaderTableViewCell.swift; path = ../../OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationViewController.swift; sourceTree = "<group>"; };
 		F9A980FB2321409600F630F9 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,25 @@
 			path = "Date Sources";
 			sourceTree = "<group>";
 		};
+		F91871EE23268F0400F0F9A6 /* AddOperation Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */,
+				F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */,
+				F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */,
+			);
+			path = "AddOperation Screen";
+			sourceTree = "<group>";
+		};
+		F91871EF23268F1F00F0F9A6 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
+				F95B2E6E232142C500808558 /* Operations Screen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		F95B2E6E232142C500808558 /* Operations Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +155,7 @@
 		F9B2FE66231B227400ABF7AC /* MoneyFlow */ = {
 			isa = PBXGroup;
 			children = (
-				F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */,
-				F95B2E6E232142C500808558 /* Operations Screen */,
+				F91871EF23268F1F00F0F9A6 /* Screens */,
 				F9063DDC232139FE00F08E84 /* Date Sources */,
 				F9063DD9232139FE00F08E84 /* ID Generators */,
 				F9063DD5232139FE00F08E84 /* Operation Models */,
@@ -245,12 +267,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
 				F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */,
 				F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */,
 				F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */,
+				F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */,
 				F95B2E7223214F0200808558 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,
