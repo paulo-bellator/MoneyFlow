@@ -20,9 +20,7 @@ extension UIViewController {
                 var title = "Назад"
                 if index > 0 {
                     if index < titles.count { title = titles[index-1] }
-                } else {
-                    title = ""
-                }
+                } else { title = "" }
                 
                 previousButton.title = title
                 previousButton.tintColor = UIColor.white
@@ -38,9 +36,7 @@ extension UIViewController {
                 title = "Вперед"
                 if index < textFields.count-1 {
                     if index < titles.count { title = titles[index+1] }
-                } else {
-                    title = ""
-                }
+                } else { title = "" }
                 nextButton.title = title
                 nextButton.tintColor = UIColor.white
                 nextButton.width = 30

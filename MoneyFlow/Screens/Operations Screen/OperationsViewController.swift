@@ -121,8 +121,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         blurredBackgroundView.alpha = 0.0
         view.addSubview(blurredBackgroundView)
         
-        UIView.animate(withDuration: 0.25) {
-            blurredBackgroundView.alpha = 0.95
+        UIView.animate(withDuration: 0.35) {
+            blurredBackgroundView.alpha = 1
         }
     }
     

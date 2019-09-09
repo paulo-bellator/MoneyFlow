@@ -22,6 +22,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryOrContactEmojiLabel: UILabel!
     @IBOutlet weak var currencySignButton: UIButton!
     @IBOutlet weak var visibleView: UIView!
+    @IBOutlet weak var operationTypeView: RoundedSoaringView!
+    @IBOutlet weak var addMoreButton: UIButton!
     
     weak var delegate: AddOperationViewControllerDelegate?
     let presenter = Presenter()
@@ -29,14 +31,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
-        picker.frame.size.height = 226
+        picker.frame.size.height = Constants.pickerHeight
         picker.dataSource = self
         picker.delegate = self
         return picker
     }()
     private lazy var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.frame.size.height = 226
+        picker.frame.size.height = Constants.pickerHeight
         picker.locale = Locale(identifier: "ru_RU")
         picker.datePickerMode = .dateAndTime
         picker.date = Date()
@@ -44,11 +46,34 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         return picker
     }()
     
-    var isItFlowOperations = true
+    var isItFlowOperations = true {
+        didSet {
+            operationTypeView.fillColor = isItFlowOperations ? Constants.flowOperationTypeColor : Constants.debtOperationTypeColor
+            pickerView.selectRow(0, inComponent: 0, animated: false)
+            UIView.transition(
+                with: visibleView,
+                duration: 0.45,
+                options: isItFlowOperations ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                animations: { [weak self] in
+                    self?.pickerView.reloadAllComponents()
+                    self?.categoryOrContactTextField.text = self!.isItFlowOperations ? self?.settingsPresenter.categories.first! : self?.settingsPresenter.contacts.first!
+                    if self!.isItFlowOperations {
+                        self!.categoryOrContactEmojiLabel.text = self?.settingsPresenter.emojiFor(category: self?.categoryOrContactTextField.text ?? "")
+                    } else {
+                        self!.categoryOrContactEmojiLabel.text =  self?.settingsPresenter.emojiFor(contact: self?.categoryOrContactTextField.text ?? "")
+                    }
+                    
+            }) { [weak self] (_) in
+                self?.valueTextField.becomeFirstResponder()
+                let toolBar = self?.accountTextField.inputAccessoryView as! UIToolbar
+                let nextButton = toolBar.items![1]
+                nextButton.title = self!.isItFlowOperations ? "Категория" : "Контакт"
+            }
+        }
+    }
     private var currentCurrencyIndex = 0 {
         didSet {
             if currentCurrencyIndex >= settingsPresenter.currencies.count { currentCurrencyIndex = 0 }
-            print(currentCurrencyIndex)
         }
     }
 
@@ -62,9 +87,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         addOperation()
     }
     
+    @IBAction func addMoreButtonTouched(_ sender: UIButton) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        isItFlowOperations = true
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
         valueTextField.text = ""
@@ -96,8 +126,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func tapGestureRecognized(recognizer: UITapGestureRecognizer) {
         let tapPoint = recognizer.location(in: view)
-        if !visibleView.frame.contains(tapPoint) {
-            dismiss()
+        
+        switch tapPoint {
+        case _ where visibleView.frame.contains(tapPoint): break
+        case _ where addMoreButton.frame.contains(tapPoint): break
+        case _ where operationTypeView.frame.contains(tapPoint):
+            isItFlowOperations.toggle()
+            
+        default: dismiss()
         }
     }
     
@@ -130,6 +166,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         dateTextField.text = datePicker.date.formattedDescription
     }
     
+}
+
+extension AddOperationViewController {
+    private struct Constants {
+        static let flowOperationTypeColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        static let debtOperationTypeColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        static let pickerHeight: CGFloat = 226
+    }
 }
 
 

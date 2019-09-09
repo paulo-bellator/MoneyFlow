@@ -256,19 +256,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72Q-BF-LE2">
-                                <rect key="frame" x="70" y="53.333333333333343" width="274" height="369.66666666666663"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72Q-BF-LE2" customClass="RoundedSoaringView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="62" y="117" width="290" height="257.66666666666669"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7t-NV-uc8">
-                                        <rect key="frame" x="92.666666666666657" y="331" width="89" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Добавить"/>
-                                        <connections>
-                                            <action selector="addButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="J8H-uf-hAj"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwh-bF-EyO">
-                                        <rect key="frame" x="71" y="107.66666666666666" width="30" height="48"/>
+                                        <rect key="frame" x="74" y="79" width="30" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="kPa-QD-oVl"/>
                                         </constraints>
@@ -280,82 +272,145 @@
                                             <action selector="currencyButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="MrD-8c-Z1L"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21:30 21 сентября" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-xA-gWa">
-                                        <rect key="frame" x="74.666666666666657" y="54" width="125" height="17"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="35 321" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGG-2V-Elk">
-                                        <rect key="frame" x="109" y="113.66666666666666" width="96" height="36"/>
+                                        <rect key="frame" x="112" y="85" width="96" height="36"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5q-K5-DgE">
-                                        <rect key="frame" x="59" y="228" width="28" height="30"/>
+                                        <rect key="frame" x="71" y="184" width="28" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Наличные" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vG-rb-gcW">
-                                        <rect key="frame" x="100.66666666666666" y="167.33333333333334" width="73" height="17"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Продукты" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2a-o9-dcO">
-                                        <rect key="frame" x="95" y="229.33333333333331" width="104" height="27"/>
+                                        <rect key="frame" x="107" y="185.66666666666669" width="104" height="27"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Наличные" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vG-rb-gcW">
+                                        <rect key="frame" x="108.66666666666666" y="131" width="73" height="17"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21:30 21 сентября" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-xA-gWa">
+                                        <rect key="frame" x="82.666666666666657" y="30" width="125" height="17"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="z7t-NV-uc8" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="1Xt-sY-AcF"/>
-                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="centerY" secondItem="72Q-BF-LE2" secondAttribute="centerY" multiplier="0.65" id="9vQ-hB-Tf6"/>
-                                    <constraint firstItem="w2a-o9-dcO" firstAttribute="centerY" secondItem="72Q-BF-LE2" secondAttribute="centerY" multiplier="1.2" id="CYj-qJ-EZf"/>
-                                    <constraint firstItem="w2a-o9-dcO" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" constant="10" id="Cui-co-Zoa"/>
-                                    <constraint firstItem="2vG-rb-gcW" firstAttribute="top" secondItem="lGG-2V-Elk" secondAttribute="bottom" constant="17.666666666666686" id="Ddu-4F-MNj"/>
-                                    <constraint firstItem="3Mr-xA-gWa" firstAttribute="top" secondItem="72Q-BF-LE2" secondAttribute="top" constant="54" id="J3n-4g-hdZ"/>
+                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="50" id="0JV-oq-yhM"/>
+                                    <constraint firstItem="w2a-o9-dcO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2vG-rb-gcW" secondAttribute="bottom" constant="20" id="2gY-aG-6al"/>
+                                    <constraint firstItem="3Mr-xA-gWa" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="8ud-Nk-8uf"/>
+                                    <constraint firstItem="3Mr-xA-gWa" firstAttribute="top" secondItem="72Q-BF-LE2" secondAttribute="top" constant="30" id="9fR-hX-EVE"/>
+                                    <constraint firstItem="2vG-rb-gcW" firstAttribute="top" secondItem="lGG-2V-Elk" secondAttribute="bottom" constant="10" id="Ddu-4F-MNj"/>
+                                    <constraint firstAttribute="bottom" secondItem="w2a-o9-dcO" secondAttribute="bottom" constant="45" id="G4u-XU-Q83"/>
+                                    <constraint firstItem="w2a-o9-dcO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="48" id="IA3-lA-bzi"/>
                                     <constraint firstItem="rwh-bF-EyO" firstAttribute="centerY" secondItem="lGG-2V-Elk" secondAttribute="centerY" id="JDF-mz-UQV"/>
-                                    <constraint firstItem="3Mr-xA-gWa" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="YHo-1V-Qwn"/>
+                                    <constraint firstItem="w2a-o9-dcO" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" constant="14" id="Nz4-O2-i7s"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w2a-o9-dcO" secondAttribute="trailing" constant="20" id="Rgo-xX-5MS"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lGG-2V-Elk" secondAttribute="trailing" constant="20" id="Syv-FC-wqx"/>
                                     <constraint firstItem="A5q-K5-DgE" firstAttribute="centerY" secondItem="w2a-o9-dcO" secondAttribute="centerY" id="a0x-Gx-Ub6"/>
-                                    <constraint firstItem="2vG-rb-gcW" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="byf-9R-1VG"/>
-                                    <constraint firstAttribute="width" priority="750" constant="274" id="dPP-GZ-BWz"/>
-                                    <constraint firstAttribute="bottom" secondItem="z7t-NV-uc8" secondAttribute="bottom" constant="37.666666666666629" id="hHs-uG-beX"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lGG-2V-Elk" secondAttribute="trailing" constant="30" id="i8c-cw-uyV"/>
+                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="centerY" secondItem="72Q-BF-LE2" secondAttribute="centerY" multiplier="0.8" id="b1P-YG-QqK"/>
+                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" constant="15" id="bOQ-ol-GQK"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2vG-rb-gcW" secondAttribute="trailing" constant="30" id="deP-Hk-9SH"/>
+                                    <constraint firstItem="2vG-rb-gcW" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="dih-Ey-RnQ"/>
                                     <constraint firstItem="w2a-o9-dcO" firstAttribute="leading" secondItem="A5q-K5-DgE" secondAttribute="trailing" constant="8" id="mTd-dn-f9u"/>
-                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" constant="20" id="pia-Ls-TL5"/>
+                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3Mr-xA-gWa" secondAttribute="bottom" constant="30" id="paq-fV-Fy7"/>
+                                    <constraint firstItem="2vG-rb-gcW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="30" id="vYV-tv-UDN"/>
                                     <constraint firstItem="lGG-2V-Elk" firstAttribute="leading" secondItem="rwh-bF-EyO" secondAttribute="trailing" constant="8" id="yIk-Ko-KX5"/>
-                                    <constraint firstItem="rwh-bF-EyO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="20" id="zEx-XZ-7pM"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nod-co-Ntx" customClass="RoundedSoaringView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="62" y="59.333333333333343" width="290" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fjG-pn-s3w"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" red="1" green="0.74117668110000001" blue="0.07064201363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MI-Mz-Pgf">
+                                <rect key="frame" x="62" y="384.66666666666669" width="290" height="49"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7t-NV-uc8">
+                                        <rect key="frame" x="79.666666666666657" y="6.3333333333333144" width="131" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Добавить еще">
+                                            <color key="titleColor" red="1" green="0.74117668110000001" blue="0.07064201363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="J8H-uf-hAj"/>
+                                            <action selector="addMoreButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="XNd-UG-izB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="z7t-NV-uc8" firstAttribute="centerX" secondItem="4MI-Mz-Pgf" secondAttribute="centerX" id="KnE-vJ-tFw"/>
+                                    <constraint firstItem="z7t-NV-uc8" firstAttribute="centerY" secondItem="4MI-Mz-Pgf" secondAttribute="centerY" id="XiE-pL-PW8"/>
+                                    <constraint firstAttribute="height" constant="49" id="gMW-NN-B7P"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hRq-Vx-dw1" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="bottom" constant="150" id="BaL-V1-smp"/>
-                            <constraint firstItem="72Q-BF-LE2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hRq-Vx-dw1" secondAttribute="leading" constant="20" id="M1N-vQ-VYj"/>
-                            <constraint firstItem="72Q-BF-LE2" firstAttribute="height" secondItem="5Bl-ga-hPd" secondAttribute="height" multiplier="0.55" priority="100" id="PzT-Un-slH"/>
-                            <constraint firstItem="hRq-Vx-dw1" firstAttribute="top" relation="lessThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="top" constant="-40" id="TIW-Ry-Agt"/>
-                            <constraint firstItem="72Q-BF-LE2" firstAttribute="centerX" secondItem="hRq-Vx-dw1" secondAttribute="centerX" id="Vyr-fT-nZy"/>
+                            <constraint firstItem="4MI-Mz-Pgf" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="3Ob-4A-cpA"/>
+                            <constraint firstItem="72Q-BF-LE2" firstAttribute="width" secondItem="5Bl-ga-hPd" secondAttribute="width" multiplier="0.7" id="ICO-L5-arH"/>
+                            <constraint firstItem="4MI-Mz-Pgf" firstAttribute="top" secondItem="72Q-BF-LE2" secondAttribute="bottom" constant="10" id="N4L-7O-Uui"/>
+                            <constraint firstItem="72Q-BF-LE2" firstAttribute="height" secondItem="5Bl-ga-hPd" secondAttribute="height" multiplier="0.35" id="Tlr-fK-qEB"/>
+                            <constraint firstItem="72Q-BF-LE2" firstAttribute="top" secondItem="nod-co-Ntx" secondAttribute="bottom" constant="17.666666666666657" id="V57-A5-icf"/>
+                            <constraint firstItem="72Q-BF-LE2" firstAttribute="centerY" secondItem="hRq-Vx-dw1" secondAttribute="centerY" multiplier="0.65" id="bXT-LO-Ion"/>
+                            <constraint firstItem="nod-co-Ntx" firstAttribute="width" secondItem="72Q-BF-LE2" secondAttribute="width" id="gdc-2q-QSx"/>
+                            <constraint firstItem="nod-co-Ntx" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="k5W-Xj-nuE"/>
+                            <constraint firstItem="4MI-Mz-Pgf" firstAttribute="width" secondItem="72Q-BF-LE2" secondAttribute="width" id="row-fj-m6R"/>
+                            <constraint firstItem="72Q-BF-LE2" firstAttribute="centerX" secondItem="hRq-Vx-dw1" secondAttribute="centerX" id="tke-Ed-YTy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hRq-Vx-dw1"/>
                     </view>
                     <connections>
                         <outlet property="accountTextField" destination="2vG-rb-gcW" id="D7e-9i-clY"/>
+                        <outlet property="addMoreButton" destination="z7t-NV-uc8" id="SUG-rt-9oN"/>
                         <outlet property="categoryOrContactEmojiLabel" destination="A5q-K5-DgE" id="JnO-KM-xsF"/>
                         <outlet property="categoryOrContactTextField" destination="w2a-o9-dcO" id="sTr-bP-Y7I"/>
                         <outlet property="currencySignButton" destination="rwh-bF-EyO" id="vP5-lS-Xgc"/>
                         <outlet property="dateTextField" destination="3Mr-xA-gWa" id="MP3-PT-W5E"/>
+                        <outlet property="operationTypeView" destination="nod-co-Ntx" id="WMy-iq-TAZ"/>
                         <outlet property="valueTextField" destination="lGG-2V-Elk" id="ERF-RS-Brp"/>
                         <outlet property="visibleView" destination="72Q-BF-LE2" id="l0H-H0-Wg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewY-Th-r0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="115"/>
+            <point key="canvasLocation" x="2047.826086956522" y="114.94565217391305"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cpg-DF-oJn">
