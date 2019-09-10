@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct DefaultEmoji {
+    static let category = "❓"
+    static let contact = "❓"
+}
 
 class SettingsPresenter {
     
@@ -25,10 +29,10 @@ class SettingsPresenter {
     }
     
     func emojiFor(category: String) -> String {
-        return MainData.settings.emojiForCategory[category] ?? defaultEmojiForCategory
+        return MainData.settings.emojiForCategory[category] ?? DefaultEmoji.category
     }
     func emojiFor(contact: String) -> String {
-        return MainData.settings.emojiForContact[contact] ?? defaultEmojiForContact
+        return MainData.settings.emojiForContact[contact] ?? DefaultEmoji.contact
     }
     func set(emoji: String?, forCategory category: String) {
         MainData.settings.set(emoji: emoji, forCategory: category)

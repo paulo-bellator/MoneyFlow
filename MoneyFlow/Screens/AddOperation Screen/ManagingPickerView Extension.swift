@@ -16,32 +16,32 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if accountTextField.isFirstResponder {
-            return settingsPresenter.accounts.count
+            return presenter.accounts.count
         } else if categoryOrContactTextField.isFirstResponder {
-            return isItFlowOperations ? settingsPresenter.categories.count : settingsPresenter.contacts.count
+            return isItFlowOperations ? presenter.categories.count : presenter.contacts.count
         }
         return 10
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if accountTextField.isFirstResponder {
-            return settingsPresenter.accounts[row]
+            return presenter.accounts[row]
         } else if categoryOrContactTextField.isFirstResponder {
-            return isItFlowOperations ? settingsPresenter.categories[row] : settingsPresenter.contacts[row]
+            return isItFlowOperations ? presenter.categories[row] : presenter.contacts[row]
         }
-        return "Empty"
+        return Constants.pickerViewTitlePlaceHolder
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if accountTextField.isFirstResponder {
-            accountTextField.text = settingsPresenter.accounts[row]
+            accountTextField.text = presenter.accounts[row]
         } else if categoryOrContactTextField.isFirstResponder {
             if isItFlowOperations {
-                categoryOrContactTextField.text = settingsPresenter.categories[row]
-                categoryOrContactEmojiLabel.text = settingsPresenter.emojiFor(category: settingsPresenter.categories[row])
+                categoryOrContactTextField.text = presenter.categories[row]
+                categoryOrContactEmojiLabel.text = presenter.emojiFor(category: presenter.categories[row])
             } else {
-                categoryOrContactTextField.text = settingsPresenter.contacts[row]
-                categoryOrContactEmojiLabel.text = settingsPresenter.emojiFor(contact: settingsPresenter.contacts[row])
+                categoryOrContactTextField.text = presenter.contacts[row]
+                categoryOrContactEmojiLabel.text = presenter.emojiFor(contact: presenter.contacts[row])
             }
         }
     }
