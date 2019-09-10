@@ -260,7 +260,7 @@
                                 <rect key="frame" x="62" y="117" width="290" height="257.66666666666669"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwh-bF-EyO">
-                                        <rect key="frame" x="74" y="79" width="30" height="48"/>
+                                        <rect key="frame" x="74" y="72.666666666666657" width="30" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="kPa-QD-oVl"/>
                                         </constraints>
@@ -273,25 +273,25 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="35 321" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGG-2V-Elk">
-                                        <rect key="frame" x="112" y="85" width="96" height="36"/>
+                                        <rect key="frame" x="112" y="78.666666666666657" width="96" height="36"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5q-K5-DgE">
-                                        <rect key="frame" x="71" y="184" width="28" height="30"/>
+                                        <rect key="frame" x="71" y="164" width="28" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Продукты" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2a-o9-dcO">
-                                        <rect key="frame" x="107" y="185.66666666666669" width="104" height="27"/>
+                                        <rect key="frame" x="107" y="165.66666666666669" width="104" height="27"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Наличные" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vG-rb-gcW">
-                                        <rect key="frame" x="108.66666666666666" y="131" width="73" height="17"/>
+                                        <rect key="frame" x="108.66666666666666" y="124.66666666666666" width="73" height="17"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -302,6 +302,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Коментарий" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wF5-3C-zSN">
+                                        <rect key="frame" x="101" y="210.66666666666669" width="88" height="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -309,18 +315,23 @@
                                     <constraint firstItem="w2a-o9-dcO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2vG-rb-gcW" secondAttribute="bottom" constant="20" id="2gY-aG-6al"/>
                                     <constraint firstItem="3Mr-xA-gWa" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="8ud-Nk-8uf"/>
                                     <constraint firstItem="3Mr-xA-gWa" firstAttribute="top" secondItem="72Q-BF-LE2" secondAttribute="top" constant="30" id="9fR-hX-EVE"/>
+                                    <constraint firstAttribute="bottom" secondItem="wF5-3C-zSN" secondAttribute="bottom" constant="30" id="AQU-hD-67C"/>
                                     <constraint firstItem="2vG-rb-gcW" firstAttribute="top" secondItem="lGG-2V-Elk" secondAttribute="bottom" constant="10" id="Ddu-4F-MNj"/>
-                                    <constraint firstAttribute="bottom" secondItem="w2a-o9-dcO" secondAttribute="bottom" constant="45" id="G4u-XU-Q83"/>
+                                    <constraint firstAttribute="bottom" secondItem="w2a-o9-dcO" secondAttribute="bottom" constant="65" id="G4u-XU-Q83"/>
                                     <constraint firstItem="w2a-o9-dcO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="48" id="IA3-lA-bzi"/>
                                     <constraint firstItem="rwh-bF-EyO" firstAttribute="centerY" secondItem="lGG-2V-Elk" secondAttribute="centerY" id="JDF-mz-UQV"/>
+                                    <constraint firstItem="wF5-3C-zSN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="20" id="Lc8-iX-3qz"/>
+                                    <constraint firstItem="wF5-3C-zSN" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="MnO-T2-u0t"/>
                                     <constraint firstItem="w2a-o9-dcO" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" constant="14" id="Nz4-O2-i7s"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w2a-o9-dcO" secondAttribute="trailing" constant="20" id="Rgo-xX-5MS"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lGG-2V-Elk" secondAttribute="trailing" constant="20" id="Syv-FC-wqx"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wF5-3C-zSN" secondAttribute="trailing" constant="20" id="XXt-se-fte"/>
                                     <constraint firstItem="A5q-K5-DgE" firstAttribute="centerY" secondItem="w2a-o9-dcO" secondAttribute="centerY" id="a0x-Gx-Ub6"/>
-                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="centerY" secondItem="72Q-BF-LE2" secondAttribute="centerY" multiplier="0.8" id="b1P-YG-QqK"/>
+                                    <constraint firstItem="lGG-2V-Elk" firstAttribute="centerY" secondItem="72Q-BF-LE2" secondAttribute="centerY" multiplier="0.75" id="b1P-YG-QqK"/>
                                     <constraint firstItem="lGG-2V-Elk" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" constant="15" id="bOQ-ol-GQK"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2vG-rb-gcW" secondAttribute="trailing" constant="30" id="deP-Hk-9SH"/>
                                     <constraint firstItem="2vG-rb-gcW" firstAttribute="centerX" secondItem="72Q-BF-LE2" secondAttribute="centerX" id="dih-Ey-RnQ"/>
+                                    <constraint firstItem="wF5-3C-zSN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="w2a-o9-dcO" secondAttribute="bottom" constant="10" id="fnU-3r-Kxp"/>
                                     <constraint firstItem="w2a-o9-dcO" firstAttribute="leading" secondItem="A5q-K5-DgE" secondAttribute="trailing" constant="8" id="mTd-dn-f9u"/>
                                     <constraint firstItem="lGG-2V-Elk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3Mr-xA-gWa" secondAttribute="bottom" constant="30" id="paq-fV-Fy7"/>
                                     <constraint firstItem="2vG-rb-gcW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="72Q-BF-LE2" secondAttribute="leading" constant="30" id="vYV-tv-UDN"/>
@@ -401,6 +412,7 @@
                         <outlet property="addMoreButton" destination="z7t-NV-uc8" id="SUG-rt-9oN"/>
                         <outlet property="categoryOrContactEmojiLabel" destination="A5q-K5-DgE" id="JnO-KM-xsF"/>
                         <outlet property="categoryOrContactTextField" destination="w2a-o9-dcO" id="sTr-bP-Y7I"/>
+                        <outlet property="commentTextField" destination="wF5-3C-zSN" id="aaX-cc-q9p"/>
                         <outlet property="currencySignButton" destination="rwh-bF-EyO" id="vP5-lS-Xgc"/>
                         <outlet property="dateTextField" destination="3Mr-xA-gWa" id="MP3-PT-W5E"/>
                         <outlet property="operationTypeView" destination="nod-co-Ntx" id="WMy-iq-TAZ"/>

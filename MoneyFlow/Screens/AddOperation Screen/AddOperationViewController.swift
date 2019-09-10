@@ -21,6 +21,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryOrContactTextField: UITextField!
     @IBOutlet weak var categoryOrContactEmojiLabel: UILabel!
     @IBOutlet weak var currencySignButton: UIButton!
+    @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var visibleView: UIView!
     @IBOutlet weak var operationTypeView: RoundedSoaringView!
     @IBOutlet weak var addMoreButton: UIButton!
@@ -64,8 +65,11 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                     
             }) { [unowned self] (_) in
                 self.valueTextField.becomeFirstResponder()
-                let toolBar = self.accountTextField.inputAccessoryView as! UIToolbar
-                let nextButton = toolBar.items![1]
+                var toolBar = self.accountTextField.inputAccessoryView as! UIToolbar
+                var nextButton = toolBar.items![1]
+                nextButton.title = self.isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle
+                toolBar = self.commentTextField.inputAccessoryView as! UIToolbar
+                nextButton = toolBar.items![0]
                 nextButton.title = self.isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle
             }
         }
@@ -104,6 +108,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         categoryOrContactTextField.text = presenter.categories.first
         categoryOrContactTextField.delegate = self
         currencySignButton.titleLabel?.text = presenter.currenciesSignes.first
+        commentTextField.text = nil
         
         Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
             self?.valueTextField.becomeFirstResponder()
@@ -112,11 +117,12 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(gestureRecognizer)
         
         addInputAccessoryForTextFields(
-            textFields: [dateTextField, valueTextField, accountTextField, categoryOrContactTextField],
+            textFields: [dateTextField, valueTextField, accountTextField, categoryOrContactTextField, commentTextField],
             titles: [Constants.dataTitle,
                      Constants.valueTitle,
                      Constants.accountTitle,
-                     isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle],
+                     isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle,
+                     Constants.commentTitle],
             dismissable: true,
             previousNextable: true,
             doneAction: #selector(AddOperationViewController.addOperation))
@@ -146,7 +152,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         let currency = Currency(rawValue: currencySignButton.currentTitle!) ?? presenter.currencies.first!
         let account = accountTextField.text!
         let categoryOrContact = categoryOrContactTextField.text!
-        let comment: String? = nil
+        var comment = commentTextField.text
+        if comment != nil { if comment!.isEmpty { comment = nil } }
         
         if isItFlowOperations {
             operation = FlowOperation(date: date, value: value, currency: currency, category: categoryOrContact, account: account, comment: comment)
@@ -183,6 +190,7 @@ extension AddOperationViewController {
         static let dataTitle = "Дата"
         static let valueTitle = "Значение"
         static let accountTitle = "Счет"
+        static let commentTitle = "Комментарий"
         static let pickerViewTitlePlaceHolder = "Empty"
     }
 }
