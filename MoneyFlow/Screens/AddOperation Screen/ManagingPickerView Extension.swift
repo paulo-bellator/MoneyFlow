@@ -18,7 +18,8 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
         if accountTextField.isFirstResponder {
             return presenter.accounts.count
         } else if categoryOrContactTextField.isFirstResponder {
-            return isItFlowOperations ? presenter.categories.count : presenter.contacts.count
+            let categoriesCount = isItIncomeOperation ? presenter.incomeCategories.count : presenter.outcomeCategories.count
+            return isItFlowOperation ? categoriesCount : presenter.contacts.count
         }
         return 10
     }
@@ -27,7 +28,8 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
         if accountTextField.isFirstResponder {
             return presenter.accounts[row]
         } else if categoryOrContactTextField.isFirstResponder {
-            return isItFlowOperations ? presenter.categories[row] : presenter.contacts[row]
+            let categories = isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories
+            return isItFlowOperation ? categories[row] : presenter.contacts[row]
         }
         return Constants.pickerViewTitlePlaceHolder
     }
@@ -35,10 +37,13 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if accountTextField.isFirstResponder {
             accountTextField.text = presenter.accounts[row]
+            currentPickerRowForAccount = row
         } else if categoryOrContactTextField.isFirstResponder {
-            if isItFlowOperations {
-                categoryOrContactTextField.text = presenter.categories[row]
-                categoryOrContactEmojiLabel.text = presenter.emojiFor(category: presenter.categories[row])
+            currentPickerRowForCategoryOrContact = row
+            if isItFlowOperation {
+                let categories = isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories
+                categoryOrContactTextField.text = categories[row]
+                categoryOrContactEmojiLabel.text = presenter.emojiFor(category: categories[row])
             } else {
                 categoryOrContactTextField.text = presenter.contacts[row]
                 categoryOrContactEmojiLabel.text = presenter.emojiFor(contact: presenter.contacts[row])

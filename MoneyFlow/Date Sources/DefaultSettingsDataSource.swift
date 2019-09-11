@@ -13,7 +13,8 @@ class DefaultSettingsDataSource: SettingsDataSource {
     
     static let shared = DefaultSettingsDataSource()
     
-    var categories: [String] { didSet { thereAreUnsavedChanges = true } }
+    var outcomeCategories: [String] { didSet { thereAreUnsavedChanges = true } }
+    var incomeCategories: [String] { didSet { thereAreUnsavedChanges = true } }
     var contacts: [String] { didSet { thereAreUnsavedChanges = true } }
     var accounts: [String] { didSet { thereAreUnsavedChanges = true } }
     var currencies: [Currency] { didSet { thereAreUnsavedChanges = true } }
@@ -24,8 +25,11 @@ class DefaultSettingsDataSource: SettingsDataSource {
     private let defaults = UserDefaults()
     private var thereAreUnsavedChanges = false
     
-    func set(categories: [String]) {
-        self.categories = categories
+    func set(outcomeCategories: [String]) {
+        self.outcomeCategories = outcomeCategories
+    }
+    func set(incomeCategories: [String]) {
+        self.incomeCategories = incomeCategories
     }
     func set(contacts: [String]) {
         self.contacts = contacts
@@ -50,7 +54,8 @@ class DefaultSettingsDataSource: SettingsDataSource {
             defaults.set(emojiForCategory, forKey: UserDefaultsKeys.emojiForCategory)
             defaults.set(emojiForContact, forKey: UserDefaultsKeys.emojiForContacts)
             
-            defaults.set(categories, forKey: UserDefaultsKeys.categories)
+            defaults.set(outcomeCategories, forKey: UserDefaultsKeys.outcomeCategories)
+            defaults.set(incomeCategories, forKey: UserDefaultsKeys.incomeCategories)
             defaults.set(contacts, forKey: UserDefaultsKeys.contacts)
             defaults.set(accounts, forKey: UserDefaultsKeys.accounts)
             if let encodedCurrencies = try? JSONEncoder().encode(currencies) {
@@ -66,7 +71,8 @@ class DefaultSettingsDataSource: SettingsDataSource {
         emojiForCategory = defaults.object(forKey: UserDefaultsKeys.emojiForCategory) as? [String: String] ?? [:]
         emojiForContact = defaults.object(forKey: UserDefaultsKeys.emojiForContacts) as? [String: String] ?? [:]
         
-        categories = defaults.object(forKey: UserDefaultsKeys.categories) as? [String] ?? []
+        outcomeCategories = defaults.object(forKey: UserDefaultsKeys.outcomeCategories) as? [String] ?? []
+        incomeCategories = defaults.object(forKey: UserDefaultsKeys.incomeCategories) as? [String] ?? []
         contacts = defaults.object(forKey: UserDefaultsKeys.contacts) as? [String] ?? []
         accounts = defaults.object(forKey: UserDefaultsKeys.accounts) as? [String] ?? []
         if let decodedCurrencies = defaults.data(forKey: UserDefaultsKeys.currencies) {
@@ -82,7 +88,8 @@ class DefaultSettingsDataSource: SettingsDataSource {
 
 extension DefaultSettingsDataSource {
     private struct UserDefaultsKeys {
-        static let categories = "categories"
+        static let outcomeCategories = "outcomeCategories"
+        static let incomeCategories = "incomeCategories"
         static let contacts = "contacts"
         static let accounts = "accounts"
         static let currencies = "currencies"
@@ -94,7 +101,8 @@ extension DefaultSettingsDataSource {
 private extension DefaultSettingsDataSource {
     
     private func fillWithPlaceHoldersIfNeeded() {
-        if categories.isEmpty { categories = placeHolderCategories }
+        if outcomeCategories.isEmpty { outcomeCategories = placeHolderOutcomeCategories }
+        if incomeCategories.isEmpty { incomeCategories = placeHolderIncomeCategories }
         if contacts.isEmpty { contacts = placeHolderContacts }
         if accounts.isEmpty { accounts = placeHolderAccounts }
         if currencies.isEmpty { currencies = placeHolderCurrencies }
@@ -105,8 +113,11 @@ private extension DefaultSettingsDataSource {
     private var placeHolderCurrencies: [Currency] {
         return Currency.all
     }
-    private var placeHolderCategories: [String] {
-        return ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет"]
+    private var placeHolderOutcomeCategories: [String] {
+        return ["Продукты", "Развлечения", "Здоровье", "Проезд", "Связь и интернет", "Прочее"]
+    }
+    private var placeHolderIncomeCategories: [String] {
+        return ["PPP", "Ситимобил", "Проценты и кешбек", "Прочее"]
     }
     private var placeHolderContacts: [String] {
         return ["ООО МояРабота", "Вася", "Петя", "Тигран"]
@@ -116,7 +127,7 @@ private extension DefaultSettingsDataSource {
     }
     
     private var placeHolderEmojiForCategories: [String: String] {
-        return ["Продукты": "🥦", "Развлечения": "🎮", "Здоровье": "💊", "Проезд": "🚎", "Связь и интернет": "📡"]
+        return ["Продукты": "🥦", "Развлечения": "🎮", "Здоровье": "💊", "Проезд": "🚎", "Связь и интернет": "📡", "PPP" : "🃏", "Ситимобил": "🚕", "Проценты и кешбек": "💸", "Прочее": "🤑"]
     }
     private var placeHolderEmojiForContacts: [String: String] {
         return ["ООО МояРабота": "🏢", "Вася": "👨‍🍳", "Петя": "🤵", "Тигран": "👳🏻‍♂️"]

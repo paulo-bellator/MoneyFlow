@@ -19,9 +19,9 @@ class AddOperationPresenter {
         }
     }
     
-    /// Return categories sorted by frequency of use
-    private(set) lazy var categories: [String] = {
-        var sortedCategories = MainData.settings.categories
+    /// Return outcome categories sorted by frequency of use
+    private(set) lazy var outcomeCategories: [String] = {
+        var sortedCategories = MainData.settings.outcomeCategories
         var categoriesFrequency = Array(repeating: 0, count: sortedCategories.count)
         
         for op in operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
@@ -30,6 +30,24 @@ class AddOperationPresenter {
             }
         }
 
+        return sortedCategories.sorted { op1, op2 in
+            let indexOp1 = sortedCategories.firstIndex(of: op1)!
+            let indexOp2 = sortedCategories.firstIndex(of: op2)!
+            return categoriesFrequency[indexOp1] > categoriesFrequency[indexOp2]
+        }
+    }()
+    
+    /// Return income categories sorted by frequency of use
+    private(set) lazy var incomeCategories: [String] = {
+        var sortedCategories = MainData.settings.incomeCategories
+        var categoriesFrequency = Array(repeating: 0, count: sortedCategories.count)
+        
+        for op in operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
+            if let index = sortedCategories.firstIndex(of: op.category) {
+                categoriesFrequency[index] += 1
+            }
+        }
+        
         return sortedCategories.sorted { op1, op2 in
             let indexOp1 = sortedCategories.firstIndex(of: op1)!
             let indexOp2 = sortedCategories.firstIndex(of: op2)!

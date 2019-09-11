@@ -81,8 +81,11 @@ private extension DefaultDataSource {
     private var currencies: [Currency] {
         return MainData.settings.currencies
     }
-    private var categories: [String] {
-        return MainData.settings.categories
+    private var outcomeCategories: [String] {
+        return MainData.settings.outcomeCategories
+    }
+    private var incomeCategories: [String] {
+        return MainData.settings.incomeCategories
     }
     private var contacts: [String] {
         return MainData.settings.contacts
@@ -104,7 +107,9 @@ private extension DefaultDataSource {
         var ops = [FlowOperation]()
         for _ in 1...500 {
             let date = Date() + TimeInterval(60*60*1*Int.random(in: -700...0))
-            let operation = FlowOperation(date: date, value: randomValue, currency: currencies.randomElement()!, category: categories.randomElement()!, account: accounts.randomElement()!, comment: comments.randomElement()!)
+            let value = randomValue
+            let category = value < 0 ? outcomeCategories.randomElement()! : incomeCategories.randomElement()!
+            let operation = FlowOperation(date: date, value: value, currency: currencies.randomElement()!, category: category, account: accounts.randomElement()!, comment: comments.randomElement()!)
             ops.append(operation)
         }
         return ops

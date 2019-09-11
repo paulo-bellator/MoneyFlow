@@ -16,14 +16,16 @@ protocol OperationDataSource {
 }
 
 protocol SettingsDataSource {
-    var categories: [String] { get }
+    var outcomeCategories: [String] { get }
+    var incomeCategories: [String] { get }
     var contacts: [String] { get set }
     var accounts: [String] { get }
     var currencies: [Currency] { get }
     var emojiForCategory: [String: String] { get }
     var emojiForContact: [String: String] { get }
     
-    func set(categories: [String])
+    func set(outcomeCategories: [String])
+    func set(incomeCategories: [String])
     func set(contacts: [String])
     func set(accounts: [String])
     func set(currencies: [Currency])

@@ -43,7 +43,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         result.append(FilterUnit.all("Все"))
         for currency in settingsPresenter.currenciesSignes { result.append(FilterUnit.currency(currency)) }
         for account in settingsPresenter.accounts { result.append(FilterUnit.account(account)) }
-        for category in settingsPresenter.categories { result.append(FilterUnit.category(category)) }
+        for category in settingsPresenter.allCategories { result.append(FilterUnit.category(category)) }
         for contact in settingsPresenter.contacts { result.append(FilterUnit.contact(contact)) }
         
         return result

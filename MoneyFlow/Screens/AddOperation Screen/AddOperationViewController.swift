@@ -46,18 +46,32 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         return picker
     }()
     
-    private(set) var isItFlowOperations = true {
+    var currentPickerRowForCategoryOrContact = 0
+    var currentPickerRowForAccount = 0
+    
+    private(set) var isItIncomeOperation = true {
         didSet {
-            operationTypeView.fillColor = isItFlowOperations ? Constants.flowOperationTypeColor : Constants.debtOperationTypeColor
+            if isItIncomeOperation != oldValue && isItFlowOperation {
+                currentPickerRowForCategoryOrContact = 0
+                categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
+                categoryOrContactEmojiLabel.text = presenter.emojiFor(category: categoryOrContactTextField.text ?? "")
+            }
+        }
+    }
+    private(set) var isItFlowOperation = true {
+        didSet {
+            currentPickerRowForCategoryOrContact = 0
+            operationTypeView.fillColor = isItFlowOperation ? Constants.flowOperationTypeColor : Constants.debtOperationTypeColor
             pickerView.selectRow(0, inComponent: 0, animated: false)
             UIView.transition(
                 with: visibleView,
                 duration: Constants.operationTypeAnimationTransitionDuration,
-                options: isItFlowOperations ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                options: isItFlowOperation ? .transitionFlipFromLeft : .transitionFlipFromRight,
                 animations: { [unowned self] in
                     self.pickerView.reloadAllComponents()
-                    self.categoryOrContactTextField.text = self.isItFlowOperations ? self.presenter.categories.first! : self.presenter.contacts.first!
-                    if self.isItFlowOperations {
+                    let categories = self.isItIncomeOperation ? self.presenter.incomeCategories : self.presenter.outcomeCategories
+                    self.categoryOrContactTextField.text = self.isItFlowOperation ? categories.first! : self.presenter.contacts.first!
+                    if self.isItFlowOperation {
                         self.categoryOrContactEmojiLabel.text = self.presenter.emojiFor(category: self.categoryOrContactTextField.text ?? "")
                     } else {
                         self.categoryOrContactEmojiLabel.text =  self.presenter.emojiFor(contact: self.categoryOrContactTextField.text ?? "")
@@ -67,10 +81,10 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 self.valueTextField.becomeFirstResponder()
                 var toolBar = self.accountTextField.inputAccessoryView as! UIToolbar
                 var nextButton = toolBar.items![1]
-                nextButton.title = self.isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle
+                nextButton.title = self.isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle
                 toolBar = self.commentTextField.inputAccessoryView as! UIToolbar
                 nextButton = toolBar.items![0]
-                nextButton.title = self.isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle
+                nextButton.title = self.isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle
             }
         }
     }
@@ -101,11 +115,13 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
         valueTextField.text = ""
+        valueTextField.delegate = self
         accountTextField.inputView = pickerView
         accountTextField.text = presenter.accounts.first
         accountTextField.delegate = self
         categoryOrContactTextField.inputView = pickerView
-        categoryOrContactTextField.text = presenter.categories.first
+        categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
+        categoryOrContactEmojiLabel.text = presenter.emojiFor(category: categoryOrContactTextField.text ?? "")
         categoryOrContactTextField.delegate = self
         currencySignButton.titleLabel?.text = presenter.currenciesSignes.first
         commentTextField.text = nil
@@ -121,7 +137,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             titles: [Constants.dataTitle,
                      Constants.valueTitle,
                      Constants.accountTitle,
-                     isItFlowOperations ? Constants.categoryTitle : Constants.contactTitle,
+                     isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle,
                      Constants.commentTitle],
             dismissable: true,
             previousNextable: true,
@@ -130,7 +146,19 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         pickerView.reloadAllComponents()
+        if accountTextField.isFirstResponder { pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false) }
+        if categoryOrContactTextField.isFirstResponder { pickerView.selectRow(currentPickerRowForCategoryOrContact, inComponent: 0, animated: false)  }
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == valueTextField {
+            let value = Double(valueTextField.text ?? "") ?? 0.0
+            if isItIncomeOperation != (value >= 0) { isItIncomeOperation.toggle() }
+//            print(isItIncomeOperation)
+        }
+    }
+    
+    
     
     @objc private func tapGestureRecognized(recognizer: UITapGestureRecognizer) {
         let tapPoint = recognizer.location(in: view)
@@ -139,7 +167,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         case _ where visibleView.frame.contains(tapPoint): break
         case _ where addMoreButton.frame.contains(tapPoint): break
         case _ where operationTypeView.frame.contains(tapPoint):
-            isItFlowOperations.toggle()
+            isItFlowOperation.toggle()
             
         default: dismiss()
         }
@@ -155,7 +183,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         var comment = commentTextField.text
         if comment != nil { if comment!.isEmpty { comment = nil } }
         
-        if isItFlowOperations {
+        if isItFlowOperation {
             operation = FlowOperation(date: date, value: value, currency: currency, category: categoryOrContact, account: account, comment: comment)
         } else {
             operation = DebtOperation(date: date, value: value, currency: currency, contact: categoryOrContact, account: account, comment: comment)
