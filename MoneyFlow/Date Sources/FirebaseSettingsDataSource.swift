@@ -120,6 +120,7 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
                         self.currencies = settings.currencies
                         self.emojiForCategory = settings.emojiForCategory
                         self.emojiForContact = settings.emojiForContact
+                        self.thereAreUnsavedChanges = false
                     }
                 }
             }
@@ -138,9 +139,6 @@ extension FirebaseSettingsDataSource {
             return "\(deviceFolder)/\(settingsFile)"
         }
     }
-}
-
-extension FirebaseSettingsDataSource {
     private struct Settings: Codable {
         var outcomeCategories: [String]
         var incomeCategories: [String]
@@ -151,5 +149,6 @@ extension FirebaseSettingsDataSource {
         var emojiForContact: [String: String]
     }
 }
+
 
 

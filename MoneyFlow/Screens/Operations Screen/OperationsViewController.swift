@@ -141,15 +141,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
         
-        FirebaseSettingsDataSource.shared.set(accounts: settingsPresenter.accounts)
-        FirebaseSettingsDataSource.shared.set(contacts: settingsPresenter.contacts)
-        FirebaseSettingsDataSource.shared.set(currencies: settingsPresenter.currencies)
-        FirebaseSettingsDataSource.shared.set(incomeCategories: settingsPresenter.incomeCategories)
-        FirebaseSettingsDataSource.shared.set(outcomeCategories: settingsPresenter.outcomeCategories)
-        FirebaseSettingsDataSource.shared.emojiForContact = MainData.settings.emojiForContact
-        FirebaseSettingsDataSource.shared.emojiForCategory = MainData.settings.emojiForCategory
-        
-        FirebaseSettingsDataSource.shared.save()
+        for op in MainData.source.operations {
+            FirebaseDataSource.shared.add(operation: op)
+        }
+        FirebaseDataSource.shared.save()
     }
     
     
