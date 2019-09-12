@@ -9,12 +9,13 @@
 import UIKit
 import Firebase
 
-class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, FirebaseDataSourceDelegate {
+class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, CloudDataSourceDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var tableViewTopSafeAreaTopConstrain: NSLayoutConstraint!
+    @IBOutlet weak var activityWheel: UIActivityIndicatorView!
     
     let addOperationSegueIdentifier = "ShowAddOperation"
     let operationTableViewCellIdentifier = "OperationCell"
@@ -24,24 +25,27 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let tableViewSectionHeaderHeight: CGFloat = 35
     let tableViewRowHeight: CGFloat = 100
     
-    // !!!!!!
-//    let tempData = FirebaseDataSource.shared
-    // !!!!!!
-    
     var downloadProgress = 0.0 {
         didSet {
-            print("Download operations: \((100*downloadProgress).rounded())%")
-            if downloadProgress == 1 {
-//                self.applyFilter()
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.applyFilter()
-                    print("reloaded")
-                }
-            }
+            var progress = (100*downloadProgress).rounded()
+            if progress.isNaN { progress = 100.0 }
+            print("Download operations: \(Int(progress)) %")
         }
     }
     
     var uploadProgress = 0.0
+    
+    func uploadComplete(with error: Error?) {
+        //
+    }
+    func downloadComplete(with error: Error?) {
+        // reset and reload Data
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            self?.applyFilter()
+            self?.activityWheel.stopAnimating()
+            self?.tableView.isHidden = false
+        }
+    }
     
     
     let presenter = Presenter()
@@ -121,6 +125,15 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if MainData.source is CloudOperationDataSource {
+//            MainData.source.delegate = self
+//            if !MainData.source.isDownloadComplete {
+//                activityWheel.startAnimating()
+//                tableView.isHidden = true
+//            }
+//        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.sectionHeaderHeight = tableViewSectionHeaderHeight
@@ -128,8 +141,17 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
         
-        FirebaseDataSource.shared.delegate = self
+        FirebaseSettingsDataSource.shared.set(accounts: settingsPresenter.accounts)
+        FirebaseSettingsDataSource.shared.set(contacts: settingsPresenter.contacts)
+        FirebaseSettingsDataSource.shared.set(currencies: settingsPresenter.currencies)
+        FirebaseSettingsDataSource.shared.set(incomeCategories: settingsPresenter.incomeCategories)
+        FirebaseSettingsDataSource.shared.set(outcomeCategories: settingsPresenter.outcomeCategories)
+        FirebaseSettingsDataSource.shared.emojiForContact = MainData.settings.emojiForContact
+        FirebaseSettingsDataSource.shared.emojiForCategory = MainData.settings.emojiForCategory
+        
+        FirebaseSettingsDataSource.shared.save()
     }
+    
     
     @IBAction func addOperation(_ sender: UIButton) {
         self.tabBarController?.tabBar.isHidden = true
@@ -166,6 +188,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     }
     
     func updateData() {
+//        presenter.syncronize()
         applyFilter()
     }
     

@@ -19,6 +19,7 @@
 		F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */; };
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
+		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
 		F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */; };
 		F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */; };
 		F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */; };
@@ -55,6 +56,7 @@
 		F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
+		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
 		F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationPresenter.swift; sourceTree = "<group>"; };
 		F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
@@ -129,10 +131,11 @@
 		F9063DDC232139FE00F08E84 /* Date Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F9063DDE232139FE00F08E84 /* DataSource.swift */,
 				F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */,
 				F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */,
-				F9063DDE232139FE00F08E84 /* DataSource.swift */,
 				F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */,
+				F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */,
 			);
 			path = "Date Sources";
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */,
 				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
 				F9A981062321416000F630F9 /* Presenter.swift in Sources */,
+				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,
 			);

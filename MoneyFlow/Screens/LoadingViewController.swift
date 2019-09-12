@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController, FirebaseDataSourceDelegate {
+class LoadingViewController: UIViewController, CloudDataSourceDelegate {
     
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
@@ -18,34 +18,29 @@ class LoadingViewController: UIViewController, FirebaseDataSourceDelegate {
     var downloadProgress = 0.0 {
         didSet {
             progressView.progress = Float(downloadProgress)
-            progressLabel.text = "\(Int(100*downloadProgress)) %"
-            
-            if downloadProgress == 1.0 {
-                Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
-                    self?.performSegue(withIdentifier: self!.tabBarSegueIdentifier, sender: nil)
-                }
-            }
+            var progress = (100*downloadProgress).rounded()
+            if progress.isNaN { progress = 100.0 }
+            progressLabel.text = "\(Int(progress)) %"
         }
     }
-    
     var uploadProgress = 0.0
+    
+    func downloadComplete(with error: Error?) {
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            if self != nil { self!.performSegue(withIdentifier: self!.tabBarSegueIdentifier, sender: nil) }
+        }
+        print("download complete in LoadingVC")
+        print(error)
+    }
+    func uploadComplete(with error: Error?) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseDataSource.shared.delegate = self
+//        MainData.source.delegate = self
         progressView.progress = 0.0
         progressLabel.text = "0 %"
 
         progressView.transform = progressView.transform.scaledBy(x: 1, y: 2)
-        
-        Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { [weak self] _ in
-            self?.performSegue(withIdentifier: self!.tabBarSegueIdentifier, sender: nil)
-        }
-        Timer.scheduledTimer(withTimeInterval: 8.0, repeats: false) { [weak self] _ in
-            self?.progressView.isHidden = true
-            self?.progressLabel.text = "Данные не загружены"
-        }
-
     }
 
 }
