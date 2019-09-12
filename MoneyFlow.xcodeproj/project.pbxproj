@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E391DB1DFA59A703FB7B7DD /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12E97FCC93F117093A133CD2 /* Pods_MoneyFlow.framework */; };
 		F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD6232139FE00F08E84 /* DebtOperation.swift */; };
 		F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD7232139FE00F08E84 /* FlowOperation.swift */; };
 		F9063DE6232139FE00F08E84 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DD8232139FE00F08E84 /* Operation.swift */; };
@@ -19,6 +20,9 @@
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
 		F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */; };
+		F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */; };
+		F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */; };
+		F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C5232A95EA008DF78D /* LoadingViewController.swift */; };
 		F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */; };
 		F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* OperationsViewController.swift */; };
 		F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */; };
@@ -37,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12E97FCC93F117093A133CD2 /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30B9068C0FBCDFEB5D5EB980 /* Pods-MoneyFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.debug.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.debug.xcconfig"; sourceTree = "<group>"; };
+		DF7AF6C5C22ED47D906392DA /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
 		F9063DD6232139FE00F08E84 /* DebtOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtOperation.swift; sourceTree = "<group>"; };
 		F9063DD7232139FE00F08E84 /* FlowOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowOperation.swift; sourceTree = "<group>"; };
 		F9063DD8232139FE00F08E84 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
@@ -49,6 +56,9 @@
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
 		F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationPresenter.swift; sourceTree = "<group>"; };
+		F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
+		F995B0C5232A95EA008DF78D /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationViewController.swift; sourceTree = "<group>"; };
 		F9A980FB2321409600F630F9 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
 		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OperationTableViewCell.swift; path = ../OperationTableViewCell.swift; sourceTree = "<group>"; };
@@ -73,12 +83,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E391DB1DFA59A703FB7B7DD /* Pods_MoneyFlow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		107D7269287655BB907C9335 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12E97FCC93F117093A133CD2 /* Pods_MoneyFlow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E96B8F45CD80A3B67FBB017F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30B9068C0FBCDFEB5D5EB980 /* Pods-MoneyFlow.debug.xcconfig */,
+				DF7AF6C5C22ED47D906392DA /* Pods-MoneyFlow.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F9063DD5232139FE00F08E84 /* Operation Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +132,7 @@
 				F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */,
 				F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */,
 				F9063DDE232139FE00F08E84 /* DataSource.swift */,
+				F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */,
 			);
 			path = "Date Sources";
 			sourceTree = "<group>";
@@ -123,6 +152,7 @@
 		F91871EF23268F1F00F0F9A6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
 				F95B2E6E232142C500808558 /* Operations Screen */,
 			);
@@ -147,6 +177,8 @@
 			children = (
 				F9B2FE66231B227400ABF7AC /* MoneyFlow */,
 				F9B2FE65231B227400ABF7AC /* Products */,
+				E96B8F45CD80A3B67FBB017F /* Pods */,
+				107D7269287655BB907C9335 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,13 +194,14 @@
 			isa = PBXGroup;
 			children = (
 				F91871EF23268F1F00F0F9A6 /* Screens */,
+				F9063DD5232139FE00F08E84 /* Operation Models */,
 				F9063DDC232139FE00F08E84 /* Date Sources */,
 				F9063DD9232139FE00F08E84 /* ID Generators */,
-				F9063DD5232139FE00F08E84 /* Operation Models */,
 				F9B2FE79231B228C00ABF7AC /* Supporting files */,
 				F9B2FE6B231B227400ABF7AC /* Main.storyboard */,
 				F9063DEC23213A0F00F08E84 /* Constants.swift */,
 				F9B2FE73231B227700ABF7AC /* Info.plist */,
+				F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */,
 			);
 			path = MoneyFlow;
 			sourceTree = "<group>";
@@ -209,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9B2FE76231B227700ABF7AC /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
 			buildPhases = (
+				9BD83173F2A8DA2F18AFD6A6 /* [CP] Check Pods Manifest.lock */,
 				F9B2FE60231B227400ABF7AC /* Sources */,
 				F9B2FE61231B227400ABF7AC /* Frameworks */,
 				F9B2FE62231B227400ABF7AC /* Resources */,
+				761D430C99419FE38412A3EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,12 +296,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9B2FE72231B227700ABF7AC /* LaunchScreen.storyboard in Resources */,
+				F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */,
 				F9B2FE6F231B227700ABF7AC /* Assets.xcassets in Resources */,
 				F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		761D430C99419FE38412A3EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BD83173F2A8DA2F18AFD6A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoneyFlow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9B2FE60231B227400ABF7AC /* Sources */ = {
@@ -284,6 +362,7 @@
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,
+				F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */,
 				F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
@@ -291,6 +370,7 @@
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,
 				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
+				F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */,
 				F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */,
 				F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */,
 				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
@@ -440,6 +520,7 @@
 		};
 		F9B2FE77231B227700ABF7AC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30B9068C0FBCDFEB5D5EB980 /* Pods-MoneyFlow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -458,6 +539,7 @@
 		};
 		F9B2FE78231B227700ABF7AC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF7AF6C5C22ED47D906392DA /* Pods-MoneyFlow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

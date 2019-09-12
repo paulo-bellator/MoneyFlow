@@ -8,7 +8,8 @@
 
 import UIKit
 
-@IBDesignable class RoundedSoaringView: UIView {
+//@IBDesignable
+class RoundedSoaringView: UIView {
 
     override func draw(_ rect: CGRect) {
             layer.cornerRadius = cornerRadius

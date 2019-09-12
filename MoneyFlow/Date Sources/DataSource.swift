@@ -35,7 +35,8 @@ protocol SettingsDataSource {
 }
 
 class MainData {
-    static let source: OperationDataSource = DefaultDataSource.shared
+//    static let source: OperationDataSource = DefaultDataSource.shared
+    static let source: OperationDataSource = FirebaseDataSource.shared
     static let settings: SettingsDataSource = DefaultSettingsDataSource.shared
 }
 

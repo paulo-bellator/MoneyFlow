@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FlowOperation: Operation, Codable
+class FlowOperation: Operation, Codable
 {
     let id: Int
     private(set) var date: Date
@@ -26,7 +26,7 @@ struct FlowOperation: Operation, Codable
         self.account = account
     }
     
-    init(date: Date, value: Double, currency: Currency = .rub, category: String, account: String, comment: String? = nil ) {
+    convenience init(date: Date, value: Double, currency: Currency = .rub, category: String, account: String, comment: String? = nil ) {
         self.init(value, for: category, with: account)
         self.currency = currency
         self.comment = comment

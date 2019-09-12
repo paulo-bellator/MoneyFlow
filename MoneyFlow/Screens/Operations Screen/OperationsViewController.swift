@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class OperationsViewController: UIViewController, AddOperationViewControllerDelegate {
+class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, FirebaseDataSourceDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,6 +23,25 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let filterCollectionViewCellIdentifier = "filterCell"
     let tableViewSectionHeaderHeight: CGFloat = 35
     let tableViewRowHeight: CGFloat = 100
+    
+    // !!!!!!
+//    let tempData = FirebaseDataSource.shared
+    // !!!!!!
+    
+    var downloadProgress = 0.0 {
+        didSet {
+            print("Download operations: \((100*downloadProgress).rounded())%")
+            if downloadProgress == 1 {
+//                self.applyFilter()
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.applyFilter()
+                    print("reloaded")
+                }
+            }
+        }
+    }
+    
+    var uploadProgress = 0.0
     
     
     let presenter = Presenter()
@@ -107,6 +127,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
+        
+        FirebaseDataSource.shared.delegate = self
     }
     
     @IBAction func addOperation(_ sender: UIButton) {
