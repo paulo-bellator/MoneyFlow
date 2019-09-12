@@ -140,11 +140,6 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
-        
-        for op in MainData.source.operations {
-            FirebaseDataSource.shared.add(operation: op)
-        }
-        FirebaseDataSource.shared.save()
     }
     
     
