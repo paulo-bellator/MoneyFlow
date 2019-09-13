@@ -10,6 +10,8 @@ import Foundation
 
 class Presenter {
     
+    let settings = SettingsPresenter.shared
+    
     private var operations: [Operation] {
         return MainData.source.operations
     }
@@ -114,8 +116,7 @@ class Presenter {
         var result = [ ( String, [Operation] ) ]()
         
         var tempOperations = [Operation]()
-        if let ops = ops { tempOperations = ops.sorted { $0.date > $1.date } }
-        else { tempOperations = operations.sorted { $0.date > $1.date } }
+        tempOperations = (ops ?? operations).sorted { $0.date > $1.date }
         
         var operationsForPeriod = [Operation]()
         var formattedPeriod = ""

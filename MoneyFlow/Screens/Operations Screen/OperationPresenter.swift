@@ -11,7 +11,7 @@ import UIKit
 class OperationPresenter {
 
     private let operation: Operation
-    private let settingsPresenter = SettingsPresenter.shared
+    private let settings = SettingsPresenter.shared
     
     lazy var idString: String = {
         return operation.id.description
@@ -31,7 +31,7 @@ class OperationPresenter {
     }()
     
     lazy var contactEmoji: String? = {
-        if let op = operation as? DebtOperation { return settingsPresenter.emojiFor(contact: op.contact) }
+        if let op = operation as? DebtOperation { return settings.emojiFor(contact: op.contact) }
         else { return nil }
     }()
     
@@ -41,7 +41,7 @@ class OperationPresenter {
     }()
     
     lazy var categoryEmoji: String? = {
-        if let op = operation as? FlowOperation { return settingsPresenter.emojiFor(category: op.category) }
+        if let op = operation as? FlowOperation { return settings.emojiFor(category: op.category) }
         else { return nil }
     }()
     

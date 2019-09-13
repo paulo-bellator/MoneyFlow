@@ -17,34 +17,29 @@ class SettingsPresenter {
     
     static let shared = SettingsPresenter()
     
-    private let defaultEmojiForCategory = "❓"
-    private let defaultEmojiForContact = "❓"
-    
-    var outcomeCategories = MainData.settings.outcomeCategories { didSet { MainData.settings.set(outcomeCategories: outcomeCategories) } }
-    var incomeCategories = MainData.settings.incomeCategories { didSet { MainData.settings.set(incomeCategories: incomeCategories) } }
-    var allCategories: [String] {
-        let categories = Array(Set(outcomeCategories + incomeCategories))
-        var categoriesFrequency = Array(repeating: 0, count: categories.count)
-        
-        for op in MainData.source.operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
-            if let index = categories.firstIndex(of: op.category) {
-                categoriesFrequency[index] += 1
-            }
-        }
-        
-        return categories.sorted { op1, op2 in
-            let indexOp1 = categories.firstIndex(of: op1)!
-            let indexOp2 = categories.firstIndex(of: op2)!
-            return categoriesFrequency[indexOp1] > categoriesFrequency[indexOp2]
-        }
+    var outcomeCategories: [String] {
+        get { return MainData.settings.outcomeCategories }
+        set { MainData.settings.set(outcomeCategories: newValue) }
     }
-    var contacts = MainData.settings.contacts { didSet { MainData.settings.set(contacts: contacts) } }
-    var accounts = MainData.settings.accounts { didSet { MainData.settings.set(accounts: accounts) } }
-    var currencies = MainData.settings.currencies { didSet { MainData.settings.set(currencies: currencies) } }
+    var incomeCategories: [String] {
+        get { return MainData.settings.incomeCategories }
+        set { MainData.settings.set(incomeCategories: newValue) }
+    }
+    var contacts: [String] {
+        get { return MainData.settings.contacts }
+        set { MainData.settings.set(contacts: newValue) }
+    }
+    var accounts: [String] {
+        get { return MainData.settings.accounts }
+        set { MainData.settings.set(accounts: newValue) }
+    }
+    var currencies: [Currency] {
+        get { return MainData.settings.currencies }
+        set { MainData.settings.set(currencies: newValue) }
+    }
     var currenciesSignes: [String] {
         return currencies.compactMap { $0.rawValue }
     }
-    
     func emojiFor(category: String) -> String {
         return MainData.settings.emojiForCategory[category] ?? DefaultEmoji.category
     }
@@ -57,8 +52,75 @@ class SettingsPresenter {
     func set(emoji: String?, forContact contact: String) {
         MainData.settings.set(emoji: emoji, forContact: contact)
     }
-    
     func syncronize() { MainData.settings.save() }
+    
+    var allCategoriesSorted: [String] {
+        let categories = Array(Set(outcomeCategories + incomeCategories))
+        var categoriesFrequency = Array(repeating: 0, count: categories.count)
+        
+        for op in MainData.source.operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
+            if let index = categories.firstIndex(of: op.category) {
+                categoriesFrequency[index] += 1
+            }
+        }
+        return categories.sorted { op1, op2 in
+            let indexOp1 = categories.firstIndex(of: op1)!
+            let indexOp2 = categories.firstIndex(of: op2)!
+            return categoriesFrequency[indexOp1] > categoriesFrequency[indexOp2]
+        }
+    }
+    
+    var contactsSorted: [String] {
+        let contacts = self.contacts
+        var contactsFrequency = Array(repeating: 0, count: contacts.count)
+        
+        for op in MainData.source.operations.filter({ $0 is DebtOperation }) as! [DebtOperation] {
+            if let index = contacts.firstIndex(of: op.contact) {
+                contactsFrequency[index] += 1
+            }
+        }
+        return contacts.sorted { op1, op2 in
+            let indexOp1 = contacts.firstIndex(of: op1)!
+            let indexOp2 = contacts.firstIndex(of: op2)!
+            return contactsFrequency[indexOp1] > contactsFrequency[indexOp2]
+        }
+    }
+    
+    var accountsSorted: [String] {
+        let accounts = self.accounts
+        var accountsFrequency = Array(repeating: 0, count: accounts.count)
+        
+        for op in MainData.source.operations {
+            if let index = accounts.firstIndex(of: op.account) {
+                accountsFrequency[index] += 1
+            }
+        }
+        return accounts.sorted { op1, op2 in
+            let indexOp1 = accounts.firstIndex(of: op1)!
+            let indexOp2 = accounts.firstIndex(of: op2)!
+            return accountsFrequency[indexOp1] > accountsFrequency[indexOp2]
+        }
+    }
+    
+    var currenciesSorted: [Currency] {
+        let currencies = self.currencies
+        var currenciesFrequency = Array(repeating: 0, count: currencies.count)
+        
+        for op in MainData.source.operations {
+            if let index = currencies.firstIndex(of: op.currency) {
+                currenciesFrequency[index] += 1
+            }
+        }
+        return currencies.sorted { op1, op2 in
+            let indexOp1 = currencies.firstIndex(of: op1)!
+            let indexOp2 = currencies.firstIndex(of: op2)!
+            return currenciesFrequency[indexOp1] > currenciesFrequency[indexOp2]
+        }
+    }
+    
+    var currenciesSignesSorted: [String] {
+        return currenciesSorted.compactMap { $0.rawValue }
+    }
     
     private init() {}
     

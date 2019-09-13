@@ -15,7 +15,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var tableViewTopSafeAreaTopConstrain: NSLayoutConstraint!
-    @IBOutlet weak var activityWheel: UIActivityIndicatorView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     let addOperationSegueIdentifier = "ShowAddOperation"
     let operationTableViewCellIdentifier = "OperationCell"
@@ -26,13 +26,12 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let tableViewRowHeight: CGFloat = 100
     
     let presenter = Presenter()
-    let settingsPresenter = SettingsPresenter.shared
     lazy var operationsByDays = presenter.operationsSorted(by: .days)
     var tableViewScrollOffset: CGFloat = 0 {
         willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
     }
     var lastButOneTableViewScrollOffset: CGFloat = 0
-    lazy var mainCurrency: Currency = settingsPresenter.currencies.first!
+    lazy var mainCurrency: Currency = presenter.settings.currencies.first!
     
     var appliedFilterCells = [IndexPath(row: 0, section: 0)] {
         didSet { applyFilter() }
@@ -42,10 +41,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         var result = [FilterUnit]()
         
         result.append(FilterUnit.all("Все"))
-        for currency in settingsPresenter.currenciesSignes { result.append(FilterUnit.currency(currency)) }
-        for account in settingsPresenter.accounts { result.append(FilterUnit.account(account)) }
-        for category in settingsPresenter.allCategories { result.append(FilterUnit.category(category)) }
-        for contact in settingsPresenter.contacts { result.append(FilterUnit.contact(contact)) }
+        for currency in presenter.settings.currenciesSignesSorted { result.append(FilterUnit.currency(currency)) }
+        for account in presenter.settings.accountsSorted { result.append(FilterUnit.account(account)) }
+        for category in presenter.settings.allCategoriesSorted { result.append(FilterUnit.category(category)) }
+        for contact in presenter.settings.contactsSorted { result.append(FilterUnit.contact(contact)) }
         
         return result
     }()
@@ -58,7 +57,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             switch filterUnit {
             case .all:
                 operationsByDays = presenter.operationsSorted(by: .days)
-                mainCurrency = settingsPresenter.currencies.first!
+                mainCurrency = presenter.settings.currencies.first!
                 reloadTableView()
                 return
             default: break
@@ -86,7 +85,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         switch requiredCurrencies.count {
         case 1: mainCurrency = requiredCurrencies.first!
         case 2: for currency in Currency.all { if requiredCurrencies.contains(currency) { mainCurrency = currency; break } }
-        default: mainCurrency = settingsPresenter.currencies.first!
+        default: mainCurrency = presenter.settings.currencies.first!
         }
         
         reloadTableView()
@@ -106,11 +105,11 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         if var cloudSource = MainData.source as? CloudOperationDataSource {
             cloudSource.delegate = self
             if !cloudSource.isDownloadComplete {
-                activityWheel.startAnimating()
                 tableView.isHidden = true
             }
         }
         
+        progressView.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
         tableView.sectionHeaderHeight = tableViewSectionHeaderHeight
@@ -179,22 +178,27 @@ extension OperationsViewController: CloudDataSourceDelegate {
             var progress = (100*newValue).rounded()
             if progress.isNaN { progress = 100.0 }
             print("Download operations: \(Int(progress)) %")
+            progressView.isHidden = false
+            progressView.progress = Float(newValue)
         }
         get { return 0 }
     }
     var uploadProgress: Double {
         get { return 0 }
-        set {}
+        set {
+            progressView.isHidden = false
+            progressView.progress = Float(newValue)
+        }
     }
     
     func uploadComplete(with error: Error?) {
-        //
+        progressView.isHidden = true
     }
     func downloadComplete(with error: Error?) {
         // reset and reload Data
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
             self?.applyFilter()
-            self?.activityWheel.stopAnimating()
+            self?.progressView.isHidden = true
             self?.tableView.isHidden = false
         }
     }

@@ -75,7 +75,7 @@
 		F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSoaringView.swift; sourceTree = "<group>"; };
 		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
-		F9D08D8B23253EA90008109E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		F9D08D8B23253EA90008109E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = "Operations Screen/SettingsPresenter.swift"; sourceTree = "<group>"; };
 		F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingTableViewExtension.swift; path = ../ManagingTableViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
+				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
 				F95B2E6E232142C500808558 /* Operations Screen */,
 			);
@@ -168,7 +169,6 @@
 				F9A980FB2321409600F630F9 /* OperationsViewController.swift */,
 				F9A981052321416000F630F9 /* Presenter.swift */,
 				F9A981032321410900F630F9 /* OperationPresenter.swift */,
-				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9D3A9F9232165BB00895A80 /* TableView */,
 				F9D3A9FA232165D400895A80 /* CollectionView */,
 			);
