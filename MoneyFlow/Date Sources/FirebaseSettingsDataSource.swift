@@ -77,16 +77,7 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
         let metadata = StorageMetadata()
         metadata.contentType = "application/json"
         
-        let settings = Settings(
-            outcomeCategories: outcomeCategories,
-            incomeCategories: incomeCategories,
-            contacts: contacts,
-            accounts: accounts,
-            currencies: currencies,
-            emojiForCategory: emojiForCategory,
-            emojiForContact: emojiForContact)
-        
-        if let data = try? encoder.encode(settings) {
+        if let data = try? encoder.encode(self.settings) {
             let uploadTask = settingsRef.putData(data, metadata: metadata) { (metadata, error) in
                 self.delegate?.settingsUploadComplete(with: error)
             }
@@ -107,23 +98,14 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
 
         // Download in memory with a maximum allowed size of 1MB (5 * 1024 * 1024 bytes)
         let downloadTask = settingsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            self.isDownloadComplete = true
-            self.delegate?.settingsDownloadComplete(with: error)
-
-            if error == nil {
-                if let data = data {
-                    if let settings = (try? decoder.decode(Settings.self, from: data)) {
-                        self.outcomeCategories = settings.outcomeCategories
-                        self.incomeCategories = settings.incomeCategories
-                        self.contacts = settings.contacts
-                        self.accounts = settings.accounts
-                        self.currencies = settings.currencies
-                        self.emojiForCategory = settings.emojiForCategory
-                        self.emojiForContact = settings.emojiForContact
-                        self.thereAreUnsavedChanges = false
-                    }
+            if error == nil, let data = data {
+                if let settings = (try? decoder.decode(Settings.self, from: data)) {
+                    self.settings = settings
+                    self.thereAreUnsavedChanges = false
                 }
             }
+            self.isDownloadComplete = true
+            self.delegate?.settingsDownloadComplete(with: error)
         }
         activeTasks.append(downloadTask)
     }
@@ -147,6 +129,28 @@ extension FirebaseSettingsDataSource {
         var currencies: [Currency]
         var emojiForCategory: [String: String]
         var emojiForContact: [String: String]
+    }
+    
+    private var settings: Settings {
+        get {
+            return Settings(
+                outcomeCategories: self.outcomeCategories,
+                incomeCategories: self.incomeCategories,
+                contacts: self.contacts,
+                accounts: self.accounts,
+                currencies: self.currencies,
+                emojiForCategory: self.emojiForCategory,
+                emojiForContact: self.emojiForContact)
+        }
+        set {
+            self.outcomeCategories = newValue.outcomeCategories
+            self.incomeCategories = newValue.incomeCategories
+            self.contacts = newValue.contacts
+            self.accounts = newValue.accounts
+            self.currencies = newValue.currencies
+            self.emojiForCategory = newValue.emojiForCategory
+            self.emojiForContact = newValue.emojiForContact
+        }
     }
 }
 

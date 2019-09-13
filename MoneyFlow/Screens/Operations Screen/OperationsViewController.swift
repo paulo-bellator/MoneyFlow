@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, CloudDataSourceDelegate {
+class OperationsViewController: UIViewController, AddOperationViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,29 +25,6 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let tableViewSectionHeaderHeight: CGFloat = 35
     let tableViewRowHeight: CGFloat = 100
     
-    var downloadProgress = 0.0 {
-        didSet {
-            var progress = (100*downloadProgress).rounded()
-            if progress.isNaN { progress = 100.0 }
-            print("Download operations: \(Int(progress)) %")
-        }
-    }
-    
-    var uploadProgress = 0.0
-    
-    func uploadComplete(with error: Error?) {
-        //
-    }
-    func downloadComplete(with error: Error?) {
-        // reset and reload Data
-        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
-            self?.applyFilter()
-            self?.activityWheel.stopAnimating()
-            self?.tableView.isHidden = false
-        }
-    }
-    
-    
     let presenter = Presenter()
     let settingsPresenter = SettingsPresenter.shared
     lazy var operationsByDays = presenter.operationsSorted(by: .days)
@@ -55,10 +32,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
     }
     var lastButOneTableViewScrollOffset: CGFloat = 0
-    var mainCurrency: Currency = Currency.all.first!
+    lazy var mainCurrency: Currency = settingsPresenter.currencies.first!
     
     var appliedFilterCells = [IndexPath(row: 0, section: 0)] {
-        didSet { applyFilter()  }
+        didSet { applyFilter() }
     }
     
     lazy var arrayOfAllFilterUnits: [FilterUnit] = {
@@ -81,7 +58,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             switch filterUnit {
             case .all:
                 operationsByDays = presenter.operationsSorted(by: .days)
-                mainCurrency = Currency.all.first!
+                mainCurrency = settingsPresenter.currencies.first!
                 reloadTableView()
                 return
             default: break
@@ -109,7 +86,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         switch requiredCurrencies.count {
         case 1: mainCurrency = requiredCurrencies.first!
         case 2: for currency in Currency.all { if requiredCurrencies.contains(currency) { mainCurrency = currency; break } }
-        default: mainCurrency = Currency.all.first!
+        default: mainCurrency = settingsPresenter.currencies.first!
         }
         
         reloadTableView()
@@ -126,13 +103,13 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if MainData.source is CloudOperationDataSource {
-//            MainData.source.delegate = self
-//            if !MainData.source.isDownloadComplete {
-//                activityWheel.startAnimating()
-//                tableView.isHidden = true
-//            }
-//        }
+        if var cloudSource = MainData.source as? CloudOperationDataSource {
+            cloudSource.delegate = self
+            if !cloudSource.isDownloadComplete {
+                activityWheel.startAnimating()
+                tableView.isHidden = true
+            }
+        }
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -194,6 +171,33 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     
 
+}
+
+extension OperationsViewController: CloudDataSourceDelegate {
+    var downloadProgress: Double {
+        set {
+            var progress = (100*newValue).rounded()
+            if progress.isNaN { progress = 100.0 }
+            print("Download operations: \(Int(progress)) %")
+        }
+        get { return 0 }
+    }
+    var uploadProgress: Double {
+        get { return 0 }
+        set {}
+    }
+    
+    func uploadComplete(with error: Error?) {
+        //
+    }
+    func downloadComplete(with error: Error?) {
+        // reset and reload Data
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            self?.applyFilter()
+            self?.activityWheel.stopAnimating()
+            self?.tableView.isHidden = false
+        }
+    }
 }
 
 enum FilterUnit {
