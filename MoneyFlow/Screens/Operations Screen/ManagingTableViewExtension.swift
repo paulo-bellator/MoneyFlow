@@ -20,7 +20,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if operationListIsEmpty { return tableView.dequeueReusableCell(withIdentifier: empryListTableViewCellIdentifier)! }
+        if operationListIsEmpty { return tableView.dequeueReusableCell(withIdentifier: emptyListTableViewCellIdentifier)! }
         
         let operation = operationsByDays[indexPath.section].ops[indexPath.row]
         let operationPresenter = OperationPresenter(operation)

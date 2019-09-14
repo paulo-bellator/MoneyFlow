@@ -16,6 +16,7 @@
 		F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */; };
 		F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDE232139FE00F08E84 /* DataSource.swift */; };
 		F9063DED23213A1000F08E84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DEC23213A0F00F08E84 /* Constants.swift */; };
+		F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */; };
 		F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */; };
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
@@ -35,6 +36,9 @@
 		F9B2FE72231B227700ABF7AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE70231B227700ABF7AC /* LaunchScreen.storyboard */; };
 		F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */; };
 		F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */; };
+		F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A3232BF3B900654DD9 /* TestViewController.swift */; };
+		F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A5232C04C800654DD9 /* ChartView.swift */; };
+		F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */; };
 		F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */; };
 		F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8B23253EA90008109E /* SettingsPresenter.swift */; };
 		F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */; };
@@ -53,6 +57,7 @@
 		F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultDataSource.swift; sourceTree = "<group>"; };
 		F9063DDE232139FE00F08E84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F9063DEC23213A0F00F08E84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Supporting files/Constants.swift"; sourceTree = "<group>"; };
+		F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnView.swift; sourceTree = "<group>"; };
 		F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
@@ -74,6 +79,9 @@
 		F9B2FE73231B227700ABF7AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSoaringView.swift; sourceTree = "<group>"; };
+		F9C608A3232BF3B900654DD9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = "Graph Chart/TestViewController.swift"; sourceTree = "<group>"; };
+		F9C608A5232C04C800654DD9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
 		F9D08D8B23253EA90008109E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = "Operations Screen/SettingsPresenter.swift"; sourceTree = "<group>"; };
 		F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +148,16 @@
 			path = "Date Sources";
 			sourceTree = "<group>";
 		};
+		F907D3D0232BE6BE00E9E3C2 /* Graph Chart */ = {
+			isa = PBXGroup;
+			children = (
+				F9C608A5232C04C800654DD9 /* ChartView.swift */,
+				F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */,
+				F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */,
+			);
+			path = "Graph Chart";
+			sourceTree = "<group>";
+		};
 		F91871EE23268F0400F0F9A6 /* AddOperation Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +220,8 @@
 				F9063DD9232139FE00F08E84 /* ID Generators */,
 				F9B2FE79231B228C00ABF7AC /* Supporting files */,
 				F9B2FE6B231B227400ABF7AC /* Main.storyboard */,
+				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
+				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 				F9063DEC23213A0F00F08E84 /* Constants.swift */,
 				F9B2FE73231B227700ABF7AC /* Info.plist */,
 				F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */,
@@ -354,9 +374,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */,
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
+				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
 				F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */,
 				F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */,
@@ -376,8 +398,10 @@
 				F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */,
 				F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */,
 				F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */,
+				F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */,
 				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
 				F9A981062321416000F630F9 /* Presenter.swift in Sources */,
+				F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */,
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,
