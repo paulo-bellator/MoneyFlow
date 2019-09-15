@@ -32,7 +32,7 @@ class ChartView: UIView {
     }
     var mainValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) { didSet { collectionView.reloadData() } }
     var secondValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.2) { didSet { collectionView.reloadData() } }
-    var secondOverlapValueColor = #colorLiteral(red: 0.9459742453, green: 0.9459742453, blue: 0.9459742453, alpha: 1) { didSet { collectionView.reloadData() } }
+    var secondOverlapValueColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).withAlphaComponent(0.9) { didSet { collectionView.reloadData() } }
     var measureLinesColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.2) { didSet { updateUI() } }
 
     lazy var minValueLabel: UILabel =  {

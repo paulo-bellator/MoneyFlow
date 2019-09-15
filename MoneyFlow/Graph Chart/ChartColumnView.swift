@@ -15,9 +15,9 @@ class ChartColumnView: UIView {
     @IBInspectable
     var mainColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) { didSet { mainValueProgressView.backgroundColor = mainColor } }
     @IBInspectable
-    var secondColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.2) { didSet { secondValueProgressUnderView.backgroundColor = secondColor } }
+    var secondColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.2) { didSet { updateUI() } }
     @IBInspectable
-    var secondOverlapColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) { didSet { secondValueProgressOverView.backgroundColor = secondOverlapColor } }
+    var secondOverlapColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).withAlphaComponent(0.2) { didSet { updateUI() } }
     @IBInspectable
     var mainValue: CGFloat = 0.0 { didSet { updateUI() } }
     @IBInspectable
@@ -49,6 +49,7 @@ class ChartColumnView: UIView {
         
         secondValueProgressOverView = UIView(frame: frameForValue(secondValue))
         secondValueProgressOverView.backgroundColor = secondColor
+        secondValueProgressOverView.isHidden = true
         addSubview(secondValueProgressOverView)
         
         backgroundColor = UIColor.clear
@@ -56,15 +57,23 @@ class ChartColumnView: UIView {
 
     private func updateUI() {
         if mainValueProgressView != nil && secondValueProgressOverView != nil && secondValueProgressUnderView != nil {
-            mainValueProgressView.frame = frameForValue(mainValue)
-            if secondValue > mainValue {
+//            mainValueProgressView.frame = frameForValue(mainValue)
+            if secondValue > mainValue || secondValue == 0 {
+                mainValueProgressView.frame = frameForValue(mainValue)
                 secondValueProgressUnderView.isHidden = false
-                secondValueProgressOverView.isHidden = true
+//                secondValueProgressOverView.isHidden = true
                 secondValueProgressUnderView.frame = frameForValue(secondValue)
+                secondValueProgressUnderView.backgroundColor = secondColor
             } else {
-                secondValueProgressOverView.isHidden = false
-                secondValueProgressUnderView.isHidden = true
-                secondValueProgressOverView.frame = frameForValue(secondValue)
+//                secondValueProgressOverView.isHidden = false
+//                secondValueProgressUnderView.isHidden = true
+//                secondValueProgressOverView.frame = frameForValue(secondValue)
+                mainValueProgressView.frame = frameForValue(secondValue)
+                secondValueProgressUnderView.isHidden = false
+//                secondValueProgressOverView.isHidden = true
+                secondValueProgressUnderView.frame = frameForValue(mainValue)
+                secondValueProgressUnderView.backgroundColor = secondOverlapColor
+                
             }
             setNeedsDisplay()
             setNeedsLayout()

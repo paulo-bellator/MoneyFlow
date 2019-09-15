@@ -22,11 +22,11 @@ class TestViewController: UIViewController, ChartViewDelegate {
     }
     
     func chartView(mainValueForColumnAt index: Int) -> CGFloat {
-        return CGFloat(Double.random(in: 0.1...0.7))
+        return CGFloat(Double.random(in: 0.1...0.8))
     }
     
     func chartView(secondValueForColumnAt index: Int) -> CGFloat? {
-        return CGFloat(Double.random(in: 0.6...1.0))
+        return CGFloat(Double.random(in: 0.4...1.0))
     }
     
 
