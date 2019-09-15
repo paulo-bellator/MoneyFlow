@@ -12,8 +12,6 @@ class ChartView: UIView {
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
             collectionView.backgroundColor = UIColor.clear
             collectionView.allowsMultipleSelection = false
             Timer.scheduledTimer(withTimeInterval: 0.0, repeats: false) { _ in
@@ -22,18 +20,23 @@ class ChartView: UIView {
         }
     }
     
-    var heightForColumn: CGFloat = 257.0 { didSet { collectionView.reloadData(); updateUI() } }
+    var heightForColumn: CGFloat = 257.0 {
+        didSet {
+            heightForColumn = min(heightForColumn, collectionView.frame.height)
+            collectionViewNeedToUpdate = true
+        }
+    }
     var labelsColor = UIColor.white.withAlphaComponent(0.7) {
         didSet {
             minValueLabel.textColor = labelsColor
             midValueLabel.textColor = labelsColor
-            collectionView.reloadData()
+            collectionViewNeedToUpdate = true
         }
     }
-    var mainValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) { didSet { collectionView.reloadData() } }
-    var secondValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.2) { didSet { collectionView.reloadData() } }
-    var secondOverlapValueColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).withAlphaComponent(0.9) { didSet { collectionView.reloadData() } }
-    var measureLinesColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.2) { didSet { updateUI() } }
+    var mainValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) { didSet { collectionViewNeedToUpdate = true } }
+    var secondValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.2) { didSet { collectionViewNeedToUpdate = true } }
+    var secondOverlapValueColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).withAlphaComponent(0.9) { didSet { collectionViewNeedToUpdate = true } }
+    var measureLinesColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.2)
 
     lazy var minValueLabel: UILabel =  {
         let label = UILabel(frame: CGRect.zero)
@@ -49,6 +52,7 @@ class ChartView: UIView {
     }()
     
     weak var delegate: ChartViewDelegate?
+    private var collectionViewNeedToUpdate = false
     
    
     
@@ -80,8 +84,14 @@ class ChartView: UIView {
                 minValueLabel.frame.origin = CGPoint(x: bounds.maxX*0.05 , y: maxY+1 - (minValueLabel.bounds.height + 5))
             }
         }
-        
-        
+    }
+    
+    private func frameForCollectionView() -> CGRect {
+        let width = bounds.width * Constants.scaleFactorCollectionViewWidthToViewChartViewWidth
+        let height = bounds.height * Constants.scaleFactorCollectionViewHeightToViewChartViewHeight
+        let originX = bounds.maxX - width
+        let originY = bounds.midY - height/2.0
+        return CGRect(x: originX, y: originY, width: width, height: height)
     }
     
     
@@ -116,6 +126,33 @@ class ChartView: UIView {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        print("awakeFromNib")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print("layouts")
+        collectionView.frame = frameForCollectionView()
+        updateUI()
+    }
+    
+    override var bounds: CGRect {
+        didSet {
+            print("didSet")
+            print(bounds)
+            collectionView.frame = frameForCollectionView()
+            
+            Timer.scheduledTimer(withTimeInterval: 0.0, repeats: false) { [weak self] _ in
+                self?.collectionView.reloadData()
+                self?.updateUI()
+            }
+            
+        }
+    }
+    
     private struct Constants {
         static let dashedLinesFillColor: UIColor = UIColor.clear
         static let dashedLinesStrokeColor: UIColor = UIColor.white.withAlphaComponent(0.2)
@@ -123,6 +160,8 @@ class ChartView: UIView {
         static let lineDashPattern: [NSNumber] = [1,5]
         static let lineDashLayerName: String = "kShapeDashed"
         static let chartColumnCellReuseIdentifier = "chartColumn"
+        static let scaleFactorCollectionViewWidthToViewChartViewWidth: CGFloat = 0.8
+        static let scaleFactorCollectionViewHeightToViewChartViewHeight: CGFloat = 0.8
     }
 
 }
@@ -151,8 +190,7 @@ extension ChartView: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.chartColumnView.secondColor = secondValueColor
         cell.chartColumnView.secondOverlapColor = secondOverlapValueColor
         cell.chartColumnView.set(mainValue: mainValue, secondValue: secondValue, animated: !cell.wasSeen)
-//        cell.layer.borderWidth = cell.isSelected ? 1.0 : 0.0
-        cell.bounds.size.height = heightForColumn
+
         return cell
     }
     

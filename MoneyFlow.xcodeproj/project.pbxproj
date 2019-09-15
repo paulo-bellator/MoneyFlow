@@ -43,6 +43,7 @@
 		F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8B23253EA90008109E /* SettingsPresenter.swift */; };
 		F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */; };
 		F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */; };
+		F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40878232E212E0034B913 /* SummaryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,13 +80,14 @@
 		F9B2FE73231B227700ABF7AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSoaringView.swift; sourceTree = "<group>"; };
-		F9C608A3232BF3B900654DD9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = "Graph Chart/TestViewController.swift"; sourceTree = "<group>"; };
+		F9C608A3232BF3B900654DD9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = "../Graph Chart/TestViewController.swift"; sourceTree = "<group>"; };
 		F9C608A5232C04C800654DD9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
 		F9D08D8B23253EA90008109E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = "Operations Screen/SettingsPresenter.swift"; sourceTree = "<group>"; };
 		F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingTableViewExtension.swift; path = ../ManagingTableViewExtension.swift; sourceTree = "<group>"; };
+		F9D40878232E212E0034B913 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = ../SummaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +157,8 @@
 				F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */,
 				F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */,
 			);
-			path = "Graph Chart";
+			name = "Graph Chart";
+			path = "../../Graph Chart";
 			sourceTree = "<group>";
 		};
 		F91871EE23268F0400F0F9A6 /* AddOperation Screen */ = {
@@ -175,6 +178,8 @@
 			children = (
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
+				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
+				F9D4087A232E214B0034B913 /* New Group */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
 				F95B2E6E232142C500808558 /* Operations Screen */,
 			);
@@ -220,8 +225,6 @@
 				F9063DD9232139FE00F08E84 /* ID Generators */,
 				F9B2FE79231B228C00ABF7AC /* Supporting files */,
 				F9B2FE6B231B227400ABF7AC /* Main.storyboard */,
-				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
-				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 				F9063DEC23213A0F00F08E84 /* Constants.swift */,
 				F9B2FE73231B227700ABF7AC /* Info.plist */,
 				F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */,
@@ -256,6 +259,15 @@
 				F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		F9D4087A232E214B0034B913 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				F9D40878232E212E0034B913 /* SummaryViewController.swift */,
+				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +389,7 @@
 				F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */,
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
+				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
