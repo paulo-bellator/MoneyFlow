@@ -10,7 +10,7 @@ import UIKit
 
 class ChartView: UIView {
 
-    @IBOutlet weak var collectionView: UICollectionView! {
+    var collectionView: UICollectionView! {
         didSet {
             collectionView.backgroundColor = UIColor.clear
             collectionView.allowsMultipleSelection = false
@@ -53,6 +53,31 @@ class ChartView: UIView {
     
     weak var delegate: ChartViewDelegate?
     private var collectionViewNeedToUpdate = false
+    
+    
+    
+    private func initialization() {
+        let collectionViewFrame = frameForCollectionView()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: 40, height: collectionViewFrame.height)
+        
+        collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(ChartColumnCollectionViewCell.self, forCellWithReuseIdentifier: Constants.chartColumnCellReuseIdentifier)
+        collectionView.backgroundColor = UIColor.blue
+        addSubview(collectionView)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialization()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialization()
+    }
     
    
     

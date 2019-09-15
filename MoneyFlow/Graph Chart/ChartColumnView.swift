@@ -54,6 +54,7 @@ class ChartColumnView: UIView {
         
         backgroundColor = UIColor.clear
     }
+    
 
     private func updateUI() {
         if mainValueProgressView != nil && secondValueProgressOverView != nil && secondValueProgressUnderView != nil {

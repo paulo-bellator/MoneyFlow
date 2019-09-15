@@ -464,7 +464,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="304"/>
                                             <subviews>
                                                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pEC-Ex-wIw">
-                                                    <rect key="frame" x="82.666666666666657" y="15" width="331.33333333333337" height="120"/>
+                                                    <rect key="frame" x="83" y="15" width="331" height="263"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.93579473350253806" green="0.93579473350253806" blue="0.93579473350253806" alpha="0.15507277397260275" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yHf-0T-t6M">
@@ -475,7 +475,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chartColumn" id="Qcg-Zd-q4y" customClass="ChartColumnCollectionViewCell" customModule="MoneyFlow" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="-52" width="88" height="224.33333333333329"/>
+                                                            <rect key="frame" x="0.0" y="19.333333333333332" width="88" height="224.33333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="88" height="224.33333333333329"/>
@@ -511,9 +511,6 @@
                                                 </collectionView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <outlet property="collectionView" destination="pEC-Ex-wIw" id="fSQ-I6-H1P"/>
-                                            </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3J-Ut-wo0">
                                             <rect key="frame" x="0.0" y="338" width="414" height="60"/>
@@ -566,7 +563,6 @@
         <!--Test View Controller-->
         <scene sceneID="YYT-M4-VWr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pg8-Dn-Je1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="vFZ-BJ-6Fo" customClass="TestViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D8x-gt-Q8Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -590,6 +586,7 @@
                         <outlet property="chartView" destination="0a9-wh-UZb" id="yaw-NM-XWB"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pg8-Dn-Je1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2147.826086956522" y="-624.45652173913049"/>
         </scene>
