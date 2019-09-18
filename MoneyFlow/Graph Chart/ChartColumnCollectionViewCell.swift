@@ -46,7 +46,10 @@ class ChartColumnCollectionViewCell: UICollectionViewCell {
         let height = max(label.frame.height, Constants.labelDefaultHeight)
         let originX = CGFloat(0.0)
 //        let originY = bounds.maxY - height
-        let originY = chartColumnViewFrame.maxY + Constants.labelChartColumnViewSpacing
+        var originY = chartColumnViewFrame.maxY + Constants.labelChartColumnViewSpacing
+        if bounds.maxY < originY + height {
+            originY = bounds.maxY - height
+        }
         return CGRect(x: originX, y: originY, width: width, height: height)
     }
     

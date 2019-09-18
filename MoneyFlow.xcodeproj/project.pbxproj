@@ -22,6 +22,10 @@
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
 		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
 		F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */; };
+		F986847A233257B400FAD863 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9868479233257B400FAD863 /* SummaryTableViewCell.swift */; };
+		F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */; };
+		F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847D233270FB00FAD863 /* CircleGraphView.swift */; };
+		F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */; };
 		F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */; };
 		F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */; };
 		F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C5232A95EA008DF78D /* LoadingViewController.swift */; };
@@ -64,6 +68,10 @@
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
 		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
 		F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationPresenter.swift; sourceTree = "<group>"; };
+		F9868479233257B400FAD863 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
+		F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryGraphTableViewCell.swift; sourceTree = "<group>"; };
+		F986847D233270FB00FAD863 /* CircleGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CircleGraphView.swift; path = ../../CircleGraphView.swift; sourceTree = "<group>"; };
+		F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryHeaderTableViewCell.swift; path = ../../SummaryHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
 		F995B0C5232A95EA008DF78D /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +273,10 @@
 			isa = PBXGroup;
 			children = (
 				F9D40878232E212E0034B913 /* SummaryViewController.swift */,
+				F9868479233257B400FAD863 /* SummaryTableViewCell.swift */,
+				F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */,
+				F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */,
+				F986847D233270FB00FAD863 /* CircleGraphView.swift */,
 				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 			);
 			path = "New Group";
@@ -390,6 +402,7 @@
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,
+				F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
@@ -414,8 +427,11 @@
 				F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */,
 				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
 				F9A981062321416000F630F9 /* Presenter.swift in Sources */,
+				F986847A233257B400FAD863 /* SummaryTableViewCell.swift in Sources */,
+				F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */,
 				F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */,
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
+				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,
 			);
