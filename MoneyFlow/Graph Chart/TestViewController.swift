@@ -37,7 +37,24 @@ class TestViewController: UIViewController, ChartViewDelegate {
         chartView.delegate = self
         chartView.minValueLabel.text = "0"
         chartView.midValueLabel.text = "50K"
-        self.chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
+        self.chartView.measureLinesColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.5)
+        chartView.allowsSelection = true
+//        chartView.updateUI()
+//
+//        Timer.scheduledTimer(withTimeInterval: 4.2, repeats: false) { _ in
+//            self.chartView.bounds.size.height -= 200
+////            self.chartView.layoutIfNeeded()
+////            self.chartView.collectionView.reloadData()
+////            self.chartView.layoutIfNeeded()
+//        }
+//        Timer.scheduledTimer(withTimeInterval: 6.0, repeats: false) { _ in
+////            self.chartView.layoutIfNeeded()
+//            print("height: \(self.chartView.bounds.height)")
+//        }
+        
+//        Timer.scheduledTimer(withTimeInterval: 4.3, repeats: false) { _ in
+//            self.chartView.updateUI()
+//        }
 //        chartView.updateLayoutsOfSubviews()
         
         

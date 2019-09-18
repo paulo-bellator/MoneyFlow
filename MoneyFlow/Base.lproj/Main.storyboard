@@ -462,54 +462,6 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-aH-Zxk" customClass="ChartView" customModule="MoneyFlow" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="304"/>
-                                            <subviews>
-                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pEC-Ex-wIw">
-                                                    <rect key="frame" x="83" y="15" width="331" height="263"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.93579473350253806" green="0.93579473350253806" blue="0.93579473350253806" alpha="0.15507277397260275" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yHf-0T-t6M">
-                                                        <size key="itemSize" width="88" height="224.33333333333329"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chartColumn" id="Qcg-Zd-q4y" customClass="ChartColumnCollectionViewCell" customModule="MoneyFlow" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="19.333333333333332" width="88" height="224.33333333333329"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="224.33333333333329"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHo-nB-3R6" customClass="ChartColumnView" customModule="MoneyFlow" customModuleProvider="target">
-                                                                        <rect key="frame" x="17.666666666666668" y="16.666666666666671" width="52.666666666666657" height="168.33333333333331"/>
-                                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                    </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Апр" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-th-8Zm">
-                                                                        <rect key="frame" x="28" y="192.33333333333334" width="32" height="21"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </view>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="EHo-nB-3R6" firstAttribute="centerY" secondItem="Qcg-Zd-q4y" secondAttribute="centerY" multiplier="0.9" id="494-fU-gu5"/>
-                                                                <constraint firstItem="a6P-th-8Zm" firstAttribute="centerX" secondItem="Qcg-Zd-q4y" secondAttribute="centerX" id="G6c-kv-vsh"/>
-                                                                <constraint firstItem="EHo-nB-3R6" firstAttribute="centerX" secondItem="Qcg-Zd-q4y" secondAttribute="centerX" id="QiQ-y8-mPk"/>
-                                                                <constraint firstItem="EHo-nB-3R6" firstAttribute="height" secondItem="Qcg-Zd-q4y" secondAttribute="height" multiplier="0.75" id="UEc-9l-cq3"/>
-                                                                <constraint firstItem="EHo-nB-3R6" firstAttribute="width" secondItem="Qcg-Zd-q4y" secondAttribute="width" multiplier="0.6" id="YNN-KH-bXH"/>
-                                                                <constraint firstAttribute="bottom" secondItem="a6P-th-8Zm" secondAttribute="bottom" constant="11" id="cD7-U2-6zU"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="chartColumnView" destination="EHo-nB-3R6" id="dav-7b-gLJ"/>
-                                                                <outlet property="label" destination="a6P-th-8Zm" id="7pY-Qz-QyX"/>
-                                                            </connections>
-                                                        </collectionViewCell>
-                                                    </cells>
-                                                </collectionView>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3J-Ut-wo0">
@@ -568,18 +520,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0a9-wh-UZb" customClass="ChartView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="354"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0a9-wh-UZb" customClass="ChartView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="200" width="414" height="336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.56732327849999997" green="0.74589460780000005" blue="0.430684489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="0a9-wh-UZb" firstAttribute="centerX" secondItem="rfg-Px-Fgc" secondAttribute="centerX" id="8MS-UJ-BLV"/>
-                            <constraint firstItem="rfg-Px-Fgc" firstAttribute="bottom" secondItem="0a9-wh-UZb" secondAttribute="bottom" constant="382" id="Huh-A9-Gip"/>
-                            <constraint firstItem="rfg-Px-Fgc" firstAttribute="top" secondItem="0a9-wh-UZb" secondAttribute="top" constant="20" id="iKJ-2g-ArW"/>
-                            <constraint firstItem="0a9-wh-UZb" firstAttribute="width" secondItem="D8x-gt-Q8Z" secondAttribute="width" id="w9C-D9-bXm"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rfg-Px-Fgc"/>
                     </view>
                     <connections>
