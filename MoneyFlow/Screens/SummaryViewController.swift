@@ -12,7 +12,23 @@ class SummaryViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var chartView: ChartView!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var mainMoneyAmountSmallLabel: UILabel!
+    @IBOutlet weak var mainMoneyAmountBigLabel: UILabel!
+    
     @IBOutlet weak var mainHeaderView: UIView!
+    @IBOutlet weak var mounthLabel: UILabel!
+    @IBOutlet weak var monthMoneyAmountSmallLabel: UILabel!
+    @IBOutlet weak var monthMoneyAmountBigLabel: UILabel!
+    
+    @IBOutlet weak var week1Label: UILabel!
+    @IBOutlet weak var week2Label: UILabel!
+    @IBOutlet weak var week3Label: UILabel!
+    @IBOutlet weak var week4Label: UILabel!
+    @IBOutlet weak var week1ResultLabel: UILabel!
+    @IBOutlet weak var week2ResultLabel: UILabel!
+    @IBOutlet weak var week3ResultLabel: UILabel!
+    @IBOutlet weak var week4ResultLabel: UILabel!
     
     private let presenter = SettingsPresenter.shared
     private let summaryCellIdentifier = "summaryCell"
@@ -28,12 +44,21 @@ class SummaryViewController: UIViewController, ChartViewDelegate {
         chartView.midValueLabel.text = "50K"
         self.chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
         mainHeaderView.addRoundedRectMask()
+        
+        
+        let presenter = SummaryPresenter()
+        print("\n")
+        print(presenter.periodsStringFor(month: "Сентябрь"))
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
+    @IBAction func presentationTypeButtonTouched(_ sender: UIButton) {
+        // TODO: change bool false and reaload tableView
+    }
     func chartView(didSelectColumnAt index: Int) {
         print("Selected in \(index)")
     }
@@ -74,75 +99,62 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return presenter.incomeCategories.count
-        case 1: return presenter.outcomeCategories.count
-        case 2: return 2
+        case 0: return presenter.incomeCategories.count + 1
+        case 1: return presenter.outcomeCategories.count + 1
+        case 2: return 2 + 1
         default: return 1
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0: return "Доходы"
-        case 1: return "Расходы"
-        case 2: return "Долги"
-        default: return ""
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableCell(withIdentifier: summaryHeaderCellIdentifier) as! SummaryHeaderTableViewCell
-//        switch section {
-//        case 0: header.leftLabel.text = "Доходы"
-//        case 1: header.leftLabel!.text = "Расходы"
-//        case 2: header.leftLabel!.text = "Долги"
-//        default: break
-//        }
-//        header.rightLabel.text = Double.random(in: 8000...120000).currencyFormattedDescription(.rub)
-        header.layoutIfNeeded()
-        return header
-    }
-    
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-////        let header = tableView.dequeueReusableCell(withIdentifier: summaryHeaderCellIdentifier) as! SummaryHeaderTableViewCell
-////        switch section {
-////        case 0: header.leftLabel.text = "Доходы"
-////        case 1: header.leftLabel!.text = "Расходы"
-////        case 2: header.leftLabel!.text = "Долги"
-////        default: break
-////        }
-////        header.rightLabel.text = Double.random(in: 8000...120000).currencyFormattedDescription(.rub)
-////        header.layoutIfNeeded()
-////        return nil
-//    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: summaryCellIdentifier, for: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: summaryGraphCellIdentifier, for: indexPath)
-        return cell
+        if indexPath.row == 0 {
+            let header = tableView.dequeueReusableCell(withIdentifier: summaryHeaderCellIdentifier) as! SummaryHeaderTableViewCell
+            header.layoutIfNeeded()
+            return header
+        } else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: summaryCellIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: summaryGraphCellIdentifier, for: indexPath)
+            return cell
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = cell as? SummaryTableViewCell {
+        switch cell {
+        case _ where cell is SummaryHeaderTableViewCell:
+            let header = cell as! SummaryHeaderTableViewCell
             switch indexPath.section {
-            case 0: cell.titleLabel.text = presenter.incomeCategories[indexPath.row]
-            case 1: cell.titleLabel.text = presenter.outcomeCategories[indexPath.row]
-            case 2: cell.titleLabel.text = indexPath.row == 0 ? "Я должен" : "Мне должны"
+            case 0: header.leftLabel.text = "Доходы"
+            case 1: header.leftLabel!.text = "Расходы"
+            case 2: header.leftLabel!.text = "Долги"
+            default: break
+            }
+            header.rightLabel.text = Double.random(in: 8000...120000).currencyFormattedDescription(.rub)
+//            header.layoutIfNeeded()
+        
+        case _ where cell is  SummaryTableViewCell:
+            let cell = cell as! SummaryTableViewCell
+            switch indexPath.section {
+            case 0: cell.titleLabel.text = presenter.incomeCategories[indexPath.row-1]
+            case 1: cell.titleLabel.text = presenter.outcomeCategories[indexPath.row-1]
+            case 2: cell.titleLabel.text = indexPath.row-1 == 0 ? "Я должен" : "Мне должны"
             default: break
             }
             cell.value1Label.text = formattedString(from: Double.random(in: 0...120000))
             cell.value2Label.text = formattedString(from: Double.random(in: 0...120000))
             cell.value3Label.text = formattedString(from: Double.random(in: 0...120000))
             cell.value4Label.text = formattedString(from: Double.random(in: 0...120000))
-        } else if let cell  = cell as? SummaryGraphTableViewCell {
+       
+        case _ where cell is  SummaryGraphTableViewCell:
+            let cell = cell as! SummaryGraphTableViewCell
             switch indexPath.section {
-            case 0: cell.titleLabel.text = presenter.incomeCategories[indexPath.row]
-            case 1: cell.titleLabel.text = presenter.outcomeCategories[indexPath.row]
-            case 2: cell.titleLabel.text = indexPath.row == 0 ? "Я должен" : "Мне должны"
+            case 0: cell.titleLabel.text = presenter.incomeCategories[indexPath.row-1]
+            case 1: cell.titleLabel.text = presenter.outcomeCategories[indexPath.row-1]
+            case 2: cell.titleLabel.text = indexPath.row-1 == 0 ? "Я должен" : "Мне должны"
             default: break
             }
             cell.graph1.value = CGFloat.random(in: 0.0...0.9)
@@ -157,9 +169,10 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
             cell.graph4.value = CGFloat.random(in: 0.0...0.9)
             cell.graph4.backgroundColor = colorFor(value: cell.graph4.value)
             
-            cell.isItFirtsLine = indexPath.row == 0
+            cell.isItFirtsLine = indexPath.row-1 == 0
             cell.isItLastLine = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
             cell.layoutIfNeeded()
+        default: break
         }
     }
     

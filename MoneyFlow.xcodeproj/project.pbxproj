@@ -30,6 +30,7 @@
 		F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */; };
 		F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C5232A95EA008DF78D /* LoadingViewController.swift */; };
 		F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */; };
+		F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A4F8952333D402008D606A /* SummaryPresenter.swift */; };
 		F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* OperationsViewController.swift */; };
 		F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */; };
 		F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981032321410900F630F9 /* OperationPresenter.swift */; };
@@ -70,12 +71,13 @@
 		F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationPresenter.swift; sourceTree = "<group>"; };
 		F9868479233257B400FAD863 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryGraphTableViewCell.swift; sourceTree = "<group>"; };
-		F986847D233270FB00FAD863 /* CircleGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CircleGraphView.swift; path = ../../CircleGraphView.swift; sourceTree = "<group>"; };
-		F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryHeaderTableViewCell.swift; path = ../../SummaryHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		F986847D233270FB00FAD863 /* CircleGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGraphView.swift; sourceTree = "<group>"; };
+		F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
 		F995B0C5232A95EA008DF78D /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationViewController.swift; sourceTree = "<group>"; };
+		F9A4F8952333D402008D606A /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		F9A980FB2321409600F630F9 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
 		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OperationTableViewCell.swift; path = ../OperationTableViewCell.swift; sourceTree = "<group>"; };
 		F9A981032321410900F630F9 /* OperationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
@@ -187,7 +189,7 @@
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
-				F9D4087A232E214B0034B913 /* New Group */,
+				F9D4087A232E214B0034B913 /* Summary Screen */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
 				F95B2E6E232142C500808558 /* Operations Screen */,
 			);
@@ -204,6 +206,17 @@
 				F9D3A9FA232165D400895A80 /* CollectionView */,
 			);
 			path = "Operations Screen";
+			sourceTree = "<group>";
+		};
+		F9A4F8972333D426008D606A /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				F9868479233257B400FAD863 /* SummaryTableViewCell.swift */,
+				F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */,
+				F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */,
+				F986847D233270FB00FAD863 /* CircleGraphView.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		F9B2FE5B231B227400ABF7AC = {
@@ -269,17 +282,15 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
-		F9D4087A232E214B0034B913 /* New Group */ = {
+		F9D4087A232E214B0034B913 /* Summary Screen */ = {
 			isa = PBXGroup;
 			children = (
+				F9A4F8952333D402008D606A /* SummaryPresenter.swift */,
 				F9D40878232E212E0034B913 /* SummaryViewController.swift */,
-				F9868479233257B400FAD863 /* SummaryTableViewCell.swift */,
-				F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */,
-				F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */,
-				F986847D233270FB00FAD863 /* CircleGraphView.swift */,
+				F9A4F8972333D426008D606A /* TableView */,
 				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 			);
-			path = "New Group";
+			path = "Summary Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +433,7 @@
 				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
 				F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */,
+				F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */,
 				F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */,
 				F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */,
 				F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */,

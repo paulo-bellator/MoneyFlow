@@ -11,6 +11,10 @@ import UIKit
 @IBDesignable
 class SummaryHeaderTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var leftLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,7 +30,7 @@ class SummaryHeaderTableViewCell: UITableViewCell {
         let pathTopRect = UIBezierPath(roundedRect: topRect,
                                 byRoundingCorners: [.bottomLeft, .bottomRight],
                                 cornerRadii: CGSize(width: 20.0, height: 35.0))
-        let bottomRect = CGRect(x: bounds.minX, y: bounds.maxY - 15.0, width: bounds.width, height: 35.0)
+        let bottomRect = CGRect(x: bounds.minX, y: bounds.maxY - 40.0, width: bounds.width, height: 40.0)
         let pathBottomRect = UIBezierPath(roundedRect: bottomRect,
                                           byRoundingCorners: [.topLeft, .topRight],
                                           cornerRadii: CGSize(width: 20.0, height: 35.0))
