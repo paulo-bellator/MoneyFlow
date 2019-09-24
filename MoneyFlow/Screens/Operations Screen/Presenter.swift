@@ -111,15 +111,21 @@ class Presenter {
         return result
     }
     
-    /// Return the array of tuples, containg period and array [Operation] included in period
-    func operationsSorted(by period: DateFilterUnit, operations ops: [Operation]? = nil) -> [(formattedPeriod: String, ops: [Operation])] {
-        var result = [ ( String, [Operation] ) ]()
+    /// Return the array of tuples, containg fromatted period (String) and array [Operation] included in period
+    func operationsSorted(byFormatted period: DateFilterUnit, operations ops: [Operation]? = nil) -> [(formattedPeriod: String, ops: [Operation])] {
+        return operationsSorted(by: period, operations: ops).map {
+            ( self.formatted(date: $0.period.end, forFilterUnit: period), $0.ops )
+        }
+    }
+    
+    /// Return the array of tuples, containg period (Date) and array [Operation] included in period
+    func operationsSorted(by period: DateFilterUnit, operations ops: [Operation]? = nil) -> [(period: DateInterval, ops: [Operation])] {
+        var result = [ ( DateInterval, [Operation] ) ]()
         
         var tempOperations = [Operation]()
         tempOperations = (ops ?? operations).sorted { $0.date > $1.date }
         
         var operationsForPeriod = [Operation]()
-        var formattedPeriod = ""
         
         let calendar = Calendar.current
         var currentComponents: DateComponents
@@ -141,11 +147,30 @@ class Presenter {
                     break
                 }
             }
-            formattedPeriod = formatted(date: date, forFilterUnit: period)
-            result.append((formattedPeriod, operationsForPeriod))
+            let interval = makeInterval(from: date, by: period)
+            result.append((interval, operationsForPeriod))
             operationsForPeriod = []
         }
         return result
+    }
+    
+    private func makeInterval(from date: Date, by filterUnit: DateFilterUnit) -> DateInterval {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day, .month, .year], from: date)
+        var startDate: Date
+        var endDate: Date
+        
+        switch filterUnit {
+        case .days:
+            startDate = calendar.date(from: components)!
+            let nextDay = calendar.date(byAdding: .day, value: 1, to: startDate)!
+            endDate = calendar.date(byAdding: .second, value: -1, to: nextDay)!
+        case .months:
+            startDate = calendar.date(from: DateComponents(year: components.year!, month: components.month!))!
+            let nextMonth = calendar.date(byAdding: .month, value: 1, to: startDate)!
+            endDate = calendar.date(byAdding: .second, value: -1, to: nextMonth)!
+        }
+        return DateInterval(start: startDate, end: endDate)
     }
     
     

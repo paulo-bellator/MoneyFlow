@@ -41,6 +41,10 @@ class ChartView: UIView {
         return label
     }()
     
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
     private func initialization() {
         let collectionViewFrame = frameForCollectionView()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()

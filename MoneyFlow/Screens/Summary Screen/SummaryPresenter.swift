@@ -17,11 +17,11 @@ class SummaryPresenter {
         return MainData.source.operations
     }
     
-    func availableMoney(in currency: Currency) -> Double {
-        return operations.valuesSum(currency)
+    func availableMoney(in currency: Currency, at date: Date? = nil) -> Double {
+        return presenter.filter(until: date).valuesSum(currency)
     }
-    func totalMoney(in currency: Currency) -> Double {
-        return operations.filter({ $0 is FlowOperation }).valuesSum(currency)
+    func totalMoney(in currency: Currency, at date: Date? = nil) -> Double {
+        return presenter.filter(until: date, debtOperations: false, flowOperations: true).valuesSum(currency)
     }
     func availableMoneyString(in currency: Currency) -> String {
         return availableMoney(in: currency).currencyFormattedDescription(currency)
@@ -30,20 +30,20 @@ class SummaryPresenter {
         return totalMoney(in: currency).currencyFormattedDescription(currency)
     }
     
-    func summaryByMonth(for currency: Currency) -> [(mounth: String, availableMoney: Double, totalMoney: Double)] {
-        var result = [(mounth: String, availableMoney: Double, totalMoney: Double)]()
-        let operationsSortedByMonth = presenter.operationsSorted(by: .months)
+    func summary(by filterUnit: Presenter.DateFilterUnit, for currency: Currency) -> [(period: DateInterval, availableMoney: Double, totalMoney: Double)] {
+        var result = [(period: DateInterval, availableMoney: Double, totalMoney: Double)]()
+        let operationsSortedByPeriod = presenter.operationsSorted(by: filterUnit)
         
-        for (period, ops) in operationsSortedByMonth {
-            let availableMoney = ops.valuesSum(currency)
-            let totalMoney = ops.filter({ $0 is FlowOperation }).valuesSum(currency)
-            result.append((mounth: period, availableMoney: availableMoney, totalMoney: totalMoney))
+        for (period, _) in operationsSortedByPeriod {
+            let availableMoney = self.availableMoney(in: currency, at: period.end)
+            let totalMoney = self.totalMoney(in: currency, at: period.end)
+            result.append((period: period, availableMoney: availableMoney, totalMoney: totalMoney))
         }
         return result
     }
     
-    func maxAndMinValuesFromSummaryByMonth(for currency: Currency) -> (max: Double, min: Double) {
-        let data = summaryByMonth(for: currency)
+    func maxAndMinValuesFromSummary(by filterUnit: Presenter.DateFilterUnit, for currency: Currency) -> (max: Double, min: Double) {
+        let data = summary(by: filterUnit, for: currency)
         
         var maxValue = data[0].availableMoney
         var minValue = maxValue
@@ -55,9 +55,9 @@ class SummaryPresenter {
         return (maxValue, minValue)
     }
     
-    func periodsStringFor(month: String, dateFormat: String? = nil) -> [String] {
+    func periodsStringFor(monthFrom date: Date, dateFormat: String? = nil) -> [String] {
         var periodsString = [String]()
-        let periods =  periodsFor(month: month)
+        let periods =  periodsFor(monthFrom: date)
         
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
@@ -67,16 +67,12 @@ class SummaryPresenter {
         return periodsString
     }
     
-    func periodsFor(month: String) -> [DateInterval] {
+    func periodsFor(monthFrom date: Date) -> [DateInterval] {
         let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = month.contains(" ") ? "LLLL yyyy" : "LLLL"
-        let date = formatter.date(from: month)!
         
         let components = calendar.dateComponents([.year, .month], from: date)
         let monthNumber = components.month ?? 1
-        let yearNumber = month.contains(" ") ? components.year : calendar.component(.year, from: Date())
+        let yearNumber = components.year
         let numDays = calendar.range(of: .day, in: .month, for: date)!.count
         
         var periodLengths = [Int]()
@@ -90,16 +86,16 @@ class SummaryPresenter {
         }
         
         let date1 = calendar.date(from: DateComponents(year: yearNumber, month: monthNumber, day: 1))!
-        let date2 = calendar.date(byAdding: .day, value: periodLengths[0]-1, to: date1)!
+        let date2 = calendar.date(byAdding: .day, value: periodLengths[0], to: date1)! - 1
         
-        let date3 = calendar.date(byAdding: .day, value: 1, to: date2)!
-        let date4 = calendar.date(byAdding: .day, value: periodLengths[1]-1, to: date3)!
+        let date3 = calendar.date(byAdding: .second, value: 1, to: date2)!
+        let date4 = calendar.date(byAdding: .day, value: periodLengths[1], to: date3)! - 1
         
-        let date5 = calendar.date(byAdding: .day, value: 1, to: date4)!
-        let date6 = calendar.date(byAdding: .day, value: periodLengths[2]-1, to: date5)!
+        let date5 = calendar.date(byAdding: .second, value: 1, to: date4)!
+        let date6 = calendar.date(byAdding: .day, value: periodLengths[2], to: date5)! - 1
         
-        let date7 = calendar.date(byAdding: .day, value: 1, to: date6)!
-        let date8 = calendar.date(byAdding: .day, value: periodLengths[3]-1, to: date7)!
+        let date7 = calendar.date(byAdding: .second, value: 1, to: date6)!
+        let date8 = calendar.date(byAdding: .day, value: periodLengths[3], to: date7)! - 1
         
         return [DateInterval(start: date1, end: date2),
                 DateInterval(start: date3, end: date4),
@@ -107,12 +103,72 @@ class SummaryPresenter {
                 DateInterval(start: date7, end: date8)]
     }
     
+    func income(for period: DateInterval?, from categories: [String]? = nil, in currency: Currency) -> Double {
+        var resultOps = presenter.filter(since: period?.start, until: period?.end, debtOperations: false, categories: categories)
+        resultOps = resultOps.filter { $0.value > 0 }
+        return resultOps.valuesSum(currency)
+    }
+    
+    func outcome(for period: DateInterval?, from categories: [String]? = nil, in currency: Currency) -> Double {
+        var resultOps = presenter.filter(since: period?.start, until: period?.end, debtOperations: false, categories: categories)
+        resultOps = resultOps.filter { $0.value < 0 }
+        return resultOps.valuesSum(currency)
+    }
+    
+    func oweMe(for period: DateInterval?, from contacts: [String]? = nil, in currency: Currency) -> Double {
+        return oweMe(since: period?.start, until: period?.end, from: contacts, in: currency)
+    }
+    
+    func oweMe(since: Date? = nil, until: Date? = nil, from contacts: [String]? = nil, in currency: Currency) -> Double {
+        var result = 0.0
+        var contactsBalance = [String: Double]()
+        let ops = presenter.filter(
+            since: since,
+            until: until,
+            flowOperations: false,
+            currencies: [currency],
+            contacts: contacts) as! [DebtOperation]
+        
+        for op in ops {
+            if contactsBalance[op.contact] != nil {
+                contactsBalance[op.contact]! += op.value
+            } else {
+                contactsBalance[op.contact] = 0.0
+            }
+        }
+        let balancesArray = contactsBalance.values
+        balancesArray.forEach { if $0 < 0 { result += $0 } }
+        
+        return abs(result)
+    }
     
     
+    func iOwe(for period: DateInterval?, from contacts: [String]? = nil, in currency: Currency) -> Double {
+        return iOwe(since: period?.start, until: period?.end, from: contacts, in: currency)
+    }
     
+    func iOwe(since: Date? = nil, until: Date? = nil, from contacts: [String]? = nil, in currency: Currency) -> Double {
+        var result = 0.0
+        var contactsBalance = [String: Double]()
+        let ops = presenter.filter(
+            since: since,
+            until: until,
+            flowOperations: false,
+            currencies: [currency],
+            contacts: contacts) as! [DebtOperation]
+        
+        for op in ops {
+            if contactsBalance[op.contact] != nil {
+                contactsBalance[op.contact]! += op.value
+            } else {
+                contactsBalance[op.contact] = 0.0
+            }
+        }
+        let balancesArray = contactsBalance.values
+        balancesArray.forEach { if $0 > 0 { result += $0 } }
+        
+        return result
+    }
     
-    
-    
-    
-   
 }
+

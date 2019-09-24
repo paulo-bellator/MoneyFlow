@@ -27,7 +27,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let filterPeriod: Presenter.DateFilterUnit = .days
     
     let presenter = Presenter()
-    lazy var operationsByDays = presenter.operationsSorted(by: filterPeriod)
+    lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
     var tableViewScrollOffset: CGFloat = 0 {
         willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
     }
@@ -57,7 +57,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             let filterUnit = arrayOfAllFilterUnits[appliedFilterCells.first!.row]
             switch filterUnit {
             case .all:
-                operationsByDays = presenter.operationsSorted(by: filterPeriod)
+                operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
                 mainCurrency = presenter.settings.currencies.first!
                 reloadTableView()
                 return
@@ -81,7 +81,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         }
         
         let filteredOperation = presenter.filter(currencies: requiredCurrencies, categories: requiredCategories, contacts: requiredContacts, accounts: requiredAccounts)
-        operationsByDays = presenter.operationsSorted(by: filterPeriod, operations: filteredOperation)
+        operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: filteredOperation)
         
         switch requiredCurrencies.count {
         case 1: mainCurrency = requiredCurrencies.first!
