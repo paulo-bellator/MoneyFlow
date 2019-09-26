@@ -32,6 +32,9 @@ struct SummaryMonthData {
     private var maxIncome: Double!
     private var maxOutcome: Double!
     private var maxDebt: Double!
+    private var boundsForIncomeCategory: [String: (lower: Double, upper: Double)] = [:]
+    private var boundsForOutcomeCategory: [String: (lower: Double, upper: Double)] = [:]
+    private var boundsForDebtsDirection: [String: (lower: Double, upper: Double)] = [:]
     
     struct ChartSet {
         var value: CGFloat
@@ -58,14 +61,39 @@ struct SummaryMonthData {
         var outcomes = [Double]()
         var debts = [Double]()
         
+        var incomesByCategories = [String: [Double]]()
+        var outcomesByCategories = [String: [Double]]()
+        var debtsByDirection = [String: [Double]]()
+        
         for week in allWeeks {
-            source.settings.incomeCategories.forEach { incomes.append(source.income(for: week, from: [$0], in: currency)) }
-            source.settings.outcomeCategories.forEach { outcomes.append(source.outcome(for: week, from: [$0], in: currency)) }
-            debts.append(source.iOwe(until: week.end, in: currency))
-            debts.append(source.oweMe(until: week.end, in: currency))
+            source.settings.incomeCategories.forEach {
+                let income = source.income(for: week, from: [$0], in: currency)
+                if income != 0 {
+                    incomes.append(income)
+                    incomesByCategories[$0] = (incomesByCategories[$0] ?? []) + [income]
+                }
+            }
+            source.settings.outcomeCategories.forEach {
+                let outcome = source.outcome(for: week, from: [$0], in: currency)
+                if outcome != 0 {
+                    outcomes.append(source.outcome(for: week, from: [$0], in: currency))
+                    outcomesByCategories[$0] = (outcomesByCategories[$0] ?? []) + [outcome]
+                }
+            }
+            let iOwe = source.iOwe(until: week.end, in: currency)
+            if iOwe != 0 {
+                debts.append(iOwe)
+                debtsByDirection["Я должен"] = (debtsByDirection["Я должен"] ?? []) + [iOwe]
+            }
+            
+            let oweMe = source.oweMe(until: week.end, in: currency)
+            if oweMe != 0 {
+                debts.append(oweMe)
+                debtsByDirection["Мне должны"] = (debtsByDirection["Мне должны"] ?? []) + [oweMe]
+            }
         }
         
-        let offsetForMaxValueConstant = 0.05
+        let offsetForMaxValueConstant = 0.02
         let maxIncomeIndex = Int(Double(incomes.count - 1) * (1.0 - offsetForMaxValueConstant))
         let maxOutcomeIndex = Int(Double(outcomes.count - 1) * (1.0 - offsetForMaxValueConstant))
         let maxDebtsIndex = Int(Double(debts.count - 1) * (1.0 - offsetForMaxValueConstant/2))
@@ -77,6 +105,32 @@ struct SummaryMonthData {
         print(maxIncome!)
         print(maxOutcome!)
         print(maxDebt!)
+        
+        let lowerBoundsConstant = 0.2
+        let upperBoundsConstant = 0.8
+        
+        incomesByCategories.forEach {
+            let values = $1.sorted(by: < )
+            let lowerIndex = Int(Double(values.count - 1) * lowerBoundsConstant)
+            let upperIndex = Int(Double(values.count - 1) * upperBoundsConstant)
+            boundsForIncomeCategory[$0] = (values[lowerIndex], values[upperIndex])
+        }
+        outcomesByCategories.forEach {
+            let values = $1.sorted(by: < )
+            let lowerIndex = Int(Double(values.count - 1) * lowerBoundsConstant)
+            let upperIndex = Int(Double(values.count - 1) * upperBoundsConstant)
+            boundsForOutcomeCategory[$0] = (values[lowerIndex], values[upperIndex])
+        }
+        debtsByDirection.forEach {
+            let values = $1.sorted(by: < )
+            let lowerIndex = Int(Double(values.count - 1) * lowerBoundsConstant)
+            let upperIndex = Int(Double(values.count - 1) * upperBoundsConstant)
+            boundsForDebtsDirection[$0] = (values[lowerIndex], values[upperIndex])
+        }
+        print(boundsForIncomeCategory)
+        print(boundsForOutcomeCategory)
+        print(boundsForDebtsDirection)
+        
     }
     
     mutating func loadData(source: SummaryPresenter, period: DateInterval, currency: Currency) {
@@ -136,29 +190,57 @@ struct SummaryMonthData {
         for (index, data) in incomesByWeeks.enumerated() {
             var chartSets = [ChartSet]()
             for value in incomeValues[index] {
-                let value = CGFloat(value/maxIncome)
-                let color = #colorLiteral(red: 1, green: 0.434411068, blue: 0, alpha: 1)
-                chartSets.append(ChartSet(value: value, color: color))
+                let floatValue = CGFloat(value/maxIncome)
+//                var color = #colorLiteral(red: 1, green: 0.434411068, blue: 0, alpha: 1)
+                var color = Colors.middle
+                switch value {
+                case 0: color = Colors.zero
+                case ..<boundsForIncomeCategory[data.categoryName]!.lower: color = Colors.lower
+                case boundsForIncomeCategory[data.categoryName]!.upper...: color = Colors.upper
+                default: color = Colors.middle
+                }
+                chartSets.append(ChartSet(value: floatValue, color: color))
             }
             incomesByWeeksForChart.append( (data.categoryName, chartSets) )
         }
         for (index, data) in outcomesByWeeks.enumerated() {
             var chartSets = [ChartSet]()
             for value in outcomeValues[index] {
-                let value = CGFloat(value/maxOutcome)
-                let color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
-                chartSets.append(ChartSet(value: value, color: color))
+                let floatValue = CGFloat(value/maxOutcome)
+//                let color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+                var color = Colors.middle
+                switch value {
+                case 0: color = Colors.zero
+                case ..<boundsForOutcomeCategory[data.categoryName]!.lower: color = Colors.lower
+                case boundsForOutcomeCategory[data.categoryName]!.upper...: color = Colors.upper
+                default: color = Colors.middle
+                }
+                chartSets.append(ChartSet(value: floatValue, color: color))
             }
             outcomesByWeeksForChart.append( (data.categoryName, chartSets) )
         }
         for (index, data) in debtsByWeeks.enumerated() {
             var chartSets = [ChartSet]()
             for value in debtValues[index] {
-                let value = CGFloat(value/maxDebt)
-                let color = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-                chartSets.append(ChartSet(value: value, color: color))
+                let floatValue = CGFloat(value/maxDebt)
+//                let color = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+                var color = Colors.middle
+                switch value {
+                case 0: color = Colors.zero
+                case ..<boundsForDebtsDirection[data.direction]!.lower: color = (index == 0 ? Colors.upper : Colors.lower)
+                case boundsForDebtsDirection[data.direction]!.upper...: color = (index == 0 ? Colors.lower : Colors.upper)
+                default: color = Colors.middle
+                }
+                chartSets.append(ChartSet(value: floatValue, color: color))
             }
             debtsByWeeksForChart.append( (data.direction, chartSets) )
         }
     }
+}
+
+private struct Colors {
+    static let lower = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+    static let middle = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+    static let upper = #colorLiteral(red: 0.3359866122, green: 0.73046875, blue: 0.4521239214, alpha: 1)
+    static let zero = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 }

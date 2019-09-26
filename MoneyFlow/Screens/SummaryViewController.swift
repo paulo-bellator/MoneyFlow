@@ -66,7 +66,6 @@ class SummaryViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     private func setupMonthHeader() {
         mounthLabel.text =  monthData.monthName
         monthMoneyAmountSmallLabel.text = monthData.availableMoneyAmountFormatted
@@ -83,8 +82,6 @@ class SummaryViewController: UIViewController {
     private func updateMonthData() {
         monthData.loadData(source: presenter, period: summaryByMonth[currentMonthIndex].period, currency: mainCurrency)
     }
-    
-    
     
     private func colorFor(value: CGFloat) -> UIColor {
         switch value {

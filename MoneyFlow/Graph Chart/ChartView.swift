@@ -210,16 +210,16 @@ extension ChartView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.chartView(didSelectColumnAt: indexPath.row)
         let cell = collectionView.cellForItem(at: indexPath)
-        UIView.animate(withDuration: 0.2) {
-            cell?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        }
+//        UIView.animate(withDuration: 0.2) {
+//            cell?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        UIView.animate(withDuration: 0.2) {
-            cell?.transform = .identity
-        }
+//        UIView.animate(withDuration: 0.2) {
+//            cell?.transform = .identity
+//        }
     }
     
     

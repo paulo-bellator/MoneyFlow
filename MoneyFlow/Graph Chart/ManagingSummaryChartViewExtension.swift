@@ -13,8 +13,10 @@ extension SummaryViewController: ChartViewDelegate {
     func chartView(didSelectColumnAt index: Int) {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-        currentMonthIndex = index
-        tableView.reloadData()
+        if currentMonthIndex != index {
+            currentMonthIndex = index
+            tableView.reloadData()
+        }
     }
     
     func chartViewNumberOfColumns() -> Int {
