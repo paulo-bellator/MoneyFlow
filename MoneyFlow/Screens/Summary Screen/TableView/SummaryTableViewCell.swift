@@ -11,13 +11,8 @@ import UIKit
 class SummaryTableViewCell: UITableViewCell {
     
     
-    
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var value1Label: UILabel!
-    @IBOutlet weak var value2Label: UILabel!
-    @IBOutlet weak var value3Label: UILabel!
-    @IBOutlet weak var value4Label: UILabel!
-    
+    @IBOutlet var valueLabels: [UILabel]!
     
     override func awakeFromNib() {
         super.awakeFromNib()

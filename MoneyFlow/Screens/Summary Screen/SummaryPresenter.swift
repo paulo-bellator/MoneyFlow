@@ -133,7 +133,7 @@ class SummaryPresenter {
             if contactsBalance[op.contact] != nil {
                 contactsBalance[op.contact]! += op.value
             } else {
-                contactsBalance[op.contact] = 0.0
+                contactsBalance[op.contact] = op.value
             }
         }
         let balancesArray = contactsBalance.values
@@ -161,13 +161,22 @@ class SummaryPresenter {
             if contactsBalance[op.contact] != nil {
                 contactsBalance[op.contact]! += op.value
             } else {
-                contactsBalance[op.contact] = 0.0
+                contactsBalance[op.contact] = op.value
             }
         }
         let balancesArray = contactsBalance.values
         balancesArray.forEach { if $0 > 0 { result += $0 } }
         
         return result
+    }
+    
+    func incomes(since: Date? = nil, until: Date? = nil, from categories: [String]? = nil, in currency: Currency) -> [Double] {
+        let ops = presenter.filter(since: since, until: until, debtOperations: false, currencies: [currency], categories: categories)
+        return ops.compactMap { $0.value > 0.0 ? $0.value : nil }
+    }
+    func outcomes(since: Date? = nil, until: Date? = nil, from categories: [String]? = nil, in currency: Currency) -> [Double] {
+        let ops = presenter.filter(since: since, until: until, debtOperations: false, currencies: [currency], categories: categories)
+        return ops.compactMap { $0.value < 0.0 ? $0.value : nil }
     }
     
 }

@@ -21,6 +21,9 @@
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
 		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
+		F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */; };
+		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
+		F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4092233CCB41008670B2 /* SummaryMonthData.swift */; };
 		F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */; };
 		F986847A233257B400FAD863 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9868479233257B400FAD863 /* SummaryTableViewCell.swift */; };
 		F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */; };
@@ -47,7 +50,7 @@
 		F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */; };
 		F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8B23253EA90008109E /* SettingsPresenter.swift */; };
 		F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */; };
-		F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */; };
+		F9D3A9F82321651700895A80 /* ManagingOperationsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */; };
 		F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40878232E212E0034B913 /* SummaryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
 		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
+		F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryTableViewExtension.swift; sourceTree = "<group>"; };
+		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
+		F96C4092233CCB41008670B2 /* SummaryMonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMonthData.swift; sourceTree = "<group>"; };
 		F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationPresenter.swift; sourceTree = "<group>"; };
 		F9868479233257B400FAD863 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryGraphTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,7 +102,7 @@
 		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
 		F9D08D8B23253EA90008109E /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = "Operations Screen/SettingsPresenter.swift"; sourceTree = "<group>"; };
 		F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingTableViewExtension.swift; path = ../ManagingTableViewExtension.swift; sourceTree = "<group>"; };
+		F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingOperationsTableViewExtension.swift; path = ../ManagingOperationsTableViewExtension.swift; sourceTree = "<group>"; };
 		F9D40878232E212E0034B913 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = ../SummaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +169,7 @@
 		F907D3D0232BE6BE00E9E3C2 /* Graph Chart */ = {
 			isa = PBXGroup;
 			children = (
+				F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */,
 				F9C608A5232C04C800654DD9 /* ChartView.swift */,
 				F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */,
 				F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */,
@@ -211,6 +218,7 @@
 		F9A4F8972333D426008D606A /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */,
 				F9868479233257B400FAD863 /* SummaryTableViewCell.swift */,
 				F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */,
 				F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */,
@@ -266,7 +274,7 @@
 		F9D3A9F9232165BB00895A80 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				F9D3A9F72321651700895A80 /* ManagingTableViewExtension.swift */,
+				F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */,
 				F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */,
 				F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */,
 			);
@@ -287,6 +295,7 @@
 			children = (
 				F9A4F8952333D402008D606A /* SummaryPresenter.swift */,
 				F9D40878232E212E0034B913 /* SummaryViewController.swift */,
+				F96C4092233CCB41008670B2 /* SummaryMonthData.swift */,
 				F9A4F8972333D426008D606A /* TableView */,
 				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 			);
@@ -409,12 +418,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */,
 				F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */,
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,
 				F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
+				F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */,
 				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
 				F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */,
@@ -434,8 +445,9 @@
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
 				F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */,
 				F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */,
-				F9D3A9F82321651700895A80 /* ManagingTableViewExtension.swift in Sources */,
+				F9D3A9F82321651700895A80 /* ManagingOperationsTableViewExtension.swift in Sources */,
 				F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */,
+				F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */,
 				F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */,
 				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
 				F9A981062321416000F630F9 /* Presenter.swift in Sources */,

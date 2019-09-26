@@ -12,11 +12,7 @@ class SummaryGraphTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var graph1: CircleGraphView!
-    @IBOutlet weak var graph2: CircleGraphView!
-    @IBOutlet weak var graph3: CircleGraphView!
-    @IBOutlet weak var graph4: CircleGraphView!
+    @IBOutlet var graphs: [CircleGraphView]!
     
     var isItFirtsLine = false
     var isItLastLine = false
@@ -30,12 +26,12 @@ class SummaryGraphTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if graph1 != nil, graph2 != nil, graph3 != nil, graph4 != nil {
+        if graphs != nil {
             removeDashedLines()
-            let graph1Frame = graph1.convert(graph1.bounds, to: self)
-            let graph2Frame = graph2.convert(graph2.bounds, to: self)
-            let graph3Frame = graph3.convert(graph3.bounds, to: self)
-            let graph4Frame = graph4.convert(graph4.bounds, to: self)
+            let graph1Frame = graphs[0].convert(graphs[0].bounds, to: self)
+            let graph2Frame = graphs[1].convert(graphs[1].bounds, to: self)
+            let graph3Frame = graphs[2].convert(graphs[2].bounds, to: self)
+            let graph4Frame = graphs[3].convert(graphs[3].bounds, to: self)
             
             let graph1Down = CGPoint(x: graph1Frame.midX, y: bounds.maxY)
             let graph1Center = CGPoint(x: graph1Frame.midX, y: bounds.midY)

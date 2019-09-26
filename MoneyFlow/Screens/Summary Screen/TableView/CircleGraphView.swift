@@ -20,11 +20,11 @@ class CircleGraphView: UIView {
             setNeedsDisplay()
         }
     }
-    var minRadiusScale: CGFloat = 0.2
+    var minRadiusScale: CGFloat = 0.1
     
     override func draw(_ rect: CGRect) {
         // Drawing code
-        if value > 0.1 {
+        if value != 0.0 {
             let radius = min(bounds.height, bounds.width) * max(value, minRadiusScale)
             let origin = CGPoint(x: bounds.midX - radius/2, y: bounds.midY - radius/2)
             let size = CGSize(width: radius, height: radius)
