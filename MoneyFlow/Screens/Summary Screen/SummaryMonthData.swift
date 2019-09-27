@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct SummaryMonthData {
+class SummaryMonthData {
     
     var monthName: String!
     var availableMoneyAmountFormatted: String!
@@ -41,7 +41,7 @@ struct SummaryMonthData {
         var color: UIColor
     }
     
-    private mutating func cleanArrays() {
+    private func cleanArrays() {
         formattedPeriodForWeek = []
         formattedResultForWeek = []
         incomesByWeeks = []
@@ -52,7 +52,7 @@ struct SummaryMonthData {
         debtsByWeeksForChart = []
     }
     
-    private mutating func setMaximums(source: SummaryPresenter, period: DateInterval, currency: Currency) {
+    private func setMaximums(source: SummaryPresenter, period: DateInterval, currency: Currency) {
         let summary = source.summary(by: .months, for: currency)
         var allWeeks = [DateInterval]()
         summary.forEach { allWeeks += source.periodsFor(monthFrom: $0.period.end) }
@@ -102,10 +102,6 @@ struct SummaryMonthData {
         maxOutcome = outcomes.sorted(by: > )[maxOutcomeIndex]
         maxDebt = debts.sorted(by: < )[maxDebtsIndex]
         
-        print(maxIncome!)
-        print(maxOutcome!)
-        print(maxDebt!)
-        
         let lowerBoundsConstant = 0.2
         let upperBoundsConstant = 0.8
         
@@ -127,13 +123,9 @@ struct SummaryMonthData {
             let upperIndex = Int(Double(values.count - 1) * upperBoundsConstant)
             boundsForDebtsDirection[$0] = (values[lowerIndex], values[upperIndex])
         }
-        print(boundsForIncomeCategory)
-        print(boundsForOutcomeCategory)
-        print(boundsForDebtsDirection)
-        
     }
     
-    mutating func loadData(source: SummaryPresenter, period: DateInterval, currency: Currency) {
+    func loadData(source: SummaryPresenter, period: DateInterval, currency: Currency) {
         cleanArrays()
         if maxIncome == nil { setMaximums(source: source, period: period, currency: currency) }
         let weeks = source.periodsFor(monthFrom: period.end)

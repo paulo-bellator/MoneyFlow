@@ -20,6 +20,12 @@
 		F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */; };
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
+		F942E650233E01F00031ADDF /* CenturyGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E642233E01F00031ADDF /* CenturyGothic.ttf */; };
+		F942E651233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E643233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf */; };
+		F942E657233E01F00031ADDF /* CenturyGothic-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E649233E01F00031ADDF /* CenturyGothic-Italic.ttf */; };
+		F942E658233E01F00031ADDF /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = F942E64A233E01F00031ADDF /* stylesheet.css */; };
+		F942E659233E01F00031ADDF /* CenturyGothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E64B233E01F00031ADDF /* CenturyGothic-Bold.ttf */; };
+		F942E660233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */; };
 		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
 		F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */; };
 		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
@@ -70,6 +76,13 @@
 		F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
+		F942E642233E01F00031ADDF /* CenturyGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CenturyGothic.ttf; sourceTree = "<group>"; };
+		F942E643233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-BoldItalic.ttf"; sourceTree = "<group>"; };
+		F942E649233E01F00031ADDF /* CenturyGothic-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-Italic.ttf"; sourceTree = "<group>"; };
+		F942E64A233E01F00031ADDF /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
+		F942E64B233E01F00031ADDF /* CenturyGothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-Bold.ttf"; sourceTree = "<group>"; };
+		F942E65E233E02B00031ADDF /* CenturyGothic-HeavyBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-HeavyBold.ttf"; sourceTree = "<group>"; };
+		F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDesignedTableViewCell.swift; sourceTree = "<group>"; };
 		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
 		F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryTableViewExtension.swift; sourceTree = "<group>"; };
 		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
@@ -203,6 +216,27 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		F942E640233DFFB10031ADDF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F942E641233E01F00031ADDF /* CenturyGothic */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F942E641233E01F00031ADDF /* CenturyGothic */ = {
+			isa = PBXGroup;
+			children = (
+				F942E642233E01F00031ADDF /* CenturyGothic.ttf */,
+				F942E643233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf */,
+				F942E649233E01F00031ADDF /* CenturyGothic-Italic.ttf */,
+				F942E65E233E02B00031ADDF /* CenturyGothic-HeavyBold.ttf */,
+				F942E64B233E01F00031ADDF /* CenturyGothic-Bold.ttf */,
+				F942E64A233E01F00031ADDF /* stylesheet.css */,
+			);
+			path = CenturyGothic;
+			sourceTree = "<group>";
+		};
 		F95B2E6E232142C500808558 /* Operations Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +298,7 @@
 		F9B2FE79231B228C00ABF7AC /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				F942E640233DFFB10031ADDF /* Fonts */,
 				F9B2FE67231B227400ABF7AC /* AppDelegate.swift */,
 				F9B2FE6E231B227700ABF7AC /* Assets.xcassets */,
 				F9B2FE70231B227700ABF7AC /* LaunchScreen.storyboard */,
@@ -277,6 +312,7 @@
 				F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */,
 				F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */,
 				F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */,
+				F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -364,7 +400,12 @@
 			files = (
 				F9B2FE72231B227700ABF7AC /* LaunchScreen.storyboard in Resources */,
 				F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */,
+				F942E650233E01F00031ADDF /* CenturyGothic.ttf in Resources */,
+				F942E659233E01F00031ADDF /* CenturyGothic-Bold.ttf in Resources */,
 				F9B2FE6F231B227700ABF7AC /* Assets.xcassets in Resources */,
+				F942E657233E01F00031ADDF /* CenturyGothic-Italic.ttf in Resources */,
+				F942E651233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf in Resources */,
+				F942E658233E01F00031ADDF /* stylesheet.css in Resources */,
 				F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +461,7 @@
 			files = (
 				F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */,
 				F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */,
+				F942E660233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift in Sources */,
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,

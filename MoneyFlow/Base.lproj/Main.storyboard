@@ -8,6 +8,14 @@
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="CenturyGothic-Bold.ttf">
+            <string>CenturyGothic-Bold</string>
+        </array>
+        <array key="CenturyGothic.ttf">
+            <string>CenturyGothic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Операции-->
         <scene sceneID="tne-QT-ifu">
@@ -209,6 +217,89 @@
                                             <outlet property="valueLabel" destination="wup-1l-ysA" id="26o-io-FZI"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OperationDesignCell" rowHeight="100" id="Zym-g2-hxr" customClass="OperationsDesignedTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="283" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zym-g2-hxr" id="OLD-6t-hxX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkw-uu-Gtg">
+                                                    <rect key="frame" x="192" y="34.666666666666664" width="207" height="44.999999999999993"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPQ-Ky-Fyc">
+                                                            <rect key="frame" x="62" y="0.0" width="145" height="45"/>
+                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₽ 7 690 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6q-RD-9hk">
+                                                            <rect key="frame" x="121.66666666666669" y="10.66666666666667" width="69.333333333333314" height="23.333333333333329"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="19"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="dPQ-Ky-Fyc" firstAttribute="leading" secondItem="gkw-uu-Gtg" secondAttribute="leading" constant="62" id="0Rf-Z6-kLH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dPQ-Ky-Fyc" secondAttribute="trailing" id="19I-ox-pUm"/>
+                                                        <constraint firstItem="dPQ-Ky-Fyc" firstAttribute="height" secondItem="gkw-uu-Gtg" secondAttribute="height" id="2LC-0D-jj7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="r6q-RD-9hk" secondAttribute="trailing" constant="16" id="49G-JS-igc"/>
+                                                        <constraint firstItem="r6q-RD-9hk" firstAttribute="centerY" secondItem="gkw-uu-Gtg" secondAttribute="centerY" id="7Tp-a4-eNR"/>
+                                                        <constraint firstItem="dPQ-Ky-Fyc" firstAttribute="centerY" secondItem="gkw-uu-Gtg" secondAttribute="centerY" id="XhF-zL-WIe"/>
+                                                    </constraints>
+                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="7tp-5D-rMl">
+                                                    <rect key="frame" x="23.000000000000007" y="33.333333333333329" width="97.666666666666686" height="33.333333333333329"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ситимобил" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSQ-ct-18k">
+                                                            <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="21"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коммент" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfJ-8u-2CW">
+                                                            <rect key="frame" x="0.0" y="22" width="97.666666666666671" height="11.333333333333336"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="9"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="eSQ-ct-18k" firstAttribute="width" secondItem="7tp-5D-rMl" secondAttribute="width" id="bne-tP-RGL"/>
+                                                        <constraint firstItem="nfJ-8u-2CW" firstAttribute="width" secondItem="7tp-5D-rMl" secondAttribute="width" id="jDF-6Y-iio"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNX-Bk-Bk8">
+                                                    <rect key="frame" x="314.66666666666669" y="18.333333333333332" width="68.333333333333314" height="11.333333333333332"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="O2n-63-e5z"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="9"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gkw-uu-Gtg" secondAttribute="trailing" constant="15" id="XcC-0k-yxd"/>
+                                                <constraint firstItem="7tp-5D-rMl" firstAttribute="leading" secondItem="OLD-6t-hxX" secondAttribute="leading" constant="23" id="ZT5-qm-Yuh"/>
+                                                <constraint firstItem="7tp-5D-rMl" firstAttribute="centerY" secondItem="OLD-6t-hxX" secondAttribute="centerY" id="apn-HK-Ml7"/>
+                                                <constraint firstItem="cNX-Bk-Bk8" firstAttribute="trailing" secondItem="r6q-RD-9hk" secondAttribute="trailing" id="cxG-B8-afn"/>
+                                                <constraint firstItem="gkw-uu-Gtg" firstAttribute="height" secondItem="OLD-6t-hxX" secondAttribute="height" multiplier="0.45" id="fx7-ZN-eAh"/>
+                                                <constraint firstItem="gkw-uu-Gtg" firstAttribute="centerY" secondItem="OLD-6t-hxX" secondAttribute="centerY" constant="7" id="jno-Oz-3Fd"/>
+                                                <constraint firstItem="gkw-uu-Gtg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7tp-5D-rMl" secondAttribute="trailing" constant="20" id="qvY-rn-1xy"/>
+                                                <constraint firstItem="gkw-uu-Gtg" firstAttribute="width" secondItem="OLD-6t-hxX" secondAttribute="width" multiplier="0.5" id="vdv-Qr-OgE"/>
+                                                <constraint firstItem="gkw-uu-Gtg" firstAttribute="top" secondItem="cNX-Bk-Bk8" secondAttribute="bottom" constant="5" id="w8q-gY-LcS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accountLabel" destination="cNX-Bk-Bk8" id="Q3m-xb-VKf"/>
+                                            <outlet property="commentLabel" destination="nfJ-8u-2CW" id="JUo-Qj-nHy"/>
+                                            <outlet property="leadingConstraintMeasureViewAndSuperView" destination="0Rf-Z6-kLH" id="nFa-4B-ZLf"/>
+                                            <outlet property="mainLabel" destination="eSQ-ct-18k" id="WjC-fc-0ld"/>
+                                            <outlet property="measureView" destination="dPQ-Ky-Fyc" id="qYl-IJ-LFA"/>
+                                            <outlet property="valueLabel" destination="r6q-RD-9hk" id="twv-ex-fhi"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
@@ -260,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108.6956521739132" y="114.94565217391305"/>
+            <point key="canvasLocation" x="1108.6956521739132" y="114.50892857142857"/>
         </scene>
         <!--Add Operation View Controller-->
         <scene sceneID="Dw4-Z1-CTP">
@@ -446,7 +537,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="506"/>
                                 <color key="backgroundColor" red="0.56732327849999997" green="0.74589460780000005" blue="0.430684489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oJw-MY-sX1">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oJw-MY-sX1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" id="PoP-0c-ZJX">

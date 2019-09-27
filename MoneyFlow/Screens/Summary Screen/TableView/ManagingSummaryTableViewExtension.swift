@@ -11,16 +11,18 @@ import UIKit
 extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return isDataReady ? 3 : 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return presenter.settings.incomeCategories.count + 1
-        case 1: return presenter.settings.outcomeCategories.count + 1
-        case 2: return 2 + 1
-        default: return 1
-        }
+        if isDataReady {
+            switch section {
+            case 0: return presenter.settings.incomeCategories.count + 1
+            case 1: return presenter.settings.outcomeCategories.count + 1
+            case 2: return 2 + 1
+            default: return 1
+            }
+        } else { return 0 }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

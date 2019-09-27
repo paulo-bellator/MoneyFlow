@@ -19,6 +19,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     let addOperationSegueIdentifier = "ShowAddOperation"
     let operationTableViewCellIdentifier = "OperationCell"
+    let operationTableViewDesignCellIdentifier = "OperationDesignCell"
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let filterCollectionViewCellIdentifier = "filterCell"

@@ -29,6 +29,7 @@ class SummaryViewController: UIViewController {
     let summaryGraphCellIdentifier = "summaryGraphCell"
     let summaryHeaderCellIdentifier = "summaryHeader"
     var isCircleChartPresentationType = true
+    var isDataReady = false
     
     lazy var mainCurrency: Currency = presenter.settings.currencies.first!
     lazy var summaryByMonth = presenter.summary(by: .months, for: mainCurrency)
@@ -41,6 +42,8 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overlayBlurredBackgroundView()
+        
         tableView.delegate = self
         tableView.dataSource = self
         chartView.delegate = self
@@ -53,8 +56,38 @@ class SummaryViewController: UIViewController {
         mainMoneyAmountSmallLabel.text = presenter.availableMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         
         mainHeaderView.addRoundedRectMask()
-        updateMonthData()
-        setupMonthHeader()
+        
+//        updateMonthData()
+//        isDataReady = true
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.updateMonthData()
+            self?.isDataReady = true
+
+            DispatchQueue.main.async {
+                self?.setupMonthHeader()
+                self?.tableView.reloadData()
+                if self != nil {
+                    let blurredView = self!.view.subviews.last!
+                    UIView.animate(
+                        withDuration: 0.5,
+                        animations: { blurredView.alpha = 0.0 },
+                        completion: { _ in blurredView.removeFromSuperview() })
+                }
+            }
+        }
+        
+    }
+    
+    func overlayBlurredBackgroundView() {
+        let blurredBackgroundView = UIVisualEffectView()
+        blurredBackgroundView.frame = view.frame
+        blurredBackgroundView.effect = UIBlurEffect(style: .light)
+        blurredBackgroundView.alpha = 1.0
+        view.addSubview(blurredBackgroundView)
+//        UIView.animate(withDuration: 0.35) {
+//            blurredBackgroundView.alpha = 1
+//        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -82,16 +115,6 @@ class SummaryViewController: UIViewController {
     private func updateMonthData() {
         monthData.loadData(source: presenter, period: summaryByMonth[currentMonthIndex].period, currency: mainCurrency)
     }
-    
-    private func colorFor(value: CGFloat) -> UIColor {
-        switch value {
-        case 0.0: return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        case ..<0.4: return #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        case 0.4..<0.6: return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        case 0.6...: return #colorLiteral(red: 0.4210376198, green: 0.5571454009, blue: 0.3162501818, alpha: 1)
-        default: return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        }
-    }
 }
 
 private extension UIView {
@@ -105,7 +128,6 @@ private extension UIView {
         layer.mask = shape
     }
 }
-
 
 extension Double {
     var shortString: String {

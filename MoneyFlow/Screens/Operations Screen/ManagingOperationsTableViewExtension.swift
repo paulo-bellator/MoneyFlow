@@ -24,13 +24,26 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         
         let operation = operationsByDays[indexPath.section].ops[indexPath.row]
         let operationPresenter = OperationPresenter(operation)
-        let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCellIdentifier, for: indexPath) as! OperationTableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCellIdentifier, for: indexPath) as! OperationTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewDesignCellIdentifier, for: indexPath) as! OperationsDesignedTableViewCell
         
         cell.valueLabel.text = operationPresenter.valueString
-        cell.emojiLabel.text = operationPresenter.categoryEmoji ?? operationPresenter.contactEmoji
+//        cell.emojiLabel.text = operationPresenter.categoryEmoji ?? operationPresenter.contactEmoji
         cell.mainLabel.text = operationPresenter.categoryString ?? operationPresenter.contactString
         cell.accountLabel.text = operationPresenter.accountString
         cell.commentLabel.text = operationPresenter.commentString
+        cell.measureValue = CGFloat.random(in: 0.0...1.0)
+        
+        switch operation {
+        case _ where operation is DebtOperation:
+            cell.measureColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9490196078, alpha: 1)
+        case _ where operation is FlowOperation && (operation.value >= 0.0):
+            cell.measureColor = #colorLiteral(red: 0.7725490196, green: 0.8784313725, blue: 0.7058823529, alpha: 1)
+        case _ where operation is FlowOperation && (operation.value < 0.0):
+            cell.measureColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+        default:
+            break
+        }
         
         return cell
     }
