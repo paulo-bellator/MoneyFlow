@@ -64,7 +64,11 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
         getData()
     }
     
+    // call makes nothing but create static instance of this class
+    func configure() {}
+    
     private init() {
+        print("settings init")
         getData()
     }
     

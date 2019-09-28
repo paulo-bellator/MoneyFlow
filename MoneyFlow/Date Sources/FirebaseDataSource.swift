@@ -46,7 +46,11 @@ class FirebaseDataSource: CloudOperationDataSource {
         getData()
     }
     
+    // call makes nothing but create static instance of this class
+    func configure() {}
+    
     private init() {
+        print("source init")
         if let generator = MainGenerator.generator as? CloudIDGenerator {
             cloudGenerator = generator
         }

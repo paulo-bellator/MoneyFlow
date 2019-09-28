@@ -40,7 +40,11 @@ class FirebaseIDGenerator: CloudIDGenerator {
         getData()
     }
     
+    // call makes nothing but create static instance of this class
+    func configure() {}
+    
     private init() {
+        print("generator init")
         getData()
     }
     
@@ -80,7 +84,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
 
 extension FirebaseIDGenerator {
     private struct Path {
-        static let nextIDFile = "nextID"
+        static let nextIDFile = "nextID.json"
         
         static var deviceFolder: String {
             return UIDevice.current.identifierForVendor!.uuidString

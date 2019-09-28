@@ -17,6 +17,7 @@ protocol CloudIDGenerator: IDGenerator {
     var isDownloadComplete: Bool { get }
     func updateData()
     func save()
+    func configure()
 }
 protocol CloudIDGeneratorDelegate: class {
     func generatorDownloadComplete(with error: Error?)
@@ -24,6 +25,6 @@ protocol CloudIDGeneratorDelegate: class {
 }
 
 class MainGenerator {
-//    static var generator: IDGenerator = DefaultIDGenerator.shared
-    static var generator: IDGenerator = FirebaseIDGenerator.shared
+    static var generator: IDGenerator = DefaultIDGenerator.shared
+//    static var generator: IDGenerator = FirebaseIDGenerator.shared
 }
