@@ -105,7 +105,7 @@ private extension DefaultDataSource {
     
     private func generateFlowOperations() -> [FlowOperation] {
         var ops = [FlowOperation]()
-        for _ in 1...5000 {
+        for _ in 1...2000 {
             let date = Date() + TimeInterval(24*60*60*1*Int.random(in: -240...0))
             let value = randomValue
             let category = value < 0 ? outcomeCategories.randomElement()! : incomeCategories.randomElement()!
@@ -116,7 +116,7 @@ private extension DefaultDataSource {
     }
     private func generateDebtOperations() -> [DebtOperation] {
         var ops = [DebtOperation]()
-        for _ in 1...500 {
+        for _ in 1...200 {
             let date = Date() + TimeInterval(24*60*60*1*Int.random(in: -240...0))
             let operation = DebtOperation(date: date, value: -randomValue, currency: currencies.randomElement()!, contact: contacts.randomElement()!, account: accounts.randomElement()!, comment: comments.randomElement()!)
             ops.append(operation)

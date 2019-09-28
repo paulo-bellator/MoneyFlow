@@ -32,7 +32,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         cell.mainLabel.text = operationPresenter.categoryString ?? operationPresenter.contactString
         cell.accountLabel.text = operationPresenter.accountString
         cell.commentLabel.text = operationPresenter.commentString
-        cell.measureValue = CGFloat.random(in: 0.0...1.0)
+        cell.measureValue = CGFloat(abs(operation.value) / upperBound)
         
         switch operation {
         case _ where operation is DebtOperation:
@@ -70,10 +70,11 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            //            let idOfOperationsToRemove = presenter.all()[indexPath.row].id
-            //            presenter.removeOperationWith(identifier: idOfOperationsToRemove)
-            //            presenter.syncronize()
-            //            tableView.deleteRows(at: [indexPath], with: .fade)
+            let idOfOperationsToRemove = operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
+            print(idOfOperationsToRemove)
+            presenter.removeOperationWith(identifier: idOfOperationsToRemove)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+//            presenter.syncronize()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }

@@ -13,6 +13,7 @@ class FirebaseDataSource: CloudOperationDataSource {
     
     static let shared = FirebaseDataSource()
     
+    private var cloudGenerator: CloudIDGenerator?
     private(set) var operations: [Operation] = []
     weak var delegate: CloudDataSourceDelegate?
     private let storageRef = Storage.storage().reference()
@@ -33,6 +34,7 @@ class FirebaseDataSource: CloudOperationDataSource {
         if previosCount != operations.count { thereAreUnsavedChanges = true }
     }
     func save() {
+        cloudGenerator?.save()
         if thereAreUnsavedChanges {
             print("\nsaved\n")
             thereAreUnsavedChanges = false
@@ -40,10 +42,14 @@ class FirebaseDataSource: CloudOperationDataSource {
         } else { print("not saved: Data is actual") }
     }
     func updateData() {
+        cloudGenerator?.updateData()
         getData()
     }
     
     private init() {
+        if let generator = MainGenerator.generator as? CloudIDGenerator {
+            cloudGenerator = generator
+        }
         getData()
     }
     

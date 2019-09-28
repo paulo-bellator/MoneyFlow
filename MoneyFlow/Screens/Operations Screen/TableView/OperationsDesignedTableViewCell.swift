@@ -40,7 +40,7 @@ import UIKit
     }
     
     private var minMesureWidth: CGFloat {
-        return measureView.superview!.bounds.width*0.6
+        return measureView.superview!.bounds.width*0.45
     }
     private var maxMesureWidth: CGFloat {
         return measureView.superview!.bounds.width

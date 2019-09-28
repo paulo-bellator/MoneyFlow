@@ -26,6 +26,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let tableViewSectionHeaderHeight: CGFloat = 35
     let tableViewRowHeight: CGFloat = 100
     let filterPeriod: Presenter.DateFilterUnit = .days
+    var upperBound: Double = 0.0
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
@@ -100,6 +101,13 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         tableViewScrollOffset = 0
     }
     
+    private func countUpperBound() {
+        let ops = presenter.all().map({ abs($0.value) }).sorted(by: <)
+        let upperBoundConstant = 0.15
+        let index = Int(Double(ops.count - 1) * (1.0 - upperBoundConstant))
+        upperBound = ops[index]
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +117,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             if !cloudSource.isDownloadComplete {
                 tableView.isHidden = true
             }
+        } else {
+            countUpperBound()
         }
         
         progressView.isHidden = true
@@ -157,6 +167,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     func updateData() {
 //        presenter.syncronize()
+        countUpperBound()
         applyFilter()
     }
     
@@ -199,6 +210,7 @@ extension OperationsViewController: CloudDataSourceDelegate {
     func downloadComplete(with error: Error?) {
         // reset and reload Data
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            self?.countUpperBound()
             self?.applyFilter()
             self?.progressView.isHidden = true
             self?.tableView.isHidden = false
