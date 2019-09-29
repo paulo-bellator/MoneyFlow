@@ -26,6 +26,9 @@
 		F942E658233E01F00031ADDF /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = F942E64A233E01F00031ADDF /* stylesheet.css */; };
 		F942E659233E01F00031ADDF /* CenturyGothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E64B233E01F00031ADDF /* CenturyGothic-Bold.ttf */; };
 		F942E660233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */; };
+		F94BDFA32340BF8B00CE87F8 /* OperationVisionRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */; };
+		F94BDFA52340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BDFA42340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift */; };
+		F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BDFA62340CBFA00CE87F8 /* PhotoCollectionViewCell.swift */; };
 		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
 		F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */; };
 		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
@@ -84,6 +87,9 @@
 		F942E64B233E01F00031ADDF /* CenturyGothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-Bold.ttf"; sourceTree = "<group>"; };
 		F942E65E233E02B00031ADDF /* CenturyGothic-HeavyBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-HeavyBold.ttf"; sourceTree = "<group>"; };
 		F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDesignedTableViewCell.swift; sourceTree = "<group>"; };
+		F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationVisionRecognizer.swift; sourceTree = "<group>"; };
+		F94BDFA42340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewController.swift; sourceTree = "<group>"; };
+		F94BDFA62340CBFA00CE87F8 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
 		F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryTableViewExtension.swift; sourceTree = "<group>"; };
 		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
@@ -212,6 +218,8 @@
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
+				F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */,
+				F9B2D6822341223900711F59 /* ImagePicker Screen */,
 				F9D4087A232E214B0034B913 /* Summary Screen */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
 				F95B2E6E232142C500808558 /* Operations Screen */,
@@ -262,6 +270,15 @@
 				F986847D233270FB00FAD863 /* CircleGraphView.swift */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		F9B2D6822341223900711F59 /* ImagePicker Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F94BDFA42340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift */,
+				F94BDFA62340CBFA00CE87F8 /* PhotoCollectionViewCell.swift */,
+			);
+			path = "ImagePicker Screen";
 			sourceTree = "<group>";
 		};
 		F9B2FE5B231B227400ABF7AC = {
@@ -484,6 +501,7 @@
 				F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */,
 				F942E660233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift in Sources */,
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
+				F94BDFA52340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,
 				F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */,
@@ -498,6 +516,7 @@
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,
+				F94BDFA32340BF8B00CE87F8 /* OperationVisionRecognizer.swift in Sources */,
 				F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */,
 				F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
@@ -519,6 +538,7 @@
 				F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */,
 				F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */,
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
+				F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */,
 				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,

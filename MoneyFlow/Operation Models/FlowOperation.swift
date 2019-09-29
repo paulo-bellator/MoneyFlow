@@ -43,6 +43,7 @@ extension FlowOperation {
         result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         result += "Category: \(category)\n"
+        result += comment != nil ? "Comment: \(comment!)\n" : ""
         
         return result
     }
