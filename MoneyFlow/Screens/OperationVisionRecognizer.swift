@@ -120,8 +120,9 @@ class OperationVisionRecognizer {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM, EE"
+        let date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
         
-        if let date = formatter.date(from: string) {
+        if let date = date {
             let calendar = Calendar.current
             let day = calendar.component(.day, from: date)
             let month = calendar.component(.month, from: date)

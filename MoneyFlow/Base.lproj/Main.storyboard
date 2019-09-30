@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vFZ-BJ-6Fo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6jo-4r-O6d">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="CenturyGothic-HeavyBold.ttf">
+        <array key="CenturyGothic-Bold.ttf">
             <string>CenturyGothic-Bold</string>
         </array>
         <array key="CenturyGothic.ttf">
@@ -155,13 +155,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-z2-IEh">
                                                     <rect key="frame" x="306.66666666666669" y="32.333333333333343" width="87.333333333333314" height="35.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
                                                             <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
                                                             <rect key="frame" x="0.0" y="21.333333333333329" width="87.333333333333329" height="14.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="KYX-xh-6Qb"/>
@@ -230,10 +230,10 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPQ-Ky-Fyc">
                                                             <rect key="frame" x="62" y="0.0" width="145" height="45"/>
-                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₽ 7 690 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6q-RD-9hk">
-                                                            <rect key="frame" x="122.33333333333331" y="11.333333333333334" width="68.666666666666686" height="22.333333333333329"/>
+                                                            <rect key="frame" x="121.66666666666669" y="10.66666666666667" width="69.333333333333314" height="23.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="19"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -250,16 +250,16 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="7tp-5D-rMl">
-                                                    <rect key="frame" x="23" y="34.333333333333336" width="90" height="31.666666666666664"/>
+                                                    <rect key="frame" x="23.000000000000007" y="33.333333333333329" width="97.666666666666686" height="33.333333333333329"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ситимобил" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSQ-ct-18k">
-                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ситимобил" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSQ-ct-18k">
+                                                            <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="21"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Коммент" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfJ-8u-2CW">
-                                                            <rect key="frame" x="0.0" y="21" width="90" height="10.666666666666664"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коммент" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfJ-8u-2CW">
+                                                            <rect key="frame" x="0.0" y="22" width="97.666666666666671" height="11.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="9"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -271,7 +271,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNX-Bk-Bk8">
-                                                    <rect key="frame" x="320" y="19" width="63" height="10.666666666666664"/>
+                                                    <rect key="frame" x="314.66666666666669" y="18.333333333333332" width="68.333333333333314" height="11.333333333333332"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="O2n-63-e5z"/>
                                                     </constraints>
@@ -281,13 +281,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="dPQ-Ky-Fyc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eSQ-ct-18k" secondAttribute="trailing" constant="10" id="1vR-dq-3eG"/>
                                                 <constraint firstAttribute="trailing" secondItem="gkw-uu-Gtg" secondAttribute="trailing" constant="15" id="XcC-0k-yxd"/>
                                                 <constraint firstItem="7tp-5D-rMl" firstAttribute="leading" secondItem="OLD-6t-hxX" secondAttribute="leading" constant="23" id="ZT5-qm-Yuh"/>
                                                 <constraint firstItem="7tp-5D-rMl" firstAttribute="centerY" secondItem="OLD-6t-hxX" secondAttribute="centerY" id="apn-HK-Ml7"/>
                                                 <constraint firstItem="cNX-Bk-Bk8" firstAttribute="trailing" secondItem="r6q-RD-9hk" secondAttribute="trailing" id="cxG-B8-afn"/>
                                                 <constraint firstItem="gkw-uu-Gtg" firstAttribute="height" secondItem="OLD-6t-hxX" secondAttribute="height" multiplier="0.45" id="fx7-ZN-eAh"/>
                                                 <constraint firstItem="gkw-uu-Gtg" firstAttribute="centerY" secondItem="OLD-6t-hxX" secondAttribute="centerY" constant="7" id="jno-Oz-3Fd"/>
-                                                <constraint firstItem="gkw-uu-Gtg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7tp-5D-rMl" secondAttribute="trailing" constant="20" id="qvY-rn-1xy"/>
                                                 <constraint firstItem="gkw-uu-Gtg" firstAttribute="width" secondItem="OLD-6t-hxX" secondAttribute="width" multiplier="0.5" id="vdv-Qr-OgE"/>
                                                 <constraint firstItem="gkw-uu-Gtg" firstAttribute="top" secondItem="cNX-Bk-Bk8" secondAttribute="bottom" constant="5" id="w8q-gY-LcS"/>
                                             </constraints>
@@ -906,16 +906,16 @@
             </objects>
             <point key="canvasLocation" x="1108.6956521739132" y="-624.77678571428567"/>
         </scene>
-        <!--Test View Controller-->
+        <!--Item-->
         <scene sceneID="YYT-M4-VWr">
             <objects>
                 <viewController id="vFZ-BJ-6Fo" customClass="TestViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D8x-gt-Q8Z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KsB-Np-l8y">
-                                <rect key="frame" x="0.0" y="115" width="414" height="621"/>
+                                <rect key="frame" x="0.0" y="115" width="414" height="552"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OperationDesignCell" rowHeight="100" id="Mnf-MU-fN6" customClass="OperationsDesignedTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
@@ -930,7 +930,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UlW-Y5-uZW">
                                                             <rect key="frame" x="62" y="0.0" width="145" height="45"/>
-                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₽ 7 690 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqX-lx-gLY">
                                                             <rect key="frame" x="121.66666666666669" y="10.66666666666667" width="69.333333333333314" height="23.333333333333329"/>
@@ -981,8 +981,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="wFx-2i-IR2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qXA-KN-jDG" secondAttribute="trailing" constant="20" id="A3a-XT-dcV"/>
                                                 <constraint firstItem="wFx-2i-IR2" firstAttribute="centerY" secondItem="exp-J6-36x" secondAttribute="centerY" constant="7" id="BmE-ZJ-Tbl"/>
+                                                <constraint firstItem="UlW-Y5-uZW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qXA-KN-jDG" secondAttribute="trailing" constant="10" id="EBM-ny-o6w"/>
                                                 <constraint firstItem="wFx-2i-IR2" firstAttribute="height" secondItem="exp-J6-36x" secondAttribute="height" multiplier="0.45" id="FLb-3g-oau"/>
                                                 <constraint firstItem="qXA-KN-jDG" firstAttribute="centerY" secondItem="exp-J6-36x" secondAttribute="centerY" id="H0y-lE-kLA"/>
                                                 <constraint firstItem="PHt-8i-CvE" firstAttribute="trailing" secondItem="FqX-lx-gLY" secondAttribute="trailing" id="HGU-6N-r9r"/>
@@ -1092,13 +1092,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rfg-Px-Fgc"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="NyR-zi-PQ5"/>
                     <connections>
                         <outlet property="tableView" destination="KsB-Np-l8y" id="StN-m1-Qen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pg8-Dn-Je1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1953.6231884057972" y="-625.27173913043487"/>
+            <point key="canvasLocation" x="1070" y="897"/>
         </scene>
         <!--Фотогаллерея-->
         <scene sceneID="3Vi-Ff-krK">
@@ -1165,7 +1166,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r85-pb-9Ss" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3547.826086956522" y="-625.27173913043487"/>
+            <point key="canvasLocation" x="2664" y="897"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="3Hg-oq-Xgi">
@@ -1228,6 +1229,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bna-aQ-RRZ"/>
                         <segue destination="WsQ-IA-01a" kind="relationship" relationship="viewControllers" id="qHJ-uf-kUR"/>
+                        <segue destination="vFZ-BJ-6Fo" kind="relationship" relationship="viewControllers" id="bXK-7g-3dH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztz-Tf-TNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1253,7 +1255,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dt-tH-DRZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2779.7101449275365" y="-625.27173913043487"/>
+            <point key="canvasLocation" x="1896" y="897"/>
         </scene>
     </scenes>
 </document>

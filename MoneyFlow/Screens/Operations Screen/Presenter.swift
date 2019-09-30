@@ -114,7 +114,7 @@ class Presenter {
     /// Return the array of tuples, containg fromatted period (String) and array [Operation] included in period
     func operationsSorted(byFormatted period: DateFilterUnit, operations ops: [Operation]? = nil) -> [(formattedPeriod: String, ops: [Operation])] {
         return operationsSorted(by: period, operations: ops).map {
-            ( self.formatted(date: $0.period.end, forFilterUnit: period), $0.ops )
+            ( self.formatted(date: $0.period.start, forFilterUnit: period), $0.ops )
         }
     }
     
