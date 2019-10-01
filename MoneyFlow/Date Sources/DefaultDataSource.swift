@@ -38,11 +38,11 @@ class DefaultDataSource: OperationDataSource {
             print("\nsaved\n")
             let encoder = JSONEncoder()
             let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
-            let debtOperation = operations.filter { $0 is DebtOperation } as! [DebtOperation]
+            let debtOperations = operations.filter { $0 is DebtOperation } as! [DebtOperation]
             if let encoded = try? encoder.encode(flowOperations) {
                 defaults.set(encoded, forKey: UserDefaultsKeys.flowOperations)
             }
-            if let encoded = try? encoder.encode(debtOperation) {
+            if let encoded = try? encoder.encode(debtOperations) {
                 defaults.set(encoded, forKey: UserDefaultsKeys.debtOperations)
             }
             thereAreUnsavedChanges = false
