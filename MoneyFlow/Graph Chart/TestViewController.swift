@@ -31,6 +31,7 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
         didSet {
             if recognitionCounter == loadedPhotos.count {
                 print(recognizedOps)
+                removeDuplicateOperations()
                 operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: recognizedOps)
                 tableView.reloadData()
             }
@@ -69,6 +70,26 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
         let upperBoundConstant = 0.15
         let index = Int(Double(ops.count - 1) * (1.0 - upperBoundConstant))
         upperBound = ops[index]
+    }
+    
+    private func removeDuplicateOperations() {
+        var indicesToBeRemoved = [Int]()
+        for op1 in recognizedOps {
+            for (index, op2) in recognizedOps.enumerated() {
+                if op1.id != op2.id {
+                    if op1.value == op2.value &&
+                        op1.account == op2.account &&
+                        op1.currency == op2.currency &&
+                        op1.date == op2.date {
+                        if !indicesToBeRemoved.contains(index) {
+                            indicesToBeRemoved.append(index)
+                        }
+                    }
+                }
+            }
+        }
+        indicesToBeRemoved.forEach { recognizedOps.remove(at: $0) }
+        print("removed \(indicesToBeRemoved.count) operations")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
