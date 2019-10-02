@@ -103,6 +103,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     private func countUpperBound() {
         let ops = presenter.all().map({ abs($0.value) }).sorted(by: <)
+        if ops.isEmpty { return }
         let upperBoundConstant = 0.15
         let index = Int(Double(ops.count - 1) * (1.0 - upperBoundConstant))
         upperBound = ops[index]
