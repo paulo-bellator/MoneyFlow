@@ -37,6 +37,15 @@ class OperationVisionRecognizer {
 
     }
     
+    // MARK: Initialization
+    
+    init() {
+        let options = VisionCloudTextRecognizerOptions()
+        options.languageHints = ["en", "ru"]
+        recognizer = vision.onDeviceTextRecognizer()
+        recognizer = vision.cloudTextRecognizer(options: options)
+    }
+    
     
     // MARK: HomeCredit
     
@@ -184,15 +193,6 @@ class OperationVisionRecognizer {
             return calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12))
            
         } else { return nil }
-    }
-    
-    // MARK: Initialization
-    
-    init() {
-        let options = VisionCloudTextRecognizerOptions()
-        options.languageHints = ["en", "ru"]
-        recognizer = vision.onDeviceTextRecognizer()
-        recognizer = vision.cloudTextRecognizer(options: options)
     }
     
     // MARK: Supporting functions
