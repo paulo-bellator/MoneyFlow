@@ -37,57 +37,15 @@ class OperationVisionRecognizer {
 
     }
     
-    private func accountDefiner(from visionText: VisionText) -> RecognizingAccount {
-        guard visionText.blocks.count > 5 else { return .none }
-        if visionText.blocks.last!.text.contains("На карте") {
-            let count = visionText.blocks.count
-            if visionText.blocks[count - 2].text.contains("История") && visionText.blocks[count - 3].text.contains("Диалоги") {
-                return .sberbank
-            }
-        }
-        
-        if visionText.blocks[3].text.contains("Закрыть") {
-            if visionText.blocks[4].text.contains("Операции") {
-                return .homeCredit
-            }
-        }
-        
-        return .sberbank
-    }
     
     // MARK: HomeCredit
     
     private func homeCreditParser(from visionText: VisionText) -> [Operation] {
         var operations = [Operation]()
         
-        var lines = [[VisionTextBlock]]()
-        
-        for block in visionText.blocks {
-            if lines.isEmpty { lines.append([block]); continue }
-            for (index, line) in lines.enumerated() {
-                if (abs(line[0].frame.minY - block.frame.minY) < 15.0
-                    || abs(line[0].frame.minY - block.frame.maxY) < 10.0
-                    || abs(line[0].frame.maxY - block.frame.minY) < 10.0) {
-                    lines[index].append(block)
-                } else if index == lines.count - 1 {
-                    lines.append([block])
-                }
-            }
-        }
-        
-        for (index, line) in lines.enumerated() {
-            lines[index] = line.sorted { $0.frame.minX < $1.frame.minX }
-        }
-        
-        for line in lines {
-            var text = ""
-            for block in line {
-                let string = block.text.replacingOccurrences(of: "\n", with: " ")
-                text += string + "(\(block.frame.minY):\(block.frame.maxY)) | "
-            }
-            text.removeLast()
-            print(text)
-        }
+        let lines = sortByLines(visionText: visionText)
+        debugPrint(lines: lines)
+        debugPrintRecognizedObjects(lines: lines)
         
         var rawOperations = [ (date: Date, category: String, comment: String, value: Double) ]()
         var currentDate: Date?
@@ -122,21 +80,6 @@ class OperationVisionRecognizer {
             let operation = FlowOperation(date: op.date, value: op.value, currency: .rub, category: op.category, account: Accounts.sberbank, comment: op.comment)
             operations.append(operation)
         }
-        
-        for line in lines {
-            for block in line {
-                if let date = dateFromHomeCredit(block.text) {
-                    print("Date: \(date.formatted(in: "dd MMMM"))")
-                }
-                if let value = valueFromHomeCredit(block.text) {
-                    print("Value: \(value.currencyFormattedDescription(.rub))")
-                }
-                if let time = timeFrom(string: block.text) {
-                    print("Time: \(time.hours):\(time.minutes)")
-                }
-            }
-        }
-        
         
         return operations
     }
@@ -173,43 +116,9 @@ class OperationVisionRecognizer {
     private func sberbankParser(from visionText: VisionText) -> [Operation]  {
         var operations = [Operation]()
         
-        var lines = [[VisionTextBlock]]()
-        
-        for block in visionText.blocks {
-            if lines.isEmpty { lines.append([block]); continue }
-            for (index, line) in lines.enumerated() {
-                if (abs(line[0].frame.minY - block.frame.minY) < 15.0
-                    || abs(line[0].frame.minY - block.frame.maxY) < 10.0
-                    || abs(line[0].frame.maxY - block.frame.minY) < 10.0) {
-                    lines[index].append(block)
-                } else if index == lines.count - 1 {
-                    lines.append([block])
-                }
-            }
-        }
-        
-        for (index, line) in lines.enumerated() {
-            lines[index] = line.sorted { $0.frame.minX < $1.frame.minX }
-        }
-        
-        for line in lines {
-            var text = ""
-            for block in line {
-                let string = block.text.replacingOccurrences(of: "\n", with: " ")
-                text += string + "(\(block.frame.minY):\(block.frame.maxY)) | "
-            }
-            text.removeLast()
-            print(text)
-        }
-
-        for line in lines {
-            if let date = dateFromSberbank(line[0].text) {
-                print(date.formattedDescription)
-            }
-            if let value = valueFromSberbank(line.last!.text) {
-                print(value.currencyFormattedDescription(.rub))
-            }
-        }
+        let lines = sortByLines(visionText: visionText)
+        debugPrint(lines: lines)
+        debugPrintRecognizedObjects(lines: lines)
         
         var rawOperations = [ (date: Date, category: String, comment: String, value: Double) ]()
         var currentDate: Date?
@@ -283,34 +192,114 @@ class OperationVisionRecognizer {
         let options = VisionCloudTextRecognizerOptions()
         options.languageHints = ["en", "ru"]
         recognizer = vision.onDeviceTextRecognizer()
-//        recognizer = vision.cloudTextRecognizer(options: options)
+        recognizer = vision.cloudTextRecognizer(options: options)
     }
     
-    private struct Accounts {
-        private static let defaultSberbankAccount = "Сбербанк"
-        private static let defaultHomeCreditAccount = "Хоум кредит"
-        private static var accounts = SettingsPresenter.shared.accountsSorted
-        
-        static var sberbank: String {
-            for account in accounts {
-                if account.contains(defaultSberbankAccount) || account.contains(defaultSberbankAccount.lowercased()) {
-                    return account
-                }
-            }
-            return defaultSberbankAccount
-        }
-        
-        static var homeCredit: String {
-            for account in accounts {
-                if account.contains(defaultHomeCreditAccount) || account.contains(defaultHomeCreditAccount.lowercased()) {
-                    return account
-                }
-            }
-            return defaultHomeCreditAccount
-        }
-    }
+    // MARK: Supporting functions
     
+    private func accountDefiner(from visionText: VisionText) -> RecognizingAccount {
+           guard visionText.blocks.count > 5 else { return .none }
+           if visionText.blocks.last!.text.contains("На карте") {
+               let count = visionText.blocks.count
+               if visionText.blocks[count - 2].text.contains("История") && visionText.blocks[count - 3].text.contains("Диалоги") {
+                   return .sberbank
+               }
+           }
+           
+           if visionText.blocks[3].text.contains("Закрыть") {
+               if visionText.blocks[4].text.contains("Операции") {
+                   return .homeCredit
+               }
+           }
+           
+           return .sberbank
+       }
+       
+       private func debugPrint(lines: [[VisionTextBlock]]) {
+           for line in lines {
+               var text = ""
+               for block in line {
+                   let string = block.text.replacingOccurrences(of: "\n", with: " ")
+                   text += string + "(\(block.frame.minY):\(block.frame.maxY)) | "
+               }
+               text.removeLast()
+               print(text)
+           }
+       }
+       
+       private func debugPrintRecognizedObjects(lines: [[VisionTextBlock]]) {
+           for line in lines {
+               for block in line {
+                   if let date = dateFromHomeCredit(block.text) {
+                       print("HomeCredit: Date: \(date.formatted(in: "dd MMMM"))")
+                   }
+                   if let value = valueFromHomeCredit(block.text) {
+                       print("HomeCredit: Value: \(value.currencyFormattedDescription(.rub))")
+                   }
+                   if let time = timeFrom(string: block.text) {
+                       print("HomeCredit: Time: \(time.hours):\(time.minutes)")
+                   }
+               }
+           }
+           
+           for line in lines {
+               if let date = dateFromSberbank(line[0].text) {
+                   print("Sberbank: Date: " + date.formattedDescription)
+               }
+               if let value = valueFromSberbank(line.last!.text) {
+                   print("Sberbank: Value: " + value.currencyFormattedDescription(.rub))
+               }
+           }
+       }
+       
+       private func sortByLines(visionText: VisionText) -> [[VisionTextBlock]] {
+           var lines = [[VisionTextBlock]]()
+           
+           for block in visionText.blocks {
+               if lines.isEmpty { lines.append([block]); continue }
+               for (index, line) in lines.enumerated() {
+                   if (abs(line[0].frame.minY - block.frame.minY) < 15.0
+                       || abs(line[0].frame.minY - block.frame.maxY) < 10.0
+                       || abs(line[0].frame.maxY - block.frame.minY) < 10.0) {
+                       lines[index].append(block)
+                   } else if index == lines.count - 1 {
+                       lines.append([block])
+                   }
+               }
+           }
+           
+           for (index, line) in lines.enumerated() {
+               lines[index] = line.sorted { $0.frame.minX < $1.frame.minX }
+           }
+           
+           return lines
+       }
 }
+
+
+private struct Accounts {
+       private static let defaultSberbankAccount = "Сбербанк"
+       private static let defaultHomeCreditAccount = "Хоум кредит"
+       private static var accounts = SettingsPresenter.shared.accountsSorted
+       
+       static var sberbank: String {
+           for account in accounts {
+               if account.contains(defaultSberbankAccount) || account.contains(defaultSberbankAccount.lowercased()) {
+                   return account
+               }
+           }
+           return defaultSberbankAccount
+       }
+       
+       static var homeCredit: String {
+           for account in accounts {
+               if account.contains(defaultHomeCreditAccount) || account.contains(defaultHomeCreditAccount.lowercased()) {
+                   return account
+               }
+           }
+           return defaultHomeCreditAccount
+       }
+   }
 
 private enum RecognizingAccount {
     case sberbank, homeCredit, none
