@@ -37,6 +37,7 @@ class OperationVisionRecognizer {
 
     }
     
+    
     // MARK: Initialization
     
     init() {
@@ -194,6 +195,7 @@ class OperationVisionRecognizer {
            
         } else { return nil }
     }
+    
     
     // MARK: Supporting functions
     
