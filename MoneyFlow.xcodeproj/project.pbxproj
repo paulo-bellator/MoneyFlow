@@ -54,6 +54,7 @@
 		F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6B231B227400ABF7AC /* Main.storyboard */; };
 		F9B2FE6F231B227700ABF7AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6E231B227700ABF7AC /* Assets.xcassets */; };
 		F9B2FE72231B227700ABF7AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE70231B227700ABF7AC /* LaunchScreen.storyboard */; };
+		F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */; };
 		F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */; };
 		F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */; };
 		F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A3232BF3B900654DD9 /* TestViewController.swift */; };
@@ -119,6 +120,7 @@
 		F9B2FE6E231B227700ABF7AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B2FE71231B227700ABF7AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9B2FE73231B227700ABF7AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedIDGenerator.swift; sourceTree = "<group>"; };
 		F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSoaringView.swift; sourceTree = "<group>"; };
 		F9C608A3232BF3B900654DD9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = "../Graph Chart/TestViewController.swift"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				F9063DDA232139FE00F08E84 /* IDGenerator.swift */,
 				F9063DDB232139FE00F08E84 /* DefaultIDGenerator.swift */,
 				F96EFFC0233F83D000A51C54 /* FirebaseIDGenerator.swift */,
+				F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */,
 			);
 			path = "ID Generators";
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */,
 				F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
+				F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,

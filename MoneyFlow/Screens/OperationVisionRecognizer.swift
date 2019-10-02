@@ -22,12 +22,153 @@ class OperationVisionRecognizer {
                 completion(nil, error)
                 return
             }
-            let ops = self.sberbankParser(from: data)
+            
+            let account = self.accountDefiner(from: data)
+            print(account)
+            
+            var ops = [Operation]()
+            switch account {
+            case .sberbank: ops = self.sberbankParser(from: data)
+            case .homeCredit: ops = self.homeCreditParser(from: data)
+            case .none: break
+            }
             completion(ops, error)
         }
 
     }
     
+    private func accountDefiner(from visionText: VisionText) -> RecognizingAccount {
+        guard visionText.blocks.count > 5 else { return .none }
+        if visionText.blocks.last!.text.contains("На карте") {
+            let count = visionText.blocks.count
+            if visionText.blocks[count - 2].text.contains("История") && visionText.blocks[count - 3].text.contains("Диалоги") {
+                return .sberbank
+            }
+        }
+        
+        if visionText.blocks[3].text.contains("Закрыть") {
+            if visionText.blocks[4].text.contains("Операции") {
+                return .homeCredit
+            }
+        }
+        
+        return .sberbank
+    }
+    
+    // MARK: HomeCredit
+    
+    private func homeCreditParser(from visionText: VisionText) -> [Operation] {
+        var operations = [Operation]()
+        
+        var lines = [[VisionTextBlock]]()
+        
+        for block in visionText.blocks {
+            if lines.isEmpty { lines.append([block]); continue }
+            for (index, line) in lines.enumerated() {
+                if (abs(line[0].frame.minY - block.frame.minY) < 15.0
+                    || abs(line[0].frame.minY - block.frame.maxY) < 10.0
+                    || abs(line[0].frame.maxY - block.frame.minY) < 10.0) {
+                    lines[index].append(block)
+                } else if index == lines.count - 1 {
+                    lines.append([block])
+                }
+            }
+        }
+        
+        for (index, line) in lines.enumerated() {
+            lines[index] = line.sorted { $0.frame.minX < $1.frame.minX }
+        }
+        
+        for line in lines {
+            var text = ""
+            for block in line {
+                let string = block.text.replacingOccurrences(of: "\n", with: " ")
+                text += string + "(\(block.frame.minY):\(block.frame.maxY)) | "
+            }
+            text.removeLast()
+            print(text)
+        }
+        
+        var rawOperations = [ (date: Date, category: String, comment: String, value: Double) ]()
+        var currentDate: Date?
+        
+        for (index, var line) in lines.enumerated() {
+            if let date = dateFromHomeCredit(line[0].text) {
+                currentDate = date
+                continue
+            }
+            if let value = valueFromHomeCredit(line.last!.text), var date = currentDate {
+                if line.count > 1 { line.removeLast() }
+                var subject = ""
+                var category = ""
+                if !line.isEmpty {
+                    if line.first!.lines.count > 1 {
+                        subject = line.first!.lines[0].text
+                        category = line.first!.lines[1].text
+                    } else {
+                        subject = line.map({$0.text}).joined(separator: " ").replacingOccurrences(of: "\n", with: " ")
+                    }
+                }
+                if index + 1 < lines.count {
+                    if let time = timeFrom(string: lines[index + 1].first?.text ?? "") {
+                        date = date.withTime(hours: time.hours, minutes: time.minutes) ?? date
+                    }
+                }
+                rawOperations.append((date, category, subject, value))
+            }
+        }
+        
+        for op in rawOperations {
+            let operation = FlowOperation(date: op.date, value: op.value, currency: .rub, category: op.category, account: Accounts.sberbank, comment: op.comment)
+            operations.append(operation)
+        }
+        
+        for line in lines {
+            for block in line {
+                if let date = dateFromHomeCredit(block.text) {
+                    print("Date: \(date.formatted(in: "dd MMMM"))")
+                }
+                if let value = valueFromHomeCredit(block.text) {
+                    print("Value: \(value.currencyFormattedDescription(.rub))")
+                }
+                if let time = timeFrom(string: block.text) {
+                    print("Time: \(time.hours):\(time.minutes)")
+                }
+            }
+        }
+        
+        
+        return operations
+    }
+    
+    private func valueFromHomeCredit(_ string: String) -> Double? {
+        // sberbank and homecredit have almost same value format (at this moment)
+        return valueFromSberbank(string)
+    }
+    
+    private func dateFromHomeCredit(_ string: String) -> Date? {
+        // sberbank and homecredit have same date format (at this moment)
+        if string.contains("-") { return nil }
+        return dateFromSberbank(string)
+    }
+    
+    private func timeFrom(string: String) -> (hours: Int, minutes: Int)? {
+        var stringWithoutSpacings = string.replacingOccurrences(of: " " , with: "")
+        guard stringWithoutSpacings.count == 5 && stringWithoutSpacings.contains(":") else { return nil }
+        
+        let hours = Int(stringWithoutSpacings[..<stringWithoutSpacings.firstIndex(of: ":")!])
+        stringWithoutSpacings.removeFirst(3)
+        let minutes = Int(stringWithoutSpacings)
+        
+        if let hours = hours, let minutes = minutes {
+            return (hours, minutes)
+        } else {
+            return nil
+        }
+    }
+    
+    
+    // MARK: Sberbank
     
     private func sberbankParser(from visionText: VisionText) -> [Operation]  {
         var operations = [Operation]()
@@ -99,8 +240,9 @@ class OperationVisionRecognizer {
         return operations
     }
     
-    func valueFromSberbank(_ string: String) -> Double? {
-        guard string.contains("Р") || string.contains("P") else {
+   
+    private func valueFromSberbank(_ string: String) -> Double? {
+        guard string.contains("Р") || string.contains("P") || string.contains("₽") else {
             return nil
         }
         
@@ -116,11 +258,14 @@ class OperationVisionRecognizer {
         return Double(resultString)
     }
     
+    
     private func dateFromSberbank(_ string: String) -> Date? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = "dd MMMM, EE"
-        let date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
+        formatter.dateFormat = "dd MMMM"
+        var date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
+        if date == nil && string == "Сегодня" { date = Date() }
+        if date == nil && string == "Вчера" { date = Date() - 60*60*24 }
         
         if let date = date {
             let calendar = Calendar.current
@@ -132,11 +277,13 @@ class OperationVisionRecognizer {
         } else { return nil }
     }
     
+    // MARK: Initialization
+    
     init() {
         let options = VisionCloudTextRecognizerOptions()
         options.languageHints = ["en", "ru"]
-//        recognizer = vision.onDeviceTextRecognizer()
-        recognizer = vision.cloudTextRecognizer(options: options)
+        recognizer = vision.onDeviceTextRecognizer()
+//        recognizer = vision.cloudTextRecognizer(options: options)
     }
     
     private struct Accounts {
@@ -163,4 +310,16 @@ class OperationVisionRecognizer {
         }
     }
     
+}
+
+private enum RecognizingAccount {
+    case sberbank, homeCredit, none
+}
+
+private extension Date {
+    func withTime(hours: Int, minutes: Int) -> Date? {
+        let calendar = Calendar.current
+        let dateWithDefinedTime = calendar.date(bySettingHour: hours, minute: minutes, second: 0, of: self)
+        return dateWithDefinedTime
+    }
 }

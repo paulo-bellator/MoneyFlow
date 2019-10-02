@@ -26,5 +26,6 @@ protocol CloudIDGeneratorDelegate: class {
 
 class MainGenerator {
     static var generator: IDGenerator = DefaultIDGenerator.shared
+//    static var generator: IDGenerator = CombinedIDGenerator.shared
 //    static var generator: IDGenerator = FirebaseIDGenerator.shared
 }
