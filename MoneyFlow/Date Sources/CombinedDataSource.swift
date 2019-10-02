@@ -77,13 +77,11 @@ class CombinedDataSource: CloudOperationDataSource {
     
     private init() {
         changesCounter = defaults.integer(forKey: UserDefaultsKeys.changesCounter)
-        let isThisNotFirstLaunch = defaults.bool(forKey: UserDefaultsKeys.firstLaunch)
         
         // (isDownloadComplete = true) calls getDataFromDefaults()
-        if isThisNotFirstLaunch { isDownloadComplete = true }
+        if AppDelegate.isThisNotFirstLaunch { isDownloadComplete = true }
         else {
             getDataFromStorage()
-            defaults.set(true, forKey: UserDefaultsKeys.firstLaunch)
         }
         
         if let generator = MainGenerator.generator as? CloudIDGenerator {
@@ -164,6 +162,12 @@ class CombinedDataSource: CloudOperationDataSource {
                     self.changesCounter = 0
                 }
             }
+            // TODO: handle errors 
+            // if a have fresh data in cloud storage, and can't get it
+            // due to some troubles (net connection etc), i get error and empty ops,
+            // so i'll get not actual data from defaults and may be
+            // resave it into starage, so i'll lose fresh data
+            // need to fix it
             self.isDownloadComplete = true
             self.delegate?.downloadComplete(with: error)
         }
@@ -189,7 +193,6 @@ extension CombinedDataSource {
     
     private struct UserDefaultsKeys {
         static let operations = "operations"
-        static let firstLaunch = "firstLaunch"
         static let changesCounter = "changesCounter"
     }
     

@@ -19,6 +19,7 @@
 		F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */; };
 		F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */; };
 		F9172DD12343E8810067B9AE /* CombinedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9172DD02343E8810067B9AE /* CombinedDataSource.swift */; };
+		F9172DD32345058A0067B9AE /* CombinedSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9172DD2234505890067B9AE /* CombinedSettingsDataSource.swift */; };
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
 		F942E650233E01F00031ADDF /* CenturyGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E642233E01F00031ADDF /* CenturyGothic.ttf */; };
@@ -80,6 +81,7 @@
 		F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnView.swift; sourceTree = "<group>"; };
 		F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F9172DD02343E8810067B9AE /* CombinedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedDataSource.swift; sourceTree = "<group>"; };
+		F9172DD2234505890067B9AE /* CombinedSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSettingsDataSource.swift; sourceTree = "<group>"; };
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
 		F942E642233E01F00031ADDF /* CenturyGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CenturyGothic.ttf; sourceTree = "<group>"; };
@@ -183,10 +185,11 @@
 			children = (
 				F9063DDE232139FE00F08E84 /* DataSource.swift */,
 				F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */,
-				F9172DD02343E8810067B9AE /* CombinedDataSource.swift */,
 				F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */,
 				F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */,
 				F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */,
+				F9172DD02343E8810067B9AE /* CombinedDataSource.swift */,
+				F9172DD2234505890067B9AE /* CombinedSettingsDataSource.swift */,
 			);
 			path = "Date Sources";
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */,
 				F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */,
 				F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */,
+				F9172DD32345058A0067B9AE /* CombinedSettingsDataSource.swift in Sources */,
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,

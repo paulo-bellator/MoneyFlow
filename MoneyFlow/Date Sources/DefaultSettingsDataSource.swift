@@ -13,14 +13,14 @@ class DefaultSettingsDataSource: SettingsDataSource {
     
     static let shared = DefaultSettingsDataSource()
     
-    var outcomeCategories: [String] { didSet { thereAreUnsavedChanges = true } }
-    var incomeCategories: [String] { didSet { thereAreUnsavedChanges = true } }
-    var contacts: [String] { didSet { thereAreUnsavedChanges = true } }
-    var accounts: [String] { didSet { thereAreUnsavedChanges = true } }
-    var currencies: [Currency] { didSet { thereAreUnsavedChanges = true } }
+    var outcomeCategories = [String]() { didSet { thereAreUnsavedChanges = true } }
+    var incomeCategories = [String]() { didSet { thereAreUnsavedChanges = true } }
+    var contacts = [String]() { didSet { thereAreUnsavedChanges = true } }
+    var accounts = [String]() { didSet { thereAreUnsavedChanges = true } }
+    var currencies = [Currency]() { didSet { thereAreUnsavedChanges = true } }
     
-    var emojiForCategory: [String: String] { didSet { thereAreUnsavedChanges = true } }
-    var emojiForContact: [String: String] { didSet { thereAreUnsavedChanges = true } }
+    var emojiForCategory = [String: String]() { didSet { thereAreUnsavedChanges = true } }
+    var emojiForContact = [String: String]() { didSet { thereAreUnsavedChanges = true } }
 
     private let defaults = UserDefaults()
     private var thereAreUnsavedChanges = false
@@ -51,15 +51,8 @@ class DefaultSettingsDataSource: SettingsDataSource {
         if thereAreUnsavedChanges {
             print("\nsaved settings \n")
             
-            defaults.set(emojiForCategory, forKey: UserDefaultsKeys.emojiForCategory)
-            defaults.set(emojiForContact, forKey: UserDefaultsKeys.emojiForContacts)
-            
-            defaults.set(outcomeCategories, forKey: UserDefaultsKeys.outcomeCategories)
-            defaults.set(incomeCategories, forKey: UserDefaultsKeys.incomeCategories)
-            defaults.set(contacts, forKey: UserDefaultsKeys.contacts)
-            defaults.set(accounts, forKey: UserDefaultsKeys.accounts)
-            if let encodedCurrencies = try? JSONEncoder().encode(currencies) {
-                defaults.set(encodedCurrencies, forKey: UserDefaultsKeys.currencies)
+            if let data = try? JSONEncoder().encode(self.settings) {
+                defaults.set(data, forKey: UserDefaultsKeys.settings)
             }
             thereAreUnsavedChanges = false
         } else {
@@ -68,33 +61,57 @@ class DefaultSettingsDataSource: SettingsDataSource {
     }
     
     private init() {
-        emojiForCategory = defaults.object(forKey: UserDefaultsKeys.emojiForCategory) as? [String: String] ?? [:]
-        emojiForContact = defaults.object(forKey: UserDefaultsKeys.emojiForContacts) as? [String: String] ?? [:]
-        
-        outcomeCategories = defaults.object(forKey: UserDefaultsKeys.outcomeCategories) as? [String] ?? []
-        incomeCategories = defaults.object(forKey: UserDefaultsKeys.incomeCategories) as? [String] ?? []
-        contacts = defaults.object(forKey: UserDefaultsKeys.contacts) as? [String] ?? []
-        accounts = defaults.object(forKey: UserDefaultsKeys.accounts) as? [String] ?? []
-        if let decodedCurrencies = defaults.data(forKey: UserDefaultsKeys.currencies) {
-            currencies = (try? JSONDecoder().decode([Currency].self, from: decodedCurrencies)) ?? []
-        } else {
-            currencies = Currency.all
+        if let data = defaults.data(forKey: UserDefaultsKeys.settings) {
+            if let settings = (try? JSONDecoder().decode(Settings.self, from: data)) {
+                self.settings = settings
+            }
         }
+        if currencies.isEmpty { currencies = Currency.all }
+        
         fillWithPlaceHoldersIfNeeded()
         thereAreUnsavedChanges = false
     }
+    
     
 }
 
 extension DefaultSettingsDataSource {
     private struct UserDefaultsKeys {
-        static let outcomeCategories = "outcomeCategories"
-        static let incomeCategories = "incomeCategories"
-        static let contacts = "contacts"
-        static let accounts = "accounts"
-        static let currencies = "currencies"
-        static let emojiForCategory = "emojiForCategory"
-        static let emojiForContacts = "emojiForContacts"
+        static let settings = "settings"
+    }
+    
+    private struct Settings: Codable {
+        var uploadDate: Date = Date()
+        var uploadDateFormatted = Date().formattedDescription
+        var outcomeCategories: [String]
+        var incomeCategories: [String]
+        var contacts: [String]
+        var accounts: [String]
+        var currencies: [Currency]
+        var emojiForCategory: [String: String]
+        var emojiForContact: [String: String]
+    }
+    
+    private var settings: Settings {
+        get {
+            return Settings(
+                outcomeCategories: self.outcomeCategories,
+                incomeCategories: self.incomeCategories,
+                contacts: self.contacts,
+                accounts: self.accounts,
+                currencies: self.currencies,
+                emojiForCategory: self.emojiForCategory,
+                emojiForContact: self.emojiForContact)
+        }
+        set {
+            self.outcomeCategories = newValue.outcomeCategories
+            self.incomeCategories = newValue.incomeCategories
+            self.contacts = newValue.contacts
+            self.accounts = newValue.accounts
+            self.currencies = newValue.currencies
+            self.emojiForCategory = newValue.emojiForCategory
+            self.emojiForContact = newValue.emojiForContact
+        }
     }
 }
 
