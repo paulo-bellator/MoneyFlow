@@ -100,9 +100,22 @@ class OperationVisionRecognizer {
     }
     
     private func dateFromHomeCredit(_ string: String) -> Date? {
-        // sberbank and homecredit have same date format (at this moment)
         if string.contains("-") { return nil }
-        return dateFromSberbank(string)
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateFormat = "dd MMMM"
+        var date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
+        if date == nil && string == "Сегодня" { date = Date() }
+        if date == nil && string == "Вчера" { date = Date() - 60*60*24 }
+        
+        if let date = date {
+            let calendar = Calendar.current
+            let day = calendar.component(.day, from: date)
+            let month = calendar.component(.month, from: date)
+            let year = calendar.component(.year, from: Date())
+            return calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12))
+            
+        } else { return nil }
     }
     
     private func timeFrom(string: String) -> (hours: Int, minutes: Int)? {
@@ -181,7 +194,7 @@ class OperationVisionRecognizer {
     private func dateFromSberbank(_ string: String) -> Date? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = "dd MMMM"
+        formatter.dateFormat = "dd MMMM, EE"
         var date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
         if date == nil && string == "Сегодня" { date = Date() }
         if date == nil && string == "Вчера" { date = Date() - 60*60*24 }
