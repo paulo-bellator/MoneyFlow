@@ -35,7 +35,7 @@ class ImagePickerCollectionViewController: UICollectionViewController, UICollect
     }
     
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
-        delegate?.loadedPhotos += [UIImage](selectedPhotos.values)
+        delegate?.loadedPhotos = [UIImage](selectedPhotos.values)
         self.dismiss(animated: true, completion: nil)
     }
     

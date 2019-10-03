@@ -27,16 +27,7 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
     private let presenter = Presenter()
     private lazy var recognizer = OperationVisionRecognizer()
     private var recognizedOps = [Operation]()
-    private var recognitionCounter = 0 {
-        didSet {
-            if recognitionCounter == loadedPhotos.count {
-                print(recognizedOps)
-                removeDuplicateOperations()
-                operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: recognizedOps)
-                tableView.reloadData()
-            }
-        }
-    }
+    private var recognitionCounter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +49,22 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
                 if self != nil {
                     let number = self!.recognitionCounter + 1
                     print("recognizing #\(number) finished")
+                    self?.recognitionCounter += 1
+                    if self!.recognitionCounter == self!.loadedPhotos.count {
+                        self!.loadOps()
+                    }
                 }
-                self?.recognitionCounter += 1
             }
         }
         
+    }
+    
+    private func loadOps() {
+        print(recognizedOps)
+        //                removeDuplicateOperations()
+        operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: recognizedOps)
+        tableView.reloadData()
+        recognitionCounter = 0
     }
     
     private func countUpperBound() {
@@ -96,7 +98,6 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navVC = segue.destination as? UINavigationController {
             if let vc = navVC.viewControllers[0] as? ImagePickerCollectionViewController {
-                loadedPhotos = []
                 vc.delegate = self
             }
         }

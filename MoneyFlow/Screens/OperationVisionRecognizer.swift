@@ -55,30 +55,27 @@ class OperationVisionRecognizer {
         
         let lines = sortByLines(visionText: visionText)
         debugPrint(lines: lines)
-        debugPrintRecognizedObjects(lines: lines)
+        debugPrintRecognizedObjects(lines: lines, for: .homeCredit)
         
         var rawOperations = [ (date: Date, category: String, comment: String, value: Double) ]()
         var currentDate: Date?
         
         for (index, var line) in lines.enumerated() {
             if let date = dateFromHomeCredit(line[0].text) {
+//                print(date)
                 currentDate = date
                 continue
             }
+            if line.count < 2 { continue }
             if let value = valueFromHomeCredit(line.last!.text), var date = currentDate {
                 if line.count > 1 { line.removeLast() }
-                var subject = ""
+                let subject = line.map({$0.text}).joined(separator: " ").replacingOccurrences(of: "\n", with: " ")
                 var category = ""
-                if !line.isEmpty {
-                    if line.first!.lines.count > 1 {
-                        subject = line.first!.lines[0].text
-                        category = line.first!.lines[1].text
-                    } else {
-                        subject = line.map({$0.text}).joined(separator: " ").replacingOccurrences(of: "\n", with: " ")
-                    }
-                }
                 if index + 1 < lines.count {
-                    if let time = timeFrom(string: lines[index + 1].first?.text ?? "") {
+                    if lines[index + 1].count < 2 { category = lines[index + 1].first!.text }
+                }
+                if index + 2 < lines.count {
+                    if let time = timeFrom(string: lines[index + 2].first?.text ?? "") {
                         date = date.withTime(hours: time.hours, minutes: time.minutes) ?? date
                     }
                 }
@@ -87,7 +84,7 @@ class OperationVisionRecognizer {
         }
         
         for op in rawOperations {
-            let operation = FlowOperation(date: op.date, value: op.value, currency: .rub, category: op.category, account: Accounts.sberbank, comment: op.comment)
+            let operation = FlowOperation(date: op.date, value: op.value, currency: .rub, category: op.category, account: Accounts.homeCredit, comment: op.comment)
             operations.append(operation)
         }
         
@@ -95,8 +92,20 @@ class OperationVisionRecognizer {
     }
     
     private func valueFromHomeCredit(_ string: String) -> Double? {
-        // sberbank and homecredit have almost same value format (at this moment)
-        return valueFromSberbank(string)
+        guard string.contains("Р") || string.contains("P") || string.contains("₽") else {
+            return nil
+        }
+        
+        let sign = string.contains("-") ? "-" : "+"
+        let numericString = string.filter { "0123456789,".contains($0) }
+        
+        var valueString = numericString
+        if valueString.count > 3 {
+            let range = valueString.index(valueString.endIndex, offsetBy: -3)..<valueString.endIndex
+            valueString = valueString.replacingOccurrences(of: ",", with: ".", options: [], range: range).filter { !",".contains($0) }
+        }
+        let resultString = sign + valueString
+        return Double(resultString)
     }
     
     private func dateFromHomeCredit(_ string: String) -> Date? {
@@ -104,7 +113,7 @@ class OperationVisionRecognizer {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM"
-        var date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
+        var date = formatter.date(from: string)
         if date == nil && string == "Сегодня" { date = Date() }
         if date == nil && string == "Вчера" { date = Date() - 60*60*24 }
         
@@ -141,7 +150,7 @@ class OperationVisionRecognizer {
         
         let lines = sortByLines(visionText: visionText)
         debugPrint(lines: lines)
-        debugPrintRecognizedObjects(lines: lines)
+        debugPrintRecognizedObjects(lines: lines, for: .sberbank)
         
         var rawOperations = [ (date: Date, category: String, comment: String, value: Double) ]()
         var currentDate: Date?
@@ -195,7 +204,7 @@ class OperationVisionRecognizer {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM, EE"
-        var date = formatter.date(from: string) ?? (string == "Сегодня" ? Date() : nil)
+        var date = formatter.date(from: string)
         if date == nil && string == "Сегодня" { date = Date() }
         if date == nil && string == "Вчера" { date = Date() - 60*60*24 }
         
@@ -242,30 +251,34 @@ class OperationVisionRecognizer {
            }
        }
        
-       private func debugPrintRecognizedObjects(lines: [[VisionTextBlock]]) {
-           for line in lines {
-               for block in line {
-                   if let date = dateFromHomeCredit(block.text) {
-                       print("HomeCredit: Date: \(date.formatted(in: "dd MMMM"))")
-                   }
-                   if let value = valueFromHomeCredit(block.text) {
-                       print("HomeCredit: Value: \(value.currencyFormattedDescription(.rub))")
-                   }
-                   if let time = timeFrom(string: block.text) {
-                       print("HomeCredit: Time: \(time.hours):\(time.minutes)")
-                   }
-               }
-           }
-           
-           for line in lines {
-               if let date = dateFromSberbank(line[0].text) {
-                   print("Sberbank: Date: " + date.formattedDescription)
-               }
-               if let value = valueFromSberbank(line.last!.text) {
-                   print("Sberbank: Value: " + value.currencyFormattedDescription(.rub))
-               }
-           }
-       }
+    private func debugPrintRecognizedObjects(lines: [[VisionTextBlock]], for acc: RecognizingAccount) {
+        switch acc {
+        case .sberbank:
+            for line in lines {
+                for block in line {
+                    if let date = dateFromHomeCredit(block.text) {
+                        print("HomeCredit: Date: \(date.formattedDescription)")
+                    }
+                    if let value = valueFromHomeCredit(block.text) {
+                        print("HomeCredit: Value: \(value.currencyFormattedDescription(.rub))")
+                    }
+                    if let time = timeFrom(string: block.text) {
+                        print("HomeCredit: Time: \(time.hours):\(time.minutes)")
+                    }
+                }
+            }
+        case .homeCredit:
+            for line in lines {
+                if let date = dateFromSberbank(line[0].text) {
+                    print("Sberbank: Date: " + date.formattedDescription)
+                }
+                if let value = valueFromSberbank(line.last!.text) {
+                    print("Sberbank: Value: " + value.currencyFormattedDescription(.rub))
+                }
+            }
+        case .none: break
+        }
+    }
        
        private func sortByLines(visionText: VisionText) -> [[VisionTextBlock]] {
            var lines = [[VisionTextBlock]]()
@@ -289,6 +302,8 @@ class OperationVisionRecognizer {
            
            return lines
        }
+    
+    private let debugHomeCreditVisionText = ""
 }
 
 
@@ -327,3 +342,5 @@ private extension Date {
         return dateWithDefinedTime
     }
 }
+
+
