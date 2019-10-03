@@ -43,13 +43,15 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
         
         for image in loadedPhotos {
             recognizer.recognize(from: image) { [weak self] operations, error in
-                if let ops = operations {
-                    self?.recognizedOps += ops
-                }
                 if self != nil {
+                    if let ops = operations {
+//                        self!.recognizedOps += ops
+                        self!.recognizedOps = self!.sumWithoutDuplicate(baseArray: self!.recognizedOps, addingArray: ops)
+                    }
+                    
                     let number = self!.recognitionCounter + 1
                     print("recognizing #\(number) finished")
-                    self?.recognitionCounter += 1
+                    self!.recognitionCounter += 1
                     if self!.recognitionCounter == self!.loadedPhotos.count {
                         self!.loadOps()
                     }
@@ -61,7 +63,6 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
     
     private func loadOps() {
         print(recognizedOps)
-        //                removeDuplicateOperations()
         operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: recognizedOps)
         tableView.reloadData()
         recognitionCounter = 0
@@ -75,24 +76,23 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
         upperBound = ops[index]
     }
     
-    private func removeDuplicateOperations() {
-        var indicesToBeRemoved = [Int]()
-        for op1 in recognizedOps {
-            for (index, op2) in recognizedOps.enumerated() {
-                if op1.id != op2.id {
-                    if op1.value == op2.value &&
-                        op1.account == op2.account &&
-                        op1.currency == op2.currency &&
-                        op1.date == op2.date {
-                        if !indicesToBeRemoved.contains(index) {
-                            indicesToBeRemoved.append(index)
-                        }
+    private func sumWithoutDuplicate(baseArray: [Operation], addingArray: [Operation]) -> [Operation] {
+        var duplicateIndices = [Int]()
+        for op1 in baseArray {
+            for (index, op2) in addingArray.enumerated() {
+                if op1.value == op2.value &&
+                    op1.account == op2.account &&
+                    op1.currency == op2.currency &&
+                    op1.date == op2.date {
+                    if !duplicateIndices.contains(index) {
+                        duplicateIndices.append(index)
                     }
                 }
             }
         }
-        indicesToBeRemoved.forEach { recognizedOps.remove(at: $0) }
-        print("removed \(indicesToBeRemoved.count) operations")
+        debugPrint("removed \(duplicateIndices.count) duplicates")
+        let sum = baseArray + addingArray.enumerated().compactMap { duplicateIndices.contains($0.offset) ? nil : $0.element }
+        return sum
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
