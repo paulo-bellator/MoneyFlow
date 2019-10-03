@@ -62,7 +62,6 @@ class OperationVisionRecognizer {
         
         for (index, var line) in lines.enumerated() {
             if let date = dateFromHomeCredit(line[0].text) {
-//                print(date)
                 currentDate = date
                 continue
             }
@@ -253,7 +252,7 @@ class OperationVisionRecognizer {
        
     private func debugPrintRecognizedObjects(lines: [[VisionTextBlock]], for acc: RecognizingAccount) {
         switch acc {
-        case .sberbank:
+        case .homeCredit:
             for line in lines {
                 for block in line {
                     if let date = dateFromHomeCredit(block.text) {
@@ -267,7 +266,7 @@ class OperationVisionRecognizer {
                     }
                 }
             }
-        case .homeCredit:
+        case .sberbank:
             for line in lines {
                 if let date = dateFromSberbank(line[0].text) {
                     print("Sberbank: Date: " + date.formattedDescription)
@@ -286,9 +285,7 @@ class OperationVisionRecognizer {
            for block in visionText.blocks {
                if lines.isEmpty { lines.append([block]); continue }
                for (index, line) in lines.enumerated() {
-                   if (abs(line[0].frame.minY - block.frame.minY) < 15.0
-                       || abs(line[0].frame.minY - block.frame.maxY) < 10.0
-                       || abs(line[0].frame.maxY - block.frame.minY) < 10.0) {
+                   if abs(line[0].frame.minY - block.frame.minY) < 15.0 {
                        lines[index].append(block)
                    } else if index == lines.count - 1 {
                        lines.append([block])
