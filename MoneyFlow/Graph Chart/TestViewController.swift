@@ -45,7 +45,6 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
             recognizer.recognize(from: image) { [weak self] operations, error in
                 if self != nil {
                     if let ops = operations {
-//                        self!.recognizedOps += ops
                         self!.recognizedOps = self!.sumWithoutDuplicate(baseArray: self!.recognizedOps, addingArray: ops)
                     }
                     
@@ -102,8 +101,6 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
             }
         }
     }
-    
-    
 }
 
 extension TestViewController: UITableViewDelegate, UITableViewDataSource  {
