@@ -96,6 +96,7 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navVC = segue.destination as? UINavigationController {
             if let vc = navVC.viewControllers[0] as? ImagePickerCollectionViewController {
+                loadedPhotos = []
                 vc.delegate = self
             }
         }
