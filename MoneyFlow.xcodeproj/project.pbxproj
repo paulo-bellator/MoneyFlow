@@ -65,6 +65,7 @@
 		F9D3A9F6232163AA00895A80 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */; };
 		F9D3A9F82321651700895A80 /* ManagingOperationsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */; };
 		F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40878232E212E0034B913 /* SummaryViewController.swift */; };
+		F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +132,7 @@
 		F9D3A9F5232163AA00895A80 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingOperationsTableViewExtension.swift; path = ../ManagingOperationsTableViewExtension.swift; sourceTree = "<group>"; };
 		F9D40878232E212E0034B913 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = ../SummaryViewController.swift; sourceTree = "<group>"; };
+		F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */,
 				F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */,
 				F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */,
+				F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */,
 			);
 			path = "AddOperation Screen";
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */,
 				F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */,
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
+				F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */,
 				F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */,
 				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,

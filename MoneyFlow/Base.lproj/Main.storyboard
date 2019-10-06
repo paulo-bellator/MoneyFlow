@@ -313,7 +313,7 @@
                                 </state>
                                 <connections>
                                     <action selector="addOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zmk-sk-fac"/>
-                                    <segue destination="Ubl-rN-blb" kind="presentation" identifier="ShowAddOperation" modalPresentationStyle="overCurrentContext" id="Kvn-nn-5LG"/>
+                                    <segue destination="a2s-dh-ZdE" kind="show" id="wcl-PN-GCK"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="llb-yi-qlg">
@@ -354,19 +354,19 @@
             </objects>
             <point key="canvasLocation" x="1108.6956521739132" y="114.50892857142857"/>
         </scene>
-        <!--Add Operation View Controller-->
+        <!--View Controller-->
         <scene sceneID="Dw4-Z1-CTP">
             <objects>
-                <viewController id="Ubl-rN-blb" customClass="AddOperationViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ubl-rN-blb" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="5Bl-ga-hPd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72Q-BF-LE2" customClass="RoundedSoaringView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="62" y="107.33333333333333" width="290" height="250.66666666666669"/>
+                                <rect key="frame" x="62" y="110.33333333333334" width="290" height="257.66666666666663"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwh-bF-EyO">
-                                        <rect key="frame" x="76" y="70.000000000000014" width="30" height="48"/>
+                                        <rect key="frame" x="76" y="72.666666666666671" width="30" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="kPa-QD-oVl"/>
                                         </constraints>
@@ -374,38 +374,35 @@
                                         <state key="normal" title="₽">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
-                                        <connections>
-                                            <action selector="currencyButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="MrD-8c-Z1L"/>
-                                        </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="35 321" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGG-2V-Elk">
-                                        <rect key="frame" x="114" y="91.666666666666657" width="92" height="37.666666666666657"/>
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="35 321" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lGG-2V-Elk">
+                                        <rect key="frame" x="114" y="78.000000000000014" width="92" height="37.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="continue" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="🥦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5q-K5-DgE">
-                                        <rect key="frame" x="73" y="200.66666666666669" width="28" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5q-K5-DgE">
+                                        <rect key="frame" x="73" y="163.66666666666669" width="28" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Продукты" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2a-o9-dcO">
-                                        <rect key="frame" x="109" y="201.66666666666669" width="100" height="28"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Продукты" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2a-o9-dcO">
+                                        <rect key="frame" x="109" y="164.66666666666669" width="100" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Наличные" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vG-rb-gcW">
-                                        <rect key="frame" x="110.66666666666666" y="139.33333333333331" width="69" height="18.666666666666657"/>
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Наличные" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2vG-rb-gcW">
+                                        <rect key="frame" x="110.66666666666666" y="125.66666666666667" width="69" height="18.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21:30 21 сентября" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-xA-gWa">
-                                        <rect key="frame" x="84.666666666666657" y="30.000000000000014" width="121" height="18.666666666666671"/>
+                                    <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21:30 21 сентября" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-xA-gWa">
+                                        <rect key="frame" x="84.666666666666657" y="30.000000000000014" width="121" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Коментарий" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wF5-3C-zSN">
-                                        <rect key="frame" x="103" y="202" width="84" height="18.666666666666657"/>
+                                        <rect key="frame" x="103" y="209" width="84" height="18.666666666666657"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
@@ -449,7 +446,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nod-co-Ntx" customClass="RoundedSoaringView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="62" y="49.666666666666657" width="290" height="40"/>
+                                <rect key="frame" x="62" y="52.666666666666657" width="290" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="fjG-pn-s3w"/>
@@ -464,7 +461,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MI-Mz-Pgf">
-                                <rect key="frame" x="62" y="368" width="290" height="49"/>
+                                <rect key="frame" x="62" y="378" width="290" height="49"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7t-NV-uc8">
                                         <rect key="frame" x="79.666666666666657" y="6.6666666666666856" width="131" height="36"/>
@@ -472,10 +469,6 @@
                                         <state key="normal" title="Добавить еще">
                                             <color key="titleColor" red="1" green="0.74117668110000001" blue="0.07064201363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="addButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="J8H-uf-hAj"/>
-                                            <action selector="addMoreButtonTouched:" destination="Ubl-rN-blb" eventType="touchUpInside" id="XNd-UG-izB"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -509,22 +502,301 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hRq-Vx-dw1"/>
                     </view>
-                    <connections>
-                        <outlet property="accountTextField" destination="2vG-rb-gcW" id="D7e-9i-clY"/>
-                        <outlet property="addMoreButton" destination="z7t-NV-uc8" id="SUG-rt-9oN"/>
-                        <outlet property="categoryOrContactEmojiLabel" destination="A5q-K5-DgE" id="JnO-KM-xsF"/>
-                        <outlet property="categoryOrContactTextField" destination="w2a-o9-dcO" id="sTr-bP-Y7I"/>
-                        <outlet property="commentTextField" destination="wF5-3C-zSN" id="aaX-cc-q9p"/>
-                        <outlet property="currencySignButton" destination="rwh-bF-EyO" id="vP5-lS-Xgc"/>
-                        <outlet property="dateTextField" destination="3Mr-xA-gWa" id="MP3-PT-W5E"/>
-                        <outlet property="operationTypeView" destination="nod-co-Ntx" id="WMy-iq-TAZ"/>
-                        <outlet property="valueTextField" destination="lGG-2V-Elk" id="ERF-RS-Brp"/>
-                        <outlet property="visibleView" destination="72Q-BF-LE2" id="l0H-H0-Wg2"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewY-Th-r0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2047.826086956522" y="114.94565217391305"/>
+            <point key="canvasLocation" x="2106" y="-581"/>
+        </scene>
+        <!--Add Operation View Controller-->
+        <scene sceneID="i9I-db-mBe">
+            <objects>
+                <viewController id="K04-P4-qdx" customClass="AddOperationViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sMC-mW-suZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="660"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOT-ZC-NdF">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="660"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-fQ-E4e" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="111" y="64" width="195" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12 678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGE-Ms-heb">
+                                        <rect key="frame" x="15" y="0.0" width="165" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="wGE-Ms-heb" firstAttribute="top" secondItem="fBY-fQ-E4e" secondAttribute="top" id="J0O-KX-BuC"/>
+                                    <constraint firstAttribute="height" constant="55" id="OAS-9D-VSn"/>
+                                    <constraint firstAttribute="trailing" secondItem="wGE-Ms-heb" secondAttribute="trailing" constant="15" id="TvH-8v-Uzj"/>
+                                    <constraint firstAttribute="bottom" secondItem="wGE-Ms-heb" secondAttribute="bottom" id="Wfr-Sg-QXx"/>
+                                    <constraint firstItem="wGE-Ms-heb" firstAttribute="leading" secondItem="fBY-fQ-E4e" secondAttribute="leading" constant="15" id="nqG-zH-XEv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZc-PM-bMu" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="173" width="342" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Сбербанк МСК" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XL3-ON-Aeh">
+                                        <rect key="frame" x="15" y="0.0" width="312" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XL3-ON-Aeh" secondAttribute="trailing" constant="15" id="2YI-Ls-5qy"/>
+                                    <constraint firstItem="XL3-ON-Aeh" firstAttribute="top" secondItem="aZc-PM-bMu" secondAttribute="top" id="2aH-1X-pPQ"/>
+                                    <constraint firstItem="XL3-ON-Aeh" firstAttribute="leading" secondItem="aZc-PM-bMu" secondAttribute="leading" constant="15" id="ctz-Ao-Okd"/>
+                                    <constraint firstAttribute="bottom" secondItem="XL3-ON-Aeh" secondAttribute="bottom" id="fNB-97-oLb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9e-Y6-uON" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="64" width="55" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-Cq-UZV">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="20"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="valueSignButtonTouched:" destination="K04-P4-qdx" eventType="touchUpInside" id="UsJ-YJ-ovU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="U9e-Y6-uON" secondAttribute="height" multiplier="1:1" id="5eF-9j-Mgh"/>
+                                    <constraint firstAttribute="bottom" secondItem="uAc-Cq-UZV" secondAttribute="bottom" id="A8N-LY-xgI"/>
+                                    <constraint firstItem="uAc-Cq-UZV" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="leading" id="dxe-17-jd1"/>
+                                    <constraint firstItem="uAc-Cq-UZV" firstAttribute="top" secondItem="U9e-Y6-uON" secondAttribute="top" id="joH-je-7fJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="uAc-Cq-UZV" secondAttribute="trailing" id="qh1-wt-CMx"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guA-gX-9Qg" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="323" y="64" width="55" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azf-rC-Ozf">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="20"/>
+                                        <state key="normal" title="$">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="currencyButtonTouched:" destination="K04-P4-qdx" eventType="touchUpInside" id="ZTq-nH-U3q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="guA-gX-9Qg" secondAttribute="height" multiplier="1:1" id="4Ej-Qf-doC"/>
+                                    <constraint firstAttribute="trailing" secondItem="azf-rC-Ozf" secondAttribute="trailing" id="82B-gS-TW3"/>
+                                    <constraint firstAttribute="bottom" secondItem="azf-rC-Ozf" secondAttribute="bottom" id="NPu-WH-WX4"/>
+                                    <constraint firstItem="azf-rC-Ozf" firstAttribute="top" secondItem="guA-gX-9Qg" secondAttribute="top" id="eU2-Dk-nLL"/>
+                                    <constraint firstItem="azf-rC-Ozf" firstAttribute="leading" secondItem="guA-gX-9Qg" secondAttribute="leading" id="iml-KM-j6C"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Значение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egJ-Le-ow5">
+                                <rect key="frame" x="45.999999999999993" y="30" width="82.333333333333314" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Счет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-Y8-Fx8">
+                                <rect key="frame" x="46" y="139" width="43" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbB-98-7fy" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="282" width="342" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Уход и здоровье" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kl9-GC-f20">
+                                        <rect key="frame" x="15" y="0.0" width="312" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kl9-GC-f20" secondAttribute="bottom" id="0Ix-It-AFE"/>
+                                    <constraint firstItem="kl9-GC-f20" firstAttribute="top" secondItem="DbB-98-7fy" secondAttribute="top" id="73I-5C-AL5"/>
+                                    <constraint firstItem="kl9-GC-f20" firstAttribute="leading" secondItem="DbB-98-7fy" secondAttribute="leading" constant="15" id="KaH-J3-9ak"/>
+                                    <constraint firstAttribute="trailing" secondItem="kl9-GC-f20" secondAttribute="trailing" constant="15" id="aKu-QQ-h4G"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKV-SD-Dyi">
+                                <rect key="frame" x="46" y="248" width="90" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LTc-65-qFo" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="391" width="342" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21.10.2019, 18:34" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSl-PZ-pgD">
+                                        <rect key="frame" x="15" y="0.0" width="312" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="nSl-PZ-pgD" firstAttribute="top" secondItem="LTc-65-qFo" secondAttribute="top" id="6r8-JQ-8SZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="nSl-PZ-pgD" secondAttribute="bottom" id="A8v-5Y-BEW"/>
+                                    <constraint firstItem="nSl-PZ-pgD" firstAttribute="leading" secondItem="LTc-65-qFo" secondAttribute="leading" constant="15" id="bVx-6S-Ofl"/>
+                                    <constraint firstAttribute="trailing" secondItem="nSl-PZ-pgD" secondAttribute="trailing" constant="15" id="pR9-wP-rcu"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgn-qn-kvE">
+                                <rect key="frame" x="46" y="357" width="44.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leK-yO-pZ7" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="500" width="342" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Уход и здоровье" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NQl-Mo-lty">
+                                        <rect key="frame" x="15" y="0.0" width="312" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="NQl-Mo-lty" firstAttribute="top" secondItem="leK-yO-pZ7" secondAttribute="top" id="6sF-tL-cWr"/>
+                                    <constraint firstAttribute="bottom" secondItem="NQl-Mo-lty" secondAttribute="bottom" id="91F-YV-aqX"/>
+                                    <constraint firstAttribute="trailing" secondItem="NQl-Mo-lty" secondAttribute="trailing" constant="15" id="V30-uq-8ie"/>
+                                    <constraint firstItem="NQl-Mo-lty" firstAttribute="leading" secondItem="leK-yO-pZ7" secondAttribute="leading" constant="15" id="tZE-1k-W8t"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коментарий" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI1-E8-GpS">
+                                <rect key="frame" x="46" y="466" width="108" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fOT-ZC-NdF" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" id="0bY-ng-STU"/>
+                            <constraint firstItem="DbB-98-7fy" firstAttribute="top" secondItem="QKV-SD-Dyi" secondAttribute="bottom" constant="13" id="0er-Vd-vAE"/>
+                            <constraint firstItem="DbB-98-7fy" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="0ge-zx-rDz"/>
+                            <constraint firstItem="U1i-Y8-Fx8" firstAttribute="leading" secondItem="aZc-PM-bMu" secondAttribute="leading" constant="10" id="2Yn-O0-5CV"/>
+                            <constraint firstItem="pgn-qn-kvE" firstAttribute="top" secondItem="DbB-98-7fy" secondAttribute="bottom" constant="20" id="40q-qD-buJ"/>
+                            <constraint firstItem="MI1-E8-GpS" firstAttribute="leading" secondItem="leK-yO-pZ7" secondAttribute="leading" constant="10" id="4bk-Mx-Qhn"/>
+                            <constraint firstItem="guA-gX-9Qg" firstAttribute="height" secondItem="wGE-Ms-heb" secondAttribute="height" id="6rt-og-3eh"/>
+                            <constraint firstItem="egJ-Le-ow5" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="leading" constant="10" id="BEu-51-Rqz"/>
+                            <constraint firstItem="LTc-65-qFo" firstAttribute="top" secondItem="pgn-qn-kvE" secondAttribute="bottom" constant="13" id="FKs-II-jau"/>
+                            <constraint firstItem="guA-gX-9Qg" firstAttribute="leading" secondItem="fBY-fQ-E4e" secondAttribute="trailing" constant="17" id="Gdx-Th-urb"/>
+                            <constraint firstItem="U9e-Y6-uON" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="HPj-Ep-Dor"/>
+                            <constraint firstItem="fOT-ZC-NdF" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="top" constant="-30" id="Ha1-4x-FvS"/>
+                            <constraint firstItem="QKV-SD-Dyi" firstAttribute="top" secondItem="aZc-PM-bMu" secondAttribute="bottom" constant="20" id="Ja0-6J-aIV"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="fOT-ZC-NdF" secondAttribute="trailing" id="LPO-CH-SPK"/>
+                            <constraint firstItem="guA-gX-9Qg" firstAttribute="centerY" secondItem="fBY-fQ-E4e" secondAttribute="centerY" id="MfP-6G-R2Q"/>
+                            <constraint firstItem="QKV-SD-Dyi" firstAttribute="leading" secondItem="DbB-98-7fy" secondAttribute="leading" constant="10" id="OAB-Ct-Jys"/>
+                            <constraint firstItem="aZc-PM-bMu" firstAttribute="top" secondItem="U1i-Y8-Fx8" secondAttribute="bottom" constant="13" id="OTe-sX-N5C"/>
+                            <constraint firstItem="leK-yO-pZ7" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="Qbm-XP-Y7x"/>
+                            <constraint firstItem="U9e-Y6-uON" firstAttribute="height" secondItem="wGE-Ms-heb" secondAttribute="height" id="QhB-j2-qwA"/>
+                            <constraint firstItem="LTc-65-qFo" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="Rw9-QO-aYb"/>
+                            <constraint firstItem="leK-yO-pZ7" firstAttribute="top" secondItem="MI1-E8-GpS" secondAttribute="bottom" constant="13" id="Zl0-Dl-bpn"/>
+                            <constraint firstItem="U9e-Y6-uON" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="bottom" constant="13" id="alq-Cl-LzE"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="DbB-98-7fy" secondAttribute="trailing" constant="36" id="axW-Ei-dST"/>
+                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="trailing" constant="20" id="bdX-e9-WOX"/>
+                            <constraint firstItem="leK-yO-pZ7" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="dkq-RL-o7P"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="leK-yO-pZ7" secondAttribute="trailing" constant="36" id="dxa-dd-9lp"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="guA-gX-9Qg" secondAttribute="trailing" constant="36" id="e7Q-6G-mhV"/>
+                            <constraint firstItem="U1i-Y8-Fx8" firstAttribute="top" secondItem="U9e-Y6-uON" secondAttribute="bottom" constant="20" id="eTG-hC-r9I"/>
+                            <constraint firstItem="pgn-qn-kvE" firstAttribute="leading" secondItem="LTc-65-qFo" secondAttribute="leading" constant="10" id="fbO-GF-MT6"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="LTc-65-qFo" secondAttribute="trailing" constant="36" id="gI2-7u-Dk4"/>
+                            <constraint firstItem="aZc-PM-bMu" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="hf9-SV-Jfl"/>
+                            <constraint firstItem="MI1-E8-GpS" firstAttribute="top" secondItem="LTc-65-qFo" secondAttribute="bottom" constant="20" id="mOr-au-aDl"/>
+                            <constraint firstItem="fOT-ZC-NdF" firstAttribute="top" secondItem="WdA-Ly-bbg" secondAttribute="top" id="mii-OL-FhM"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="bottom" secondItem="fOT-ZC-NdF" secondAttribute="bottom" id="nuC-jT-BXc"/>
+                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="centerY" secondItem="U9e-Y6-uON" secondAttribute="centerY" id="r1J-Gc-WCD"/>
+                            <constraint firstItem="LTc-65-qFo" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="rkn-tS-pXE"/>
+                            <constraint firstItem="DbB-98-7fy" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="sdq-uE-zeX"/>
+                            <constraint firstItem="aZc-PM-bMu" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="t8z-GV-NNO"/>
+                            <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="aZc-PM-bMu" secondAttribute="trailing" constant="36" id="zmJ-la-XIA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WdA-Ly-bbg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hAA-Sf-6bo">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="PNN-6U-aR6">
+                            <rect key="frame" x="141.66666666666666" y="12" width="130.99999999999997" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="Fhl-ht-2bf">
+                            <connections>
+                                <action selector="doneButtonTouched:" destination="K04-P4-qdx" id="kEv-FX-2K9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="accountTextField" destination="XL3-ON-Aeh" id="l5K-Oj-lHM"/>
+                        <outlet property="bottomViewTopSafeAreaConstraint" destination="mii-OL-FhM" id="vSw-3r-pVH"/>
+                        <outlet property="categoryOrContactLabel" destination="QKV-SD-Dyi" id="5AZ-AX-lYc"/>
+                        <outlet property="categoryOrContactTextField" destination="kl9-GC-f20" id="LSG-wb-m2A"/>
+                        <outlet property="commentTextField" destination="NQl-Mo-lty" id="pxd-zd-9Na"/>
+                        <outlet property="currencySignButton" destination="azf-rC-Ozf" id="7a6-LP-2Lb"/>
+                        <outlet property="dateTextField" destination="nSl-PZ-pgD" id="9Fa-B2-eNh"/>
+                        <outlet property="valueSignButton" destination="uAc-Cq-UZV" id="Rnv-oG-Srf"/>
+                        <outlet property="valueTextField" destination="wGE-Ms-heb" id="8Xx-RN-I8d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TSh-ad-dfp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2947.826086956522" y="114.94565217391305"/>
         </scene>
         <!--Item-->
         <scene sceneID="LmN-mV-k9Q">
@@ -1256,6 +1528,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dt-tH-DRZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1896" y="897"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sYE-Fy-KzE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="a2s-dh-ZdE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="T9M-Gi-ChG"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="BwD-SF-xEp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6iY-iy-geU">
+                        <rect key="frame" x="0.0" y="-20" width="0.0" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="K04-P4-qdx" kind="relationship" relationship="rootViewController" id="21j-IE-GMJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fqg-w5-Sbn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2105.7971014492755" y="114.94565217391305"/>
         </scene>
     </scenes>
 </document>

@@ -163,10 +163,10 @@ class CombinedDataSource: CloudOperationDataSource {
                 }
             }
             // TODO: handle errors 
-            // if a have fresh data in cloud storage, and can't get it
+            // if we have fresh data in cloud storage, and can't get it
             // due to some troubles (net connection etc), i get error and empty ops,
             // so i'll get not actual data from defaults and may be
-            // resave it into starage, so i'll lose fresh data
+            // resave it into storage, so i'll lose fresh data
             // need to fix it
             self.isDownloadComplete = true
             self.delegate?.downloadComplete(with: error)

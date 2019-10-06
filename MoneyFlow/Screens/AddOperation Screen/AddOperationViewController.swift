@@ -19,12 +19,13 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var categoryOrContactTextField: UITextField!
-    @IBOutlet weak var categoryOrContactEmojiLabel: UILabel!
     @IBOutlet weak var currencySignButton: UIButton!
+    @IBOutlet weak var valueSignButton: UIButton!
     @IBOutlet weak var commentTextField: UITextField!
-    @IBOutlet weak var visibleView: UIView!
-    @IBOutlet weak var operationTypeView: RoundedSoaringView!
-    @IBOutlet weak var addMoreButton: UIButton!
+    @IBOutlet weak var categoryOrContactLabel: UILabel!
+    @IBOutlet weak var bottomViewTopSafeAreaConstraint: NSLayoutConstraint!
+    
+//    @IBOutlet weak var addMoreButton: UIButton!
     
     weak var delegate: AddOperationViewControllerDelegate?
     let presenter = AddOperationPresenter()
@@ -48,44 +49,25 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     var currentPickerRowForCategoryOrContact = 0
     var currentPickerRowForAccount = 0
+    private lazy var viewFrameOriginY: CGFloat = self.view.frame.origin.y
     
     private(set) var isItIncomeOperation = true {
         didSet {
             if isItIncomeOperation != oldValue && isItFlowOperation {
                 currentPickerRowForCategoryOrContact = 0
                 categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
-                categoryOrContactEmojiLabel.text = presenter.emojiFor(category: categoryOrContactTextField.text ?? "")
+                if categoryOrContactTextField.isFirstResponder {
+                    pickerView.reloadAllComponents()
+                    pickerView.selectRow(0, inComponent: 0, animated: true)
+                }
             }
         }
     }
     private(set) var isItFlowOperation = true {
         didSet {
             currentPickerRowForCategoryOrContact = 0
-            operationTypeView.fillColor = isItFlowOperation ? Constants.flowOperationTypeColor : Constants.debtOperationTypeColor
+//            operationTypeView.fillColor = isItFlowOperation ? Constants.flowOperationTypeColor : Constants.debtOperationTypeColor
             pickerView.selectRow(0, inComponent: 0, animated: false)
-            UIView.transition(
-                with: visibleView,
-                duration: Constants.operationTypeAnimationTransitionDuration,
-                options: isItFlowOperation ? .transitionFlipFromLeft : .transitionFlipFromRight,
-                animations: { [unowned self] in
-                    self.pickerView.reloadAllComponents()
-                    let categories = self.isItIncomeOperation ? self.presenter.incomeCategories : self.presenter.outcomeCategories
-                    self.categoryOrContactTextField.text = self.isItFlowOperation ? categories.first! : self.presenter.contacts.first!
-                    if self.isItFlowOperation {
-                        self.categoryOrContactEmojiLabel.text = self.presenter.emojiFor(category: self.categoryOrContactTextField.text ?? "")
-                    } else {
-                        self.categoryOrContactEmojiLabel.text =  self.presenter.emojiFor(contact: self.categoryOrContactTextField.text ?? "")
-                    }
-                    
-            }) { [unowned self] (_) in
-                self.valueTextField.becomeFirstResponder()
-                var toolBar = self.accountTextField.inputAccessoryView as! UIToolbar
-                var nextButton = toolBar.items![1]
-                nextButton.title = self.isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle
-                toolBar = self.commentTextField.inputAccessoryView as! UIToolbar
-                nextButton = toolBar.items![0]
-                nextButton.title = self.isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle
-            }
         }
     }
     private var currentCurrencyIndex = 0 {
@@ -94,18 +76,38 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-   
+    @IBAction func valueSignButtonTouched(_ sender: UIButton) {
+        let currentSign = valueSignButton.titleLabel?.text ?? ""
+        print(currentSign)
+        switch currentSign {
+        case "+":
+            sender.setTitle("-", for: .normal)
+            isItIncomeOperation = false
+        case "-":
+            sender.setTitle("+", for: .normal)
+            isItIncomeOperation = true
+        default:
+            sender.setTitle("+", for: .normal)
+            isItIncomeOperation = true
+        }
+    }
+    
     @IBAction func currencyButtonTouched(_ sender: UIButton) {
         currentCurrencyIndex += 1
         sender.setTitle(presenter.currenciesSignes[currentCurrencyIndex], for: .normal)
     }
     
-    @IBAction func addButtonTouched(_ sender: UIButton) {
+    @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
         addOperation()
     }
     
-    @IBAction func addMoreButtonTouched(_ sender: UIButton) {
-    }
+    
+//    @IBAction func addButtonTouched(_ sender: UIButton) {
+//        addOperation()
+//    }
+    
+//    @IBAction func addMoreButtonTouched(_ sender: UIButton) {
+//    }
     
     
     override func viewDidLoad() {
@@ -114,6 +116,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
 //        isItFlowOperations = true
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
+        dateTextField.delegate = self
         valueTextField.text = ""
         valueTextField.delegate = self
         accountTextField.inputView = pickerView
@@ -121,33 +124,50 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         accountTextField.delegate = self
         categoryOrContactTextField.inputView = pickerView
         categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
-        categoryOrContactEmojiLabel.text = presenter.emojiFor(category: categoryOrContactTextField.text ?? "")
         categoryOrContactTextField.delegate = self
-        currencySignButton.titleLabel?.text = presenter.currenciesSignes.first
+        currencySignButton.setTitle(presenter.currenciesSignes.first, for: .normal)
         commentTextField.text = nil
+        commentTextField.delegate = self
         
         Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
             self?.valueTextField.becomeFirstResponder()
         }
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized(recognizer:)))
-        view.addGestureRecognizer(gestureRecognizer)
         
         addInputAccessoryForTextFields(
-            textFields: [dateTextField, valueTextField, accountTextField, categoryOrContactTextField, commentTextField],
-            titles: [Constants.dataTitle,
-                     Constants.valueTitle,
+            textFields: [valueTextField, accountTextField, categoryOrContactTextField, dateTextField, commentTextField],
+            titles: [Constants.valueTitle,
                      Constants.accountTitle,
                      isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle,
+                     Constants.dataTitle,
                      Constants.commentTitle],
             dismissable: true,
             previousNextable: true,
             doneAction: #selector(AddOperationViewController.addOperation))
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if bottomViewTopSafeAreaConstraint.constant != 0 {
+            offsetFields(by: 0)
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         pickerView.reloadAllComponents()
-        if accountTextField.isFirstResponder { pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false) }
-        if categoryOrContactTextField.isFirstResponder { pickerView.selectRow(currentPickerRowForCategoryOrContact, inComponent: 0, animated: false)  }
+        if accountTextField.isFirstResponder {
+            pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false)
+        }
+        if categoryOrContactTextField.isFirstResponder {
+            pickerView.selectRow(currentPickerRowForCategoryOrContact, inComponent: 0, animated: false)
+            offsetFields(by: Constants.offsetForCategoryField)
+        }
+        if dateTextField.isFirstResponder  {
+            offsetFields(by: Constants.offsetForDateField)
+        }
+        if commentTextField.isFirstResponder {
+            offsetFields(by: Constants.offsetForCommentField)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -155,21 +175,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             let value = Double(valueTextField.text ?? "") ?? 0.0
             if isItIncomeOperation != (value >= 0) { isItIncomeOperation.toggle() }
 //            print(isItIncomeOperation)
-        }
-    }
-    
-    
-    
-    @objc private func tapGestureRecognized(recognizer: UITapGestureRecognizer) {
-        let tapPoint = recognizer.location(in: view)
-        
-        switch tapPoint {
-        case _ where visibleView.frame.contains(tapPoint): break
-        case _ where addMoreButton.frame.contains(tapPoint): break
-        case _ where operationTypeView.frame.contains(tapPoint):
-            isItFlowOperation.toggle()
-            
-        default: dismiss()
         }
     }
     
@@ -191,6 +196,16 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         presenter.add(operation: operation)
         delegate?.updateData()
         dismiss()
+    }
+    
+    private func offsetFields(by offset: CGFloat) {
+        let currentOffset = bottomViewTopSafeAreaConstraint.constant
+        var duration = Double(abs(offset - currentOffset) / Constants.viewsOffsetSpeed)
+        duration = max(duration, Constants.viewsOffsetMinimumDuration)
+        UIView.animate(withDuration: duration) {
+            self.bottomViewTopSafeAreaConstraint.constant = offset
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func dismiss() {
@@ -220,6 +235,12 @@ extension AddOperationViewController {
         static let accountTitle = "Счет"
         static let commentTitle = "Комментарий"
         static let pickerViewTitlePlaceHolder = "Empty"
+        static let viewsOffsetSpeed: CGFloat = 250 / 0.4
+        static let viewsOffsetMinimumDuration = 0.3
+        static let returnToOriginStateOffsetDuration = 0.2
+        static let offsetForCategoryField: CGFloat = -100
+        static let offsetForDateField: CGFloat = -200
+        static let offsetForCommentField: CGFloat = -250
     }
 }
 

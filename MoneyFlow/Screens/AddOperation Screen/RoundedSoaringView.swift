@@ -12,7 +12,7 @@ import UIKit
 class RoundedSoaringView: UIView {
 
     override func draw(_ rect: CGRect) {
-            layer.cornerRadius = cornerRadius
+        layer.cornerRadius = cornerRadius
     }
     
     private var shadowLayer: CAShapeLayer!

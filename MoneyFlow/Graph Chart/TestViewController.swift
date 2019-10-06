@@ -35,7 +35,6 @@ class TestViewController: UIViewController, ImagePickerCollectionViewControllerD
         tableView.delegate = self
         tableView.dataSource = self
         countUpperBound()
-        
     }
     
     private func startRecognition() {
