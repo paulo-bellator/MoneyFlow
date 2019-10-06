@@ -206,6 +206,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         pickerView.reloadAllComponents()
         if valueTextField.isFirstResponder {
             offsetFields(by: 0)
+            valueTextField.text! = valueTextField.text!.filter { "0123456789".contains($0) }
         }
         if accountTextField.isFirstResponder {
             pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false)
@@ -236,6 +237,12 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if !(valueTextField.text?.isEmpty ?? true) {
             valueTextField.superview!.layer.borderWidth = 0.0
+            if let value = Double(valueTextField.text!) {
+                var string = value.currencyFormattedDescription(Currency.rub)
+                string.removeLast(2)
+                valueTextField.text! = string
+                print("sadasda")
+            }
         }
     }
     
@@ -258,7 +265,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         else { sign = debtDirectionSegmentedControl.selectedSegmentIndex == 0 ? "-" : "+" }
         let valueSign = (sign == "+") ? 1.0 : -1.0
         
-        let value = (Double(valueTextField.text ?? "") ?? 0.0) * valueSign
+        let stringValue = (valueTextField.text ?? "").filter { "0123456789".contains($0) }
+        let value = (Double(stringValue) ?? 0.0) * valueSign
         let currency = Currency(rawValue: currencySignButton.currentTitle!) ?? presenter.currencies.first!
         let account = accountTextField.text!
         let categoryOrContact = categoryOrContactTextField.text!
