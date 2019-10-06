@@ -133,7 +133,6 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     
     @IBAction func addOperation(_ sender: UIButton) {
-        self.tabBarController?.tabBar.isHidden = true
 //        self.overlayBlurredBackgroundView()
     }
     

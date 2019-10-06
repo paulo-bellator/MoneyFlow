@@ -131,6 +131,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         if (valueTextField.text?.isEmpty ?? true) {
             valueTextField.superview!.layer.borderWidth = 1.0
             valueTextField.superview!.layer.borderColor = #colorLiteral(red: 0.9333333333, green: 0.4078431373, blue: 0.4509803922, alpha: 1)
+            valueTextField.becomeFirstResponder()
         } else {
             addOperation()
             print("done")
