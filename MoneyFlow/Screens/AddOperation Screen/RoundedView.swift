@@ -11,9 +11,14 @@ import UIKit
 @IBDesignable
 class RoundedView: UIView {
     
-    @IBInspectable private var cornerRadius: CGFloat = 10.0 { didSet{ setNeedsDisplay() } }
+    @IBInspectable private var cornerRadius: CGFloat = 10.0 {
+        didSet{
+            layer.cornerRadius = cornerRadius
+        }
+    }
     
     override func draw(_ rect: CGRect) {
         layer.cornerRadius = cornerRadius
+        layer.masksToBounds = true
     }
 }

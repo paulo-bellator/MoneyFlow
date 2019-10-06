@@ -54,6 +54,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     private(set) var isItIncomeOperation = true {
         didSet {
             if isItIncomeOperation != oldValue && isItFlowOperation {
+                let color = isItIncomeOperation ? Constants.incomeOperationTypeColor : Constants.outcomeOperationTypeColor
+                navigationController?.navigationBar.barTintColor = color
                 currentPickerRowForCategoryOrContact = 0
                 categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
                 if categoryOrContactTextField.isFirstResponder {
@@ -66,7 +68,11 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     private(set) var isItFlowOperation = true {
         didSet {
             currentPickerRowForCategoryOrContact = 0
-//            operationTypeView.fillColor = isItFlowOperation ? Constants.flowOperationTypeColor : Constants.debtOperationTypeColor
+            var value: String?
+            if isItFlowOperation {
+                value = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
+            } else { value = presenter.contacts.first }
+            categoryOrContactTextField.text = value
             pickerView.selectRow(0, inComponent: 0, animated: false)
         }
     }
@@ -75,6 +81,18 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             if currentCurrencyIndex >= presenter.currencies.count { currentCurrencyIndex = 0 }
         }
     }
+    
+    @IBAction func operationTypeSwitched(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            isItFlowOperation = true
+            let color = isItIncomeOperation ? Constants.incomeOperationTypeColor : Constants.outcomeOperationTypeColor
+            navigationController?.navigationBar.barTintColor = color
+        } else {
+            isItFlowOperation = false
+            navigationController?.navigationBar.barTintColor = Constants.debtOperationTypeColor
+        }
+    }
+    
 
     @IBAction func valueSignButtonTouched(_ sender: UIButton) {
         let currentSign = valueSignButton.titleLabel?.text ?? ""
@@ -128,6 +146,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         currencySignButton.setTitle(presenter.currenciesSignes.first, for: .normal)
         commentTextField.text = nil
         commentTextField.delegate = self
+        navigationController?.navigationBar.barTintColor = Constants.incomeOperationTypeColor
         
         Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
             self?.valueTextField.becomeFirstResponder()
@@ -155,8 +174,12 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         pickerView.reloadAllComponents()
+        if valueTextField.isFirstResponder {
+            offsetFields(by: 0)
+        }
         if accountTextField.isFirstResponder {
             pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false)
+            offsetFields(by: 0)
         }
         if categoryOrContactTextField.isFirstResponder {
             pickerView.selectRow(currentPickerRowForCategoryOrContact, inComponent: 0, animated: false)
@@ -222,8 +245,9 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
 
 extension AddOperationViewController {
     struct Constants {
-        static let flowOperationTypeColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-        static let debtOperationTypeColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        static let incomeOperationTypeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        static let outcomeOperationTypeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        static let debtOperationTypeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         static let pickerHeight: CGFloat = 226
         static let becomeFirstResponderDelay: TimeInterval = 0.4
         static let operationTypeAnimationTransitionDuration: TimeInterval = 0.45

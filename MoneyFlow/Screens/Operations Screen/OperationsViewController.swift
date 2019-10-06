@@ -134,7 +134,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     @IBAction func addOperation(_ sender: UIButton) {
         self.tabBarController?.tabBar.isHidden = true
-        self.overlayBlurredBackgroundView()
+//        self.overlayBlurredBackgroundView()
     }
     
     func overlayBlurredBackgroundView() {
@@ -175,8 +175,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == addOperationSegueIdentifier {
-                if let viewController = segue.destination as? AddOperationViewController {
-                    viewController.delegate = self
+                if let navVC = segue.destination as? UINavigationController {
+                    if let vc = navVC.viewControllers[0] as? AddOperationViewController {
+                        vc.delegate = self
+                    }
                 }
             }
         }
