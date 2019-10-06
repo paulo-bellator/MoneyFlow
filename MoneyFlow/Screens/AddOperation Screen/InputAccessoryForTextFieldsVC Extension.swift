@@ -23,7 +23,7 @@ extension UIViewController {
                 } else { title = "" }
                 
                 previousButton.title = title
-                previousButton.tintColor = UIColor.white
+                previousButton.tintColor = UIColor.black
                 previousButton.width = 30
                 if textField == textFields.first {
                     previousButton.isEnabled = false
@@ -38,7 +38,7 @@ extension UIViewController {
                     if index < titles.count { title = titles[index+1] }
                 } else { title = "" }
                 nextButton.title = title
-                nextButton.tintColor = UIColor.white
+                nextButton.tintColor = UIColor.black
                 nextButton.width = 30
                 if textField == textFields.last {
                     nextButton.isEnabled = false
@@ -52,15 +52,15 @@ extension UIViewController {
             let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             let doneSelector = doneAction ?? #selector(UIView.endEditing)
             let doneTarget = doneAction != nil ? self : view
-            let doneButton = UIBarButtonItem(title: "Добавить", style: .done, target: doneTarget, action: doneSelector)
-            doneButton.tintColor = UIColor.white
+            let doneButton = UIBarButtonItem(title: "Закрыть", style: .done, target: doneTarget, action: doneSelector)
+            doneButton.tintColor = UIColor.black
             items.append(contentsOf: [spacer, doneButton])
             
             toolbar.setItems(items, animated: false)
             
-            toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-            toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-            //            toolbar.barTintColor = UIColor.white
+//            toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+//            toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+            toolbar.barTintColor = UIColor.white
             textField.inputAccessoryView = toolbar
         }
     }

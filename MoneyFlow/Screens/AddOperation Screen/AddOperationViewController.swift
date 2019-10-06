@@ -17,6 +17,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets
     
+    @IBOutlet weak var operationTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var accountTextField: UITextField!
@@ -29,6 +30,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var bottomViewTopSafeAreaConstraint: NSLayoutConstraint!
     
 //    @IBOutlet weak var addMoreButton: UIButton!
+    
     
     // MARK: Properties
     
@@ -60,7 +62,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         didSet {
             if isItIncomeOperation != oldValue && isItFlowOperation {
                 let color = isItIncomeOperation ? Constants.incomeOperationTypeColor : Constants.outcomeOperationTypeColor
-                navigationController?.navigationBar.barTintColor = color
+                if #available(iOS 13.0, *) { operationTypeSegmentedControl.selectedSegmentTintColor = color }
                 currentPickerRowForCategoryOrContact = 0
                 categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
                 if categoryOrContactTextField.isFirstResponder {
@@ -76,6 +78,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             valueSignButton.superview!.isHidden.toggle()
             
             currentPickerRowForCategoryOrContact = 0
+            categoryOrContactLabel.text = isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle
             var value: String?
             if isItFlowOperation {
                 value = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
@@ -96,10 +99,10 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         if sender.selectedSegmentIndex == 0 {
             isItFlowOperation = true
             let color = isItIncomeOperation ? Constants.incomeOperationTypeColor : Constants.outcomeOperationTypeColor
-            navigationController?.navigationBar.barTintColor = color
+            if #available(iOS 13.0, *) { sender.selectedSegmentTintColor = color }
         } else {
             isItFlowOperation = false
-            navigationController?.navigationBar.barTintColor = Constants.debtOperationTypeColor
+            if #available(iOS 13.0, *) { sender.selectedSegmentTintColor = Constants.debtOperationTypeColor }
         }
     }
     
@@ -125,8 +128,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
-        addOperation()
-        print("done")
+        if (valueTextField.text?.isEmpty ?? true) {
+            valueTextField.superview!.layer.borderWidth = 1.0
+            valueTextField.superview!.layer.borderColor = #colorLiteral(red: 0.9333333333, green: 0.4078431373, blue: 0.4509803922, alpha: 1)
+        } else {
+            addOperation()
+            print("done")
+        }
+        
     }
     
     
@@ -145,6 +154,12 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         valueSignButton.superview!.isHidden = false
         debtDirectionSegmentedControl.isHidden = true
         
+        if #available(iOS 13.0, *) {
+            operationTypeSegmentedControl.selectedSegmentTintColor = Constants.incomeOperationTypeColor
+            operationTypeSegmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        }
+        
+        
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
         dateTextField.delegate = self
@@ -159,7 +174,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         currencySignButton.setTitle(presenter.currenciesSignes.first, for: .normal)
         commentTextField.text = nil
         commentTextField.delegate = self
-        navigationController?.navigationBar.barTintColor = Constants.incomeOperationTypeColor
         
         Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
             self?.valueTextField.becomeFirstResponder()
@@ -174,7 +188,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                      Constants.commentTitle],
             dismissable: true,
             previousNextable: true,
-            doneAction: #selector(AddOperationViewController.addOperation))
+            doneAction: #selector(AddOperationViewController.dismissKeyboard))
         
          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -218,11 +232,21 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if !(valueTextField.text?.isEmpty ?? true) {
+            valueTextField.superview!.layer.borderWidth = 0.0
+        }
+    }
+    
     @objc private func datePickerValueChanged() {
         dateTextField.text = datePicker.date.formattedDescription
     }
     
     // MARK: Main functions
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     @objc func addOperation() {
         var operation: Operation
@@ -261,9 +285,9 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
 
 extension AddOperationViewController {
     struct Constants {
-        static let incomeOperationTypeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        static let outcomeOperationTypeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        static let debtOperationTypeColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        static let incomeOperationTypeColor = #colorLiteral(red: 0.7333333333, green: 0.8352941176, blue: 0.6705882353, alpha: 1)
+        static let outcomeOperationTypeColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+        static let debtOperationTypeColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9529411765, alpha: 1)
         static let pickerHeight: CGFloat = 226
         static let becomeFirstResponderDelay: TimeInterval = 0.4
         static let operationTypeAnimationTransitionDuration: TimeInterval = 0.45

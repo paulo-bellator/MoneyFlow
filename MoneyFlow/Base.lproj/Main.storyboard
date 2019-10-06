@@ -814,6 +814,7 @@
                         <outlet property="currencySignButton" destination="azf-rC-Ozf" id="7a6-LP-2Lb"/>
                         <outlet property="dateTextField" destination="nSl-PZ-pgD" id="9Fa-B2-eNh"/>
                         <outlet property="debtDirectionSegmentedControl" destination="s7C-pa-R0F" id="fcT-3k-loT"/>
+                        <outlet property="operationTypeSegmentedControl" destination="PNN-6U-aR6" id="CZX-gT-2b1"/>
                         <outlet property="valueSignButton" destination="uAc-Cq-UZV" id="Rnv-oG-Srf"/>
                         <outlet property="valueTextField" destination="wGE-Ms-heb" id="8Xx-RN-I8d"/>
                     </connections>
