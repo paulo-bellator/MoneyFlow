@@ -15,20 +15,29 @@ protocol AddOperationViewControllerDelegate: class {
 
 class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: Outlets
+    
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var categoryOrContactTextField: UITextField!
     @IBOutlet weak var currencySignButton: UIButton!
     @IBOutlet weak var valueSignButton: UIButton!
+    @IBOutlet weak var debtDirectionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var categoryOrContactLabel: UILabel!
     @IBOutlet weak var bottomViewTopSafeAreaConstraint: NSLayoutConstraint!
     
 //    @IBOutlet weak var addMoreButton: UIButton!
     
+    // MARK: Properties
+    
     weak var delegate: AddOperationViewControllerDelegate?
     let presenter = AddOperationPresenter()
+    
+    var currentPickerRowForCategoryOrContact = 0
+    var currentPickerRowForAccount = 0
+    private lazy var viewFrameOriginY: CGFloat = self.view.frame.origin.y
     
     private lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
@@ -47,10 +56,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         return picker
     }()
     
-    var currentPickerRowForCategoryOrContact = 0
-    var currentPickerRowForAccount = 0
-    private lazy var viewFrameOriginY: CGFloat = self.view.frame.origin.y
-    
     private(set) var isItIncomeOperation = true {
         didSet {
             if isItIncomeOperation != oldValue && isItFlowOperation {
@@ -67,6 +72,9 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     }
     private(set) var isItFlowOperation = true {
         didSet {
+            debtDirectionSegmentedControl.isHidden.toggle()
+            valueSignButton.superview!.isHidden.toggle()
+            
             currentPickerRowForCategoryOrContact = 0
             var value: String?
             if isItFlowOperation {
@@ -82,6 +90,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: Outlet functions
+    
     @IBAction func operationTypeSwitched(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             isItFlowOperation = true
@@ -93,7 +103,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-
     @IBAction func valueSignButtonTouched(_ sender: UIButton) {
         let currentSign = valueSignButton.titleLabel?.text ?? ""
         print(currentSign)
@@ -117,6 +126,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func doneButtonTouched(_ sender: UIBarButtonItem) {
         addOperation()
+        print("done")
     }
     
     
@@ -127,11 +137,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
 //    @IBAction func addMoreButtonTouched(_ sender: UIButton) {
 //    }
     
+    // MARK: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        isItFlowOperations = true
+        valueSignButton.superview!.isHidden = false
+        debtDirectionSegmentedControl.isHidden = true
+        
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
         dateTextField.delegate = self
@@ -166,6 +179,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    // MARK: Working with text fields and input
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         if bottomViewTopSafeAreaConstraint.constant != 0 {
             offsetFields(by: 0)
@@ -193,18 +208,32 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == valueTextField {
-            let value = Double(valueTextField.text ?? "") ?? 0.0
-            if isItIncomeOperation != (value >= 0) { isItIncomeOperation.toggle() }
-//            print(isItIncomeOperation)
+    private func offsetFields(by offset: CGFloat) {
+        let currentOffset = bottomViewTopSafeAreaConstraint.constant
+        var duration = Double(abs(offset - currentOffset) / Constants.viewsOffsetSpeed)
+        duration = max(duration, Constants.viewsOffsetMinimumDuration)
+        UIView.animate(withDuration: duration) {
+            self.bottomViewTopSafeAreaConstraint.constant = offset
+            self.view.layoutIfNeeded()
         }
     }
+    
+    @objc private func datePickerValueChanged() {
+        dateTextField.text = datePicker.date.formattedDescription
+    }
+    
+    // MARK: Main functions
     
     @objc func addOperation() {
         var operation: Operation
         let date = datePicker.date
-        let value = Double(valueTextField.text ?? "") ?? 0.0
+        
+        var sign = "-"
+        if isItFlowOperation { sign = valueSignButton.titleLabel?.text ?? "-" }
+        else { sign = debtDirectionSegmentedControl.selectedSegmentIndex == 0 ? "-" : "+" }
+        let valueSign = (sign == "+") ? 1.0 : -1.0
+        
+        let value = (Double(valueTextField.text ?? "") ?? 0.0) * valueSign
         let currency = Currency(rawValue: currencySignButton.currentTitle!) ?? presenter.currencies.first!
         let account = accountTextField.text!
         let categoryOrContact = categoryOrContactTextField.text!
@@ -216,29 +245,16 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         } else {
             operation = DebtOperation(date: date, value: value, currency: currency, contact: categoryOrContact, account: account, comment: comment)
         }
+        print(operation)
         presenter.add(operation: operation)
         delegate?.updateData()
         dismiss()
-    }
-    
-    private func offsetFields(by offset: CGFloat) {
-        let currentOffset = bottomViewTopSafeAreaConstraint.constant
-        var duration = Double(abs(offset - currentOffset) / Constants.viewsOffsetSpeed)
-        duration = max(duration, Constants.viewsOffsetMinimumDuration)
-        UIView.animate(withDuration: duration) {
-            self.bottomViewTopSafeAreaConstraint.constant = offset
-            self.view.layoutIfNeeded()
-        }
     }
     
     private func dismiss() {
         view.endEditing(true)
         self.dismiss(animated: true)
         delegate?.removeBlurredBackgroundView()
-    }
-    
-    @objc private func datePickerValueChanged() {
-        dateTextField.text = datePicker.date.formattedDescription
     }
     
 }

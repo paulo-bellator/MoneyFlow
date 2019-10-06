@@ -313,7 +313,7 @@
                                 </state>
                                 <connections>
                                     <action selector="addOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zmk-sk-fac"/>
-                                    <segue destination="a2s-dh-ZdE" kind="show" id="wcl-PN-GCK"/>
+                                    <segue destination="a2s-dh-ZdE" kind="show" identifier="ShowAddOperation" id="wcl-PN-GCK"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="llb-yi-qlg">
@@ -520,10 +520,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-fQ-E4e" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="111" y="64" width="195" height="55"/>
+                                <rect key="frame" x="173" y="64" width="133" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12 678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGE-Ms-heb">
-                                        <rect key="frame" x="15" y="0.0" width="165" height="55"/>
+                                        <rect key="frame" x="15" y="0.0" width="103" height="55"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -566,34 +566,51 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9e-Y6-uON" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="64" width="55" height="55"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xxV-6z-M34">
+                                <rect key="frame" x="36" y="64" width="120" height="55"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-Cq-UZV">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9e-Y6-uON" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
-                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="20"/>
-                                        <state key="normal" title="+">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="valueSignButtonTouched:" destination="K04-P4-qdx" eventType="touchUpInside" id="UsJ-YJ-ovU"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-Cq-UZV">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="20"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="valueSignButtonTouched:" destination="K04-P4-qdx" eventType="touchUpInside" id="UsJ-YJ-ovU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="U9e-Y6-uON" secondAttribute="height" multiplier="1:1" id="5eF-9j-Mgh"/>
+                                            <constraint firstAttribute="bottom" secondItem="uAc-Cq-UZV" secondAttribute="bottom" id="A8N-LY-xgI"/>
+                                            <constraint firstItem="uAc-Cq-UZV" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="leading" id="dxe-17-jd1"/>
+                                            <constraint firstItem="uAc-Cq-UZV" firstAttribute="top" secondItem="U9e-Y6-uON" secondAttribute="top" id="joH-je-7fJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="uAc-Cq-UZV" secondAttribute="trailing" id="qh1-wt-CMx"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="s7C-pa-R0F">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="5By-vy-jPm"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Дал"/>
+                                            <segment title="Взял"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="U9e-Y6-uON" secondAttribute="height" multiplier="1:1" id="5eF-9j-Mgh"/>
-                                    <constraint firstAttribute="bottom" secondItem="uAc-Cq-UZV" secondAttribute="bottom" id="A8N-LY-xgI"/>
-                                    <constraint firstItem="uAc-Cq-UZV" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="leading" id="dxe-17-jd1"/>
-                                    <constraint firstItem="uAc-Cq-UZV" firstAttribute="top" secondItem="U9e-Y6-uON" secondAttribute="top" id="joH-je-7fJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="uAc-Cq-UZV" secondAttribute="trailing" id="qh1-wt-CMx"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="7"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guA-gX-9Qg" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
                                 <rect key="frame" x="323" y="64" width="55" height="55"/>
                                 <subviews>
@@ -724,6 +741,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="U9e-Y6-uON" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="0CX-I9-9cA"/>
                             <constraint firstItem="fOT-ZC-NdF" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" id="0bY-ng-STU"/>
                             <constraint firstItem="DbB-98-7fy" firstAttribute="top" secondItem="QKV-SD-Dyi" secondAttribute="bottom" constant="13" id="0er-Vd-vAE"/>
                             <constraint firstItem="DbB-98-7fy" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="0ge-zx-rDz"/>
@@ -731,34 +749,35 @@
                             <constraint firstItem="pgn-qn-kvE" firstAttribute="top" secondItem="DbB-98-7fy" secondAttribute="bottom" constant="20" id="40q-qD-buJ"/>
                             <constraint firstItem="MI1-E8-GpS" firstAttribute="leading" secondItem="leK-yO-pZ7" secondAttribute="leading" constant="10" id="4bk-Mx-Qhn"/>
                             <constraint firstItem="guA-gX-9Qg" firstAttribute="height" secondItem="wGE-Ms-heb" secondAttribute="height" id="6rt-og-3eh"/>
-                            <constraint firstItem="egJ-Le-ow5" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="leading" constant="10" id="BEu-51-Rqz"/>
+                            <constraint firstItem="egJ-Le-ow5" firstAttribute="leading" secondItem="xxV-6z-M34" secondAttribute="leading" constant="10" id="BCr-iG-MMQ"/>
                             <constraint firstItem="LTc-65-qFo" firstAttribute="top" secondItem="pgn-qn-kvE" secondAttribute="bottom" constant="13" id="FKs-II-jau"/>
+                            <constraint firstItem="xxV-6z-M34" firstAttribute="leading" secondItem="fOT-ZC-NdF" secondAttribute="leading" constant="36" id="Gcs-S6-QWI"/>
                             <constraint firstItem="guA-gX-9Qg" firstAttribute="leading" secondItem="fBY-fQ-E4e" secondAttribute="trailing" constant="17" id="Gdx-Th-urb"/>
-                            <constraint firstItem="U9e-Y6-uON" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="HPj-Ep-Dor"/>
                             <constraint firstItem="fOT-ZC-NdF" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="top" constant="-30" id="Ha1-4x-FvS"/>
                             <constraint firstItem="QKV-SD-Dyi" firstAttribute="top" secondItem="aZc-PM-bMu" secondAttribute="bottom" constant="20" id="Ja0-6J-aIV"/>
+                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="leading" secondItem="xxV-6z-M34" secondAttribute="trailing" constant="17" id="LIB-rY-pZD"/>
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="fOT-ZC-NdF" secondAttribute="trailing" id="LPO-CH-SPK"/>
                             <constraint firstItem="guA-gX-9Qg" firstAttribute="centerY" secondItem="fBY-fQ-E4e" secondAttribute="centerY" id="MfP-6G-R2Q"/>
                             <constraint firstItem="QKV-SD-Dyi" firstAttribute="leading" secondItem="DbB-98-7fy" secondAttribute="leading" constant="10" id="OAB-Ct-Jys"/>
                             <constraint firstItem="aZc-PM-bMu" firstAttribute="top" secondItem="U1i-Y8-Fx8" secondAttribute="bottom" constant="13" id="OTe-sX-N5C"/>
                             <constraint firstItem="leK-yO-pZ7" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="Qbm-XP-Y7x"/>
-                            <constraint firstItem="U9e-Y6-uON" firstAttribute="height" secondItem="wGE-Ms-heb" secondAttribute="height" id="QhB-j2-qwA"/>
                             <constraint firstItem="LTc-65-qFo" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="Rw9-QO-aYb"/>
+                            <constraint firstItem="s7C-pa-R0F" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="TNa-QG-odf"/>
+                            <constraint firstItem="xxV-6z-M34" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="WVR-co-uwH"/>
                             <constraint firstItem="leK-yO-pZ7" firstAttribute="top" secondItem="MI1-E8-GpS" secondAttribute="bottom" constant="13" id="Zl0-Dl-bpn"/>
-                            <constraint firstItem="U9e-Y6-uON" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="bottom" constant="13" id="alq-Cl-LzE"/>
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="DbB-98-7fy" secondAttribute="trailing" constant="36" id="axW-Ei-dST"/>
-                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="leading" secondItem="U9e-Y6-uON" secondAttribute="trailing" constant="20" id="bdX-e9-WOX"/>
                             <constraint firstItem="leK-yO-pZ7" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="dkq-RL-o7P"/>
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="leK-yO-pZ7" secondAttribute="trailing" constant="36" id="dxa-dd-9lp"/>
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="guA-gX-9Qg" secondAttribute="trailing" constant="36" id="e7Q-6G-mhV"/>
-                            <constraint firstItem="U1i-Y8-Fx8" firstAttribute="top" secondItem="U9e-Y6-uON" secondAttribute="bottom" constant="20" id="eTG-hC-r9I"/>
                             <constraint firstItem="pgn-qn-kvE" firstAttribute="leading" secondItem="LTc-65-qFo" secondAttribute="leading" constant="10" id="fbO-GF-MT6"/>
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="LTc-65-qFo" secondAttribute="trailing" constant="36" id="gI2-7u-Dk4"/>
                             <constraint firstItem="aZc-PM-bMu" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="hf9-SV-Jfl"/>
+                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="bottom" constant="13" id="iSa-RK-ghD"/>
                             <constraint firstItem="MI1-E8-GpS" firstAttribute="top" secondItem="LTc-65-qFo" secondAttribute="bottom" constant="20" id="mOr-au-aDl"/>
                             <constraint firstItem="fOT-ZC-NdF" firstAttribute="top" secondItem="WdA-Ly-bbg" secondAttribute="top" id="mii-OL-FhM"/>
+                            <constraint firstItem="xxV-6z-M34" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="bottom" constant="13" id="nhX-BG-Lml"/>
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="bottom" secondItem="fOT-ZC-NdF" secondAttribute="bottom" id="nuC-jT-BXc"/>
-                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="centerY" secondItem="U9e-Y6-uON" secondAttribute="centerY" id="r1J-Gc-WCD"/>
+                            <constraint firstItem="U1i-Y8-Fx8" firstAttribute="top" secondItem="fBY-fQ-E4e" secondAttribute="bottom" constant="20" id="qby-TA-u3P"/>
                             <constraint firstItem="LTc-65-qFo" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="rkn-tS-pXE"/>
                             <constraint firstItem="DbB-98-7fy" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="sdq-uE-zeX"/>
                             <constraint firstItem="aZc-PM-bMu" firstAttribute="leading" secondItem="WdA-Ly-bbg" secondAttribute="leading" constant="36" id="t8z-GV-NNO"/>
@@ -794,6 +813,7 @@
                         <outlet property="commentTextField" destination="NQl-Mo-lty" id="pxd-zd-9Na"/>
                         <outlet property="currencySignButton" destination="azf-rC-Ozf" id="7a6-LP-2Lb"/>
                         <outlet property="dateTextField" destination="nSl-PZ-pgD" id="9Fa-B2-eNh"/>
+                        <outlet property="debtDirectionSegmentedControl" destination="s7C-pa-R0F" id="fcT-3k-loT"/>
                         <outlet property="valueSignButton" destination="uAc-Cq-UZV" id="Rnv-oG-Srf"/>
                         <outlet property="valueTextField" destination="wGE-Ms-heb" id="8Xx-RN-I8d"/>
                     </connections>
