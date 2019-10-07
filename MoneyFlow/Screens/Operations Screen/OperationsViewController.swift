@@ -164,8 +164,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         let frameForView = CGRect(origin: origin, size: size)
         
         let buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2)
-        buttonSelector.backgroundColor = #colorLiteral(red: 0.9405411869, green: 0.9405411869, blue: 0.9405411869, alpha: 1)
-        buttonSelector.direction = .up
+        buttonSelector.backgroundColor = UIColor.white.withAlphaComponent(1.0)
+        buttonSelector.direction = .left
         
         buttonSelector.delegate = self
         self.buttonSelector = buttonSelector
