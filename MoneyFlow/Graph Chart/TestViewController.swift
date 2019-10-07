@@ -147,6 +147,10 @@ extension TestViewController: UITableViewDelegate, UITableViewDataSource  {
         return operationListIsEmpty ? 1 : operationsByDays.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if operationListIsEmpty { return nil }
         let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell

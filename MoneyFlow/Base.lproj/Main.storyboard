@@ -155,13 +155,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-z2-IEh">
                                                     <rect key="frame" x="306.66666666666669" y="32.333333333333343" width="87.333333333333314" height="35.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
                                                             <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
                                                             <rect key="frame" x="0.0" y="21.333333333333329" width="87.333333333333329" height="14.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="KYX-xh-6Qb"/>
@@ -230,7 +230,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPQ-Ky-Fyc">
                                                             <rect key="frame" x="62" y="0.0" width="145" height="45"/>
-                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₽ 7 690 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6q-RD-9hk">
                                                             <rect key="frame" x="121.66666666666669" y="10.66666666666667" width="69.333333333333314" height="23.333333333333329"/>
@@ -326,7 +326,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Nbv-h4-ooc"/>
+                    <tabBarItem key="tabBarItem" title="" image="list_tabbar_icon" id="Nbv-h4-ooc">
+                        <color key="badgeColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Операции" id="vzz-7o-enw"/>
                     <connections>
                         <outlet property="collectionView" destination="tqx-7M-aCx" id="ZmI-gn-ZMd"/>
@@ -495,7 +497,7 @@
             </objects>
             <point key="canvasLocation" x="2106" y="-581"/>
         </scene>
-        <!--Item-->
+        <!--Empty View Controller-->
         <scene sceneID="GIH-bs-E9b">
             <objects>
                 <viewController id="ckA-Kd-f4r" customClass="EmptyViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
@@ -505,7 +507,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jCt-Gn-k1X"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="V96-mM-bmM"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings_tabbar_icon" id="V96-mM-bmM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UP4-uB-C06" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -803,11 +805,15 @@
                                 <action selector="operationTypeSwitched:" destination="K04-P4-qdx" eventType="valueChanged" id="jv3-ng-boM"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="Готово" id="Fhl-ht-2bf">
-                            <connections>
-                                <action selector="doneButtonTouched:" destination="K04-P4-qdx" id="kEv-FX-2K9"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem id="0AI-1E-Uje"/>
+                            <barButtonItem title="Готово" image="done_button-1" id="Fhl-ht-2bf">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="doneButtonTouched:" destination="K04-P4-qdx" id="kEv-FX-2K9"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="accountTextField" destination="XL3-ON-Aeh" id="l5K-Oj-lHM"/>
@@ -827,7 +833,7 @@
             </objects>
             <point key="canvasLocation" x="2947.826086956522" y="114.94565217391305"/>
         </scene>
-        <!--Item-->
+        <!--Summary View Controller-->
         <scene sceneID="LmN-mV-k9Q">
             <objects>
                 <viewController id="WsQ-IA-01a" customClass="SummaryViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
@@ -1183,7 +1189,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cLk-qo-tZN"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="15p-9H-zPp"/>
+                    <tabBarItem key="tabBarItem" title="" image="graph_tabbar_icon" id="15p-9H-zPp"/>
                     <connections>
                         <outlet property="chartView" destination="kOZ-aH-Zxk" id="sUl-2Q-CHA"/>
                         <outlet property="mainHeaderView" destination="j3J-Ut-wo0" id="5jb-uP-kXJ"/>
@@ -1231,7 +1237,7 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UlW-Y5-uZW">
                                                             <rect key="frame" x="62" y="0.0" width="145" height="45"/>
-                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₽ 7 690 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FqX-lx-gLY">
                                                             <rect key="frame" x="121.66666666666669" y="10.66666666666667" width="69.333333333333314" height="23.333333333333329"/>
@@ -1251,17 +1257,17 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="qXA-KN-jDG">
-                                                    <rect key="frame" x="23.000000000000007" y="33.333333333333329" width="97.666666666666686" height="33.333333333333329"/>
+                                                    <rect key="frame" x="23.000000000000007" y="32.333333333333343" width="97.666666666666686" height="35.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ситимобил" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq7-1E-ipF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ситимобил" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq7-1E-ipF">
                                                             <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="21"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коммент" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwj-RE-e9U">
-                                                            <rect key="frame" x="0.0" y="22" width="97.666666666666671" height="11.333333333333336"/>
-                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="9"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Коммент" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwj-RE-e9U">
+                                                            <rect key="frame" x="0.0" y="22" width="97.666666666666671" height="13.666666666666664"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1272,11 +1278,11 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHt-8i-CvE">
-                                                    <rect key="frame" x="314.66666666666669" y="18.333333333333332" width="68.333333333333314" height="11.333333333333332"/>
+                                                    <rect key="frame" x="299.66666666666669" y="16" width="83.333333333333314" height="13.666666666666664"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="umx-kR-hYn"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="9"/>
+                                                    <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1310,17 +1316,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dUX-Zd-GWk">
-                                                    <rect key="frame" x="17" y="17.333333333333336" width="380" height="20.333333333333336"/>
+                                                    <rect key="frame" x="17" y="17" width="380" height="21"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="21 августа" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-Gr-1tX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="291.33333333333331" height="20.333333333333332"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="293.33333333333331" height="21"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 178 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmo-Xg-Yei">
-                                                            <rect key="frame" x="311.33333333333331" y="0.0" width="68.666666666666686" height="20.333333333333332"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                            <rect key="frame" x="313.33333333333331" y="0.0" width="66.666666666666686" height="21"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1347,19 +1353,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Rxm-14-Lje">
-                                                    <rect key="frame" x="10" y="17.333333333333336" width="394" height="65.333333333333314"/>
+                                                    <rect key="frame" x="10" y="16.333333333333336" width="394" height="67.333333333333314"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Список операций пуст" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85o-vh-dTL">
-                                                            <rect key="frame" x="106" y="0.0" width="182" height="28.666666666666668"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="97.666666666666686" y="0.0" width="199" height="29.666666666666668"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFr-6e-aE0">
-                                                            <rect key="frame" x="103.33333333333333" y="36.666666666666671" width="187.33333333333337" height="28.666666666666671"/>
+                                                            <rect key="frame" x="99.666666666666686" y="37.666666666666671" width="195" height="29.666666666666671"/>
                                                             <string key="text">Измените найстройки фильтра 
 или добавьте операции</string>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1450,18 +1456,28 @@
                             <outlet property="delegate" destination="8MY-8I-mUq" id="lKt-xg-wVg"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Фотогаллерея" id="gcA-B8-QuC">
-                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="6fj-14-n1W">
-                            <connections>
-                                <action selector="cancelButtonTouched:" destination="8MY-8I-mUq" id="qUv-dT-sD7"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Готово" id="DZv-3t-GMp">
-                            <connections>
-                                <action selector="doneButtonTouched:" destination="8MY-8I-mUq" id="bG9-XB-mMy"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem style="plain" id="23d-6e-C7G"/>
+                            <barButtonItem title="Отмена" image="cancel_button-1" id="6fj-14-n1W">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="cancelButtonTouched:" destination="8MY-8I-mUq" id="qUv-dT-sD7"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="NP7-zL-AKt"/>
+                            <barButtonItem title="Готово" image="done_button-1" id="DZv-3t-GMp">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="doneButtonTouched:" destination="8MY-8I-mUq" id="bG9-XB-mMy"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="flowLayout" destination="ISM-6P-192" id="i7M-Cp-Dqc"/>
                     </connections>
@@ -1526,7 +1542,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fqC-F9-h45">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" cocoaTouchSystemColor="darkTextColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bna-aQ-RRZ"/>
@@ -1584,4 +1603,11 @@
             <point key="canvasLocation" x="2105.7971014492755" y="114.94565217391305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancel_button-1" width="19.333333969116211" height="19.333333969116211"/>
+        <image name="done_button-1" width="19.333333969116211" height="19.333333969116211"/>
+        <image name="graph_tabbar_icon" width="29.666666030883789" height="29"/>
+        <image name="list_tabbar_icon" width="29.666666030883789" height="29"/>
+        <image name="settings_tabbar_icon" width="29" height="29.666666030883789"/>
+    </resources>
 </document>
