@@ -13,7 +13,7 @@ class ButtonSelectorView: UIView {
     
     var direction: Direction = .up { didSet { if oldValue != direction { rotate(direction) } } }
     private(set) var buttons = [UIButton]()
-    private lazy var mainButton: UIButton = {
+    lazy var mainButton: UIButton = {
         let button = UIButton(frame: frame)
         button.addTarget(self, action: #selector(mainButtonTouched), for: .touchUpInside)
         button.backgroundColor = .clear
@@ -24,19 +24,16 @@ class ButtonSelectorView: UIView {
         return button
     }()
     
-    private var shadowLayer: CAShapeLayer!
+    // MARK: Animating open/close
     
     @objc private func mainButtonTouched() {
-        print("touched")
-        print("\(bounds.width) - \(bounds.height) \n")
         if bounds.width.rounded() == bounds.height.rounded() {
-            print("open")
             UIView.animate(
                 withDuration: 0.2,
                 delay: 0,
-                options: .curveEaseInOut,
+                options: .curveEaseOut,
                 animations: {
-                    self.frame.size.height = self.frame.size.width * CGFloat((self.buttons.count + 1))
+                    self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
                     self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
                     self.layoutIfNeeded()
                 },
@@ -46,7 +43,6 @@ class ButtonSelectorView: UIView {
                     }
             })
         } else {
-            print("close")
             UIView.animate(
                 withDuration: 0.1,
                 animations: {
@@ -55,7 +51,7 @@ class ButtonSelectorView: UIView {
                 completion: { _ in
                     self.buttons.forEach { $0.isHidden = true}
                     UIView.animate(withDuration: 0.2) {
-                        self.frame.size.height = self.frame.size.width
+                        self.bounds.size.height = self.bounds.size.width
                         self.mainButton.transform = .identity
                         self.layoutIfNeeded()
                     }
@@ -64,21 +60,21 @@ class ButtonSelectorView: UIView {
         
     }
     
-    private func initialization() {
-        mainButton.titleLabel?.text = "Add"
-        mainButton.backgroundColor = .clear
-        buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
-        addMainButtonConstraints()
-        addUserButtonsConstraints()
-    }
+    // MARK: Initialization and layouting
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = frame.width/2
-        buttons.forEach { $0.layer.cornerRadius = $0.frame.width/2  }
-        mainButton.layer.cornerRadius = frame.width/2
-//        addShadow()
-    }
+      private func initialization() {
+            buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
+            addMainButtonConstraints()
+            addUserButtonsConstraints()
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            layer.cornerRadius = bounds.width/2
+            buttons.forEach { $0.layer.cornerRadius = $0.bounds.width/2  }
+            mainButton.layer.cornerRadius = bounds.width/2
+    //        addShadow()
+        }
     
     convenience init(frame: CGRect, button1: UIButton, button2: UIButton, button3: UIButton? = nil) {
         self.init(frame: frame)
@@ -100,18 +96,7 @@ class ButtonSelectorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func rotate(_ direction: Direction) {
-        self.transform = .identity
-        switch direction {
-        case .up: break
-        case .down:
-            self.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
-        case .left:
-            self.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi/2)
-        case .right:
-            self.transform = CGAffineTransform.init(rotationAngle: +CGFloat.pi/2)
-        }
-    }
+    // MARK: Adding constraints
     
     private func addUserButtonsConstraints() {
         guard !buttons.isEmpty else { return }
@@ -143,6 +128,25 @@ class ButtonSelectorView: UIView {
         mainButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    // MARK: Service funcs
+    
+    private func rotate(_ direction: Direction) {
+        self.transform = .identity
+        buttons.forEach { $0.transform = .identity }
+        switch direction {
+        case .up: break
+        case .down:
+            self.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
+            buttons.forEach { $0.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi)}
+        case .left:
+            self.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi/2)
+            buttons.forEach { $0.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)}
+        case .right:
+            self.transform = CGAffineTransform.init(rotationAngle: +CGFloat.pi/2)
+            buttons.forEach { $0.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi/2)}
+        }
+    }
+    
     private func addShadow() {
         let radius = frame.width / 2
         
@@ -152,8 +156,6 @@ class ButtonSelectorView: UIView {
         layer.shadowOpacity = 0.3
         layer.shadowRadius = radius
     }
-    
-    
     
     enum Direction { case up, down, left, right }
 }

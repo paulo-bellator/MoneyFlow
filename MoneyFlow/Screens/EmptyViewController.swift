@@ -38,6 +38,15 @@ class EmptyViewController: UIViewController {
         
         view.addSubview(buttonSelector)
         
+        self.view.addConstraint(NSLayoutConstraint(
+            item: buttonSelector!,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: -100))
+        
     }
 
 }
