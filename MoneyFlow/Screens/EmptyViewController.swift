@@ -38,6 +38,7 @@ class EmptyViewController: UIViewController {
         
         view.addSubview(buttonSelector)
         
+//        buttonSelector!.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraint(NSLayoutConstraint(
             item: buttonSelector!,
             attribute: .bottom,
@@ -45,7 +46,15 @@ class EmptyViewController: UIViewController {
             toItem: view,
             attribute: .centerY,
             multiplier: 1,
-            constant: -100))
+            constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(
+        item: buttonSelector!,
+        attribute: .centerX,
+        relatedBy: .equal,
+        toItem: view,
+        attribute: .centerX,
+        multiplier: 1,
+        constant: 0))
         
     }
 

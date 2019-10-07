@@ -35,6 +35,7 @@ class ButtonSelectorView: UIView {
                 animations: {
                     self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
                     self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+                    self.compenstateOffset()
                     self.layoutIfNeeded()
                 },
                 completion: { _ in
@@ -52,6 +53,7 @@ class ButtonSelectorView: UIView {
                     self.buttons.forEach { $0.isHidden = true}
                     UIView.animate(withDuration: 0.2) {
                         self.bounds.size.height = self.bounds.size.width
+                        self.compenstateOffset()
                         self.mainButton.transform = .identity
                         self.layoutIfNeeded()
                     }
@@ -129,6 +131,23 @@ class ButtonSelectorView: UIView {
     }
     
     // MARK: Service funcs
+    
+    private func compenstateOffset() {
+        var offset = bounds.width * CGFloat(buttons.count)
+        if bounds.width.rounded() != bounds.height.rounded() {
+            offset *= -1
+        }
+        switch direction {
+        case .up:
+            self.frame.origin.y += (offset)/2
+        case .down:
+            self.frame.origin.y -= (offset)/2
+        case .left:
+            self.frame.origin.x += (offset)/2
+        case .right:
+            self.frame.origin.x -= (offset)/2
+        }
+    }
     
     private func rotate(_ direction: Direction) {
         self.transform = .identity
