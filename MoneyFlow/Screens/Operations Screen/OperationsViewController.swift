@@ -152,18 +152,21 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     private func addButtonSelector() {
         let button1 = UIButton(frame: CGRect.zero)
         let button2 = UIButton(frame: CGRect.zero)
+        let button3 = UIButton(frame: CGRect.zero)
         button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
         button2.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
         button1.backgroundColor = .clear
         button2.backgroundColor = .clear
+        button3.backgroundColor = .clear
         if let image = UIImage(named: "plus_icon.png") { button1.setImage(image, for: .normal) }
         if let image = UIImage(named: "camera_icon.png") { button2.setImage(image, for: .normal) }
+        if let image = UIImage(named: "list_icon.png") { button3.setImage(image, for: .normal) }
         
         let size = CGSize(width: view.bounds.width/6, height: view.bounds.width/5)
         let origin = CGPoint(x: view.bounds.maxX - size.width - 20, y: view.bounds.maxY - size.height - 70)
         let frameForView = CGRect(origin: origin, size: size)
         
-        let buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2)
+        let buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2, button3: button3)
         buttonSelector.backgroundColor = UIColor.white.withAlphaComponent(1.0)
         buttonSelector.direction = .left
         

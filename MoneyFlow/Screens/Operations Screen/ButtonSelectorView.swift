@@ -13,14 +13,20 @@ protocol ButtonSelectorViewDelegate: class {
     func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool)
 }
 
+/// Contains up to 3 buttons in compact circle form. On tap  animated showing and hiding buttons
 class ButtonSelectorView: UIView {
     
+    /// Get notified when view opening and closing
     weak var delegate: ButtonSelectorViewDelegate?
+    /// Define in which direction view moves apart
     var direction: Direction = .up { didSet { if oldValue != direction { rotate(direction) } } }
+    /// Define whether rotate mainButton on tap or not
+    var shouldRotateMainButton = true
     
     private(set) var isOpen: Bool = false
     private(set) var buttons = [UIButton]()
     
+    /// Always visible button, which controls opening and closing view
     lazy var mainButton: UIButton = {
         let button = UIButton(frame: frame)
         button.addTarget(self, action: #selector(mainButtonTouched), for: .touchUpInside)
@@ -50,7 +56,9 @@ class ButtonSelectorView: UIView {
                 options: .curveEaseOut,
                 animations: {
                     self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
-                    self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+                    if self.shouldRotateMainButton {
+                        self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+                    }
                     self.compenstateOffset()
                     self.layoutIfNeeded()
                 },
@@ -61,7 +69,9 @@ class ButtonSelectorView: UIView {
             })
         } else {
             self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
-            self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+            if self.shouldRotateMainButton {
+                self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+            }
             self.compenstateOffset()
             self.buttons.forEach { $0.alpha = 1.0; $0.isHidden = false }
             self.layoutIfNeeded()
@@ -82,7 +92,7 @@ class ButtonSelectorView: UIView {
                     UIView.animate(withDuration: 0.2) {
                         self.bounds.size.height = self.bounds.size.width
                         self.compenstateOffset()
-                        self.mainButton.transform = .identity
+                        if self.shouldRotateMainButton { self.mainButton.transform = .identity }
                         self.layoutIfNeeded()
                     }
             })
@@ -90,7 +100,7 @@ class ButtonSelectorView: UIView {
             self.buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
             self.bounds.size.height = self.bounds.size.width
             self.compenstateOffset()
-            self.mainButton.transform = .identity
+            if self.shouldRotateMainButton { self.mainButton.transform = .identity }
             self.layoutIfNeeded()
         }
         isOpen = false
