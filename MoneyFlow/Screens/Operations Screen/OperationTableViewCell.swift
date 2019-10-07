@@ -10,7 +10,6 @@ import UIKit
 
 class OperationTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!

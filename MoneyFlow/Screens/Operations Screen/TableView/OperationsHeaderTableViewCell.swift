@@ -9,8 +9,6 @@
 import UIKit
 
 class OperationsHeaderTableViewCell: UITableViewCell {
-
-    
     
     @IBOutlet weak var periodLabel: UILabel! {
         didSet {

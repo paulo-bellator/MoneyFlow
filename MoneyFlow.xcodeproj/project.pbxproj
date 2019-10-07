@@ -66,6 +66,8 @@
 		F9D3A9F82321651700895A80 /* ManagingOperationsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */; };
 		F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40878232E212E0034B913 /* SummaryViewController.swift */; };
 		F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */; };
+		F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */; };
+		F9E1F600234B6C93000B6DB4 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +135,8 @@
 		F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ManagingOperationsTableViewExtension.swift; path = ../ManagingOperationsTableViewExtension.swift; sourceTree = "<group>"; };
 		F9D40878232E212E0034B913 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = ../SummaryViewController.swift; sourceTree = "<group>"; };
 		F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectorView.swift; sourceTree = "<group>"; };
+		F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +234,8 @@
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
+				F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */,
+				F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */,
 				F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */,
 				F9B2D6822341223900711F59 /* ImagePicker Screen */,
 				F9D4087A232E214B0034B913 /* Summary Screen */,
@@ -536,8 +542,10 @@
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
 				F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
+				F9E1F600234B6C93000B6DB4 /* EmptyViewController.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,
+				F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */,
 				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
 				F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */,
