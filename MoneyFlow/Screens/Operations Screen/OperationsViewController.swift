@@ -28,6 +28,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let tableViewRowHeight: CGFloat = 100
     let filterPeriod: Presenter.DateFilterUnit = .days
     var upperBound: Double = 0.0
+    private var buttonSelector: ButtonSelectorView!
+    private weak var timer: Timer?
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
@@ -138,22 +140,23 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         performSegue(withIdentifier: addOperationSegueIdentifier, sender: self)
+        buttonSelector.close(animated: false)
     }
     @objc func addSomeOperations() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: self)
+        buttonSelector.close(animated: false)
     }
     
     private func addButtonSelector() {
         let button1 = UIButton(frame: CGRect.zero)
-        button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
-        button1.backgroundColor = .clear
-        if let image = UIImage(named: "plus_icon.png") { button1.setImage(image, for: .normal) }
-        
         let button2 = UIButton(frame: CGRect.zero)
+        button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
         button2.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
+        button1.backgroundColor = .clear
         button2.backgroundColor = .clear
+        if let image = UIImage(named: "plus_icon.png") { button1.setImage(image, for: .normal) }
         if let image = UIImage(named: "camera_icon.png") { button2.setImage(image, for: .normal) }
         
         let size = CGSize(width: view.bounds.width/6, height: view.bounds.width/5)
@@ -164,9 +167,9 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         buttonSelector.backgroundColor = #colorLiteral(red: 0.9405411869, green: 0.9405411869, blue: 0.9405411869, alpha: 1)
         buttonSelector.direction = .left
         
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        view.addSubview(buttonSelector)
         buttonSelector.delegate = self
+        self.buttonSelector = buttonSelector
+        view.addSubview(buttonSelector)
     }
     
     
@@ -225,16 +228,21 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
 extension OperationsViewController: ButtonSelectorViewDelegate {
     func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool) {
         if animated {
-            let generator = UIImpactFeedbackGenerator(style: .medium)
+            let generator = UIImpactFeedbackGenerator(style: .light)
             generator.impactOccurred()
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { [weak self] _ in
+                self?.buttonSelector.close(animated: true)
+            }
         }
     }
     
     func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool) {
         if animated {
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.success)
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
         }
+        timer?.invalidate()
     }
 }
 
