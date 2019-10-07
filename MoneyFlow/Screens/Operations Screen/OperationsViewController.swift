@@ -18,6 +18,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     @IBOutlet weak var progressView: UIProgressView!
     
     let addOperationSegueIdentifier = "ShowAddOperation"
+    let addSomeOperationsSegueIdentidier = "addSomeOperations"
     let operationTableViewCellIdentifier = "OperationCell"
     let operationTableViewDesignCellIdentifier = "OperationDesignCell"
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
@@ -129,12 +130,46 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
+        addButtonSelector()
     }
     
     
-    @IBAction func addOperation(_ sender: UIButton) {
-//        self.overlayBlurredBackgroundView()
+    @objc func addOperation() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        performSegue(withIdentifier: addOperationSegueIdentifier, sender: self)
     }
+    @objc func addSomeOperations() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: self)
+    }
+    
+    private func addButtonSelector() {
+        let button1 = UIButton(frame: CGRect.zero)
+        button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
+        button1.backgroundColor = .clear
+        if let image = UIImage(named: "plus_icon.png") { button1.setImage(image, for: .normal) }
+        
+        let button2 = UIButton(frame: CGRect.zero)
+        button2.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
+        button2.backgroundColor = .clear
+        if let image = UIImage(named: "camera_icon.png") { button2.setImage(image, for: .normal) }
+        
+        let size = CGSize(width: view.bounds.width/6, height: view.bounds.width/5)
+        let origin = CGPoint(x: view.bounds.maxX - size.width - 20, y: view.bounds.maxY - size.height - 70)
+        let frameForView = CGRect(origin: origin, size: size)
+        
+        let buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2)
+        buttonSelector.backgroundColor = #colorLiteral(red: 0.9405411869, green: 0.9405411869, blue: 0.9405411869, alpha: 1)
+        buttonSelector.direction = .left
+        
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.addSubview(buttonSelector)
+        buttonSelector.delegate = self
+    }
+    
+    
     
     func overlayBlurredBackgroundView() {
         let blurredBackgroundView = UIVisualEffectView()
@@ -185,6 +220,22 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     
 
+}
+
+extension OperationsViewController: ButtonSelectorViewDelegate {
+    func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool) {
+        if animated {
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+        }
+    }
+    
+    func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool) {
+        if animated {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+        }
+    }
 }
 
 extension OperationsViewController: CloudDataSourceDelegate {

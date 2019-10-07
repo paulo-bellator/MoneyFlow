@@ -8,11 +8,19 @@
 
 import UIKit
 
+protocol ButtonSelectorViewDelegate: class {
+    func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool)
+    func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool)
+}
 
 class ButtonSelectorView: UIView {
     
+    weak var delegate: ButtonSelectorViewDelegate?
     var direction: Direction = .up { didSet { if oldValue != direction { rotate(direction) } } }
+    
+    private(set) var isOpen: Bool = false
     private(set) var buttons = [UIButton]()
+    
     lazy var mainButton: UIButton = {
         let button = UIButton(frame: frame)
         button.addTarget(self, action: #selector(mainButtonTouched), for: .touchUpInside)
@@ -28,6 +36,14 @@ class ButtonSelectorView: UIView {
     
     @objc private func mainButtonTouched() {
         if bounds.width.rounded() == bounds.height.rounded() {
+            open(animated: true)
+        } else {
+            close(animated: true)
+        }
+    }
+    
+    func open(animated: Bool) {
+        if animated {
             UIView.animate(
                 withDuration: 0.2,
                 delay: 0,
@@ -44,8 +60,20 @@ class ButtonSelectorView: UIView {
                     }
             })
         } else {
+            self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
+            self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+            self.compenstateOffset()
+            self.buttons.forEach { $0.alpha = 1.0; $0.isHidden = false }
+            self.layoutIfNeeded()
+        }
+        isOpen = true
+        delegate?.buttonSelectorOpened(sender: self, animated: animated)
+    }
+    
+    func close(animated: Bool) {
+        if animated {
             UIView.animate(
-                withDuration: 0.1,
+                withDuration: 0.05,
                 animations: {
                     self.buttons.forEach { $0.alpha = 0.0}
             },
@@ -58,8 +86,15 @@ class ButtonSelectorView: UIView {
                         self.layoutIfNeeded()
                     }
             })
+        } else {
+            self.buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
+            self.bounds.size.height = self.bounds.size.width
+            self.compenstateOffset()
+            self.mainButton.transform = .identity
+            self.layoutIfNeeded()
         }
-        
+        isOpen = false
+        delegate?.buttonSelectorClosed(sender: self, animated: animated)
     }
     
     // MARK: Initialization and layouting
@@ -75,7 +110,7 @@ class ButtonSelectorView: UIView {
             layer.cornerRadius = bounds.width/2
             buttons.forEach { $0.layer.cornerRadius = $0.bounds.width/2  }
             mainButton.layer.cornerRadius = bounds.width/2
-    //        addShadow()
+            addShadow()
         }
     
     convenience init(frame: CGRect, button1: UIButton, button2: UIButton, button3: UIButton? = nil) {
@@ -167,7 +202,7 @@ class ButtonSelectorView: UIView {
     }
     
     private func addShadow() {
-        let radius = frame.width / 2
+        let radius = bounds.width / 2
         
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowPath = UIBezierPath(roundedRect:bounds, byRoundingCorners:[.topLeft, .topRight, .bottomLeft, .bottomRight], cornerRadii: CGSize(width: radius, height:  radius)).cgPath

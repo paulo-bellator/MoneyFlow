@@ -12,7 +12,6 @@ class EmptyViewController: UIViewController {
 
     private var buttonSelector: ButtonSelectorView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let button1 = UIButton(frame: CGRect.zero)
@@ -34,28 +33,11 @@ class EmptyViewController: UIViewController {
         buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2, button3: button3)
         buttonSelector.backgroundColor = #colorLiteral(red: 0.9405411869, green: 0.9405411869, blue: 0.9405411869, alpha: 1)
         buttonSelector.direction = .up
+        if let image = UIImage(named: "plus_icon.png") {
+            buttonSelector.mainButton.setImage(image, for: .normal)
+        }
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
         view.addSubview(buttonSelector)
-        
-//        buttonSelector!.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addConstraint(NSLayoutConstraint(
-            item: buttonSelector!,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .centerY,
-            multiplier: 1,
-            constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(
-        item: buttonSelector!,
-        attribute: .centerX,
-        relatedBy: .equal,
-        toItem: view,
-        attribute: .centerX,
-        multiplier: 1,
-        constant: 0))
-        
     }
 
 }

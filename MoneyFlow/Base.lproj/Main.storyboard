@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ckA-Kd-f4r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6jo-4r-O6d">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -155,13 +155,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-z2-IEh">
                                                     <rect key="frame" x="306.66666666666669" y="32.333333333333343" width="87.333333333333314" height="35.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
                                                             <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
                                                             <rect key="frame" x="0.0" y="21.333333333333329" width="87.333333333333329" height="14.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="KYX-xh-6Qb"/>
@@ -304,18 +304,6 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJV-Tq-bcc">
-                                <rect key="frame" x="309" y="619" width="75" height="28"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="  Добавить  ">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="addOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zmk-sk-fac"/>
-                                    <segue destination="a2s-dh-ZdE" kind="show" identifier="ShowAddOperation" id="wcl-PN-GCK"/>
-                                </connections>
-                            </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="llb-yi-qlg">
                                 <rect key="frame" x="0.0" y="664.33333333333337" width="414" height="2.6666666666666288"/>
                                 <color key="progressTintColor" red="1" green="0.74117668110000001" blue="0.07064201363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -323,7 +311,6 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iJV-Tq-bcc" secondAttribute="bottom" constant="20" id="Eo7-Dj-ssy"/>
                             <constraint firstItem="llb-yi-qlg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-1" id="GCV-IJ-T5F"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="llb-yi-qlg" secondAttribute="leading" id="SfD-qb-BVl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="llb-yi-qlg" secondAttribute="trailing" id="U0X-4y-44U"/>
@@ -334,7 +321,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VqW-fa-Ih6" secondAttribute="bottom" id="o0p-2c-fZe"/>
                             <constraint firstItem="VqW-fa-Ih6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="qjv-M8-S1q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VqW-fa-Ih6" secondAttribute="trailing" id="rSc-TU-c50"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iJV-Tq-bcc" secondAttribute="trailing" constant="30" id="vhB-F0-UzJ"/>
                             <constraint firstItem="tqx-7M-aCx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yGh-g9-OxV"/>
                             <constraint firstItem="tqx-7M-aCx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yS4-21-qnM"/>
                         </constraints>
@@ -348,11 +334,13 @@
                         <outlet property="progressView" destination="llb-yi-qlg" id="wHF-M2-pbr"/>
                         <outlet property="tableView" destination="VqW-fa-Ih6" id="eIv-aV-0MM"/>
                         <outlet property="tableViewTopSafeAreaTopConstrain" destination="qjv-M8-S1q" id="OaL-TM-CDb"/>
+                        <segue destination="vFZ-BJ-6Fo" kind="show" identifier="addSomeOperations" id="weL-WN-bWs"/>
+                        <segue destination="a2s-dh-ZdE" kind="show" identifier="ShowAddOperation" id="ge5-nE-AiN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108.6956521739132" y="114.50892857142857"/>
+            <point key="canvasLocation" x="1184" y="115"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Dw4-Z1-CTP">
@@ -507,16 +495,17 @@
             </objects>
             <point key="canvasLocation" x="2106" y="-581"/>
         </scene>
-        <!--Empty View Controller-->
+        <!--Item-->
         <scene sceneID="GIH-bs-E9b">
             <objects>
                 <viewController id="ckA-Kd-f4r" customClass="EmptyViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Or-6u-tOb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jCt-Gn-k1X"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="V96-mM-bmM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UP4-uB-C06" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1227,7 +1216,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KsB-Np-l8y">
-                                <rect key="frame" x="0.0" y="115" width="414" height="552"/>
+                                <rect key="frame" x="0.0" y="115" width="414" height="601"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OperationDesignCell" rowHeight="100" id="Mnf-MU-fN6" customClass="OperationsDesignedTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
@@ -1405,6 +1394,7 @@
                         <viewLayoutGuide key="safeArea" id="rfg-Px-Fgc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="NyR-zi-PQ5"/>
+                    <navigationItem key="navigationItem" id="Yg1-lo-PoP"/>
                     <connections>
                         <outlet property="tableView" destination="KsB-Np-l8y" id="StN-m1-Qen"/>
                     </connections>
@@ -1541,7 +1531,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bna-aQ-RRZ"/>
                         <segue destination="WsQ-IA-01a" kind="relationship" relationship="viewControllers" id="qHJ-uf-kUR"/>
-                        <segue destination="vFZ-BJ-6Fo" kind="relationship" relationship="viewControllers" id="bXK-7g-3dH"/>
+                        <segue destination="ckA-Kd-f4r" kind="relationship" relationship="viewControllers" id="kOu-FE-HTS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztz-Tf-TNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
