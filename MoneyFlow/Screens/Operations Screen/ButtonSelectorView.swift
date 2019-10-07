@@ -99,19 +99,19 @@ class ButtonSelectorView: UIView {
     
     // MARK: Initialization and layouting
     
-      private func initialization() {
-            buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
-            addMainButtonConstraints()
-            addUserButtonsConstraints()
-        }
-        
-        override func layoutSubviews() {
-            super.layoutSubviews()
-            layer.cornerRadius = bounds.width/2
-            buttons.forEach { $0.layer.cornerRadius = $0.bounds.width/2  }
-            mainButton.layer.cornerRadius = bounds.width/2
-            addShadow()
-        }
+    private func initialization() {
+        buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
+        addMainButtonConstraints()
+        addUserButtonsConstraints()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.width/2
+        buttons.forEach { $0.layer.cornerRadius = $0.bounds.width/2  }
+        mainButton.layer.cornerRadius = bounds.width/2
+        addShadow()
+    }
     
     convenience init(frame: CGRect, button1: UIButton, button2: UIButton, button3: UIButton? = nil) {
         self.init(frame: frame)

@@ -235,7 +235,6 @@
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
 				F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */,
-				F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */,
 				F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */,
 				F9B2D6822341223900711F59 /* ImagePicker Screen */,
 				F9D4087A232E214B0034B913 /* Summary Screen */,
@@ -272,6 +271,7 @@
 				F9A980FB2321409600F630F9 /* OperationsViewController.swift */,
 				F9A981052321416000F630F9 /* Presenter.swift */,
 				F9A981032321410900F630F9 /* OperationPresenter.swift */,
+				F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */,
 				F9D3A9F9232165BB00895A80 /* TableView */,
 				F9D3A9FA232165D400895A80 /* CollectionView */,
 			);
