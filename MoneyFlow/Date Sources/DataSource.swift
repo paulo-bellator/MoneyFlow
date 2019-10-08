@@ -19,6 +19,7 @@ protocol CloudOperationDataSource: OperationDataSource {
     var delegate: CloudDataSourceDelegate? { get set }
     var isDownloadComplete: Bool { get }
     func updateData()
+    func configure()
 }
 protocol CloudDataSourceDelegate: class {
     var downloadProgress: Double { get set }
@@ -50,6 +51,7 @@ protocol CloudSettingsDataSource: SettingsDataSource {
     var delegate: CloudSettingsDataSourceDelegate? { get set }
     var isDownloadComplete: Bool { get }
     func updateData()
+    func configure()
 }
 protocol CloudSettingsDataSourceDelegate: class {
     func settingsDownloadComplete(with error: Error?)
@@ -57,8 +59,11 @@ protocol CloudSettingsDataSourceDelegate: class {
 }
 
 class MainData {
+//    static let source: OperationDataSource = CombinedDataSource.shared
+//    static let settings: SettingsDataSource = CombinedSettingDataSource.shared
     static let source: OperationDataSource = DefaultDataSource.shared
-//    static var source: CloudOperationDataSource = FirebaseDataSource.shared
     static let settings: SettingsDataSource = DefaultSettingsDataSource.shared
+//    static var source: OperationDataSource = FirebaseDataSource.shared
+//    static let settings: SettingsDataSource = FirebaseSettingsDataSource.shared
 }
 

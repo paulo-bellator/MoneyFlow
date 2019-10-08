@@ -12,6 +12,20 @@ protocol IDGenerator {
     func generateID() -> Int
 }
 
+protocol CloudIDGenerator: IDGenerator {
+    var delegate: CloudIDGeneratorDelegate? { get set }
+    var isDownloadComplete: Bool { get }
+    func updateData()
+    func save()
+    func configure()
+}
+protocol CloudIDGeneratorDelegate: class {
+    func generatorDownloadComplete(with error: Error?)
+    func generatorUploadComplete(with error: Error?)
+}
+
 class MainGenerator {
     static var generator: IDGenerator = DefaultIDGenerator.shared
+//    static var generator: IDGenerator = CombinedIDGenerator.shared
+//    static var generator: IDGenerator = FirebaseIDGenerator.shared
 }

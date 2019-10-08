@@ -8,43 +8,112 @@
 
 import UIKit
 
-class SummaryViewController: UIViewController, ChartViewDelegate {
+class SummaryViewController: UIViewController {
 
     @IBOutlet weak var chartView: ChartView!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var mainMoneyAmountSmallLabel: UILabel!
+    @IBOutlet weak var mainMoneyAmountBigLabel: UILabel!
+    
     @IBOutlet weak var mainHeaderView: UIView!
+    @IBOutlet weak var mounthLabel: UILabel!
+    @IBOutlet weak var monthMoneyAmountSmallLabel: UILabel!
+    @IBOutlet weak var monthMoneyAmountBigLabel: UILabel!
+    
+    @IBOutlet var weekLabels: [UILabel]!
+    @IBOutlet var weekResultLabels: [UILabel]!
+    
+    let presenter = SummaryPresenter()
+    let summaryCellIdentifier = "summaryCell"
+    let summaryGraphCellIdentifier = "summaryGraphCell"
+    let summaryHeaderCellIdentifier = "summaryHeader"
+    var isCircleChartPresentationType = true
+    var isDataReady = false
+    
+    lazy var mainCurrency: Currency = presenter.settings.currencies.first!
+    lazy var summaryByMonth = presenter.summary(by: .months, for: mainCurrency)
+    lazy var summaryMinMax = presenter.maxAndMinValuesFromSummary(by: .months, for: mainCurrency)
+    var currentMonthIndex = 0 { didSet { updateMonthData(); setupMonthHeader() } }
+    var periods: [DateInterval] {
+        return presenter.periodsFor(monthFrom: summaryByMonth[currentMonthIndex].period.end)
+    }
+    lazy var monthData = SummaryMonthData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overlayBlurredBackgroundView()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         chartView.delegate = self
         chartView.minValueLabel.text = "0"
-        chartView.midValueLabel.text = "50K"
-        self.chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
+        chartView.midValueLabel.text = (summaryMinMax.max/2.0).shortString
+        chartView.allowsSelection = true
+        chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
+        
+        mainMoneyAmountBigLabel.text = presenter.totalMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
+        mainMoneyAmountSmallLabel.text = presenter.availableMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
+        
         mainHeaderView.addRoundedRectMask()
+        
+//        updateMonthData()
+//        isDataReady = true
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.updateMonthData()
+            self?.isDataReady = true
+
+            DispatchQueue.main.async {
+                self?.setupMonthHeader()
+                self?.tableView.reloadData()
+                if self != nil {
+                    let blurredView = self!.view.subviews.last!
+                    UIView.animate(
+                        withDuration: 0.5,
+                        animations: { blurredView.alpha = 0.0 },
+                        completion: { _ in blurredView.removeFromSuperview() })
+                }
+            }
+        }
+        
+    }
+    
+    func overlayBlurredBackgroundView() {
+        let blurredBackgroundView = UIVisualEffectView()
+        blurredBackgroundView.frame = view.frame
+        blurredBackgroundView.effect = UIBlurEffect(style: .light)
+        blurredBackgroundView.alpha = 1.0
+        view.addSubview(blurredBackgroundView)
+//        UIView.animate(withDuration: 0.35) {
+//            blurredBackgroundView.alpha = 1
+//        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
-    func chartView(didSelectColumnAt index: Int) {
-        print("Selected in \(index)")
+    @IBAction func presentationTypeButtonTouched(_ sender: UIButton) {
+        isCircleChartPresentationType.toggle()
+        tableView.reloadData()
     }
     
-    func chartViewNumberOfColumns() -> Int {
-        return 12
+    private func setupMonthHeader() {
+        mounthLabel.text =  monthData.monthName
+        monthMoneyAmountSmallLabel.text = monthData.availableMoneyAmountFormatted
+        monthMoneyAmountBigLabel.text = monthData.totalMoneyAmountFormatted
+        
+        for (index, label) in weekLabels.enumerated() {
+            label.text = monthData.formattedPeriodForWeek[index]
+        }
+        for (index, label) in weekResultLabels.enumerated() {
+            label.text = monthData.formattedResultForWeek[index]
+        }
     }
     
-    func chartView(labelForColumnAt index: Int) -> String {
-        return "Dec"
-    }
-    
-    func chartView(mainValueForColumnAt index: Int) -> CGFloat {
-        return CGFloat(Double.random(in: 0.1...0.8))
-    }
-    
-    func chartView(secondValueForColumnAt index: Int) -> CGFloat? {
-        return CGFloat(Double.random(in: 0.4...1.0))
+    private func updateMonthData() {
+        monthData.loadData(source: presenter, period: summaryByMonth[currentMonthIndex].period, currency: mainCurrency)
     }
 }
 
@@ -57,5 +126,33 @@ private extension UIView {
         let shape = CAShapeLayer()
         shape.path = path.cgPath
         layer.mask = shape
+    }
+}
+
+extension Double {
+    var shortString: String {
+        let intValue = abs(Int(self))
+        let sign = self < 0 ? "-" : ""
+        switch intValue {
+        case _ where intValue < 1000: return "\(intValue)"
+        case _ where intValue < 100_000:
+            var result = "\(intValue / 1000)" + "."
+            let remainder = Int(round(Double(intValue % 1000), toNearest: 10))/10
+            result += "\(remainder)к"
+            return sign + result
+            
+        case _ where intValue < 1_000_000:
+            var result = "\(intValue / 1000)" + "."
+            let remainder = Int(round(Double(intValue % 1000), toNearest: 100))/100
+            result += "\(remainder)к"
+            return sign + result
+        default:
+            let valueRoundedToK = round(Double(intValue), toNearest: 1000)/1000
+            return sign + valueRoundedToK.shortString + "к"
+        }
+    }
+    
+    private func round(_ value: Double, toNearest: Double) -> Double {
+        return (value / toNearest).rounded() * toNearest
     }
 }

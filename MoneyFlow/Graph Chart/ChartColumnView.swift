@@ -9,7 +9,7 @@
 import UIKit
 
 
-//@IBDesignable
+@IBDesignable
 class ChartColumnView: UIView {
     
     @IBInspectable
@@ -26,7 +26,6 @@ class ChartColumnView: UIView {
 
     private var mainValueProgressView: UIView! { didSet { updateUI() } }
     private var secondValueProgressUnderView: UIView! { didSet { updateUI() } }
-    private var secondValueProgressOverView: UIView! { didSet { updateUI() } }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,37 +46,27 @@ class ChartColumnView: UIView {
         mainValueProgressView.backgroundColor = mainColor
         addSubview(mainValueProgressView)
         
-        secondValueProgressOverView = UIView(frame: frameForValue(secondValue))
-        secondValueProgressOverView.backgroundColor = secondColor
-        secondValueProgressOverView.isHidden = true
-        addSubview(secondValueProgressOverView)
-        
         backgroundColor = UIColor.clear
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateUI()
+    }
 
     private func updateUI() {
-        if mainValueProgressView != nil && secondValueProgressOverView != nil && secondValueProgressUnderView != nil {
-//            mainValueProgressView.frame = frameForValue(mainValue)
+        if mainValueProgressView != nil && secondValueProgressUnderView != nil {
             if secondValue > mainValue || secondValue == 0 {
                 mainValueProgressView.frame = frameForValue(mainValue)
                 secondValueProgressUnderView.isHidden = false
-//                secondValueProgressOverView.isHidden = true
                 secondValueProgressUnderView.frame = frameForValue(secondValue)
                 secondValueProgressUnderView.backgroundColor = secondColor
             } else {
-//                secondValueProgressOverView.isHidden = false
-//                secondValueProgressUnderView.isHidden = true
-//                secondValueProgressOverView.frame = frameForValue(secondValue)
                 mainValueProgressView.frame = frameForValue(secondValue)
                 secondValueProgressUnderView.isHidden = false
-//                secondValueProgressOverView.isHidden = true
                 secondValueProgressUnderView.frame = frameForValue(mainValue)
                 secondValueProgressUnderView.backgroundColor = secondOverlapColor
-                
             }
-            setNeedsDisplay()
-            setNeedsLayout()
         }
     }
     
@@ -87,10 +76,6 @@ class ChartColumnView: UIView {
                 self.mainValue = mainValue
                 self.secondValue = secondValue
             })
-//            UIView.animate(withDuration: 0.5) {
-//                self.mainValue = mainValue
-//                self.secondValue = secondValue
-//            }
         } else {
             self.mainValue = mainValue
             self.secondValue = secondValue
@@ -104,5 +89,58 @@ class ChartColumnView: UIView {
         let size = CGSize(width: bounds.width, height: height)
         
         return CGRect(origin: origin, size: size)
+    }
+}
+
+private extension UIView {
+    
+    private struct Constants {
+        static let lineWidth: CGFloat = 1.2
+        static let lineSpacing: CGFloat = 8.0
+        static let lineColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(1.0)
+        static let lineAngleInDegrees: Double = 45.0
+        static let linedShapeLayerName = "LinedLayer"
+    }
+    
+    func addLinedLayer(rect: CGRect? = nil, lineColor color: UIColor? = nil) {
+        let boundsToDraw = rect ?? bounds
+        
+        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let fWidth: CGFloat! = boundsToDraw.width
+        let fHeight: CGFloat! = boundsToDraw.height
+       
+        shapeLayer.bounds = boundsToDraw
+        shapeLayer.position = CGPoint(x: fWidth/2, y: fHeight/2)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = (color ?? Constants.lineColor).cgColor
+        shapeLayer.lineWidth = Constants.lineWidth
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        shapeLayer.name = Constants.linedShapeLayerName
+        shapeLayer.masksToBounds = true
+        
+        let path = UIBezierPath()
+        // max possinble for lines is a diogonal length
+        let length = sqrt(pow(boundsToDraw.width, 2) + pow(boundsToDraw.height, 2.0))
+        var x: CGFloat = -length/2
+        while x <= length/2 {
+            path.move(to: CGPoint(x: x, y: -length/2))
+            path.addLine(to: CGPoint(x: x, y: length/2))
+            x += path.lineWidth + Constants.lineSpacing
+        }
+        let radians = CGFloat(Constants.lineAngleInDegrees * Double.pi / 180)
+        path.apply(CGAffineTransform(rotationAngle: radians))
+        path.apply(CGAffineTransform(translationX: boundsToDraw.midX, y: boundsToDraw.height/2))
+        
+        shapeLayer.path = path.cgPath
+//        self.layer.insertSublayer(shapeLayer, at: 0)
+        layer.addSublayer(shapeLayer)
+    }
+    
+    func removeLinedLayer() {
+        self.layer.sublayers?.forEach {
+            if $0.name == "LinedLayer" {
+                $0.removeFromSuperlayer()
+            }
+        }
     }
 }

@@ -43,10 +43,8 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
             if isItFlowOperation {
                 let categories = isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories
                 categoryOrContactTextField.text = categories[row]
-                categoryOrContactEmojiLabel.text = presenter.emojiFor(category: categories[row])
             } else {
                 categoryOrContactTextField.text = presenter.contacts[row]
-                categoryOrContactEmojiLabel.text = presenter.emojiFor(contact: presenter.contacts[row])
             }
         }
     }

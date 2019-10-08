@@ -8,46 +8,173 @@
 
 import UIKit
 
-class TestViewController: UIViewController, ChartViewDelegate {
-    func chartView(didSelectColumnAt index: Int) {
-        print("Selected in \(index)")
-    }
+class TestViewController: UIViewController, ImagePickerCollectionViewControllerDelegate {
     
-    func chartViewNumberOfColumns() -> Int {
-        return 12
-    }
+    @IBOutlet weak var tableView: UITableView!
     
-    func chartView(labelForColumnAt index: Int) -> String {
-        return "Dec"
-    }
+    var loadedPhotos = [UIImage]() { didSet { startRecognition() }}
     
-    func chartView(mainValueForColumnAt index: Int) -> CGFloat {
-        return CGFloat(Double.random(in: 0.1...0.8))
-    }
+    let operationTableViewDesignCellIdentifier = "OperationDesignCell"
+    let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
+    let operationsHeaderTableViewCellIdentifier = "HeaderCell"
+    let tableViewSectionHeaderHeight: CGFloat = 35
+    let tableViewRowHeight: CGFloat = 100
+    let filterPeriod: Presenter.DateFilterUnit = .days
+    var upperBound: Double = 0.0
+    let mainCurrency = Currency.rub
     
-    func chartView(secondValueForColumnAt index: Int) -> CGFloat? {
-        return CGFloat(Double.random(in: 0.4...1.0))
-    }
+    lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: recognizedOps)
+    private let presenter = Presenter()
+    private lazy var recognizer = OperationVisionRecognizer()
+    private var recognizedOps = [Operation]()
+    private var recognitionCounter = 0
     
-
-    @IBOutlet weak var chartView: ChartView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        chartView.delegate = self
-        chartView.minValueLabel.text = "0"
-        chartView.midValueLabel.text = "50K"
-        self.chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
-//        chartView.updateLayoutsOfSubviews()
         
-        
-        
-        // Do any additional setup after loading the view.
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        tableView.delegate = self
+        tableView.dataSource = self
+        countUpperBound()
     }
     
+    private func startRecognition() {
+        print("start recognition with \(loadedPhotos.count) photos")
+        
+        for image in loadedPhotos {
+            recognizer.recognize(from: image) { [weak self] operations, error in
+                if self != nil {
+                    if let ops = operations {
+                        self!.recognizedOps = self!.sumWithoutDuplicate(baseArray: self!.recognizedOps, addingArray: ops)
+                    }
+                    
+                    let number = self!.recognitionCounter + 1
+                    print("recognizing #\(number) finished")
+                    self!.recognitionCounter += 1
+                    if self!.recognitionCounter == self!.loadedPhotos.count {
+                        self!.loadOps()
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    private func loadOps() {
+        print(recognizedOps)
+        operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: recognizedOps)
+        tableView.reloadData()
+        recognitionCounter = 0
+    }
+    
+    private func countUpperBound() {
+        let ops = presenter.all().map({ abs($0.value) }).sorted(by: <)
+        if ops.isEmpty { return }
+        let upperBoundConstant = 0.15
+        let index = Int(Double(ops.count - 1) * (1.0 - upperBoundConstant))
+        upperBound = ops[index]
+    }
+    
+    private func sumWithoutDuplicate(baseArray: [Operation], addingArray: [Operation]) -> [Operation] {
+        var duplicateIndices = [Int]()
+        for op1 in baseArray {
+            for (index, op2) in addingArray.enumerated() {
+                if op1.value == op2.value &&
+                    op1.account == op2.account &&
+                    op1.currency == op2.currency &&
+                    op1.date == op2.date {
+                    if !duplicateIndices.contains(index) {
+                        duplicateIndices.append(index)
+                    }
+                }
+            }
+        }
+        debugPrint("removed \(duplicateIndices.count) duplicates")
+        let sum = baseArray + addingArray.enumerated().compactMap { duplicateIndices.contains($0.offset) ? nil : $0.element }
+        return sum
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navVC = segue.destination as? UINavigationController {
+            if let vc = navVC.viewControllers[0] as? ImagePickerCollectionViewController {
+                vc.delegate = self
+            }
+        }
+    }
+}
 
+extension TestViewController: UITableViewDelegate, UITableViewDataSource  {
+    
+    private var operationListIsEmpty: Bool {
+        return operationsByDays.isEmpty
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return operationListIsEmpty ? 1 : operationsByDays[section].ops.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if operationListIsEmpty { return tableView.dequeueReusableCell(withIdentifier: emptyListTableViewCellIdentifier)! }
+        
+        let operation = operationsByDays[indexPath.section].ops[indexPath.row]
+        let operationPresenter = OperationPresenter(operation)
+        let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewDesignCellIdentifier, for: indexPath) as! OperationsDesignedTableViewCell
+        
+        cell.valueLabel.text = operationPresenter.valueString
+        cell.mainLabel.text = operationPresenter.categoryString ?? operationPresenter.contactString
+        cell.accountLabel.text = operationPresenter.accountString
+        cell.commentLabel.text = operationPresenter.commentString
+        cell.measureValue = CGFloat(abs(operation.value) / upperBound)
+        
+        switch operation {
+        case _ where operation is DebtOperation:
+            cell.measureColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9490196078, alpha: 1)
+        case _ where operation is FlowOperation && (operation.value >= 0.0):
+            cell.measureColor = #colorLiteral(red: 0.7725490196, green: 0.8784313725, blue: 0.7058823529, alpha: 1)
+        case _ where operation is FlowOperation && (operation.value < 0.0):
+            cell.measureColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableViewRowHeight
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return operationListIsEmpty ? 1 : operationsByDays.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if operationListIsEmpty { return nil }
+        let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell
+        header.periodLabel.text = operationsByDays[section].formattedPeriod
+        let sum = operationsByDays[section].ops.valuesSum(mainCurrency)
+        header.sumLabel.text = (sum > 0 ? "+" : "") + sum.currencyFormattedDescription(mainCurrency)
+        
+        return header.contentView
+    }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let idOfOperationsToRemove = operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
+            print(idOfOperationsToRemove)
+            presenter.removeOperationWith(identifier: idOfOperationsToRemove)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+//            presenter.syncronize()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
 
 }
+
+

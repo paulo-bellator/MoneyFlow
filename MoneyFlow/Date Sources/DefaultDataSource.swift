@@ -38,11 +38,11 @@ class DefaultDataSource: OperationDataSource {
             print("\nsaved\n")
             let encoder = JSONEncoder()
             let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
-            let debtOperation = operations.filter { $0 is DebtOperation } as! [DebtOperation]
+            let debtOperations = operations.filter { $0 is DebtOperation } as! [DebtOperation]
             if let encoded = try? encoder.encode(flowOperations) {
                 defaults.set(encoded, forKey: UserDefaultsKeys.flowOperations)
             }
-            if let encoded = try? encoder.encode(debtOperation) {
+            if let encoded = try? encoder.encode(debtOperations) {
                 defaults.set(encoded, forKey: UserDefaultsKeys.debtOperations)
             }
             thereAreUnsavedChanges = false
@@ -95,7 +95,7 @@ private extension DefaultDataSource {
     }
     
     private var randomValue: Double {
-        return Double.random(in: -100000...100000)
+        return Double.random(in: -44_000...50_000)
     }
     
     private var comments: [String?] {
@@ -105,8 +105,8 @@ private extension DefaultDataSource {
     
     private func generateFlowOperations() -> [FlowOperation] {
         var ops = [FlowOperation]()
-        for _ in 1...500 {
-            let date = Date() + TimeInterval(60*60*1*Int.random(in: -700...0))
+        for _ in 1...2000 {
+            let date = Date() + TimeInterval(24*60*60*1*Int.random(in: -240...0))
             let value = randomValue
             let category = value < 0 ? outcomeCategories.randomElement()! : incomeCategories.randomElement()!
             let operation = FlowOperation(date: date, value: value, currency: currencies.randomElement()!, category: category, account: accounts.randomElement()!, comment: comments.randomElement()!)
@@ -116,9 +116,9 @@ private extension DefaultDataSource {
     }
     private func generateDebtOperations() -> [DebtOperation] {
         var ops = [DebtOperation]()
-        for _ in 1...50 {
-            let date = Date() + TimeInterval(60*60*1*Int.random(in: -400...0))
-            let operation = DebtOperation(date: date, value: randomValue, currency: currencies.randomElement()!, contact: contacts.randomElement()!, account: accounts.randomElement()!, comment: comments.randomElement()!)
+        for _ in 1...200 {
+            let date = Date() + TimeInterval(24*60*60*1*Int.random(in: -240...0))
+            let operation = DebtOperation(date: date, value: -randomValue, currency: currencies.randomElement()!, contact: contacts.randomElement()!, account: accounts.randomElement()!, comment: comments.randomElement()!)
             ops.append(operation)
         }
         return ops

@@ -18,16 +18,21 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     @IBOutlet weak var progressView: UIProgressView!
     
     let addOperationSegueIdentifier = "ShowAddOperation"
+    let addSomeOperationsSegueIdentidier = "addSomeOperations"
     let operationTableViewCellIdentifier = "OperationCell"
+    let operationTableViewDesignCellIdentifier = "OperationDesignCell"
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let filterCollectionViewCellIdentifier = "filterCell"
     let tableViewSectionHeaderHeight: CGFloat = 35
     let tableViewRowHeight: CGFloat = 100
     let filterPeriod: Presenter.DateFilterUnit = .days
+    var upperBound: Double = 0.0
+    private var buttonSelector: ButtonSelectorView!
+    private weak var timer: Timer?
     
     let presenter = Presenter()
-    lazy var operationsByDays = presenter.operationsSorted(by: filterPeriod)
+    lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
     var tableViewScrollOffset: CGFloat = 0 {
         willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
     }
@@ -57,7 +62,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             let filterUnit = arrayOfAllFilterUnits[appliedFilterCells.first!.row]
             switch filterUnit {
             case .all:
-                operationsByDays = presenter.operationsSorted(by: filterPeriod)
+                operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
                 mainCurrency = presenter.settings.currencies.first!
                 reloadTableView()
                 return
@@ -81,7 +86,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         }
         
         let filteredOperation = presenter.filter(currencies: requiredCurrencies, categories: requiredCategories, contacts: requiredContacts, accounts: requiredAccounts)
-        operationsByDays = presenter.operationsSorted(by: filterPeriod, operations: filteredOperation)
+        operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: filteredOperation)
         
         switch requiredCurrencies.count {
         case 1: mainCurrency = requiredCurrencies.first!
@@ -99,6 +104,14 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         tableViewScrollOffset = 0
     }
     
+    private func countUpperBound() {
+        let ops = presenter.all().map({ abs($0.value) }).sorted(by: <)
+        if ops.isEmpty { return }
+        let upperBoundConstant = 0.15
+        let index = Int(Double(ops.count - 1) * (1.0 - upperBoundConstant))
+        upperBound = ops[index]
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +121,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             if !cloudSource.isDownloadComplete {
                 tableView.isHidden = true
             }
+        } else {
+            countUpperBound()
         }
         
         progressView.isHidden = true
@@ -117,13 +132,50 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
+        addButtonSelector()
     }
     
     
-    @IBAction func addOperation(_ sender: UIButton) {
-        self.tabBarController?.tabBar.isHidden = true
-        self.overlayBlurredBackgroundView()
+    @objc func addOperation() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        performSegue(withIdentifier: addOperationSegueIdentifier, sender: self)
+        buttonSelector.close(animated: false)
     }
+    @objc func addSomeOperations() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: self)
+        buttonSelector.close(animated: false)
+    }
+    
+    private func addButtonSelector() {
+        let button1 = UIButton(frame: CGRect.zero)
+        let button2 = UIButton(frame: CGRect.zero)
+        let button3 = UIButton(frame: CGRect.zero)
+        button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
+        button1.backgroundColor = .clear
+        button2.backgroundColor = .clear
+        button3.backgroundColor = .clear
+        if let image = UIImage(named: "plus_icon.png") { button1.setImage(image, for: .normal) }
+        if let image = UIImage(named: "camera_icon.png") { button2.setImage(image, for: .normal) }
+        if let image = UIImage(named: "list_icon.png") { button3.setImage(image, for: .normal) }
+        
+        let size = CGSize(width: view.bounds.width/6, height: view.bounds.width/5)
+        let origin = CGPoint(x: view.bounds.maxX - size.width - 20, y: view.bounds.maxY - size.height - 70)
+        let frameForView = CGRect(origin: origin, size: size)
+        
+        let buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2, button3: button3)
+        buttonSelector.backgroundColor = UIColor.white.withAlphaComponent(1.0)
+        buttonSelector.direction = .left
+        
+        buttonSelector.delegate = self
+        self.buttonSelector = buttonSelector
+        view.addSubview(buttonSelector)
+    }
+    
+    
     
     func overlayBlurredBackgroundView() {
         let blurredBackgroundView = UIVisualEffectView()
@@ -156,14 +208,17 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     func updateData() {
 //        presenter.syncronize()
+        countUpperBound()
         applyFilter()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == addOperationSegueIdentifier {
-                if let viewController = segue.destination as? AddOperationViewController {
-                    viewController.delegate = self
+                if let navVC = segue.destination as? UINavigationController {
+                    if let vc = navVC.viewControllers[0] as? AddOperationViewController {
+                        vc.delegate = self
+                    }
                 }
             }
         }
@@ -171,6 +226,27 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     
 
+}
+
+extension OperationsViewController: ButtonSelectorViewDelegate {
+    func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool) {
+        if animated {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { [weak self] _ in
+                self?.buttonSelector.close(animated: true)
+            }
+        }
+    }
+    
+    func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool) {
+        if animated {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+        }
+        timer?.invalidate()
+    }
 }
 
 extension OperationsViewController: CloudDataSourceDelegate {
@@ -198,6 +274,7 @@ extension OperationsViewController: CloudDataSourceDelegate {
     func downloadComplete(with error: Error?) {
         // reset and reload Data
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            self?.countUpperBound()
             self?.applyFilter()
             self?.progressView.isHidden = true
             self?.tableView.isHidden = false

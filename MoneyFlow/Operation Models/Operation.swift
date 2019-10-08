@@ -51,6 +51,13 @@ extension Date {
         
         return formatter.string(from: self)
     }
+    
+    func formatted(in format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
 }
 
 extension Double {

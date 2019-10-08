@@ -44,6 +44,7 @@ extension DebtOperation {
         result += "Currency: \(currency.rawValue)\n"
         result += "Account: \(account)\n"
         result += "Contact: \(contact)\n"
+        result += comment != nil ? "Comment: \(comment!)\n" : ""
         
         return result
     }
