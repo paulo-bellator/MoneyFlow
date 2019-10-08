@@ -18,10 +18,12 @@ class ButtonSelectorView: UIView {
     
     /// Get notified when view opening and closing
     weak var delegate: ButtonSelectorViewDelegate?
-    /// Define in which direction view moves apart
+    /// Defines in which direction view moves apart
     var direction: Direction = .up { didSet { if oldValue != direction { rotate(direction) } } }
-    /// Define whether rotate mainButton on tap or not
+    /// Defines whether rotate mainButton on tap or not
     var shouldRotateMainButton = true
+    /// Defines how fast view opening and closing. Default equals 0.2
+    var animationDuration: TimeInterval = 0.2
     
     private(set) var isOpen: Bool = false
     private(set) var buttons = [UIButton]()
@@ -51,7 +53,7 @@ class ButtonSelectorView: UIView {
     func open(animated: Bool) {
         if animated {
             UIView.animate(
-                withDuration: 0.2,
+                withDuration: animationDuration,
                 delay: 0,
                 options: .curveEaseOut,
                 animations: {
@@ -89,7 +91,7 @@ class ButtonSelectorView: UIView {
             },
                 completion: { _ in
                     self.buttons.forEach { $0.isHidden = true}
-                    UIView.animate(withDuration: 0.2) {
+                    UIView.animate(withDuration: self.animationDuration) {
                         self.bounds.size.height = self.bounds.size.width
                         self.compenstateOffset()
                         if self.shouldRotateMainButton { self.mainButton.transform = .identity }
@@ -107,12 +109,31 @@ class ButtonSelectorView: UIView {
         delegate?.buttonSelectorClosed(sender: self, animated: animated)
     }
     
+    func add(button: UIButton, at index: Int? = nil) {
+        guard !buttons.contains(button) else { return }
+        if isOpen { close(animated: false) }
+        let indexToInsert = max(min((index ?? buttons.count), buttons.count), 0)
+        buttons.insert(button, at: indexToInsert)
+        buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
+        self.addSubview(button)
+        self.bringSubviewToFront(mainButton)
+        setConstraints()
+    }
+    
+    func removeButton(at index: Int) {
+        guard (index >= 0) && (index < buttons.count) else { return }
+        if isOpen { close(animated: false) }
+        if index < buttons.count {
+            buttons.remove(at: index).removeFromSuperview()
+            setConstraints()
+        }
+    }
+    
     // MARK: Initialization and layouting
     
     private func initialization() {
         buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
-        addMainButtonConstraints()
-        addUserButtonsConstraints()
+        setConstraints()
     }
     
     override func layoutSubviews() {
@@ -123,12 +144,10 @@ class ButtonSelectorView: UIView {
         addShadow()
     }
     
-    convenience init(frame: CGRect, button1: UIButton, button2: UIButton, button3: UIButton? = nil) {
+    convenience init(frame: CGRect, buttons: [UIButton]? = nil) {
         self.init(frame: frame)
-        if let button3 = button3 { self.buttons.append(button3) }
-        self.buttons.append(button2)
-        self.buttons.append(button1)
-        buttons.forEach { self.addSubview($0) }
+        if let buttons = buttons { self.buttons = buttons }
+        self.buttons.forEach { self.addSubview($0) }
         initialization()
     }
     
@@ -145,11 +164,16 @@ class ButtonSelectorView: UIView {
     
     // MARK: Adding constraints
     
+    private func setConstraints() {
+        self.constraints.forEach { self.removeConstraint($0) }
+        addMainButtonConstraints()
+        addUserButtonsConstraints()
+    }
+    
     private func addUserButtonsConstraints() {
         guard !buttons.isEmpty else { return }
         
         for (index, button) in buttons.enumerated() {
-            button.constraints.forEach { button.removeConstraint($0) }
             var topConstraint: NSLayoutConstraint
             
             if index < buttons.count - 1 {

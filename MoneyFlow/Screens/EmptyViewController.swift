@@ -27,15 +27,17 @@ class EmptyViewController: UIViewController {
         if let image = UIImage(named: "camera_icon.png") { button3.setImage(image, for: .normal) }
         
         let size = CGSize(width: view.bounds.width/5, height: view.bounds.height/5)
-        let origin = CGPoint(x: view.bounds.midX - size.width/2, y: view.bounds.midY - size.height/2)
+        let origin = CGPoint(x: view.bounds.midX - size.width/2, y: view.bounds.maxY - size.width*2)
         let frameForView = CGRect(origin: origin, size: size)
         
-        buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2, button3: button3)
+        buttonSelector = ButtonSelectorView(frame: frameForView, buttons: [button1])
+        buttonSelector.add(button: button2, at: 0)
+        buttonSelector.add(button: button3, at: 1)
+        buttonSelector.add(button: button3)
         buttonSelector.backgroundColor = #colorLiteral(red: 0.9405411869, green: 0.9405411869, blue: 0.9405411869, alpha: 1)
         buttonSelector.direction = .up
-        if let image = UIImage(named: "plus_icon.png") {
-            buttonSelector.mainButton.setImage(image, for: .normal)
-        }
+        buttonSelector.animationDuration = 0.3
+        
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.addSubview(buttonSelector)
     }

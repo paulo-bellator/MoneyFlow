@@ -166,7 +166,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         let origin = CGPoint(x: view.bounds.maxX - size.width - 20, y: view.bounds.maxY - size.height - 70)
         let frameForView = CGRect(origin: origin, size: size)
         
-        let buttonSelector = ButtonSelectorView(frame: frameForView, button1: button1, button2: button2, button3: button3)
+        let buttonSelector = ButtonSelectorView(frame: frameForView, buttons: [button3, button2, button1])
         buttonSelector.backgroundColor = UIColor.white.withAlphaComponent(1.0)
         buttonSelector.direction = .left
         
