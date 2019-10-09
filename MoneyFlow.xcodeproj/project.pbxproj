@@ -388,7 +388,6 @@
 				F9B2FE61231B227400ABF7AC /* Frameworks */,
 				F9B2FE62231B227400ABF7AC /* Resources */,
 				761D430C99419FE38412A3EB /* [CP] Embed Pods Frameworks */,
-				821C6C9B0EFE99A31F6742C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -467,23 +466,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		821C6C9B0EFE99A31F6742C5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BD83173F2A8DA2F18AFD6A6 /* [CP] Check Pods Manifest.lock */ = {

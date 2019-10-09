@@ -8,7 +8,6 @@ pod 'Firebase/Storage'
 
 pod 'Firebase/Core'
 pod 'Firebase/MLVision'
-pod 'Firebase/MLVisionTextModel'
 
 
 end

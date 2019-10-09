@@ -1047,10 +1047,6 @@ Copyright 2019 Google
 
 Copyright 2019 Google
 
-## FirebaseMLVisionTextModel
-
-Copyright 2019 Google
-
 ## FirebaseStorage
 
 
