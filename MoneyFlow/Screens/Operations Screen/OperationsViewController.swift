@@ -21,10 +21,11 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let addSomeOperationsSegueIdentidier = "addSomeOperations"
     let operationTableViewCellIdentifier = "OperationCell"
     let operationTableViewDesignCellIdentifier = "OperationDesignCell"
+    let operationTableViewCleanDesignCellIdentifier = "OperationCleanDesignCell"
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let filterCollectionViewCellIdentifier = "filterCell"
-    let tableViewSectionHeaderHeight: CGFloat = 35
+    let tableViewSectionHeaderHeight: CGFloat = 55
     let tableViewRowHeight: CGFloat = 100
     let filterPeriod: Presenter.DateFilterUnit = .days
     var upperBound: Double = 0.0
@@ -169,6 +170,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         let buttonSelector = ButtonSelectorView(frame: frameForView, buttons: [button3, button2, button1])
         buttonSelector.backgroundColor = UIColor.white.withAlphaComponent(1.0)
         buttonSelector.direction = .left
+//        buttonSelector.mainButton.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        
         
         buttonSelector.delegate = self
         self.buttonSelector = buttonSelector
