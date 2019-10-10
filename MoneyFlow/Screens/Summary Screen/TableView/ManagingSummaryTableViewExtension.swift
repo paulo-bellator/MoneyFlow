@@ -124,9 +124,9 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
         let centerOfContentHeight = contentHeight / 2
         let offset = scrollView.contentOffset.y + scrollView.bounds.height / 2
         if offset < centerOfContentHeight {
-            if tableView.backgroundColor != topColor { tableView.backgroundColor = topColor; print("top <- bottom") }
+            if tableView.backgroundColor != topColor { tableView.backgroundColor = topColor }
         } else {
-            if tableView.backgroundColor != bottomColor { tableView.backgroundColor = bottomColor; print("top -> bottom") }
+            if tableView.backgroundColor != bottomColor { tableView.backgroundColor = bottomColor }
         }
     }
     

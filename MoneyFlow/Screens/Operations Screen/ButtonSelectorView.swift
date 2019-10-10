@@ -22,6 +22,8 @@ class ButtonSelectorView: UIView {
     var direction: Direction = .up { didSet { if oldValue != direction { rotate(direction) } } }
     /// Defines whether rotate mainButton on tap or not
     var shouldRotateMainButton = true
+    /// Defines the angle mainButton will be rotated on
+    var mainButtonRotationAngle: CGFloat = CGFloat.pi / 4 + CGFloat.pi/2
     /// Defines how fast view opening and closing. Default equals 0.2
     var animationDuration: TimeInterval = 0.2
     
@@ -59,7 +61,7 @@ class ButtonSelectorView: UIView {
                 animations: {
                     self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
                     if self.shouldRotateMainButton {
-                        self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+                        self.rotateMainButtonForward()
                     }
                     self.compenstateOffset()
                     self.layoutIfNeeded()
@@ -72,7 +74,7 @@ class ButtonSelectorView: UIView {
         } else {
             self.bounds.size.height = self.bounds.size.width * CGFloat((self.buttons.count + 1))
             if self.shouldRotateMainButton {
-                self.mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi / 4 + CGFloat.pi/2)
+                self.rotateMainButtonForward()
             }
             self.compenstateOffset()
             self.buttons.forEach { $0.alpha = 1.0; $0.isHidden = false }
@@ -94,7 +96,7 @@ class ButtonSelectorView: UIView {
                     UIView.animate(withDuration: self.animationDuration) {
                         self.bounds.size.height = self.bounds.size.width
                         self.compenstateOffset()
-                        if self.shouldRotateMainButton { self.mainButton.transform = .identity }
+                        if self.shouldRotateMainButton { self.rotateMainButtonBackward() }
                         self.layoutIfNeeded()
                     }
             })
@@ -102,7 +104,7 @@ class ButtonSelectorView: UIView {
             self.buttons.forEach { $0.alpha = 0.0; $0.isHidden = true }
             self.bounds.size.height = self.bounds.size.width
             self.compenstateOffset()
-            if self.shouldRotateMainButton { self.mainButton.transform = .identity }
+            if self.shouldRotateMainButton { self.rotateMainButtonBackward() }
             self.layoutIfNeeded()
         }
         isOpen = false
@@ -201,6 +203,18 @@ class ButtonSelectorView: UIView {
     
     // MARK: Service funcs
     
+    private func rotateMainButtonForward() {
+        let currentAngle = CGFloat(atan2f(Float(mainButton.transform.b), Float(mainButton.transform.a)))
+        let rotationAngle = currentAngle + mainButtonRotationAngle
+        self.mainButton.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
+    }
+    
+    private func rotateMainButtonBackward() {
+        let currentAngle = CGFloat(atan2f(Float(mainButton.transform.b), Float(mainButton.transform.a)))
+        let rotationAngle = currentAngle - mainButtonRotationAngle
+        self.mainButton.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
+    }
+    
     private func compenstateOffset() {
         var offset = bounds.width * CGFloat(buttons.count)
         if bounds.width.rounded() != bounds.height.rounded() {
@@ -221,17 +235,21 @@ class ButtonSelectorView: UIView {
     private func rotate(_ direction: Direction) {
         self.transform = .identity
         buttons.forEach { $0.transform = .identity }
+        mainButton.transform = .identity
         switch direction {
         case .up: break
         case .down:
             self.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
             buttons.forEach { $0.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi)}
+            mainButton.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi)
         case .left:
             self.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi/2)
             buttons.forEach { $0.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)}
+            mainButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)
         case .right:
             self.transform = CGAffineTransform.init(rotationAngle: +CGFloat.pi/2)
             buttons.forEach { $0.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi/2)}
+            mainButton.transform = CGAffineTransform.init(rotationAngle: -CGFloat.pi/2)
         }
     }
     

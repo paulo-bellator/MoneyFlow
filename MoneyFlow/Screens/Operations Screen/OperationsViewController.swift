@@ -171,10 +171,13 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         buttonSelector.backgroundColor = UIColor.white.withAlphaComponent(1.0)
         buttonSelector.direction = .left
         buttonSelector.mainButton.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
-        
+        buttonSelector.mainButton.imageView?.image = UIImage(named: "list_icon.png") ?? UIImage()
         
         buttonSelector.delegate = self
         self.buttonSelector = buttonSelector
+        if let image = UIImage(named: "plus_icon_white.png") {
+            buttonSelector.mainButton.setImage(image, for: .normal)
+        }
         view.addSubview(buttonSelector)
     }
     
