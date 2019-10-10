@@ -67,15 +67,19 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         return header.contentView
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return operationListIsEmpty ? false : true
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             // Delete the row from the data source
             let idOfOperationsToRemove = operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
             print(idOfOperationsToRemove)
             presenter.removeOperationWith(identifier: idOfOperationsToRemove)
             tableView.deleteRows(at: [indexPath], with: .fade)
-//            presenter.syncronize()
+//                presenter.syncronize()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -85,7 +89,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         if scrollView is UITableView {
             let contentOffset = scrollView.contentOffset.y
             let maxAllowableContentOffset = scrollView.contentSize.height - scrollView.frame.height - tableView.rowHeight/2
-            
+
 //            print("\n")
 //            print("maxAllowableContentOffset = \(maxAllowableContentOffset)")
 //            print("NEWcontentOffset = \(contentOffset)")

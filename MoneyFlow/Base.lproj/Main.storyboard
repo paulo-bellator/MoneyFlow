@@ -74,7 +74,7 @@
                                 <rect key="frame" x="0.0" y="55" width="414" height="612"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyOperationsListCell" rowHeight="604" id="Pny-lf-fCN">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="emptyOperationsListCell" rowHeight="604" id="Pny-lf-fCN">
                                         <rect key="frame" x="0.0" y="28" width="414" height="604"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pny-lf-fCN" id="QL4-G8-hew">
@@ -118,6 +118,7 @@
                                                 <constraint firstItem="jEJ-HN-RZo" firstAttribute="leading" secondItem="QL4-G8-hew" secondAttribute="leading" constant="10" id="dEF-xy-7lt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="55" id="FIw-IB-6Qk" customClass="OperationsHeaderTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="632" width="414" height="55"/>
