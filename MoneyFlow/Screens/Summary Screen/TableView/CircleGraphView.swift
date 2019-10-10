@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class CircleGraphView: UIView {
     
     var zeroCrossRadiusScale: CGFloat = 0.15

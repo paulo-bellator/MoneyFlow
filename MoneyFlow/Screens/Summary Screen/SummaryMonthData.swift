@@ -231,8 +231,11 @@ class SummaryMonthData {
 }
 
 private struct Colors {
-    static let lower = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-    static let middle = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-    static let upper = #colorLiteral(red: 0.3359866122, green: 0.73046875, blue: 0.4521239214, alpha: 1)
+//    static let lower = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+//    static let middle = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+//    static let upper = #colorLiteral(red: 0.3359866122, green: 0.73046875, blue: 0.4521239214, alpha: 1)
+    static let lower = #colorLiteral(red: 0.5803921569, green: 0.06666666667, blue: 0, alpha: 1)
+    static let middle = #colorLiteral(red: 1, green: 0.8352941176, blue: 0.4745098039, alpha: 1)
+    static let upper = #colorLiteral(red: 0.5215686275, green: 0.5647058824, blue: 0.3882352941, alpha: 1)
     static let zero = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 }

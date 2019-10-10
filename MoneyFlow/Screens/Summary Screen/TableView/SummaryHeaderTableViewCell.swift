@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class SummaryHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var leftLabel: UILabel!
@@ -22,7 +21,7 @@ class SummaryHeaderTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addRoundedRectsMask()
+//        addRoundedRectsMask()
     }
     
     private func addRoundedRectsMask() {

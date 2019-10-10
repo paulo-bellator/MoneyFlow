@@ -10,7 +10,7 @@ import UIKit
 
 extension SummaryViewController: ChartViewDelegate {
     
-    func chartView(didSelectColumnAt index: Int) {
+    func chartView(didSelect column: ChartColumn, at index: Int) {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         if currentMonthIndex != index {

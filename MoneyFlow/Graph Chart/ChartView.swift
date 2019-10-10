@@ -176,8 +176,9 @@ class ChartView: UIView {
 
 }
 
+typealias ChartColumn = ChartColumnCollectionViewCell
 protocol ChartViewDelegate: class {
-    func chartView(didSelectColumnAt index: Int)
+    func chartView(didSelect column: ChartColumn, at index: Int)
     func chartViewNumberOfColumns() -> Int
     func chartView(labelForColumnAt index: Int) -> String
     func chartView(mainValueForColumnAt index: Int) -> CGFloat
@@ -210,8 +211,9 @@ extension ChartView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.chartView(didSelectColumnAt: indexPath.row)
-        let cell = collectionView.cellForItem(at: indexPath)
+        if let cell = collectionView.cellForItem(at: indexPath) as? ChartColumn {
+            delegate?.chartView(didSelect: cell, at: indexPath.row)
+        }
 //        UIView.animate(withDuration: 0.2) {
 //            cell?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
 //        }
