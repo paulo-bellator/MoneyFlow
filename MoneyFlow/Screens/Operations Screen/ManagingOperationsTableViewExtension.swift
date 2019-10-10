@@ -49,6 +49,10 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         return operationListIsEmpty ? tableView.bounds.height : tableViewRowHeight
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return operationListIsEmpty ? 0 : tableViewSectionHeaderHeight
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return operationListIsEmpty ? 1 : operationsByDays.count
     }
