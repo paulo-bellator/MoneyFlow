@@ -23,6 +23,7 @@ class ChartView: UIView {
             collectionViewNeedToUpdate = true
         }
     }
+    var labelsFont: UIFont! { didSet { collectionViewNeedToUpdate = true } }
     var mainValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) { didSet { collectionViewNeedToUpdate = true } }
     var secondValueColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.2) { didSet { collectionViewNeedToUpdate = true } }
     var secondOverlapValueColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).withAlphaComponent(0.9) { didSet { collectionViewNeedToUpdate = true } }
@@ -195,6 +196,7 @@ extension ChartView: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.label.text = delegate?.chartView(labelForColumnAt: indexPath.row)
         cell.label.textColor = labelsColor
+        if let font = labelsFont { cell.label.font = font }
         
         let mainValue = delegate?.chartView(mainValueForColumnAt: indexPath.row) ?? 0.0
         let secondValue = delegate?.chartView(secondValueForColumnAt: indexPath.row) ?? 0.0

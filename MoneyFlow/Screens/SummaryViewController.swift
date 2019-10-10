@@ -49,8 +49,12 @@ class SummaryViewController: UIViewController {
         chartView.delegate = self
         chartView.minValueLabel.text = "0"
         chartView.midValueLabel.text = (summaryMinMax.max/2.0).shortString
+        chartView.minValueLabel.font = mainMoneyAmountSmallLabel.font
+        chartView.midValueLabel.font = mainMoneyAmountSmallLabel.font
+        chartView.labelsFont = mainMoneyAmountSmallLabel.font
         chartView.allowsSelection = true
         chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
+        chartView.secondOverlapValueColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
         
         mainMoneyAmountBigLabel.text = presenter.totalMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         mainMoneyAmountSmallLabel.text = presenter.availableMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)

@@ -24,7 +24,8 @@ extension SummaryViewController: ChartViewDelegate {
     }
     
     func chartView(labelForColumnAt index: Int) -> String {
-        return summaryByMonth[index].period.end.formatted(in: "LLL")
+        let string = summaryByMonth[index].period.end.formatted(in: "LLL")
+        return string.prefix(1).capitalized + string.dropFirst()
     }
     
     func chartView(mainValueForColumnAt index: Int) -> CGFloat {

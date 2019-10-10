@@ -925,7 +925,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hie-uk-OMn">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="444.66666666666669"/>
-                                <color key="backgroundColor" red="0.56732327849999997" green="0.74589460780000005" blue="0.430684489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oJw-MY-sX1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
@@ -937,21 +937,21 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vol-jp-Ko3">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Statistic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1P-HM-yRx">
-                                                    <rect key="frame" x="19.999999999999993" y="41.333333333333336" width="124.33333333333331" height="29.666666666666664"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рубли" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1P-HM-yRx">
+                                                    <rect key="frame" x="20.000000000000004" y="52.333333333333336" width="44.333333333333343" height="18.666666666666664"/>
+                                                    <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="15"/>
                                                     <color key="textColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="160 453 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1t-Tc-Zk1">
-                                                    <rect key="frame" x="324.66666666666669" y="52.666666666666664" width="71.333333333333314" height="19.333333333333336"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <rect key="frame" x="333" y="54.666666666666664" width="63" height="17.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                     <color key="textColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="260 453 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHv-R3-tJL">
-                                                    <rect key="frame" x="338" y="36.333333333333336" width="58" height="15.666666666666664"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                                    <rect key="frame" x="346.66666666666669" y="38" width="49.333333333333314" height="13.666666666666664"/>
+                                                    <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="11"/>
                                                     <color key="textColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -963,7 +963,7 @@
                                                 <constraint firstItem="U1P-HM-yRx" firstAttribute="leading" secondItem="Vol-jp-Ko3" secondAttribute="leading" constant="19.999999999999993" id="c0C-wk-7Av"/>
                                                 <constraint firstAttribute="bottom" secondItem="K1t-Tc-Zk1" secondAttribute="bottom" constant="8" id="d3k-Uc-faY"/>
                                                 <constraint firstAttribute="bottom" secondItem="U1P-HM-yRx" secondAttribute="bottom" constant="9" id="gz6-lQ-jQb"/>
-                                                <constraint firstItem="K1t-Tc-Zk1" firstAttribute="top" secondItem="EHv-R3-tJL" secondAttribute="bottom" constant="0.6666666666666643" id="jrZ-iD-Inq"/>
+                                                <constraint firstItem="K1t-Tc-Zk1" firstAttribute="top" secondItem="EHv-R3-tJL" secondAttribute="bottom" constant="3" id="jrZ-iD-Inq"/>
                                                 <constraint firstAttribute="trailing" secondItem="EHv-R3-tJL" secondAttribute="trailing" constant="18" id="mdC-8h-t2V"/>
                                             </constraints>
                                         </view>

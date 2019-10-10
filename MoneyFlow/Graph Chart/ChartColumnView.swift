@@ -56,11 +56,18 @@ class ChartColumnView: UIView {
 
     private func updateUI() {
         if mainValueProgressView != nil && secondValueProgressUnderView != nil {
+            mainValueProgressView.removeLinedLayer()
+            secondValueProgressUnderView.removeLinedLayer()
+            
             if secondValue > mainValue || secondValue == 0 {
                 mainValueProgressView.frame = frameForValue(mainValue)
                 secondValueProgressUnderView.isHidden = false
                 secondValueProgressUnderView.frame = frameForValue(secondValue)
                 secondValueProgressUnderView.backgroundColor = secondColor
+                
+                mainValueProgressView.backgroundColor = mainColor
+                secondValueProgressUnderView.backgroundColor = .clear
+                secondValueProgressUnderView.addLinedLayer()
             } else {
                 mainValueProgressView.frame = frameForValue(secondValue)
                 secondValueProgressUnderView.isHidden = false
@@ -95,8 +102,8 @@ class ChartColumnView: UIView {
 private extension UIView {
     
     private struct Constants {
-        static let lineWidth: CGFloat = 1.2
-        static let lineSpacing: CGFloat = 8.0
+        static let lineWidth: CGFloat = 1.0
+        static let lineSpacing: CGFloat = 5.0
         static let lineColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(1.0)
         static let lineAngleInDegrees: Double = 45.0
         static let linedShapeLayerName = "LinedLayer"

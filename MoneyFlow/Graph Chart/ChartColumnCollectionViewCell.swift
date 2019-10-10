@@ -37,7 +37,7 @@ class ChartColumnCollectionViewCell: UICollectionViewCell {
         let width = bounds.width * Constants.scaleFactorWidthOfCharColumnViewToCellWidth
         let height = bounds.height * Constants.scaleFactorHeightOfCharColumnViewToCellHeight
         let originX = (bounds.width - width)/2.0
-        let originY = bounds.midY * Constants.scaleFactorMidXOfCharColumnViewToCellMidX - height/2.0
+        let originY = bounds.midY * Constants.scaleFactorMidYOfCharColumnViewToCellMidY - height/2.0
         return CGRect(x: originX, y: originY, width: width, height: height)
     }
     private func frameForLabel() -> CGRect {
@@ -55,10 +55,10 @@ class ChartColumnCollectionViewCell: UICollectionViewCell {
     
     private struct Constants {
         static let scaleFactorHeightOfCharColumnViewToCellHeight: CGFloat = 0.8
-        static let scaleFactorWidthOfCharColumnViewToCellWidth: CGFloat = 0.7
-        static let scaleFactorMidXOfCharColumnViewToCellMidX: CGFloat = 0.9
+        static let scaleFactorWidthOfCharColumnViewToCellWidth: CGFloat = 0.3
+        static let scaleFactorMidYOfCharColumnViewToCellMidY: CGFloat = 0.8
         static let labelDefaultHeight: CGFloat = 21.0
-        static let labelChartColumnViewSpacing: CGFloat = 20
+        static let labelChartColumnViewSpacing: CGFloat = 30
     }
 }
 
