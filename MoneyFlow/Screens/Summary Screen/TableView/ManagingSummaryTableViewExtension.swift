@@ -117,5 +117,18 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let topColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        let bottomColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let contentHeight = scrollView.contentSize.height
+        let centerOfContentHeight = contentHeight / 2
+        let offset = scrollView.contentOffset.y + scrollView.bounds.height / 2
+        if offset < centerOfContentHeight {
+            if tableView.backgroundColor != topColor { tableView.backgroundColor = topColor; print("top <- bottom") }
+        } else {
+            if tableView.backgroundColor != bottomColor { tableView.backgroundColor = bottomColor; print("top -> bottom") }
+        }
+    }
+    
 }
 

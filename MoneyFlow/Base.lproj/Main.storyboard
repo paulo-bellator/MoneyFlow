@@ -957,7 +957,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="80" id="7f8-KO-Y8k"/>
                                                 <constraint firstAttribute="trailing" secondItem="K1t-Tc-Zk1" secondAttribute="trailing" constant="18" id="Tac-Rq-C3l"/>
@@ -970,7 +970,7 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-aH-Zxk" customClass="ChartView" customModule="MoneyFlow" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="88" width="414" height="244"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3J-Ut-wo0">
                                             <rect key="frame" x="0.0" y="340" width="414" height="130"/>
