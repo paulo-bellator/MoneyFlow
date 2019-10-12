@@ -222,19 +222,19 @@ class ButtonSelectorView: UIView {
     }
     
     private func compenstateOffset() {
-        var offset = bounds.width * CGFloat(buttons.count)
+        var offset = bounds.width * CGFloat(buttons.count) / 2
         if bounds.width.rounded() != bounds.height.rounded() {
             offset *= -1
         }
         switch direction {
         case .up:
-            self.frame.origin.y += (offset)/2
+            self.frame.origin.y += offset
         case .down:
-            self.frame.origin.y -= (offset)/2
+            self.frame.origin.y -= offset
         case .left:
-            self.frame.origin.x += (offset)/2
+            self.frame.origin.x += offset
         case .right:
-            self.frame.origin.x -= (offset)/2
+            self.frame.origin.x -= offset
         }
     }
     
