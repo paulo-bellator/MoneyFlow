@@ -43,7 +43,6 @@ class OperationVisionRecognizer {
     init() {
         let options = VisionCloudTextRecognizerOptions()
         options.languageHints = ["en", "ru"]
-        recognizer = vision.onDeviceTextRecognizer()
         recognizer = vision.cloudTextRecognizer(options: options)
     }
     

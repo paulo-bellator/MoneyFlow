@@ -11,6 +11,12 @@ import UIKit
 protocol ButtonSelectorViewDelegate: class {
     func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool)
     func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool)
+    func buttonSelectorShouldOpenOnTap(sender: ButtonSelectorView) -> Bool
+    func buttonSelectorShouldCloseOnTap(sender: ButtonSelectorView) -> Bool
+}
+extension ButtonSelectorViewDelegate {
+    func buttonSelectorShouldOpenOnTap(sender: ButtonSelectorView) -> Bool { return true }
+    func buttonSelectorShouldCloseOnTap(sender: ButtonSelectorView) -> Bool { return true }
 }
 
 /// Contains up to 3 buttons in compact circle form. On tap  animated showing and hiding buttons
@@ -46,9 +52,9 @@ class ButtonSelectorView: UIView {
     
     @objc private func mainButtonTouched() {
         if bounds.width.rounded() == bounds.height.rounded() {
-            open(animated: true)
+            if delegate?.buttonSelectorShouldOpenOnTap(sender: self) ?? true { open(animated: true) }
         } else {
-            close(animated: true)
+            if delegate?.buttonSelectorShouldCloseOnTap(sender: self) ?? true { close(animated: true) }
         }
     }
     
