@@ -43,7 +43,6 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        overlayBlurredBackgroundView()
         showLoadingView()
         
         tableView.delegate = self
@@ -60,9 +59,6 @@ class SummaryViewController: UIViewController {
         
         mainMoneyAmountBigLabel.text = presenter.totalMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         mainMoneyAmountSmallLabel.text = presenter.availableMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
-        
-//        updateMonthData()
-//        isDataReady = true
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.updateMonthData()
