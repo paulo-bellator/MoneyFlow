@@ -19,7 +19,7 @@ extension ButtonSelectorViewDelegate {
     func buttonSelectorShouldCloseOnTap(sender: ButtonSelectorView) -> Bool { return true }
 }
 
-/// Contains up to 3 buttons in compact circle form. On tap  animated showing and hiding buttons
+/// Contains array of buttons in compact circle form. On tap  animated showing and hiding buttons
 class ButtonSelectorView: UIView {
     
     /// Get notified when view opening and closing

@@ -69,6 +69,7 @@
 		F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */; };
 		F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */; };
 		F9E1F600234B6C93000B6DB4 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */; };
+		F9EB79042354A5530081C84E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB79032354A5530081C84E /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectorView.swift; sourceTree = "<group>"; };
 		F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		F9EB79032354A5530081C84E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
 				F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */,
 				F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */,
+				F9EB79032354A5530081C84E /* LoadingView.swift */,
 				F9B2D6822341223900711F59 /* ImagePicker Screen */,
 				F9D4087A232E214B0034B913 /* Summary Screen */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
@@ -515,6 +518,7 @@
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
 				F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */,
 				F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */,
+				F9EB79042354A5530081C84E /* LoadingView.swift in Sources */,
 				F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */,
 				F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */,
 				F9172DD32345058A0067B9AE /* CombinedSettingsDataSource.swift in Sources */,

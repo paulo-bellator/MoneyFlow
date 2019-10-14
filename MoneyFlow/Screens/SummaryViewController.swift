@@ -59,7 +59,6 @@ class SummaryViewController: UIViewController {
         mainMoneyAmountBigLabel.text = presenter.totalMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         mainMoneyAmountSmallLabel.text = presenter.availableMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         
-        
 //        updateMonthData()
 //        isDataReady = true
         

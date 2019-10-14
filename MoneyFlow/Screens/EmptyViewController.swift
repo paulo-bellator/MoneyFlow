@@ -8,7 +8,27 @@
 
 import UIKit
 
-class EmptyViewController: UIViewController {
+class EmptyViewController: UIViewController, ButtonSelectorViewDelegate {
+    
+    private var loadinView: LoadingView!
+    
+    func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool) {
+        loadinView = LoadingView(superView: self.view)
+        tabBarController?.tabBar.isHidden = true
+        loadinView.breakAction = { [weak self, loadinView] in
+            loadinView?.remove()
+            self?.tabBarController?.tabBar.isHidden = false
+        }
+        loadinView.shouldAnimateLoaderIcon = true
+        loadinView.shouldApperBreakButton = true
+        loadinView.mainLabel.text = "Сохранение"
+        loadinView.breakButton.setTitle( "Отмена", for: .normal)
+    }
+    
+    func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool) {
+        
+    }
+    
 
     private var buttonSelector: ButtonSelectorView!
     
@@ -37,9 +57,12 @@ class EmptyViewController: UIViewController {
         buttonSelector.backgroundColor = #colorLiteral(red: 0.9405411869, green: 0.9405411869, blue: 0.9405411869, alpha: 1)
         buttonSelector.direction = .up
         buttonSelector.animationDuration = 0.3
+        buttonSelector.delegate = self
         
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.addSubview(buttonSelector)
+        
+        view.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
     }
 
 }
