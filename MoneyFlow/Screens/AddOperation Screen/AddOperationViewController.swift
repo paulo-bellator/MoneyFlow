@@ -9,7 +9,6 @@
 import UIKit
 
 protocol AddOperationViewControllerDelegate: class {
-    func removeBlurredBackgroundView()
     func updateData()
 }
 
@@ -287,7 +286,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     private func dismiss() {
         view.endEditing(true)
         self.dismiss(animated: true)
-        delegate?.removeBlurredBackgroundView()
     }
     
 }

@@ -32,7 +32,7 @@ class SummaryViewController: UIViewController {
     var isDataReady = false
     private var loadingView: LoadingView!
     
-    lazy var mainCurrency: Currency = presenter.settings.currencies.first!
+    lazy var mainCurrency: Currency = presenter.settings.currencies.first ?? .rub
     lazy var summaryByMonth = presenter.summary(by: .months, for: mainCurrency)
     lazy var summaryMinMax = presenter.maxAndMinValuesFromSummary(by: .months, for: mainCurrency)
     var currentMonthIndex = 0 { didSet { updateMonthData(); setupMonthHeader() } }
