@@ -70,6 +70,12 @@ class CombinedDataSource: CloudOperationDataSource {
         getDataFromStorage()
     }
     
+    func cancelLoading() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
+        cloudGenerator?.cancelLoading()
+    }
+    
     // MARK: Initialization
     
     // call makes nothing but create static instance of this class

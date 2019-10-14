@@ -80,9 +80,13 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
         }
     }
     
-    
     func updateData() {
         getDataFromStorage()
+    }
+    
+    func cancelLoading() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
     }
     
     // MARK: Initialization

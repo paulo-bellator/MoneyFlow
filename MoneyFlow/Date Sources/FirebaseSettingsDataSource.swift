@@ -59,9 +59,13 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
         } else { print("not saved: Data is actual") }
     }
  
-    
     func updateData() {
         getData()
+    }
+    
+    func cancelLoading() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
     }
     
     // call makes nothing but create static instance of this class

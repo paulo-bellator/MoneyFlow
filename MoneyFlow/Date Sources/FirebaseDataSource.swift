@@ -45,6 +45,11 @@ class FirebaseDataSource: CloudOperationDataSource {
         cloudGenerator?.updateData()
         getData()
     }
+    func cancelLoading() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
+        cloudGenerator?.cancelLoading()
+    }
     
     // call makes nothing but create static instance of this class
     func configure() {}

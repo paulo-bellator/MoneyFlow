@@ -19,6 +19,7 @@ protocol CloudOperationDataSource: OperationDataSource {
     var delegate: CloudDataSourceDelegate? { get set }
     var isDownloadComplete: Bool { get }
     func updateData()
+    func cancelLoading()
     func configure()
 }
 protocol CloudDataSourceDelegate: class {
@@ -51,6 +52,7 @@ protocol CloudSettingsDataSource: SettingsDataSource {
     var delegate: CloudSettingsDataSourceDelegate? { get set }
     var isDownloadComplete: Bool { get }
     func updateData()
+    func cancelLoading()
     func configure()
 }
 protocol CloudSettingsDataSourceDelegate: class {

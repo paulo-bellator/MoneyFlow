@@ -16,6 +16,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
     private let storageRef = Storage.storage().reference()
     private var nextID: Int!
     private var thereAreUnsavedChanges = false
+    private var activeTasks = [CancelableStorageTask]()
     
     var delegate: CloudIDGeneratorDelegate?
     var isDownloadComplete: Bool {
@@ -40,6 +41,11 @@ class FirebaseIDGenerator: CloudIDGenerator {
         getData()
     }
     
+    func cancelLoading() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
+    }
+    
     // call makes nothing but create static instance of this class
     func configure() {}
     
@@ -49,10 +55,13 @@ class FirebaseIDGenerator: CloudIDGenerator {
     }
     
     private func getData() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
+        
         let decoder = JSONDecoder()
         let operationsRef = storageRef.child(Path.nextID)
         
-        operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+        let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if error == nil, let data = data {
                 if let value = (try? decoder.decode(Int.self, from: data)) {
                     self.nextID = value
@@ -63,20 +72,25 @@ class FirebaseIDGenerator: CloudIDGenerator {
             self.delegate?.generatorDownloadComplete(with: error)
             print("Firebase generator download complete")
         }
+        activeTasks.append(downloadTask)
     }
     
     private func pushData() {
+        activeTasks.forEach { $0.cancel() }
+        activeTasks.removeAll()
+        
         let encoder = JSONEncoder()
         let operationsRef = storageRef.child(Path.nextID)
         let metadata = StorageMetadata()
         metadata.contentType = "application/json"
         
         if let data = try? encoder.encode(nextID!) {
-            operationsRef.putData(data, metadata: metadata) { (metadata, error) in
+            let uploadTask = operationsRef.putData(data, metadata: metadata) { (metadata, error) in
                 self.thereAreUnsavedChanges = false
                 self.delegate?.generatorUploadComplete(with: error)
                 print("Firebase generator saved successfully")
             }
+            activeTasks.append(uploadTask)
         }
     }
     

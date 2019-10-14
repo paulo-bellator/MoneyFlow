@@ -17,6 +17,7 @@ protocol CloudIDGenerator: IDGenerator {
     var isDownloadComplete: Bool { get }
     func updateData()
     func save()
+    func cancelLoading()
     func configure()
 }
 protocol CloudIDGeneratorDelegate: class {
