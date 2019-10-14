@@ -23,6 +23,7 @@ class EmptyViewController: UIViewController, ButtonSelectorViewDelegate {
         loadinView.shouldApperBreakButton = true
         loadinView.mainLabel.text = "Сохранение"
         loadinView.breakButton.setTitle( "Отмена", for: .normal)
+        loadinView.appear()
     }
     
     func buttonSelectorClosed(sender: ButtonSelectorView, animated: Bool) {

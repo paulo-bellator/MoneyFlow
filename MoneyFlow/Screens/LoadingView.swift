@@ -73,17 +73,51 @@ class LoadingView: UIView {
         loaderIconImageView.layer.removeAnimation(forKey: Constants.rotateAnimationKey)
     }
     
-    func remove() {
+    func remove(animated: Bool = true, duration: TimeInterval = 0.2) {
         mainLabel.isHidden = true
         loaderIconImageView.isHidden = true
         breakButton.isHidden = true
+        if animated {
+            UIView.animate(
+                withDuration: duration,
+                animations: { [weak self] in
+                    self?.alpha = 0.0
+                }, completion: { [weak self] _ in
+                    self?.stopAnimating()
+                    self?.removeFromSuperview()
+            })
+        } else {
+            stopAnimating()
+            removeFromSuperview()
+        }
+    }
+    
+    func appear(animated: Bool = true, duration: TimeInterval = 0.2) {
+        if !animated {
+            if shouldAnimateLoaderIcon { startAnimating() }
+            alpha = 1.0
+            mainLabel.isHidden = false
+            loaderIconImageView.isHidden = false
+            breakButton.isHidden = !shouldApperBreakButton
+            return
+        }
+        
+        alpha = 0.0
+        mainLabel.isHidden = true
+        loaderIconImageView.isHidden = true
+        breakButton.isHidden = true
+        
         UIView.animate(
-            withDuration: 0.2,
+            withDuration: duration,
             animations: { [weak self] in
-                self?.alpha = 0.0
+                self?.alpha = 1.0
             }, completion: { [weak self] _ in
-                self?.stopAnimating()
-                self?.removeFromSuperview()
+                if self != nil {
+                    if self!.shouldAnimateLoaderIcon { self!.startAnimating() }
+                    self!.mainLabel.isHidden = false
+                    self!.loaderIconImageView.isHidden = false
+                    if self!.shouldApperBreakButton { self!.breakButton.isHidden = false }
+                }
         })
     }
     
@@ -100,21 +134,8 @@ class LoadingView: UIView {
         breakButton.isHidden = true
         
         frame = UIScreen.main.bounds
-        backgroundColor = UIColor.white.withAlphaComponent(0.95)
+        backgroundColor = UIColor.white.withAlphaComponent(0.98)
         setConstraints()
-        
-        UIView.animate(
-            withDuration: 0.2,
-            animations: { [weak self] in
-                self?.alpha = 1.0
-            }, completion: { [weak self] _ in
-                if self != nil {
-                    if self!.shouldAnimateLoaderIcon { self!.startAnimating() }
-                    self!.mainLabel.isHidden = false
-                    self!.loaderIconImageView.isHidden = false
-                    if self!.shouldApperBreakButton { self!.breakButton.isHidden = false }
-                }
-        })
     }
     
     convenience init(superView: UIView) {

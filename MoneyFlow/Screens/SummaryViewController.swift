@@ -30,6 +30,7 @@ class SummaryViewController: UIViewController {
     let summaryHeaderCellIdentifier = "summaryHeader"
     var isCircleChartPresentationType = true
     var isDataReady = false
+    private var loadingView: LoadingView!
     
     lazy var mainCurrency: Currency = presenter.settings.currencies.first!
     lazy var summaryByMonth = presenter.summary(by: .months, for: mainCurrency)
@@ -42,7 +43,8 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overlayBlurredBackgroundView()
+//        overlayBlurredBackgroundView()
+        showLoadingView()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,13 +71,7 @@ class SummaryViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.setupMonthHeader()
                 self?.tableView.reloadData()
-                if self != nil {
-                    let blurredView = self!.view.subviews.last!
-                    UIView.animate(
-                        withDuration: 0.5,
-                        animations: { blurredView.alpha = 0.0 },
-                        completion: { _ in blurredView.removeFromSuperview() })
-                }
+                self?.removeLoadingView()
             }
         }
         
@@ -90,6 +86,19 @@ class SummaryViewController: UIViewController {
 //        UIView.animate(withDuration: 0.35) {
 //            blurredBackgroundView.alpha = 1
 //        }
+    }
+    
+    private func showLoadingView() {
+        loadingView = LoadingView(superView: self.view)
+        tabBarController?.tabBar.isHidden = true
+        loadingView.shouldAnimateLoaderIcon = true
+        loadingView.shouldApperBreakButton = false
+        loadingView.mainLabel.text = "Вычисление"
+        loadingView.appear(animated: false)
+    }
+    private func removeLoadingView() {
+        tabBarController?.tabBar.isHidden = false
+        loadingView?.remove(animated: true, duration: 0.4)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
