@@ -26,8 +26,8 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     var downloadProgress: Double = 0 { didSet { delegate?.downloadProgress = downloadProgress } }
     var uploadProgress: Double = 0 { didSet { delegate?.uploadProgress = uploadProgress } }
     
-    var isDownloadComplete: Bool = false
-    var isUploadComplete: Bool = false
+    var isDownloadComplete: Bool = false { didSet { print("Download completed") } }
+    var isUploadComplete: Bool = false { didSet { print("Upload completed") } }
     
     
     // MARK: Downloads
@@ -45,7 +45,7 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         if settings?.isDownloadComplete ?? true {
             if generator?.isDownloadComplete ?? true {
                 delegate?.downloadComplete(with: nil)
-                isDownloadComplete = true
+                if !isDownloadComplete { isDownloadComplete = true }
             }
         }
     }
@@ -62,7 +62,7 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         if source?.isDownloadComplete ?? true {
             if generator?.isDownloadComplete ?? true {
                 delegate?.downloadComplete(with: nil)
-                isDownloadComplete = true
+                if !isDownloadComplete { isDownloadComplete = true }
             }
         }
     }
@@ -79,7 +79,7 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         if settings?.isDownloadComplete ?? true {
             if source?.isDownloadComplete ?? true {
                 delegate?.downloadComplete(with: nil)
-                isDownloadComplete = true
+                if !isDownloadComplete { isDownloadComplete = true }
             }
         }
     }
@@ -98,7 +98,7 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
             return
         }
         delegate?.uploadComplete(with: nil)
-        isUploadComplete = true
+        if !isUploadComplete { isUploadComplete = true }
     }
     
     // don't use it yet

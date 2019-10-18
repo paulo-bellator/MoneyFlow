@@ -54,9 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         super.init()
         FirebaseApp.configure()
-        (MainData.source as? CloudOperationDataSource)?.configure()
-        (MainData.settings as? CloudSettingsDataSource)?.configure()
         (MainGenerator.generator as? CloudIDGenerator)?.configure()
+        (MainData.settings as? CloudSettingsDataSource)?.configure()
+        (MainData.source as? CloudOperationDataSource)?.configure()
     }
 
 }

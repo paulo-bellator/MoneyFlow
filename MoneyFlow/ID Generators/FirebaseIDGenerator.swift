@@ -32,7 +32,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
     
     func save() {
         if thereAreUnsavedChanges {
-            print("Firebase generator saving")
+//            print("Firebase generator saving")
             pushData()
         }
     }
@@ -71,7 +71,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
                 if self.nextID == nil { self.nextID = 0 }
             }
             self.delegate?.generatorDownloadComplete(with: error)
-            print("Firebase generator download complete")
+//            print("Firebase generator download complete")
         }
         activeTasks.append(downloadTask)
     }
@@ -89,7 +89,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
             let uploadTask = operationsRef.putData(data, metadata: metadata) { (metadata, error) in
                 self.thereAreUnsavedChanges = false
                 self.delegate?.generatorUploadComplete(with: error)
-                print("Firebase generator saved successfully")
+//                print("Firebase generator saved successfully")
             }
             activeTasks.append(uploadTask)
         }

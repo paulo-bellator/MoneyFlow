@@ -36,6 +36,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     private var buttonSelector: ButtonSelectorView!
     private weak var timer: Timer?
     var loadingView: LoadingView?
+    fileprivate let loadManager = DataSourceLoadManager()
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
@@ -131,16 +132,9 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         super.viewDidLoad()
         addButtonSelector()
         
-        if var cloudSource = MainData.source as? CloudOperationDataSource {
-            cloudSource.delegate = self
-            if var cloudSettings = MainData.settings as? CloudSettingsDataSource { cloudSettings.delegate = self }
-            if !cloudSource.isDownloadComplete {
-//                tableView.isHidden = true
-                showLoadingView(withProcessName: "Загрузка", animated: false)
-            }
-        } else {
-            countUpperBound()
-        }
+        loadManager.delegate = self
+        if loadManager.isDownloadComplete { countUpperBound() }
+        else { showLoadingView(withProcessName: "Загрузка", animated: false) }
         
         progressView.isHidden = true
         tableView.dataSource = self
@@ -236,26 +230,14 @@ extension OperationsViewController: ButtonSelectorViewDelegate {
 
 // MARK: Handling cloud data sources
 
-extension OperationsViewController: CloudDataSourceDelegate, CloudSettingsDataSourceDelegate {
-    
-    func settingsDownloadComplete(with error: Error?) {
-        if (MainData.source as? CloudOperationDataSource)?.isDownloadComplete ?? true {
-            if (MainGenerator.generator as? CloudIDGenerator)?.isDownloadComplete ?? true {
-                showLoadedData()
-                print("settings and generator done")
-            }
-        }
-        print("settings done")
-    }
-    func settingsUploadComplete(with error: Error?) {}
-    
+extension OperationsViewController: DataSourceLoadManagerDelegate {
     var downloadProgress: Double {
         get { return 0 }
         set {
             if loadingView == nil { showLoadingView(withProcessName: "Загрузка", animated: true) }
             var progress = (100*newValue).rounded()
             if progress.isNaN { progress = 100.0 }
-            print("Download operations: \(Int(progress)) %")
+            print("Downloading: \(Int(progress)) %")
             loadingView?.mainLabel.text = "Загрузка  \(Int(progress))%"
         }
     }
@@ -265,25 +247,21 @@ extension OperationsViewController: CloudDataSourceDelegate, CloudSettingsDataSo
             if loadingView == nil { showLoadingView(withProcessName: "Сохранение", animated: true) }
             var progress = (100*newValue).rounded()
             if progress.isNaN { progress = 100.0 }
-            print("Upload operations: \(Int(progress)) %")
+            print("Uploading: \(Int(progress)) %")
             loadingView?.mainLabel.text = "Cохранение  \(Int(progress))%"
         }
     }
-    
-    func uploadComplete(with error: Error?) {
-        removeLoadingView()
-    }
+    func uploadComplete(with error: Error?) { removeLoadingView() }
     func downloadComplete(with error: Error?) {
-        if (MainData.settings as? CloudSettingsDataSource)?.isDownloadComplete ?? true {
-            if (MainGenerator.generator as? CloudIDGenerator)?.isDownloadComplete ?? true {
-                showLoadedData()
-                print("operations and generator done")
-            }
+        if let error = error {
+            
+            // TODO: handle this case. Somehow forbid editing and give opports to reupdate data
+            
+        } else {
+            showLoadedData()
         }
-        print("operations done")
     }
     
-    // reset and reload Data
     private func showLoadedData() {
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
             self?.countUpperBound()
@@ -293,7 +271,6 @@ extension OperationsViewController: CloudDataSourceDelegate, CloudSettingsDataSo
             self?.removeLoadingView()
         }
     }
-    
     private func showLoadingView(withProcessName name: String, animated: Bool = true) {
         loadingView = LoadingView(superview: self.view)
         tabBarController?.tabBar.isHidden = true
@@ -312,6 +289,7 @@ extension OperationsViewController: CloudDataSourceDelegate, CloudSettingsDataSo
         loadingView?.remove(animated: animated, duration: 0.4)
         loadingView = nil
     }
+    
 }
 
 // MARK: Service entities
