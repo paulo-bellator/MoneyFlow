@@ -26,8 +26,8 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     var downloadProgress: Double = 0 { didSet { delegate?.downloadProgress = downloadProgress } }
     var uploadProgress: Double = 0 { didSet { delegate?.uploadProgress = uploadProgress } }
     
-    var isDownloadComplete: Bool = false { didSet { print("Download completed") } }
-    var isUploadComplete: Bool = false { didSet { print("Upload completed") } }
+    var isDownloadComplete: Bool = false { didSet { if isDownloadComplete { print("Download completed") } } }
+    var isUploadComplete: Bool = false { didSet { if isUploadComplete { print("Upload completed") } } }
     
     
     // MARK: Downloads
@@ -135,6 +135,7 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         uploadProgress = 0
         isDownloadComplete = false
         isUploadComplete = false
+        print("New load session created")
     }
     
     init() {
