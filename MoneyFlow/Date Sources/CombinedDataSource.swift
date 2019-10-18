@@ -161,12 +161,15 @@ class CombinedDataSource: CloudOperationDataSource {
         let operationsRef = storageRef.child(Path.operations)
         
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                if let ops = (try? decoder.decode(Ops.self, from: data)) {
-                    self.operations = ops.flowOps + ops.debtOps
-                    self.thereAreUnsavedChanges = true
-                    self.changesCounter = 0
+            if error == nil {
+                if let data = data {
+                    if let ops = (try? decoder.decode(Ops.self, from: data)) {
+                        self.operations = ops.flowOps + ops.debtOps
+                        self.thereAreUnsavedChanges = true
+                        self.changesCounter = 0
+                    }
                 }
+                self.isDownloadComplete = true
             }
             // TODO: handle errors 
             // if we have fresh data in cloud storage, and can't get it
@@ -174,7 +177,6 @@ class CombinedDataSource: CloudOperationDataSource {
             // so i'll get not actual data from defaults and may be
             // resave it into storage, so i'll lose fresh data
             // need to fix it
-            self.isDownloadComplete = true
             self.delegate?.downloadComplete(with: error)
         }
         activeTasks.append(downloadTask)

@@ -133,6 +133,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         
         if var cloudSource = MainData.source as? CloudOperationDataSource {
             cloudSource.delegate = self
+            if var cloudSettings = MainData.settings as? CloudSettingsDataSource { cloudSettings.delegate = self }
             if !cloudSource.isDownloadComplete {
 //                tableView.isHidden = true
                 showLoadingView(withProcessName: "Загрузка", animated: false)
@@ -235,7 +236,18 @@ extension OperationsViewController: ButtonSelectorViewDelegate {
 
 // MARK: Handling cloud data sources
 
-extension OperationsViewController: CloudDataSourceDelegate {
+extension OperationsViewController: CloudDataSourceDelegate, CloudSettingsDataSourceDelegate {
+    
+    func settingsDownloadComplete(with error: Error?) {
+        if (MainData.source as? CloudOperationDataSource)?.isDownloadComplete ?? true {
+            if (MainGenerator.generator as? CloudIDGenerator)?.isDownloadComplete ?? true {
+                showLoadedData()
+                print("settings and generator done")
+            }
+        }
+        print("settings done")
+    }
+    func settingsUploadComplete(with error: Error?) {}
     
     var downloadProgress: Double {
         get { return 0 }
@@ -245,8 +257,6 @@ extension OperationsViewController: CloudDataSourceDelegate {
             if progress.isNaN { progress = 100.0 }
             print("Download operations: \(Int(progress)) %")
             loadingView?.mainLabel.text = "Загрузка  \(Int(progress))%"
-//            progressView.isHidden = false
-//            progressView.progress = Float(newValue)
         }
     }
     var uploadProgress: Double {
@@ -257,21 +267,28 @@ extension OperationsViewController: CloudDataSourceDelegate {
             if progress.isNaN { progress = 100.0 }
             print("Upload operations: \(Int(progress)) %")
             loadingView?.mainLabel.text = "Cохранение  \(Int(progress))%"
-//            progressView.isHidden = false
-//            progressView.progress = Float(newValue)
         }
     }
     
     func uploadComplete(with error: Error?) {
-//        progressView.isHidden = true
         removeLoadingView()
     }
     func downloadComplete(with error: Error?) {
-        // reset and reload Data
+        if (MainData.settings as? CloudSettingsDataSource)?.isDownloadComplete ?? true {
+            if (MainGenerator.generator as? CloudIDGenerator)?.isDownloadComplete ?? true {
+                showLoadedData()
+                print("operations and generator done")
+            }
+        }
+        print("operations done")
+    }
+    
+    // reset and reload Data
+    private func showLoadedData() {
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
             self?.countUpperBound()
             self?.applyFilter()
-//            self?.progressView.isHidden = trueы
+            //            self?.progressView.isHidden = true
             self?.tableView.isHidden = false
             self?.removeLoadingView()
         }

@@ -106,13 +106,13 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
 
         // Download in memory with a maximum allowed size of 1MB (5 * 1024 * 1024 bytes)
         let downloadTask = settingsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                if let settings = (try? decoder.decode(Settings.self, from: data)) {
-                    self.settings = settings
-                    self.thereAreUnsavedChanges = false
+            if error == nil {
+                if let data = data {
+                    if let settings = (try? decoder.decode(Settings.self, from: data)) { self.settings = settings }
                 }
+                self.isDownloadComplete = true
+                self.thereAreUnsavedChanges = false
             }
-            self.isDownloadComplete = true
             self.delegate?.settingsDownloadComplete(with: error)
         }
         activeTasks.append(downloadTask)

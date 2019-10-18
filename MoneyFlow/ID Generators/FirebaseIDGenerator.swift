@@ -62,12 +62,13 @@ class FirebaseIDGenerator: CloudIDGenerator {
         let operationsRef = storageRef.child(Path.nextID)
         
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                if let value = (try? decoder.decode(Int.self, from: data)) {
-                    self.nextID = value
+            if error == nil {
+                if let data = data {
+                    if let value = (try? decoder.decode(Int.self, from: data)) {
+                        self.nextID = value
+                    }
                 }
-            } else {
-                self.nextID = 0
+                if self.nextID == nil { self.nextID = 0 }
             }
             self.delegate?.generatorDownloadComplete(with: error)
             print("Firebase generator download complete")
