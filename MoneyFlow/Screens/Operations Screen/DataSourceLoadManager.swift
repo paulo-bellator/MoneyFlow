@@ -17,9 +17,9 @@ protocol DataSourceLoadManagerDelegate: class {
 
 class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDelegate, CloudIDGeneratorDelegate {
     
-    private let source = MainData.source as? CloudOperationDataSource
-    private let settings = MainData.settings as? CloudSettingsDataSource
-    private let generator = MainGenerator.generator as? CloudIDGenerator
+    private var source = MainData.source as? CloudOperationDataSource
+    private var settings = MainData.settings as? CloudSettingsDataSource
+    private var generator = MainGenerator.generator as? CloudIDGenerator
     
     weak var delegate: DataSourceLoadManagerDelegate!
     
@@ -29,7 +29,12 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     var isDownloadComplete: Bool = false
     var isUploadComplete: Bool = false
     
+    
+    // MARK: Downloads
+    
+    /// Do NOT call this method
     func downloadComplete(with error: Error?) {
+        print("Operations downloaded: \(error?.localizedDescription ?? "successfully")")
         guard error == nil else {
             if !isDownloadComplete {
                 delegate?.downloadComplete(with: error)
@@ -40,10 +45,13 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         if settings?.isDownloadComplete ?? true {
             if generator?.isDownloadComplete ?? true {
                 delegate?.downloadComplete(with: nil)
+                isDownloadComplete = true
             }
         }
     }
+    /// Do NOT call this method
     func settingsDownloadComplete(with error: Error?) {
+        print("Settings downloaded: \(error?.localizedDescription ?? "successfully")")
         guard error == nil else {
             if !isDownloadComplete {
                 delegate?.downloadComplete(with: error)
@@ -54,10 +62,13 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         if source?.isDownloadComplete ?? true {
             if generator?.isDownloadComplete ?? true {
                 delegate?.downloadComplete(with: nil)
+                isDownloadComplete = true
             }
         }
     }
+    /// Do NOT call this method
     func generatorDownloadComplete(with error: Error?) {
+        print("Generator downloaded: \(error?.localizedDescription ?? "successfully")")
         guard error == nil else {
             if !isDownloadComplete {
                 delegate?.downloadComplete(with: error)
@@ -68,14 +79,17 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         if settings?.isDownloadComplete ?? true {
             if source?.isDownloadComplete ?? true {
                 delegate?.downloadComplete(with: nil)
+                isDownloadComplete = true
             }
         }
     }
     
     
+    // MARK: Uploads
     
-    
+    /// Do NOT call this method
     func uploadComplete(with error: Error?) {
+        print("Operations uploaded: \(error?.localizedDescription ?? "successfully")")
         guard error == nil else {
             if !isUploadComplete {
                 delegate?.uploadComplete(with: error)
@@ -83,8 +97,14 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
             }
             return
         }
+        delegate?.uploadComplete(with: nil)
+        isUploadComplete = true
     }
+    
+    // don't use it yet
+    /// Do NOT call this method
     func settingsUploadComplete(with error: Error?) {
+        print("Settings uploaded: \(error?.localizedDescription ?? "successfully")")
         guard error == nil else {
             if !isUploadComplete {
                 delegate?.uploadComplete(with: error)
@@ -93,7 +113,11 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
             return
         }
     }
+    
+    //don't us it. We don't care about id uploading
+    /// Do NOT call this method
     func generatorUploadComplete(with error: Error?) {
+        print("Generator uploaded: \(error?.localizedDescription ?? "successfully")")
         guard error == nil else {
             if !isUploadComplete {
                 delegate?.uploadComplete(with: error)
@@ -104,15 +128,23 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     }
     
     
-    
-    
-    
+    // MARK: Resetting and init
     
     func newSession() {
         downloadProgress = 0
         uploadProgress = 0
         isDownloadComplete = false
         isUploadComplete = false
+    }
+    
+    init() {
+        source?.delegate = self
+        settings?.delegate = self
+        generator?.delegate = self
+        
+        isDownloadComplete = source?.isDownloadComplete ?? true
+            && settings?.isDownloadComplete ?? true
+            && generator?.isDownloadComplete ?? true
     }
     
 }
