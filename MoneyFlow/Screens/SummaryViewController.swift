@@ -85,7 +85,7 @@ class SummaryViewController: UIViewController {
     }
     
     private func showLoadingView() {
-        loadingView = LoadingView(superView: self.view)
+        loadingView = LoadingView(superview: self.view)
         tabBarController?.tabBar.isHidden = true
         loadingView.shouldAnimateLoaderIcon = true
         loadingView.shouldApperBreakButton = false

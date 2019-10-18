@@ -143,9 +143,9 @@ class LoadingView: UIView {
         setConstraints()
     }
     
-    convenience init(superView: UIView) {
+    convenience init(superview: UIView) {
         self.init(frame: CGRect.zero)
-        superView.addSubview(self)
+        superview.addSubview(self)
     }
     
     override init(frame: CGRect) {

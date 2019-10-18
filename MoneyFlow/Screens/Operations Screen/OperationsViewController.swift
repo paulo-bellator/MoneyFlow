@@ -236,6 +236,7 @@ extension OperationsViewController: ButtonSelectorViewDelegate {
 // MARK: Handling cloud data sources
 
 extension OperationsViewController: CloudDataSourceDelegate {
+    
     var downloadProgress: Double {
         get { return 0 }
         set {
@@ -277,7 +278,7 @@ extension OperationsViewController: CloudDataSourceDelegate {
     }
     
     private func showLoadingView(withProcessName name: String, animated: Bool = true) {
-        loadingView = LoadingView(superView: self.view)
+        loadingView = LoadingView(superview: self.view)
         tabBarController?.tabBar.isHidden = true
         loadingView!.mainLabel.text = name
         loadingView!.breakButton.setTitle("Прервать", for: .normal)

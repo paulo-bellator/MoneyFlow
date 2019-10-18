@@ -13,7 +13,7 @@ class EmptyViewController: UIViewController, ButtonSelectorViewDelegate {
     private var loadinView: LoadingView!
     
     func buttonSelectorOpened(sender: ButtonSelectorView, animated: Bool) {
-        loadinView = LoadingView(superView: self.view)
+        loadinView = LoadingView(superview: self.view)
         tabBarController?.tabBar.isHidden = true
         loadinView.breakAction = { [weak self, loadinView] in
             loadinView?.remove()
