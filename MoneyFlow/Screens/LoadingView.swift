@@ -10,6 +10,7 @@ import UIKit
 
 class LoadingView: UIView {
     
+    /// It stops animation if it works, but doesn't start, if it doesn't work. Equal true by default.
     var shouldAnimateLoaderIcon = true {
         didSet {
             if shouldAnimateLoaderIcon == false && oldValue == true {
@@ -19,26 +20,26 @@ class LoadingView: UIView {
         }
     }
     
+    /// Set it right after creation. Equal true by default.
     var shouldApperBreakButton = true {
         didSet {
             if breakButton.isHidden == false { breakButton.isHidden.toggle() }
         }
     }
     
+    /// This closure will be called when breakButton touch. Remove itself from screen by default.
     lazy var breakAction: (() -> Void) = { [weak self] in self?.remove() }
     
     private(set) lazy var loaderIconImageView: UIImageView = {
         let imageView = UIImageView()
-        if let image = UIImage(named: "loader_icon.png") {
-            imageView.image = image
-        }
+        if let image = Constants.defaultLoaderIcon { imageView.image = image }
         self.addSubview(imageView)
         return imageView
     }()
     
     private(set) lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "Загрузка"
+        label.text = Constants.defaultMainLabelText
         label.textAlignment = .center
         label.textColor = .black
         label.font = Constants.labelFont
@@ -49,7 +50,7 @@ class LoadingView: UIView {
     private(set) lazy var breakButton: UIButton = {
         let button = UIButton()
         let label = UILabel()
-        button.setTitle("Прервать", for: .normal)
+        button.setTitle(Constants.defaultBreakButtonText, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = Constants.buttonFont
         button.addTarget(self, action: #selector(breakButtonTouched), for: .touchUpInside)
@@ -59,21 +60,24 @@ class LoadingView: UIView {
     
     // MARK: API
     
+    /// Starts loader icon animation
     func startAnimating() {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = -CGFloat.pi * 2
+        rotateAnimation.toValue = Constants.loaderSpinValue
         rotateAnimation.isRemovedOnCompletion = false
-        rotateAnimation.duration = 2
+        rotateAnimation.duration = Constants.loaderSpinDuration
         rotateAnimation.repeatCount = .infinity
         loaderIconImageView.layer.add(rotateAnimation, forKey: Constants.rotateAnimationKey)
     }
     
+    /// Stops loader icon animation
     func stopAnimating() {
         loaderIconImageView.layer.removeAnimation(forKey: Constants.rotateAnimationKey)
     }
     
-    func remove(animated: Bool = true, duration: TimeInterval = 0.2) {
+    /// Removes loaderView from screen and superview hierarchy
+    func remove(animated: Bool = true, duration: TimeInterval = Constants.defaultRemovingDuration) {
         mainLabel.isHidden = true
         loaderIconImageView.isHidden = true
         breakButton.isHidden = true
@@ -92,7 +96,8 @@ class LoadingView: UIView {
         }
     }
     
-    func appear(animated: Bool = true, duration: TimeInterval = 0.2) {
+    /// Shows loaderView on the whole screen
+    func appear(animated: Bool = true, duration: TimeInterval = Constants.defaultAppearingDuration) {
         if !animated {
             if shouldAnimateLoaderIcon { startAnimating() }
             alpha = 1.0
@@ -185,5 +190,13 @@ private extension LoadingView {
         static let labelFont = UIFont(name: "CenturyGothic", size: 18.0)
         static let buttonFont = UIFont(name: "CenturyGothic", size: 15.0)
         static let rotateAnimationKey = "rotateAnim"
+        static let defaultAppearingDuration: TimeInterval = 0.2
+        static let defaultRemovingDuration: TimeInterval = 0.2
+        static let loaderSpinDuration: TimeInterval = 2.0
+        static let loaderSpinValue: CGFloat = -CGFloat.pi * 2
+        static let defaultLoaderImageName = "loader_icon.png"
+        static let defaultLoaderIcon = UIImage(named: "loader_icon.png")
+        static let defaultMainLabelText = "Загрузка"
+        static let defaultBreakButtonText = "Прервать"
     }
 }
