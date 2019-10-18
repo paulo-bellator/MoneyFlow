@@ -41,6 +41,19 @@ class SummaryMonthData {
         var color: UIColor
     }
     
+    func reset() {
+        cleanArrays()
+        monthName = nil
+        availableMoneyAmountFormatted = nil
+        totalMoneyAmountFormatted = nil
+        incomesAmount = nil
+        outcomesAmount = nil
+        debtsBalance = nil
+        maxIncome = nil
+        maxOutcome = nil
+        maxDebt = nil
+    }
+    
     private func cleanArrays() {
         formattedPeriodForWeek = []
         formattedResultForWeek = []
@@ -53,6 +66,8 @@ class SummaryMonthData {
     }
     
     private func setMaximums(source: SummaryPresenter, period: DateInterval, currency: Currency) {
+        guard !source.operationListIsEmpty else { return }
+        
         let summary = source.summary(by: .months, for: currency)
         var allWeeks = [DateInterval]()
         summary.forEach { allWeeks += source.periodsFor(monthFrom: $0.period.end) }
@@ -126,6 +141,8 @@ class SummaryMonthData {
     }
     
     func loadData(source: SummaryPresenter, period: DateInterval, currency: Currency) {
+        guard !source.operationListIsEmpty else { return }
+        
         cleanArrays()
         if maxIncome == nil { setMaximums(source: source, period: period, currency: currency) }
         let weeks = source.periodsFor(monthFrom: period.end)

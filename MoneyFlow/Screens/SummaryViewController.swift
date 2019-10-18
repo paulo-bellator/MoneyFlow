@@ -30,6 +30,7 @@ class SummaryViewController: UIViewController {
     let summaryHeaderCellIdentifier = "summaryHeader"
     var isCircleChartPresentationType = true
     var isDataReady = false
+    var needToUpdate: Bool = true
     private var loadingView: LoadingView!
     
     lazy var mainCurrency: Currency = presenter.settings.currencies.first ?? .rub
@@ -43,45 +44,48 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLoadingView()
-        
         tableView.delegate = self
         tableView.dataSource = self
         chartView.delegate = self
         chartView.minValueLabel.text = "0"
-        chartView.midValueLabel.text = (summaryMinMax.max/2.0).shortString
-        chartView.minValueLabel.font = mainMoneyAmountSmallLabel.font
-        chartView.midValueLabel.font = mainMoneyAmountSmallLabel.font
-        chartView.labelsFont = mainMoneyAmountSmallLabel.font
+        chartView.midValueLabel.text = "0"
         chartView.allowsSelection = true
         chartView.measureLinesColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
         chartView.secondOverlapValueColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if needToUpdate { updateData() }
+    }
+    
+    private func updateData() {
+        showLoadingView()
+        isDataReady = false
+
+        chartView.minValueLabel.font = mainMoneyAmountSmallLabel.font
+        chartView.midValueLabel.font = mainMoneyAmountSmallLabel.font
+        chartView.labelsFont = mainMoneyAmountSmallLabel.font
         mainMoneyAmountBigLabel.text = presenter.totalMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         mainMoneyAmountSmallLabel.text = presenter.availableMoney(in: mainCurrency).currencyFormattedDescription(mainCurrency)
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.updateMonthData()
-            self?.isDataReady = true
-
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            self.monthData.reset()
+            self.updateMonthData()
+            self.mainCurrency = self.presenter.settings.currencies.first ?? .rub
+            self.summaryByMonth = self.presenter.summary(by: .months, for: self.mainCurrency)
+            self.summaryMinMax = self.presenter.maxAndMinValuesFromSummary(by: .months, for: self.mainCurrency)
+            self.isDataReady = true
             DispatchQueue.main.async {
-                self?.setupMonthHeader()
-                self?.tableView.reloadData()
-                self?.removeLoadingView()
+                self.setupMonthHeader()
+                self.tableView.reloadData()
+                self.chartView.midValueLabel.text = (self.summaryMinMax.max/2.0).shortString
+                self.chartView.updateUI()
+                self.chartView.reloadData()
+                self.currentMonthIndex = 0
+                self.removeLoadingView()
+                self.needToUpdate = false
             }
         }
-        
-    }
-    
-    func overlayBlurredBackgroundView() {
-        let blurredBackgroundView = UIVisualEffectView()
-        blurredBackgroundView.frame = view.frame
-        blurredBackgroundView.effect = UIBlurEffect(style: .light)
-        blurredBackgroundView.alpha = 1.0
-        view.addSubview(blurredBackgroundView)
-//        UIView.animate(withDuration: 0.35) {
-//            blurredBackgroundView.alpha = 1
-//        }
     }
     
     private func showLoadingView() {
@@ -107,6 +111,7 @@ class SummaryViewController: UIViewController {
     }
     
     private func setupMonthHeader() {
+        guard !presenter.operationListIsEmpty else { return }
         mounthLabel.text =  monthData.monthName
         monthMoneyAmountSmallLabel.text = monthData.availableMoneyAmountFormatted
         monthMoneyAmountBigLabel.text = monthData.totalMoneyAmountFormatted
@@ -120,6 +125,7 @@ class SummaryViewController: UIViewController {
     }
     
     private func updateMonthData() {
+        guard !presenter.operationListIsEmpty else { return }
         monthData.loadData(source: presenter, period: summaryByMonth[currentMonthIndex].period, currency: mainCurrency)
     }
 }

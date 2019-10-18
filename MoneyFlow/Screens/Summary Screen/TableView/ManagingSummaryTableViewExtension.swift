@@ -11,11 +11,11 @@ import UIKit
 extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isDataReady ? 3 : 0
+        return (isDataReady && !presenter.operationListIsEmpty) ? 3 : 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isDataReady {
+        if (isDataReady && !presenter.operationListIsEmpty) {
             switch section {
             case 0: return presenter.settings.incomeCategories.count + 1
             case 1: return presenter.settings.outcomeCategories.count + 1

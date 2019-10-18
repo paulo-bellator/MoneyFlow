@@ -76,7 +76,7 @@ class ChartView: UIView {
     }
     
     
-    private func updateUI() {
+    func updateUI() {
         if collectionViewNeedToUpdate { collectionView.reloadData(); collectionViewNeedToUpdate.toggle() }
         
         let frameForCell = CGRect(origin: collectionView.frame.origin,
@@ -154,7 +154,7 @@ class ChartView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        print("layouts")
+//        print("layouts")
         let frameForCV = frameForCollectionView()
         if collectionView.frame != frameForCV {
             collectionView.frame = frameForCV

@@ -17,6 +17,8 @@ class SummaryPresenter {
         return MainData.source.operations
     }
     
+    var operationListIsEmpty: Bool { return operations.isEmpty }
+    
     func availableMoney(in currency: Currency, at date: Date? = nil) -> Double {
         return presenter.filter(until: date).valuesSum(currency)
     }
@@ -43,6 +45,8 @@ class SummaryPresenter {
     }
     
     func maxAndMinValuesFromSummary(by filterUnit: Presenter.DateFilterUnit, for currency: Currency) -> (max: Double, min: Double) {
+        guard !operations.isEmpty else { return (0,0) }
+        
         let data = summary(by: filterUnit, for: currency)
         
         var maxValue = data[0].availableMoney
