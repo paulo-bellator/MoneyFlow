@@ -26,12 +26,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка данных ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtY-Qr-Bhu">
-                                <rect key="frame" x="138.33333333333337" y="324.66666666666669" width="137.66666666666663" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading error occured." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtY-Qr-Bhu">
+                                <rect key="frame" x="40" y="324.33333333333331" width="334" height="18.666666666666686"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sp3-Aw-gG3">
+                                <rect key="frame" x="169.66666666666666" y="363" width="75" height="31"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                <state key="normal" title="Повторить">
+                                    <color key="titleColor" red="0.59655062420000005" green="0.65530419750000002" blue="0.94901960780000005" alpha="0.95283604450000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="repeatDownloadButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MMH-7J-TRR"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tqx-7M-aCx">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -167,13 +177,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-z2-IEh">
                                                     <rect key="frame" x="306.66666666666669" y="32.333333333333343" width="87.333333333333314" height="35.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
                                                             <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
                                                             <rect key="frame" x="0.0" y="21.333333333333329" width="87.333333333333329" height="14.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="KYX-xh-6Qb"/>
@@ -394,12 +404,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vtY-Qr-Bhu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="0Od-et-2LW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vtY-Qr-Bhu" secondAttribute="trailing" constant="40" id="1kh-bj-f9w"/>
+                            <constraint firstItem="Sp3-Aw-gG3" firstAttribute="top" secondItem="vtY-Qr-Bhu" secondAttribute="bottom" constant="20" id="Ev7-i9-z0V"/>
                             <constraint firstItem="llb-yi-qlg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-1" id="GCV-IJ-T5F"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="llb-yi-qlg" secondAttribute="leading" id="SfD-qb-BVl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="llb-yi-qlg" secondAttribute="trailing" id="U0X-4y-44U"/>
                             <constraint firstItem="vtY-Qr-Bhu" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="V9G-Pf-5i8"/>
                             <constraint firstItem="VqW-fa-Ih6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XfL-6F-Fbw"/>
                             <constraint firstItem="tqx-7M-aCx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="YEV-ZF-qn9"/>
+                            <constraint firstItem="Sp3-Aw-gG3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ZA3-IY-62e"/>
                             <constraint firstItem="vtY-Qr-Bhu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kbw-LT-yMA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VqW-fa-Ih6" secondAttribute="bottom" id="o0p-2c-fZe"/>
                             <constraint firstItem="VqW-fa-Ih6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="qjv-M8-S1q"/>
@@ -416,6 +430,7 @@
                     <connections>
                         <outlet property="collectionView" destination="tqx-7M-aCx" id="ZmI-gn-ZMd"/>
                         <outlet property="collectionViewFlowLayout" destination="02t-jJ-Y3B" id="bJW-Tt-RdG"/>
+                        <outlet property="errorLabel" destination="vtY-Qr-Bhu" id="B3F-ZQ-QNl"/>
                         <outlet property="progressView" destination="llb-yi-qlg" id="wHF-M2-pbr"/>
                         <outlet property="tableView" destination="VqW-fa-Ih6" id="eIv-aV-0MM"/>
                         <outlet property="tableViewTopSafeAreaTopConstrain" destination="qjv-M8-S1q" id="OaL-TM-CDb"/>

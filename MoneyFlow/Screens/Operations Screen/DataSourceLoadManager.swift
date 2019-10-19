@@ -23,8 +23,8 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     
     weak var delegate: DataSourceLoadManagerDelegate!
     
-    var downloadProgress: Double = 0 { didSet { delegate?.downloadProgress = downloadProgress } }
-    var uploadProgress: Double = 0 { didSet { delegate?.uploadProgress = uploadProgress } }
+    var downloadProgress: Double = 0 { didSet { if downloadProgress != 0 { delegate?.downloadProgress = downloadProgress } } }
+    var uploadProgress: Double = 0 { didSet { if uploadProgress != 0 { delegate?.uploadProgress = uploadProgress } } }
     
     var isDownloadComplete: Bool = false { didSet { if isDownloadComplete { print("Download completed") } } }
     var isUploadComplete: Bool = false { didSet { if isUploadComplete { print("Upload completed") } } }

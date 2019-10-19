@@ -18,6 +18,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var tableViewTopSafeAreaTopConstrain: NSLayoutConstraint!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     // MARK: Properties
     
@@ -120,10 +121,19 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     }
     
     func updateData() {
+        loadManager.newSession()
         presenter.syncronize()
         countUpperBound()
         applyFilter()
     }
+    
+    @IBAction func repeatDownloadButtonTouched(_ sender: UIButton) {
+        loadManager.newSession()
+        (MainData.source as? CloudOperationDataSource)?.updateData()
+        (MainData.settings as? CloudSettingsDataSource)?.updateData()
+        showLoadingView(withProcessName: "Загрузка", animated: true)
+    }
+    
     
     
     // MARK: viewDidLoad
@@ -134,7 +144,12 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         
         loadManager.delegate = self
         if loadManager.isDownloadComplete { countUpperBound() }
-        else { showLoadingView(withProcessName: "Загрузка", animated: false) }
+        else {
+            showLoadingView(withProcessName: "Загрузка", animated: false)
+            tableView.isHidden = true
+            collectionView.isHidden = true
+            buttonSelector.isHidden = true
+        }
         
         progressView.isHidden = true
         tableView.dataSource = self
@@ -256,6 +271,8 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
         if let error = error {
             
             // TODO: handle this case. Somehow forbid editing and give opports to reupdate data
+            errorLabel.text = "Loading error occured: \n\(error.localizedDescription)"
+            removeLoadingView()
             
         } else {
             showLoadedData()
@@ -266,8 +283,9 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
             self?.countUpperBound()
             self?.applyFilter()
-            //            self?.progressView.isHidden = true
             self?.tableView.isHidden = false
+            self?.collectionView.isHidden = false
+            self?.buttonSelector.isHidden = false
             self?.removeLoadingView()
         }
     }
