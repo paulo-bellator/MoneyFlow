@@ -93,7 +93,7 @@ class CombinedIDGenerator: CloudIDGenerator {
         if let data = try? encoder.encode(nextID!) {
             let uploadTask = operationsRef.putData(data, metadata: metadata) { (metadata, error) in
                 self.delegate?.generatorUploadComplete(with: error)
-                print("Firebase generator saved successfully")
+                print("Firebase generator saved to storage successfully")
             }
             activeTasks.append(uploadTask)
         }

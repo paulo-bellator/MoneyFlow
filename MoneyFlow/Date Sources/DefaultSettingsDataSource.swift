@@ -67,9 +67,7 @@ class DefaultSettingsDataSource: SettingsDataSource {
             }
         }
         if currencies.isEmpty { currencies = Currency.all }
-        
         fillWithPlaceHoldersIfNeeded()
-        thereAreUnsavedChanges = false
     }
     
     

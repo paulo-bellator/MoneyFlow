@@ -22,17 +22,16 @@ class CombinedDataSource: CloudOperationDataSource {
     
     private var changesCounter = 0
     private var thereAreUnsavedChanges = false
-    private(set) var isDownloadComplete = false {
-        didSet {
-            if isDownloadComplete {
-                // emptiness means no data in cloud storage, so get from defaults
-                // if not empty, we trying to save data (in defaults)
-                // in save(), we save only if we get fresh data from cloud storage
-                operations.isEmpty ? getDataFromDefaults() : save()
-            }
-        }
-    }
+    private(set) var isDownloadComplete = false
     private var activeTasks = [CancelableStorageTask]()
+    
+    private func downloadCompleted() {
+        isDownloadComplete = true
+        // emptiness means no data in cloud storage, so get from defaults
+        // if not empty, we trying to save data (in defaults)
+        // in save(), we save only if we get fresh data from cloud storage
+        operations.isEmpty ? getDataFromDefaults() : save()
+    }
     
     // MARK: Public API
     
@@ -57,7 +56,6 @@ class CombinedDataSource: CloudOperationDataSource {
         cloudGenerator?.save()
         if changesCounter >= Constants.changesValueToSyncronize {
             saveDataToStorage()
-            cloudGenerator?.save()
         }
         if thereAreUnsavedChanges {
             saveDataToDefaults()
@@ -85,7 +83,7 @@ class CombinedDataSource: CloudOperationDataSource {
         changesCounter = defaults.integer(forKey: UserDefaultsKeys.changesCounter)
         
         // (isDownloadComplete = true) calls getDataFromDefaults()
-        if AppDelegate.isThisNotFirstLaunch { isDownloadComplete = true }
+        if AppDelegate.isThisNotFirstLaunch { downloadCompleted() }
         else {
             getDataFromStorage()
         }
@@ -169,7 +167,7 @@ class CombinedDataSource: CloudOperationDataSource {
                         self.changesCounter = 0
                     }
                 }
-                self.isDownloadComplete = true
+                self.downloadCompleted()
             }
             // TODO: handle errors 
             // if we have fresh data in cloud storage, and can't get it

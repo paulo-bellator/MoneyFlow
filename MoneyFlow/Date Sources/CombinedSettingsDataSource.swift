@@ -25,16 +25,17 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
         }
     }
     private var isSyncronized = true
-    private(set) var isDownloadComplete = false {
-        didSet {
-            let areAllEmpty = outcomeCategories.isEmpty
-                && incomeCategories.isEmpty
-                && contacts.isEmpty
-                && accounts.isEmpty
-            areAllEmpty ? getDataFromDefaults() : save()
-        }
-    }
+    private(set) var isDownloadComplete = false
     private var activeTasks = [CancelableStorageTask]()
+    
+    private func downloadCompleted() {
+        isDownloadComplete = true
+        let areAllEmpty = outcomeCategories.isEmpty
+            && incomeCategories.isEmpty
+            && contacts.isEmpty
+            && accounts.isEmpty
+        areAllEmpty ? getDataFromDefaults() : save()
+    }
     
     
     // MARK: Public API
@@ -96,15 +97,17 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     
     private init() {
         // (isDownloadComplete = true) calls getDataFromDefaults()
-        if AppDelegate.isThisNotFirstLaunch { isDownloadComplete = true }
+        if AppDelegate.isThisNotFirstLaunch { downloadCompleted() }
         else {
             getDataFromStorage()
         }
+        print("combined settings init")
     }
     
     // MARK: Getting and pushing data
     
     private func saveDataToDefaults() {
+        print("combined settings saved to defaults")
         if let data = try? JSONEncoder().encode(self.settings) {
             defaults.set(data, forKey: UserDefaultsKeys.settings)
         }
@@ -112,6 +115,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     }
     
     private func saveDataToStorage() {
+        print("combined settings saved to storage")
         activeTasks.forEach { $0.cancel() }
         activeTasks.removeAll()
         
@@ -133,6 +137,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     }
     
     private func getDataFromDefaults() {
+        print("combined settings got from defaults")
         if let data = defaults.data(forKey: UserDefaultsKeys.settings) {
             if let settings = (try? JSONDecoder().decode(Settings.self, from: data)) {
                 self.settings = settings
@@ -144,6 +149,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     }
     
     private func getDataFromStorage() {
+        print("combined settings got from storage")
         activeTasks.forEach { $0.cancel() }
         activeTasks.removeAll()
         isDownloadComplete = false
@@ -159,7 +165,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
                 }
                 self.thereAreUnsavedChanges = true
                 self.isSyncronized = true
-                self.isDownloadComplete = true
+                self.downloadCompleted()
                 self.delegate?.settingsDownloadComplete(with: error)
             }
         }
