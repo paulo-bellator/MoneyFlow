@@ -10,7 +10,7 @@ import UIKit
 
 class LoadingView: UIView {
     
-    /// It stops animation if it works, but doesn't start, if it doesn't work. Equal true by default.
+    /// It stops animation if it works, but doesn't start, if it doesn't work. Equals true by default.
     var shouldAnimateLoaderIcon = true {
         didSet {
             if shouldAnimateLoaderIcon == false && oldValue == true {
@@ -20,14 +20,14 @@ class LoadingView: UIView {
         }
     }
     
-    /// Set it right after creation. Equal true by default.
+    /// Set it right after creation. Equals true by default.
     var shouldApperBreakButton = true {
         didSet {
             if breakButton.isHidden == false { breakButton.isHidden.toggle() }
         }
     }
     
-    /// This closure will be called when breakButton touch. Remove itself from screen by default.
+    /// This closure will be called when breakButton touch. Removes itself from screen by default.
     lazy var breakAction: (() -> Void) = { [weak self] in self?.remove() }
     
     private(set) lazy var loaderIconImageView: UIImageView = {
