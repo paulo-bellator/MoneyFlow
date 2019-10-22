@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddOperationViewControllerDelegate: class {
-    func updateData()
+    func addedOperation(_ operation: Operation)
 }
 
 class AddOperationViewController: UIViewController, UITextFieldDelegate {
@@ -278,8 +278,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             operation = DebtOperation(date: date, value: value, currency: currency, contact: categoryOrContact, account: account, comment: comment)
         }
         print(operation)
-        presenter.add(operation: operation)
-        delegate?.updateData()
+        delegate?.addedOperation(operation)
         dismiss()
     }
     

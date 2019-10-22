@@ -23,7 +23,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     // MARK: Properties
     
     let addOperationSegueIdentifier = "ShowAddOperation"
-    let addSomeOperationsSegueIdentidier = "addSomeOperations"
+    let recognizeOperationsSegueIdentidier = "addSomeOperations"
+    let addSomeOperationsSegueIdentidier = "addingVCSegue"
     let operationTableViewCellIdentifier = "OperationCell"
     let operationTableViewDesignCellIdentifier = "OperationDesignCell"
     let operationTableViewCleanDesignCellIdentifier = "OperationCleanDesignCell"
@@ -120,6 +121,11 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         upperBound = ops[index]
     }
     
+    func addedOperation(_ operation: Operation) {
+        presenter.add(operation: operation)
+        updateData()
+    }
+    
     func updateData() {
         loadManager.newSession()
         presenter.syncronize()
@@ -168,6 +174,12 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         performSegue(withIdentifier: addOperationSegueIdentifier, sender: self)
         buttonSelector.close(animated: false)
     }
+    @objc func recognizeOperations() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        performSegue(withIdentifier: recognizeOperationsSegueIdentidier, sender: self)
+        buttonSelector.close(animated: false)
+    }
     @objc func addSomeOperations() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
@@ -180,7 +192,8 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         let button2 = UIButton(frame: CGRect.zero)
         let button3 = UIButton(frame: CGRect.zero)
         button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
-        button2.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(recognizeOperations), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
         button1.backgroundColor = .clear
         button2.backgroundColor = .clear
         button3.backgroundColor = .clear
