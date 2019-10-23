@@ -11,12 +11,12 @@ import Foundation
 class DebtOperation: Operation, Codable
 {
     let id: Int
-    private(set) var date: Date
-    private(set) var value: Double
-    private(set) var currency: Currency = .rub
-    private(set) var contact: String
-    private(set) var account: String
-    private(set) var comment: String?
+    var date: Date
+    var value: Double
+    var currency: Currency = .rub
+    var contact: String
+    var account: String
+    var comment: String?
     
     init(_ value: Double, contact: String, with account: String) {
         id = MainGenerator.generator.generateID()

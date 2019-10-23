@@ -39,6 +39,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     private weak var timer: Timer?
     var loadingView: LoadingView?
     fileprivate let loadManager = DataSourceLoadManager()
+    var indexPathToScroll: IndexPath?
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
@@ -124,6 +125,23 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     func addedOperation(_ operation: Operation) {
         presenter.add(operation: operation)
         updateData()
+    }
+    func edittedOperation(_ operation: Operation) {
+        let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
+        let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
+        presenter.editOperation(
+            with: operation.id,
+            date: operation.date,
+            value: operation.value,
+            currency: operation.currency,
+            categoryOrContact: categoryOrContact,
+            account: operation.account,
+            comment: comment)
+        updateData()
+        if let indexPath = indexPathToScroll {
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+            indexPathToScroll = nil
+        }
     }
     
     func updateData() {
@@ -226,6 +244,9 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
                 if let navVC = segue.destination as? UINavigationController {
                     if let vc = navVC.viewControllers[0] as? AddOperationViewController {
                         vc.delegate = self
+                        if let indexPath = sender as? IndexPath {
+                            vc.operationToBeEditted = operationsByDays[indexPath.section].ops[indexPath.row]
+                        }
                     }
                 }
             }

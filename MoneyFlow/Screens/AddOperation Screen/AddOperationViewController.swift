@@ -10,6 +10,12 @@ import UIKit
 
 protocol AddOperationViewControllerDelegate: class {
     func addedOperation(_ operation: Operation)
+    func edittedOperation(_ operation: Operation)
+    func addOperationVCDismissed()
+}
+extension AddOperationViewControllerDelegate {
+    func edittedOperation(_ operation: Operation) {}
+    func addOperationVCDismissed() {}
 }
 
 class AddOperationViewController: UIViewController, UITextFieldDelegate {
@@ -34,6 +40,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     // MARK: Properties
     
     weak var delegate: AddOperationViewControllerDelegate?
+    var operationToBeEditted: Operation?
     let presenter = AddOperationPresenter()
     
     var currentPickerRowForCategoryOrContact = 0
@@ -159,7 +166,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             operationTypeSegmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         }
         
-        
         dateTextField.inputView = datePicker
         dateTextField.text = Date().formattedDescription
         dateTextField.delegate = self
@@ -174,6 +180,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         currencySignButton.setTitle(presenter.currenciesSignes.first, for: .normal)
         commentTextField.text = nil
         commentTextField.delegate = self
+        
+        initializeIfEditMode()
         
         Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
             self?.valueTextField.becomeFirstResponder()
@@ -193,6 +201,43 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    private func initializeIfEditMode() {
+        if let operation = operationToBeEditted {
+            operationTypeSegmentedControl.isHidden = true
+            isItFlowOperation = (operation is FlowOperation)
+            if isItFlowOperation {
+                isItIncomeOperation = (operation.value >= 0)
+                valueSignButton.setTitle(isItIncomeOperation ? "+" : "-", for: .normal)
+                debtDirectionSegmentedControl.isHidden = true
+                valueSignButton.superview!.isHidden = false
+            } else {
+                debtDirectionSegmentedControl.selectedSegmentIndex = (operation.value >= 0) ? 1 : 0
+                debtDirectionSegmentedControl.isHidden = false
+                valueSignButton.superview!.isHidden = true
+            }
+            let valueString = operation.value.currencyFormattedDescription(Currency.rub).filter { "0123456789".contains($0) }
+            let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
+            let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
+            dateTextField.text = operation.date.formattedDescription
+            datePicker.date = operation.date
+            valueTextField.text = valueString
+            accountTextField.text = operation.account
+            currentPickerRowForAccount = presenter.accounts.firstIndex(of: operation.account) ?? 0
+            categoryOrContactTextField.text = categoryOrContact
+            if operation is FlowOperation {
+                if operation.value < 0 {
+                    currentPickerRowForCategoryOrContact = presenter.outcomeCategories.firstIndex(of: categoryOrContact) ?? 0
+                } else {
+                    currentPickerRowForCategoryOrContact = presenter.incomeCategories.firstIndex(of: categoryOrContact) ?? 0
+                }
+            } else {
+                currentPickerRowForCategoryOrContact = presenter.contacts.firstIndex(of: categoryOrContact) ?? 0
+            }
+            currencySignButton.setTitle(operation.currency.rawValue, for: .normal)
+            commentTextField.text = comment
+        }
+    }
+    
     // MARK: Working with text fields and input
     
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -205,7 +250,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         pickerView.reloadAllComponents()
         if valueTextField.isFirstResponder {
             offsetFields(by: 0)
-            valueTextField.text! = valueTextField.text!.filter { "0123456789".contains($0) }
+            valueTextField.text! = valueTextField.text!.filter { "0123456789.".contains($0) }
         }
         if accountTextField.isFirstResponder {
             pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false)
@@ -240,7 +285,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 var string = value.currencyFormattedDescription(Currency.rub)
                 string.removeLast(2)
                 valueTextField.text! = string
-                print("sadasda")
             }
         }
     }
@@ -256,7 +300,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func addOperation() {
-        var operation: Operation
         let date = datePicker.date
         
         var sign = "-"
@@ -264,7 +307,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         else { sign = debtDirectionSegmentedControl.selectedSegmentIndex == 0 ? "-" : "+" }
         let valueSign = (sign == "+") ? 1.0 : -1.0
         
-        let stringValue = (valueTextField.text ?? "").filter { "0123456789".contains($0) }
+        let stringValue = (valueTextField.text ?? "").filter { "0123456789.".contains($0) }
         let value = (Double(stringValue) ?? 0.0) * valueSign
         let currency = Currency(rawValue: currencySignButton.currentTitle!) ?? presenter.currencies.first!
         let account = accountTextField.text!
@@ -272,13 +315,33 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         var comment = commentTextField.text
         if comment != nil { if comment!.isEmpty { comment = nil } }
         
-        if isItFlowOperation {
-            operation = FlowOperation(date: date, value: value, currency: currency, category: categoryOrContact, account: account, comment: comment)
+        if let operation = operationToBeEditted {
+            if let flowOp = operation as? FlowOperation {
+                flowOp.date = date
+                flowOp.value = value
+                flowOp.currency = currency
+                flowOp.category = categoryOrContact
+                flowOp.account = account
+                flowOp.comment = comment
+            } else if let debtOp = operation as? DebtOperation {
+                debtOp.date = date
+                debtOp.value = value
+                debtOp.currency = currency
+                debtOp.contact = categoryOrContact
+                debtOp.account = account
+                debtOp.comment = comment
+            }
+            delegate?.edittedOperation(operation)
         } else {
-            operation = DebtOperation(date: date, value: value, currency: currency, contact: categoryOrContact, account: account, comment: comment)
+            var operation: Operation
+            if isItFlowOperation {
+                operation = FlowOperation(date: date, value: value, currency: currency, category: categoryOrContact, account: account, comment: comment)
+            } else {
+                operation = DebtOperation(date: date, value: value, currency: currency, contact: categoryOrContact, account: account, comment: comment)
+            }
+            print(operation)
+            delegate?.addedOperation(operation)
         }
-        print(operation)
-        delegate?.addedOperation(operation)
         dismiss()
     }
     

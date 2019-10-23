@@ -28,6 +28,28 @@ class FirebaseDataSource: CloudOperationDataSource {
             thereAreUnsavedChanges = true
         }
     }
+    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, categoryOrContact: String, account: String, comment: String? = nil) {
+        for operation in operations {
+            if operation.id == identifier {
+                if let flowOp = operation as? FlowOperation {
+                    flowOp.date = date
+                    flowOp.value = value
+                    flowOp.currency = currency
+                    flowOp.category = categoryOrContact
+                    flowOp.account = account
+                    flowOp.comment = comment
+                } else if let debtOp = operation as? DebtOperation {
+                    debtOp.date = date
+                    debtOp.value = value
+                    debtOp.currency = currency
+                    debtOp.contact = categoryOrContact
+                    debtOp.account = account
+                    debtOp.comment = comment
+                }
+                thereAreUnsavedChanges = true
+            }
+        }
+    }
     func removeOperation(with identifier: Int) {
         let previosCount = operations.count
         operations = operations.filter { $0.id != identifier }

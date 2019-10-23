@@ -69,8 +69,13 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !operationListIsEmpty else { return nil }
-        let edit = UIContextualAction(style: .normal, title: "") { (action, view, nil) in
+        let edit = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, nil) in
             print("edit cell on \(indexPath.row)")
+            if self != nil {
+                self!.performSegue(withIdentifier: self!.addOperationSegueIdentifier, sender: indexPath)
+                self!.indexPathToScroll = indexPath
+                tableView.setEditing(false, animated: true)
+            }
         }
         edit.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
         edit.image = #imageLiteral(resourceName: "edit_icon")
