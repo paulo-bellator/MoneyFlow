@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="CenturyGothic-Bold.ttf">
+        <array key="CenturyGothic-HeavyBold.ttf">
             <string>CenturyGothic-Bold</string>
         </array>
         <array key="CenturyGothic.ttf">
@@ -110,19 +110,19 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-nk-omc">
-                                                    <rect key="frame" x="163" y="215.33333333333334" width="88" height="80.000000000000028"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter_icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-nk-omc">
+                                                    <rect key="frame" x="187" y="238.33333333333337" width="40" height="45"/>
                                                     <color key="tintColor" red="0.27312024109999999" green="0.27312024109999999" blue="0.27312024109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="88" id="HKu-ui-Dum"/>
-                                                        <constraint firstAttribute="height" constant="80" id="SU9-p8-pWb"/>
+                                                        <constraint firstAttribute="width" constant="40" id="HKu-ui-Dum"/>
+                                                        <constraint firstAttribute="height" constant="45" id="SU9-p8-pWb"/>
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jEJ-HN-RZo" firstAttribute="centerY" secondItem="QL4-G8-hew" secondAttribute="centerY" constant="30" id="1AX-cz-Gba"/>
-                                                <constraint firstItem="jEJ-HN-RZo" firstAttribute="top" secondItem="Rbd-nk-omc" secondAttribute="bottom" constant="8" id="3bf-Tm-ikc"/>
+                                                <constraint firstItem="jEJ-HN-RZo" firstAttribute="top" secondItem="Rbd-nk-omc" secondAttribute="bottom" constant="20" id="3bf-Tm-ikc"/>
                                                 <constraint firstAttribute="trailing" secondItem="jEJ-HN-RZo" secondAttribute="trailing" constant="10" id="Q61-qE-5Iz"/>
                                                 <constraint firstItem="Rbd-nk-omc" firstAttribute="centerX" secondItem="QL4-G8-hew" secondAttribute="centerX" id="TZf-1E-gtq"/>
                                                 <constraint firstItem="jEJ-HN-RZo" firstAttribute="leading" secondItem="QL4-G8-hew" secondAttribute="leading" constant="10" id="dEF-xy-7lt"/>
@@ -363,13 +363,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aCK-Ph-8Hf">
                                                     <rect key="frame" x="319.33333333333331" y="27.333333333333332" width="62.666666666666686" height="37.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
                                                             <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="17.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
                                                             <rect key="frame" x="0.0" y="25.333333333333332" width="62.666666666666664" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1394,21 +1394,21 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBp-XG-a3W">
-                                                            <rect key="frame" x="122.33333333333336" y="31.333333333333314" width="149.66666666666663" height="23.333333333333329"/>
-                                                            <string key="text">Измените найстройки фильтра 
-или добавьте операции</string>
+                                                            <rect key="frame" x="101.33333333333333" y="31.333333333333314" width="191.33333333333337" height="23.333333333333329"/>
+                                                            <string key="text">Чтобы добавить операции, используйте 
+кнопки в правой нижней части экрана</string>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Vts-el-JmC">
-                                                    <rect key="frame" x="163" y="216.66666666666663" width="88" height="80"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="click_icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="Vts-el-JmC">
+                                                    <rect key="frame" x="184.66666666666666" y="239.66666666666663" width="45" height="45"/>
                                                     <color key="tintColor" red="0.27312024109999999" green="0.27312024109999999" blue="0.27312024109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="88" id="Ocu-Xa-bxO"/>
-                                                        <constraint firstAttribute="height" constant="80" id="hvw-cS-sNy"/>
+                                                        <constraint firstAttribute="width" constant="45" id="Ocu-Xa-bxO"/>
+                                                        <constraint firstAttribute="height" constant="45" id="hvw-cS-sNy"/>
                                                     </constraints>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
                                                 </imageView>
@@ -1417,7 +1417,7 @@
                                                 <constraint firstItem="b8F-Jg-uIO" firstAttribute="leading" secondItem="2ZB-Wy-Zm4" secondAttribute="leading" constant="10" id="4ve-EM-HT7"/>
                                                 <constraint firstAttribute="trailing" secondItem="b8F-Jg-uIO" secondAttribute="trailing" constant="10" id="5qO-wk-Tg8"/>
                                                 <constraint firstItem="Vts-el-JmC" firstAttribute="centerX" secondItem="2ZB-Wy-Zm4" secondAttribute="centerX" id="X5K-3k-O58"/>
-                                                <constraint firstItem="b8F-Jg-uIO" firstAttribute="top" secondItem="Vts-el-JmC" secondAttribute="bottom" constant="8" id="aEg-y5-BcB"/>
+                                                <constraint firstItem="b8F-Jg-uIO" firstAttribute="top" secondItem="Vts-el-JmC" secondAttribute="bottom" constant="20" id="aEg-y5-BcB"/>
                                                 <constraint firstItem="b8F-Jg-uIO" firstAttribute="centerY" secondItem="2ZB-Wy-Zm4" secondAttribute="centerY" constant="30" id="g8v-S2-HXS"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1855,15 +1855,17 @@
         <image name="back_arrow" width="28.333333969116211" height="27.666666030883789"/>
         <image name="camera_icon" width="458" height="458"/>
         <image name="cancel_button-1" width="19.333333969116211" height="19.333333969116211"/>
+        <image name="click_icon_big" width="31.666666030883789" height="32.333332061767578"/>
         <image name="done_button-1" width="19.333333969116211" height="19.333333969116211"/>
+        <image name="filter_icon_big" width="32.333332061767578" height="32.333332061767578"/>
         <image name="graph_tabbar_icon" width="29.666666030883789" height="29"/>
         <image name="list_tabbar_icon" width="29.666666030883789" height="29"/>
         <image name="plus_icon" width="458" height="458"/>
-        <image name="save_icon" width="26" height="26"/>
+        <image name="save_icon" width="32.333332061767578" height="31.666666030883789"/>
         <image name="settings_tabbar_icon" width="29" height="29.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CGj-uN-xFe"/>
+        <segue reference="ge5-nE-AiN"/>
         <segue reference="m77-ng-udo"/>
     </inferredMetricsTieBreakers>
 </document>

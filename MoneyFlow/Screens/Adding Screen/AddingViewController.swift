@@ -42,7 +42,6 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     private var recognitionCounter = 0
     
     
-    
     @IBAction func backButtonTouched(_ sender: UIButton) { dismiss(animated: true) }
     @IBAction func saveButtonTouched(_ sender: UIButton) { delegate?.addedOperations(operations); dismiss(animated: true) }
     @IBAction func addOperationButtonTouched(_ sender: UIButton) {}
