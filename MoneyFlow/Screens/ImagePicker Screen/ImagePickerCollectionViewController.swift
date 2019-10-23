@@ -109,7 +109,7 @@ class ImagePickerCollectionViewController: UICollectionViewController, UICollect
         
         if selectedPhotos[indexPath.row] != nil {
             cell.layer.borderWidth = 2.0
-            cell.layer.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+            cell.layer.borderColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9490196078, alpha: 0.9528360445)
         } else {
             cell.layer.borderWidth = 0.0
             cell.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
@@ -131,7 +131,7 @@ class ImagePickerCollectionViewController: UICollectionViewController, UICollect
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)!
         cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        cell.layer.borderColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9490196078, alpha: 0.9528360445)
         
         selectedPhotos[indexPath.row] = loadImage(at: indexPath.row, contentMode: .default, with: UIScreen.main.bounds.size)
         

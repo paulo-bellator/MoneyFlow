@@ -11,11 +11,9 @@ import UIKit
 protocol AddOperationViewControllerDelegate: class {
     func addedOperation(_ operation: Operation)
     func edittedOperation(_ operation: Operation)
-    func addOperationVCDismissed()
 }
 extension AddOperationViewControllerDelegate {
     func edittedOperation(_ operation: Operation) {}
-    func addOperationVCDismissed() {}
 }
 
 class AddOperationViewController: UIViewController, UITextFieldDelegate {
@@ -145,14 +143,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-//    @IBAction func addButtonTouched(_ sender: UIButton) {
-//        addOperation()
-//    }
-    
-//    @IBAction func addMoreButtonTouched(_ sender: UIButton) {
-//    }
-    
     // MARK: ViewDidLoad
     
     override func viewDidLoad() {
@@ -182,9 +172,10 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         commentTextField.delegate = self
         
         initializeIfEditMode()
-        
-        Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
-            self?.valueTextField.becomeFirstResponder()
+        if operationToBeEditted == nil {
+            Timer.scheduledTimer(withTimeInterval: Constants.becomeFirstResponderDelay, repeats: false) { [weak self] (_) in
+                self?.valueTextField.becomeFirstResponder()
+            }
         }
         
         addInputAccessoryForTextFields(

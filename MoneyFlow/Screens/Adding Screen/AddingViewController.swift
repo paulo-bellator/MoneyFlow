@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddingViewControllerDelegate: class {
+    func addedOperations(_ operations: [Operation])
+}
+
 class AddingViewController: UIViewController, ImagePickerCollectionViewControllerDelegate, AddOperationViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -16,13 +20,19 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     
     var loadedPhotos = [UIImage]() { didSet { startRecognition() }}
     
+    let addOperationSegueIdentifier = "AddOperation"
+    let recognizeOperationsSegueIdentifier = "recognizeOperations"
     let operationTableViewCellIdentifier = "OperationCleanDesignCell"
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let tableViewSectionHeaderHeight: CGFloat = 55
     let tableViewRowHeight: CGFloat = 100
+    let performSegueDependOnModeDelayTime: TimeInterval = 0.0
     let filterPeriod: Presenter.DateFilterUnit = .days
     let mainCurrency = Currency.rub
+    var indexPathToScroll: IndexPath?
+    var mode: AddingViewControllerMode = .none
+    weak var delegate: AddingViewControllerDelegate?
     
     lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: operations)
     private let presenter = Presenter()
@@ -34,11 +44,9 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     
     
     @IBAction func backButtonTouched(_ sender: UIButton) { dismiss(animated: true) }
-    @IBAction func saveButtonTouched(_ sender: UIButton) { addAndSave(); dismiss(animated: true) }
-    @IBAction func addOperationButtonTouched(_ sender: UIButton) {
-    }
-    @IBAction func recognizeOperationsButtonTouched(_ sender: UIButton) {
-    }
+    @IBAction func saveButtonTouched(_ sender: UIButton) { delegate?.addedOperations(operations); dismiss(animated: true) }
+    @IBAction func addOperationButtonTouched(_ sender: UIButton) {}
+    @IBAction func recognizeOperationsButtonTouched(_ sender: UIButton) {}
     
     
     override func viewDidLoad() {
@@ -52,6 +60,18 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        Timer.scheduledTimer(withTimeInterval: performSegueDependOnModeDelayTime, repeats: false) { [weak self] (_) in
+            if self != nil {
+                switch self!.mode {
+                case .none: break
+                case .add:
+                    self!.performSegue(withIdentifier: self!.addOperationSegueIdentifier, sender: nil)
+                case .recognize:
+                    self!.performSegue(withIdentifier: self!.recognizeOperationsSegueIdentifier, sender: nil)
+                }
+            }
+        }
 //        tableView.sectionHeaderHeight = tableViewSectionHeaderHeight
     }
     
@@ -60,9 +80,42 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         presenter.syncronize()
     }
     
+    func deleteOperation(with identifier: Int) {
+        operations = operations.filter { $0.id != identifier }
+    }
+    
     func addedOperation(_ operation: Operation) {
         operations.append(operation)
         updateTableView()
+    }
+    func edittedOperation(_ operation: Operation) {
+        let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
+        let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
+        for op in operations {
+            if op.id == operation.id {
+                if let flowOp = operation as? FlowOperation {
+                    flowOp.date = operation.date
+                    flowOp.value = operation.value
+                    flowOp.currency = operation.currency
+                    flowOp.category = categoryOrContact
+                    flowOp.account = operation.account
+                    flowOp.comment = comment
+                } else if let debtOp = operation as? DebtOperation {
+                    debtOp.date = operation.date
+                    debtOp.value = operation.value
+                    debtOp.currency = operation.currency
+                    debtOp.contact = categoryOrContact
+                    debtOp.account = operation.account
+                    debtOp.comment = comment
+                }
+            }
+            break
+        }
+        updateTableView()
+        if let indexPath = indexPathToScroll {
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+            indexPathToScroll = nil
+        }
     }
     
     private func updateTableView() {
@@ -126,9 +179,14 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
             }
             if let vc = navVC.viewControllers[0] as? AddOperationViewController {
                 vc.delegate = self
+                if let indexPath = sender as? IndexPath {
+                    vc.operationToBeEditted = operationsByDays[indexPath.section].ops[indexPath.row]
+                }
             }
         }
     }
+    
+    enum AddingViewControllerMode { case add, recognize, none }
 }
 
 extension UIView {

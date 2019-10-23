@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class OperationsViewController: UIViewController, AddOperationViewControllerDelegate {
+class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, AddingViewControllerDelegate {
     
     // MARK: Outlets
     
@@ -126,6 +126,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         presenter.add(operation: operation)
         updateData()
     }
+    func addedOperations(_ operations: [Operation]) {
+        operations.forEach { presenter.add(operation: $0) }
+        updateData()
+    }
     func edittedOperation(_ operation: Operation) {
         let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
         let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
@@ -195,13 +199,15 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     @objc func recognizeOperations() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-        performSegue(withIdentifier: recognizeOperationsSegueIdentidier, sender: self)
+        let mode: AddingViewController.AddingViewControllerMode = .recognize
+        performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: mode)
         buttonSelector.close(animated: false)
     }
     @objc func addSomeOperations() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-        performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: self)
+        let mode: AddingViewController.AddingViewControllerMode = .add
+        performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: mode)
         buttonSelector.close(animated: false)
     }
     
@@ -248,6 +254,11 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
                             vc.operationToBeEditted = operationsByDays[indexPath.section].ops[indexPath.row]
                         }
                     }
+                }
+            } else if let vc = segue.destination as? AddingViewController {
+                vc.delegate = self
+                if let mode = sender as? AddingViewController.AddingViewControllerMode {
+                    vc.mode = mode
                 }
             }
         }

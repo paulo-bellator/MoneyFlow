@@ -441,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108.6956521739132" y="28.532608695652176"/>
+            <point key="canvasLocation" x="1109" y="115"/>
         </scene>
         <!--Empty View Controller-->
         <scene sceneID="GIH-bs-E9b">
@@ -457,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UP4-uB-C06" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2948" y="-581"/>
+            <point key="canvasLocation" x="2712" y="-625"/>
         </scene>
         <!--Add Operation View Controller-->
         <scene sceneID="i9I-db-mBe">
@@ -777,7 +777,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSh-ad-dfp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2947.826086956522" y="114.94565217391305"/>
+            <point key="canvasLocation" x="2712" y="115"/>
         </scene>
         <!--Summary View Controller-->
         <scene sceneID="LmN-mV-k9Q">
@@ -1363,7 +1363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pg8-Dn-Je1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2455" y="973"/>
+            <point key="canvasLocation" x="1109" y="1758"/>
         </scene>
         <!--Adding View Controller-->
         <scene sceneID="RTl-JG-Acd">
@@ -1374,7 +1374,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0GT-zF-DTt">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="593.66666666666663"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="emptyOperationsListCell" rowHeight="604" id="Scy-9L-C2s">
@@ -1604,7 +1604,7 @@
                                         <state key="normal" image="camera_icon"/>
                                         <connections>
                                             <action selector="recognizeOperationsButtonTouched:" destination="tQG-qG-5Hs" eventType="touchUpInside" id="sw3-0Y-mln"/>
-                                            <segue destination="wjd-lh-2lW" kind="show" id="m77-ng-udo"/>
+                                            <segue destination="wjd-lh-2lW" kind="show" identifier="recognizeOperations" id="m77-ng-udo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghp-fp-ExE">
@@ -1615,7 +1615,7 @@
                                         <state key="normal" image="plus_icon"/>
                                         <connections>
                                             <action selector="addOperationButtonTouched:" destination="tQG-qG-5Hs" eventType="touchUpInside" id="kjo-HQ-dBc"/>
-                                            <segue destination="a2s-dh-ZdE" kind="show" id="CGj-uN-xFe"/>
+                                            <segue destination="a2s-dh-ZdE" kind="show" identifier="AddOperation" id="CGj-uN-xFe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1638,9 +1638,9 @@
                             <constraint firstItem="NEY-kn-1ce" firstAttribute="width" secondItem="0GT-zF-DTt" secondAttribute="width" multiplier="0.35" id="C2z-vb-myO"/>
                             <constraint firstItem="EN5-yX-RrZ" firstAttribute="top" secondItem="0GT-zF-DTt" secondAttribute="top" id="Czg-zG-hfd"/>
                             <constraint firstItem="LEe-eF-VsK" firstAttribute="height" secondItem="NEY-kn-1ce" secondAttribute="height" id="HKR-Or-rPb"/>
+                            <constraint firstItem="LEe-eF-VsK" firstAttribute="top" secondItem="0GT-zF-DTt" secondAttribute="bottom" constant="10" id="KXE-5a-aFd"/>
                             <constraint firstItem="LEe-eF-VsK" firstAttribute="centerY" secondItem="NEY-kn-1ce" secondAttribute="centerY" id="T0a-a3-dQw"/>
                             <constraint firstItem="EN5-yX-RrZ" firstAttribute="leading" secondItem="0GT-zF-DTt" secondAttribute="leading" id="VHx-3T-6dG"/>
-                            <constraint firstItem="EN5-yX-RrZ" firstAttribute="bottom" secondItem="0GT-zF-DTt" secondAttribute="bottom" id="fV9-JN-ZGj"/>
                             <constraint firstItem="LEe-eF-VsK" firstAttribute="width" secondItem="NEY-kn-1ce" secondAttribute="width" id="lm0-Ru-ZJr"/>
                             <constraint firstItem="LEe-eF-VsK" firstAttribute="leading" secondItem="EN5-yX-RrZ" secondAttribute="leading" constant="20" id="wUg-E7-VPN"/>
                             <constraint firstItem="EN5-yX-RrZ" firstAttribute="trailing" secondItem="NEY-kn-1ce" secondAttribute="trailing" constant="20" id="z22-26-eWW"/>
@@ -1732,7 +1732,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r85-pb-9Ss" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4049" y="973"/>
+            <point key="canvasLocation" x="2712" y="955"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="3Hg-oq-Xgi">
@@ -1824,7 +1824,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Dt-tH-DRZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3281" y="973"/>
+            <point key="canvasLocation" x="1980" y="955"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sYE-Fy-KzE">
@@ -1848,7 +1848,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqg-w5-Sbn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2105.7971014492755" y="114.94565217391305"/>
+            <point key="canvasLocation" x="1980" y="115"/>
         </scene>
     </scenes>
     <resources>

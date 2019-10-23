@@ -68,4 +68,31 @@ extension AddingViewController: UITableViewDelegate, UITableViewDataSource  {
         return header.contentView
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard !operationListIsEmpty else { return nil }
+        let edit = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, nil) in
+            if self != nil {
+                self!.performSegue(withIdentifier: self!.addOperationSegueIdentifier, sender: indexPath)
+                self!.indexPathToScroll = indexPath
+                tableView.setEditing(false, animated: true)
+            }
+        }
+        edit.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        edit.image = #imageLiteral(resourceName: "edit_icon")
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard !operationListIsEmpty else { return nil }
+        let delete = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, view, nil) in
+            let idOfOperationsToRemove = self.operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
+            print(idOfOperationsToRemove)
+            self.deleteOperation(with: idOfOperationsToRemove)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        delete.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        delete.image = #imageLiteral(resourceName: "delete_icon")
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
 }

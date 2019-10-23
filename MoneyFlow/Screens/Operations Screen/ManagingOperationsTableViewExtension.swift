@@ -70,7 +70,6 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !operationListIsEmpty else { return nil }
         let edit = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, nil) in
-            print("edit cell on \(indexPath.row)")
             if self != nil {
                 self!.performSegue(withIdentifier: self!.addOperationSegueIdentifier, sender: indexPath)
                 self!.indexPathToScroll = indexPath

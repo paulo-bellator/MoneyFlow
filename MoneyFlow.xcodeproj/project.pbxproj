@@ -295,12 +295,20 @@
 		F98B1843235F591F00FB7A48 /* Adding Screen */ = {
 			isa = PBXGroup;
 			children = (
-				F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */,
-				F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */,
 				F98B1841235F591900FB7A48 /* AddingViewController.swift */,
-				F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */,
+				F94BDFA22340BF8B00CE87F8 /* OperationVisionRecognizer.swift */,
+				F98B18462360805500FB7A48 /* TableVIew */,
 			);
 			path = "Adding Screen";
+			sourceTree = "<group>";
+		};
+		F98B18462360805500FB7A48 /* TableVIew */ = {
+			isa = PBXGroup;
+			children = (
+				F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */,
+				F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */,
+			);
+			path = TableVIew;
 			sourceTree = "<group>";
 		};
 		F9A4F8972333D426008D606A /* TableView */ = {
