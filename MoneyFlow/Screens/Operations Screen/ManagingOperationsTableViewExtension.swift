@@ -67,22 +67,28 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         return header.contentView
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return operationListIsEmpty ? false : true
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard !operationListIsEmpty else { return nil }
+        let edit = UIContextualAction(style: .normal, title: "") { (action, view, nil) in
+            print("edit cell on \(indexPath.row)")
+        }
+        edit.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        edit.image = #imageLiteral(resourceName: "edit_icon")
+        return UISwipeActionsConfiguration(actions: [edit])
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            let idOfOperationsToRemove = operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard !operationListIsEmpty else { return nil }
+        let delete = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, view, nil) in
+            let idOfOperationsToRemove = self.operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
             print(idOfOperationsToRemove)
-            presenter.removeOperationWith(identifier: idOfOperationsToRemove)
+            self.presenter.removeOperationWith(identifier: idOfOperationsToRemove)
+            self.presenter.syncronize()
             tableView.deleteRows(at: [indexPath], with: .fade)
-//                presenter.syncronize()
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
+        delete.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        delete.image = #imageLiteral(resourceName: "delete_icon")
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
