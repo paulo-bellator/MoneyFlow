@@ -177,13 +177,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="fAH-z2-IEh">
                                                     <rect key="frame" x="306.66666666666669" y="32.333333333333343" width="87.333333333333314" height="35.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3456 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wup-1l-ysA">
                                                             <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Сбербанк РНД" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-AE-8W2">
                                                             <rect key="frame" x="0.0" y="21.333333333333329" width="87.333333333333329" height="14.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="KYX-xh-6Qb"/>
@@ -468,7 +468,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOT-ZC-NdF">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="660"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-fQ-E4e" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
                                 <rect key="frame" x="173" y="64" width="133" height="55"/>
@@ -1303,13 +1303,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CIB-Ql-z7R">
                                                     <rect key="frame" x="319.33333333333331" y="27.333333333333332" width="62.666666666666686" height="37.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLw-SG-nul">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLw-SG-nul">
                                                             <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="17.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twm-xA-KrA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twm-xA-KrA">
                                                             <rect key="frame" x="0.0" y="25.333333333333332" width="62.666666666666664" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1421,6 +1421,9 @@
                                             <segue destination="a2s-dh-ZdE" kind="show" identifier="AddOperation" id="CGj-uN-xFe"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="sV8-HP-RMM">
+                                        <rect key="frame" x="98.666666666666686" y="26" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1429,8 +1432,10 @@
                                     <constraint firstAttribute="width" secondItem="NEY-kn-1ce" secondAttribute="height" multiplier="2:1" id="M7Q-Lx-fXd"/>
                                     <constraint firstItem="ghp-fp-ExE" firstAttribute="top" secondItem="NEY-kn-1ce" secondAttribute="top" id="UOX-vw-a5K"/>
                                     <constraint firstAttribute="bottom" secondItem="ghp-fp-ExE" secondAttribute="bottom" id="W66-0N-uNC"/>
+                                    <constraint firstItem="sV8-HP-RMM" firstAttribute="centerY" secondItem="zNw-Oy-uVI" secondAttribute="centerY" id="asX-sS-nWl"/>
                                     <constraint firstItem="zNw-Oy-uVI" firstAttribute="top" secondItem="NEY-kn-1ce" secondAttribute="top" id="i3I-Eh-h1x"/>
                                     <constraint firstAttribute="trailing" secondItem="zNw-Oy-uVI" secondAttribute="trailing" id="pCu-gF-QF9"/>
+                                    <constraint firstItem="sV8-HP-RMM" firstAttribute="centerX" secondItem="zNw-Oy-uVI" secondAttribute="centerX" id="wFK-w6-ypl"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1452,6 +1457,8 @@
                     </view>
                     <connections>
                         <outlet property="leftButtonsSubstrateView" destination="LEe-eF-VsK" id="CFW-3z-QXN"/>
+                        <outlet property="recognizeButton" destination="zNw-Oy-uVI" id="lhE-fh-9hu"/>
+                        <outlet property="recognizingActivityIndicator" destination="sV8-HP-RMM" id="wRz-Y4-Wdo"/>
                         <outlet property="rightButtonsSubstrateView" destination="NEY-kn-1ce" id="wZP-IV-bnk"/>
                         <outlet property="tableView" destination="0GT-zF-DTt" id="Lqf-Dc-ufp"/>
                     </connections>
@@ -1668,6 +1675,6 @@
         <image name="settings_tabbar_icon" width="29" height="29.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ge5-nE-AiN"/>
+        <segue reference="CGj-uN-xFe"/>
     </inferredMetricsTieBreakers>
 </document>

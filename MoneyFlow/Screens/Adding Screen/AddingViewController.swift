@@ -12,13 +12,24 @@ protocol AddingViewControllerDelegate: class {
     func addedOperations(_ operations: [Operation])
 }
 
-class AddingViewController: UIViewController, ImagePickerCollectionViewControllerDelegate, AddOperationViewControllerDelegate {
+class AddingViewController: UIViewController, ImagePickerCollectionViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var leftButtonsSubstrateView: UIView!
     @IBOutlet weak var rightButtonsSubstrateView: UIView!
+    @IBOutlet weak var recognizeButton: UIButton!
+    @IBOutlet weak var recognizingActivityIndicator: UIActivityIndicatorView!
     
-    var loadedPhotos = [UIImage]() { didSet { startRecognition() }}
+    var loadedPhotos = [UIImage]() {
+        didSet {
+            startRecognition()
+            if !loadedPhotos.isEmpty {
+                recognizeButton.isHidden = true
+                recognizingActivityIndicator.isHidden = false
+                recognizingActivityIndicator.startAnimating()
+            }
+        }
+    }
     
     let addOperationSegueIdentifier = "AddOperation"
     let recognizeOperationsSegueIdentifier = "recognizeOperations"
@@ -27,7 +38,6 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let tableViewSectionHeaderHeight: CGFloat = 55
     let tableViewRowHeight: CGFloat = 100
-    let performSegueDependOnModeDelayTime: TimeInterval = 0.0
     let filterPeriod: Presenter.DateFilterUnit = .days
     let mainCurrency = Currency.rub
     var indexPathToScroll: IndexPath?
@@ -50,7 +60,7 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        recognizingActivityIndicator.isHidden = true
         let radius = CGSize(width: leftButtonsSubstrateView.bounds.height/2.0, height: leftButtonsSubstrateView.bounds.height/2.0)
         leftButtonsSubstrateView.layer.cornerRadius = leftButtonsSubstrateView.bounds.height/2.0
         rightButtonsSubstrateView.layer.cornerRadius = rightButtonsSubstrateView.bounds.height/2.0
@@ -59,19 +69,17 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        Timer.scheduledTimer(withTimeInterval: performSegueDependOnModeDelayTime, repeats: false) { [weak self] (_) in
-            if self != nil {
-                switch self!.mode {
-                case .none: break
-                case .add:
-                    self!.performSegue(withIdentifier: self!.addOperationSegueIdentifier, sender: nil)
-                case .recognize:
-                    self!.performSegue(withIdentifier: self!.recognizeOperationsSegueIdentifier, sender: nil)
-                }
-            }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        switch mode {
+        case .none: break
+        case .add:
+            performSegue(withIdentifier: addOperationSegueIdentifier, sender: nil)
+        case .recognize:
+            performSegue(withIdentifier: recognizeOperationsSegueIdentifier, sender: nil)
         }
-//        tableView.sectionHeaderHeight = tableViewSectionHeaderHeight
     }
     
     private func addAndSave() {
@@ -83,45 +91,10 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         operations = operations.filter { $0.id != identifier }
     }
     
-    func addedOperation(_ operation: Operation) {
-        operations.append(operation)
-        updateTableView()
-    }
-    func edittedOperation(_ operation: Operation) {
-        let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
-        let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
-        for op in operations {
-            if op.id == operation.id {
-                if let flowOp = operation as? FlowOperation {
-                    flowOp.date = operation.date
-                    flowOp.value = operation.value
-                    flowOp.currency = operation.currency
-                    flowOp.category = categoryOrContact
-                    flowOp.account = operation.account
-                    flowOp.comment = comment
-                } else if let debtOp = operation as? DebtOperation {
-                    debtOp.date = operation.date
-                    debtOp.value = operation.value
-                    debtOp.currency = operation.currency
-                    debtOp.contact = categoryOrContact
-                    debtOp.account = operation.account
-                    debtOp.comment = comment
-                }
-            }
-            break
-        }
-        updateTableView()
-        if let indexPath = indexPathToScroll {
-            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-            indexPathToScroll = nil
-        }
-    }
-    
     private func updateTableView() {
         operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod, operations: operations)
         tableView.reloadData()
     }
-
     
     private func startRecognition() {
         print("start recognition with \(loadedPhotos.count) photos")
@@ -133,9 +106,10 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
                         self!.recognizedOps = self!.sumWithoutDuplicate(baseArray: self!.recognizedOps, addingArray: ops)
                     }
                     
-                    let number = self!.recognitionCounter + 1
-                    print("recognizing #\(number) finished")
                     self!.recognitionCounter += 1
+                    let number = self!.recognitionCounter
+                    print("recognizing #\(number) finished")
+                    
                     if self!.recognitionCounter == self!.loadedPhotos.count {
                         self!.loadOps()
                     }
@@ -147,6 +121,9 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     
     private func loadOps() {
         print(recognizedOps)
+        recognizingActivityIndicator.stopAnimating()
+        recognizeButton.isHidden = false
+        
         operations = sumWithoutDuplicate(baseArray: operations, addingArray: recognizedOps)
         updateTableView()
         recognitionCounter = 0
@@ -186,6 +163,42 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     }
     
     enum AddingViewControllerMode { case add, recognize, none }
+}
+
+extension AddingViewController: AddOperationViewControllerDelegate {
+    func addedOperation(_ operation: Operation) {
+          operations.append(operation)
+          updateTableView()
+      }
+      func edittedOperation(_ operation: Operation) {
+          let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
+          let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
+          for op in operations {
+              if op.id == operation.id {
+                  if let flowOp = operation as? FlowOperation {
+                      flowOp.date = operation.date
+                      flowOp.value = operation.value
+                      flowOp.currency = operation.currency
+                      flowOp.category = categoryOrContact
+                      flowOp.account = operation.account
+                      flowOp.comment = comment
+                  } else if let debtOp = operation as? DebtOperation {
+                      debtOp.date = operation.date
+                      debtOp.value = operation.value
+                      debtOp.currency = operation.currency
+                      debtOp.contact = categoryOrContact
+                      debtOp.account = operation.account
+                      debtOp.comment = comment
+                  }
+              }
+              break
+          }
+          updateTableView()
+          if let indexPath = indexPathToScroll {
+              tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+              indexPathToScroll = nil
+          }
+      }
 }
 
 extension UIView {
