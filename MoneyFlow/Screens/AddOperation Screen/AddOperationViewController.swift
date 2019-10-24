@@ -32,8 +32,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryOrContactLabel: UILabel!
     @IBOutlet weak var bottomViewTopSafeAreaConstraint: NSLayoutConstraint!
     
-//    @IBOutlet weak var addMoreButton: UIButton!
-    
     
     // MARK: Properties
     

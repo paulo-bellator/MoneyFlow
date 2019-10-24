@@ -77,8 +77,10 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         case .none: break
         case .add:
             performSegue(withIdentifier: addOperationSegueIdentifier, sender: nil)
+            mode = .none
         case .recognize:
             performSegue(withIdentifier: recognizeOperationsSegueIdentifier, sender: nil)
+            mode = .none
         }
     }
     
