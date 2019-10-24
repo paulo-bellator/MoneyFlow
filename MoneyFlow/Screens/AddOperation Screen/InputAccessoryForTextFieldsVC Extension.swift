@@ -16,7 +16,8 @@ extension UIViewController {
             
             var items = [UIBarButtonItem]()
             if previousNextable {
-                let previousButton = UIBarButtonItem(image: UIImage(named: "Backward Arrow"), style: .plain, target: nil, action: nil)
+                let previousIcon = #imageLiteral(resourceName: "arrow_top_icon")
+                let previousButton = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
                 var title = "Назад"
                 if index > 0 {
                     if index < titles.count { title = titles[index-1] }
@@ -31,8 +32,8 @@ extension UIViewController {
                     previousButton.target = textFields[index - 1]
                     previousButton.action = #selector(UITextField.becomeFirstResponder)
                 }
-                
-                let nextButton = UIBarButtonItem(image: UIImage(named: "Forward Arrow"), style: .plain, target: nil, action: nil)
+                let nextIcon = #imageLiteral(resourceName: "arrow_bottom_icon")
+                let nextButton = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
                 title = "Вперед"
                 if index < textFields.count-1 {
                     if index < titles.count { title = titles[index+1] }
