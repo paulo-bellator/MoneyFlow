@@ -61,7 +61,6 @@
 		F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */; };
 		F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */; };
 		F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */; };
-		F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A3232BF3B900654DD9 /* TestViewController.swift */; };
 		F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A5232C04C800654DD9 /* ChartView.swift */; };
 		F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */; };
 		F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */; };
@@ -136,7 +135,6 @@
 		F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedIDGenerator.swift; sourceTree = "<group>"; };
 		F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSoaringView.swift; sourceTree = "<group>"; };
-		F9C608A3232BF3B900654DD9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = "../Graph Chart/TestViewController.swift"; sourceTree = "<group>"; };
 		F9C608A5232C04C800654DD9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 			children = (
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
-				F9C608A3232BF3B900654DD9 /* TestViewController.swift */,
 				F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */,
 				F9EB79032354A5530081C84E /* LoadingView.swift */,
 				F98B1843235F591F00FB7A48 /* Adding Screen */,
@@ -580,7 +577,6 @@
 				F9A981062321416000F630F9 /* Presenter.swift in Sources */,
 				F986847A233257B400FAD863 /* SummaryTableViewCell.swift in Sources */,
 				F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */,
-				F9C608A4232BF3B900654DD9 /* TestViewController.swift in Sources */,
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
 				F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */,
 				F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */,
