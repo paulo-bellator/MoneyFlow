@@ -38,8 +38,7 @@ class CombinedIDGenerator: CloudIDGenerator {
     }
     
     func cancelLoading() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
     }
     
     // call makes nothing but create static instance of this class
@@ -57,8 +56,7 @@ class CombinedIDGenerator: CloudIDGenerator {
     }
     
     private func getDataFromStorage() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let decoder = JSONDecoder()
         let operationsRef = storageRef.child(Path.nextID)
@@ -82,8 +80,7 @@ class CombinedIDGenerator: CloudIDGenerator {
     }
     
     private func saveDataToStorage() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let encoder = JSONEncoder()
         let operationsRef = storageRef.child(Path.nextID)

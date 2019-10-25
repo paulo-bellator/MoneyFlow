@@ -77,8 +77,7 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
     }
     
     private func pushData() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let encoder = JSONEncoder()
         let settingsRef = storageRef.child(Path.settings)
@@ -97,8 +96,7 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
     }
     
     private func getData() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         isDownloadComplete = false
     
         let decoder = JSONDecoder()

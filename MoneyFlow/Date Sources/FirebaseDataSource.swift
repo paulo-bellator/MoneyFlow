@@ -85,8 +85,7 @@ class FirebaseDataSource: CloudOperationDataSource {
     }
     
     private func pushData() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let encoder = JSONEncoder()
         let operationsRef = storageRef.child(Path.operations)
@@ -113,8 +112,7 @@ class FirebaseDataSource: CloudOperationDataSource {
     }
     
     private func getData() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         isDownloadComplete = false
         
         let decoder = JSONDecoder()
@@ -167,6 +165,12 @@ extension FirebaseDataSource {
 
 protocol CancelableStorageTask {
     func cancel()
+}
+extension Array where Element == CancelableStorageTask {
+    mutating func cancelAndRemoveAll() {
+        self.forEach { $0.cancel() }
+        self.removeAll()
+    }
 }
 extension StorageUploadTask: CancelableStorageTask {}
 extension StorageDownloadTask: CancelableStorageTask {}

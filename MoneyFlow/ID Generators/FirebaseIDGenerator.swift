@@ -42,8 +42,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
     }
     
     func cancelLoading() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
     }
     
     // call makes nothing but create static instance of this class
@@ -55,8 +54,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
     }
     
     private func getData() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let decoder = JSONDecoder()
         let operationsRef = storageRef.child(Path.nextID)
@@ -77,8 +75,7 @@ class FirebaseIDGenerator: CloudIDGenerator {
     }
     
     private func pushData() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let encoder = JSONEncoder()
         let operationsRef = storageRef.child(Path.nextID)

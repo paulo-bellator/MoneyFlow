@@ -86,8 +86,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     }
     
     func cancelLoading() {
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
     }
     
     // MARK: Initialization
@@ -116,8 +115,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     
     private func saveDataToStorage() {
         print("combined settings saved to storage")
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         
         let encoder = JSONEncoder()
         let settingsRef = storageRef.child(Path.settings)
@@ -150,8 +148,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     
     private func getDataFromStorage() {
         print("combined settings got from storage")
-        activeTasks.forEach { $0.cancel() }
-        activeTasks.removeAll()
+        activeTasks.cancelAndRemoveAll()
         isDownloadComplete = false
         
         let decoder = JSONDecoder()
