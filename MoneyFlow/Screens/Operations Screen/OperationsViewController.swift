@@ -182,8 +182,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         addButtonSelector()
         
         loadManager.delegate = self
-        if loadManager.isDownloadComplete { countUpperBound() }
-        else {
+        if !loadManager.isDownloadComplete {
             showLoadingView(withProcessName: "Загрузка", animated: false)
             tableView.isHidden = true
             collectionView.isHidden = true

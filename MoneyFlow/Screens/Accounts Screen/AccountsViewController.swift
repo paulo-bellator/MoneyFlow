@@ -39,8 +39,8 @@ class AccountsViewController: UIViewController, UpdatableViewController {
         view.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if needToUpdate { updateData() }
     }
     
