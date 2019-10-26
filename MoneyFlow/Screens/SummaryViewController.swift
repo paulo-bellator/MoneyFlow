@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SummaryViewController: UIViewController {
+protocol UpdatableViewController {
+    var needToUpdate: Bool { get set }
+}
+
+class SummaryViewController: UIViewController, UpdatableViewController {
 
     @IBOutlet weak var chartView: ChartView!
     @IBOutlet weak var tableView: UITableView!

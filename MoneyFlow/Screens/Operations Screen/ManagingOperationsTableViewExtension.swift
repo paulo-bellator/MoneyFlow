@@ -89,6 +89,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
             self.presenter.removeOperationWith(identifier: idOfOperationsToRemove)
             self.presenter.syncronize()
             tableView.deleteRows(at: [indexPath], with: .fade)
+            self.sendUpdateRequirementToVCs()
         }
         delete.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
         delete.image = #imageLiteral(resourceName: "delete_icon")

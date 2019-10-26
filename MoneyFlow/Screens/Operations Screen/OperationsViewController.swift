@@ -153,6 +153,17 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         presenter.syncronize()
         countUpperBound()
         applyFilter()
+        sendUpdateRequirementToVCs() 
+    }
+    
+    func sendUpdateRequirementToVCs() {
+        if let tabVC = tabBarController {
+            for vc in tabVC.viewControllers ?? [] {
+                if var updatableVC = vc as? UpdatableViewController {
+                    updatableVC.needToUpdate = true
+                }
+            }
+        }
     }
     
     @IBAction func repeatDownloadButtonTouched(_ sender: UIButton) {
