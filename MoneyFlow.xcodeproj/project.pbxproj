@@ -44,6 +44,9 @@
 		F98B1840235F50EC00FB7A48 /* AddedOperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */; };
 		F98B1842235F591900FB7A48 /* AddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98B1841235F591900FB7A48 /* AddingViewController.swift */; };
 		F98B1845235F678300FB7A48 /* ManagingAddingTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */; };
+		F98D8BA82364D8000080A08B /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8BA72364D8000080A08B /* AccountsViewController.swift */; };
+		F98D8BAA2364D8CC0080A08B /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8BA92364D8CC0080A08B /* AccountTableViewCell.swift */; };
+		F98D8BAD2364D95E0080A08B /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8BAC2364D95E0080A08B /* AccountsPresenter.swift */; };
 		F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */; };
 		F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */; };
 		F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C5232A95EA008DF78D /* LoadingViewController.swift */; };
@@ -72,6 +75,9 @@
 		F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */; };
 		F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */; };
 		F9E1F600234B6C93000B6DB4 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */; };
+		F9E728DA2364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728D92364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift */; };
+		F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */; };
+		F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */; };
 		F9EB79042354A5530081C84E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB79032354A5530081C84E /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +122,9 @@
 		F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedOperationTableViewCell.swift; sourceTree = "<group>"; };
 		F98B1841235F591900FB7A48 /* AddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingViewController.swift; sourceTree = "<group>"; };
 		F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAddingTableViewExtension.swift; sourceTree = "<group>"; };
+		F98D8BA72364D8000080A08B /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		F98D8BA92364D8CC0080A08B /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		F98D8BAC2364D95E0080A08B /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPresenter.swift; sourceTree = "<group>"; };
 		F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
 		F995B0C5232A95EA008DF78D /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +155,9 @@
 		F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectorView.swift; sourceTree = "<group>"; };
 		F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		F9E728D92364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAccountsTableViewExtenstion.swift; sourceTree = "<group>"; };
+		F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
+		F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAccountsCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F9EB79032354A5530081C84E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +262,7 @@
 				F9D4087A232E214B0034B913 /* Summary Screen */,
 				F91871EE23268F0400F0F9A6 /* AddOperation Screen */,
 				F95B2E6E232142C500808558 /* Operations Screen */,
+				F98D8BAB2364D9280080A08B /* Accounts Screen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -306,6 +319,17 @@
 				F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */,
 			);
 			path = TableVIew;
+			sourceTree = "<group>";
+		};
+		F98D8BAB2364D9280080A08B /* Accounts Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F98D8BA72364D8000080A08B /* AccountsViewController.swift */,
+				F98D8BAC2364D95E0080A08B /* AccountsPresenter.swift */,
+				F9E728DB2364E88500393C2B /* TableView */,
+				F9E728E02364EA4100393C2B /* CollectionView */,
+			);
+			path = "Accounts Screen";
 			sourceTree = "<group>";
 		};
 		F9A4F8972333D426008D606A /* TableView */ = {
@@ -405,6 +429,24 @@
 				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 			);
 			path = "Summary Screen";
+			sourceTree = "<group>";
+		};
+		F9E728DB2364E88500393C2B /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				F9E728D92364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift */,
+				F98D8BA92364D8CC0080A08B /* AccountTableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		F9E728E02364EA4100393C2B /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */,
+				F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,7 +574,9 @@
 				F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */,
 				F942E660233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift in Sources */,
 				F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */,
+				F98D8BA82364D8000080A08B /* AccountsViewController.swift in Sources */,
 				F94BDFA52340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift in Sources */,
+				F9E728DA2364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
 				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,
 				F9172DD12343E8810067B9AE /* CombinedDataSource.swift in Sources */,
@@ -549,6 +593,8 @@
 				F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */,
 				F9172DD32345058A0067B9AE /* CombinedSettingsDataSource.swift in Sources */,
 				F98B1840235F50EC00FB7A48 /* AddedOperationTableViewCell.swift in Sources */,
+				F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */,
+				F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */,
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,
@@ -564,6 +610,7 @@
 				F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */,
 				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
+				F98D8BAD2364D95E0080A08B /* AccountsPresenter.swift in Sources */,
 				F98B1845235F678300FB7A48 /* ManagingAddingTableViewExtension.swift in Sources */,
 				F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */,
 				F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */,
@@ -580,6 +627,7 @@
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
 				F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */,
 				F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */,
+				F98D8BAA2364D8CC0080A08B /* AccountTableViewCell.swift in Sources */,
 				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,
