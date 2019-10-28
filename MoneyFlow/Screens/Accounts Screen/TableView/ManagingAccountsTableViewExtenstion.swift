@@ -77,7 +77,7 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
         let bottomColor = BackColors.bottomColor
         let contentHeight = scrollView.contentSize.height
         let centerOfContentHeight = contentHeight / 2
-        let offset = scrollView.contentOffset.y + scrollView.bounds.height / 2
+        let offset = scrollView.contentOffset.y + scrollView.bounds.height / 2 + 1
         if offset < centerOfContentHeight {
             if tableView.backgroundColor != topColor { tableView.backgroundColor = topColor }
         } else {
