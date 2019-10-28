@@ -31,10 +31,11 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: accountTableViewCellIdentifier, for: indexPath) as! AccountTableViewCell
             cell.accountLabel.text = moneyAmountByAccounts[indexPath.row].account
             cell.moneyAmountLabel.text = moneyAmountByAccounts[indexPath.row].amount
-            
+            if tableView.separatorStyle != .none { tableView.separatorStyle = .none }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyAccountsListTableViewCellIdentifier)!
+            tableView.separatorStyle = .none
             return cell
         }
         
