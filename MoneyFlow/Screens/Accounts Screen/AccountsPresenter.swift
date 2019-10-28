@@ -94,10 +94,6 @@ class AccountsPresenter {
                 result.append((account, amount))
             }
         }
-//        for account in settings.accounts {
-//            let amount = presenter.filter(accounts: [account]).valuesSum(currency)
-//            result.append((account, amount))
-//        }
         return result
     }
     
@@ -105,5 +101,58 @@ class AccountsPresenter {
         return moneyAmountByAccounts(in: currency).map { ($0.account, $0.amount.currencyFormattedDescription(currency)) }
     }
     
+    func moneyByLenders(in currency: Currency) -> [(contact: String, amount: Double)] {
+        var result = [(String, Double)]()
+        var dictionary = [String: Double]()
+        let debtOperations = presenter.debtOperations() as! [DebtOperation]
+        
+        debtOperations.forEach {
+            if $0.currency == currency {
+                if dictionary[$0.contact] != nil {
+                    dictionary[$0.contact]! += $0.value
+                } else {
+                    dictionary[$0.contact] = $0.value
+                }
+            }
+        }
+        for contact in settings.contacts {
+            if let amount = dictionary[contact] {
+                if amount > 0 { result.append((contact, amount)) }
+            }
+        }
+        return result
+    }
+    
+    func formattedMoneyByLenders(in currency: Currency) -> [(contact: String, amount: String)] {
+        return moneyByLenders(in: currency).map { ($0.contact, $0.amount.currencyFormattedDescription(currency)) }
+    }
+    
+    func moneyByDebtors(in currency: Currency) -> [(contact: String, amount: Double)] {
+        var result = [(String, Double)]()
+        var dictionary = [String: Double]()
+        let debtOperations = presenter.debtOperations() as! [DebtOperation]
+        
+        debtOperations.forEach {
+            if $0.currency == currency {
+                if dictionary[$0.contact] != nil {
+                    dictionary[$0.contact]! += $0.value
+                } else {
+                    dictionary[$0.contact] = $0.value
+                }
+            }
+        }
+        for contact in settings.contacts {
+            if let amount = dictionary[contact] {
+                if amount <= 0 { result.append((contact, abs(amount))) }
+            } else {
+                result.append((contact, 0.0))
+            }
+        }
+        return result
+    }
+    
+    func formattedMoneyByDebtors(in currency: Currency) -> [(contact: String, amount: String)] {
+        return moneyByDebtors(in: currency).map { ($0.contact, $0.amount.currencyFormattedDescription(currency)) }
+    }
     
 }

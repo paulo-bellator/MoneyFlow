@@ -20,11 +20,17 @@ class AccountsViewController: UIViewController, UpdatableViewController {
     var presenter = AccountsPresenter()
     lazy var mainCurrency: Currency = presenter.currencies.first ?? .rub
     lazy var moneyAmountByAccounts = presenter.formattedMoneyAmountByAccounts(in: mainCurrency)
+    var listType: ListType = .accounts
+    lazy var moneyByLenders = presenter.formattedMoneyByLenders(in: mainCurrency)
+    lazy var moneyByDebtors = presenter.formattedMoneyByDebtors(in: mainCurrency)
     
     let accountTableViewCellIdentifier = "accountCell"
     let currencyCollectionViewCellIdentifier = "currencyCell"
     let emptyAccountsListTableViewCellIdentifier = "emptyAccountsListCell"
     let tableViewRowHeight: CGFloat = 80
+    lazy var tableViewEmptyCellRowHeight: CGFloat = {
+        return tableView.bounds.height - 301
+    }()
     
     var isDataReady = false
     var needToUpdate: Bool = true
@@ -34,6 +40,7 @@ class AccountsViewController: UIViewController, UpdatableViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         collectionView.delegate = self
         collectionView.dataSource = self
         view.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
@@ -52,6 +59,8 @@ class AccountsViewController: UIViewController, UpdatableViewController {
         allMoneyLabel.text = presenter.totalMoneyString(in: mainCurrency)
         iOweLabel.text = presenter.iOweString(in: mainCurrency)
         oweMeLabel.text = presenter.oweMeString(in: mainCurrency)
+        moneyByLenders = presenter.formattedMoneyByLenders(in: mainCurrency)
+        moneyByDebtors = presenter.formattedMoneyByDebtors(in: mainCurrency)
         needToUpdate = false
         tableView.reloadData()
     }
@@ -59,7 +68,14 @@ class AccountsViewController: UIViewController, UpdatableViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    enum ListType: String {
+        case accounts = "Счета"
+        case lenders = "Я должен"
+        case debtors = "Мне должны"
+        static let allRawValues = ["Счета", "Я должен", "Мне должны"]
+        static let all = [ListType.accounts, .lenders, .debtors]
+    }
 }
 
 
