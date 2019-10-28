@@ -31,7 +31,8 @@ class AccountsViewController: UIViewController, UpdatableViewController {
     let tableViewRowHeight: CGFloat = 80
     let headerCellTableViewRowHeight: CGFloat = 55
     lazy var tableViewEmptyCellRowHeight: CGFloat = {
-        return tableView.bounds.height - 301 - headerCellTableViewRowHeight
+        let topViewHeight: CGFloat = 301
+        return tableView.bounds.height - topViewHeight - headerCellTableViewRowHeight
     }()
     
     var isDataReady = false
