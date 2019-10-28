@@ -27,7 +27,7 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return headerCellTableViewRowHeight
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -44,6 +44,15 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyAccountsListTableViewCellIdentifier)!
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if dataSourceIsEmpty { return nil }
+        let header = tableView.dequeueReusableCell(withIdentifier: headerCellTableViewIdentifier) as! OperationsHeaderTableViewCell
+        header.periodLabel.text = listType.rawValue
+        header.sumLabel.isHidden = true
+        
+        return header.contentView
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -78,6 +87,6 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     
     private struct BackColors {
         static let topColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
-        static let bottomColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        static let bottomColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
     }
 }

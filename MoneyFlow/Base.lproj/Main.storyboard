@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="CenturyGothic-HeavyBold.ttf">
+        <array key="CenturyGothic-Bold.ttf">
             <string>CenturyGothic-Bold</string>
         </array>
         <array key="CenturyGothic.ttf">
@@ -319,7 +319,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-fQ-E4e" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="173" y="64" width="133" height="55"/>
+                                <rect key="frame" x="173" y="63" width="133" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12 678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGE-Ms-heb">
                                         <rect key="frame" x="15" y="0.0" width="103" height="55"/>
@@ -343,7 +343,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZc-PM-bMu" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="173" width="342" height="55"/>
+                                <rect key="frame" x="36" y="171" width="342" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Сбербанк МСК" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XL3-ON-Aeh">
                                         <rect key="frame" x="15" y="0.0" width="312" height="55"/>
@@ -366,7 +366,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xxV-6z-M34">
-                                <rect key="frame" x="36" y="64" width="120" height="55"/>
+                                <rect key="frame" x="36" y="63" width="120" height="55"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9e-Y6-uON" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
@@ -411,7 +411,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guA-gX-9Qg" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="323" y="64" width="55" height="55"/>
+                                <rect key="frame" x="323" y="63" width="55" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azf-rC-Ozf">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
@@ -439,19 +439,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Значение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egJ-Le-ow5">
-                                <rect key="frame" x="45.999999999999993" y="30" width="82.333333333333314" height="21"/>
+                                <rect key="frame" x="45.999999999999993" y="30" width="76.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Счет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-Y8-Fx8">
-                                <rect key="frame" x="46" y="139" width="43" height="21"/>
+                                <rect key="frame" x="46" y="138" width="38.333333333333343" height="20"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbB-98-7fy" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="282" width="342" height="55"/>
+                                <rect key="frame" x="36" y="279" width="342" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Уход и здоровье" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kl9-GC-f20">
                                         <rect key="frame" x="15" y="0.0" width="312" height="55"/>
@@ -474,13 +474,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKV-SD-Dyi">
-                                <rect key="frame" x="46" y="248" width="90" height="21"/>
+                                <rect key="frame" x="45.999999999999993" y="246" width="83.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LTc-65-qFo" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="391" width="342" height="55"/>
+                                <rect key="frame" x="36" y="387" width="342" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21.10.2019, 18:34" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSl-PZ-pgD">
                                         <rect key="frame" x="15" y="0.0" width="312" height="55"/>
@@ -503,13 +503,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgn-qn-kvE">
-                                <rect key="frame" x="46" y="357" width="44.666666666666657" height="21"/>
+                                <rect key="frame" x="46" y="354" width="38.666666666666657" height="20"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leK-yO-pZ7" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="500" width="342" height="55"/>
+                                <rect key="frame" x="36" y="495" width="342" height="55"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Уход и здоровье" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NQl-Mo-lty">
                                         <rect key="frame" x="15" y="0.0" width="312" height="55"/>
@@ -532,7 +532,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коментарий" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MI1-E8-GpS">
-                                <rect key="frame" x="46" y="466" width="108" height="21"/>
+                                <rect key="frame" x="46" y="462" width="98" height="20"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1698,6 +1698,43 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" rowHeight="55" id="YMx-dU-gIr" customClass="OperationsHeaderTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="742" width="414" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YMx-dU-gIr" id="UbY-L2-UHT">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2db-ek-ziZ">
+                                                    <rect key="frame" x="17" y="23" width="377" height="17.333333333333329"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="24 октября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG1-qT-Gr5">
+                                                            <rect key="frame" x="0.0" y="0.0" width="302" height="17.333333333333332"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 178 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhC-c9-S4y">
+                                                            <rect key="frame" x="322" y="0.0" width="55" height="17.333333333333332"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="2db-ek-ziZ" firstAttribute="leading" secondItem="UbY-L2-UHT" secondAttribute="leading" constant="17" id="eRD-EK-ElF"/>
+                                                <constraint firstAttribute="trailing" secondItem="2db-ek-ziZ" secondAttribute="trailing" constant="20" id="k5X-0i-8PC"/>
+                                                <constraint firstItem="2db-ek-ziZ" firstAttribute="centerY" secondItem="UbY-L2-UHT" secondAttribute="centerY" multiplier="1.15" id="qgF-7t-Oqx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="periodLabel" destination="tG1-qT-Gr5" id="hmX-xU-y0B"/>
+                                            <outlet property="sumLabel" destination="LhC-c9-S4y" id="A3x-eQ-9ak"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -1783,6 +1820,6 @@
         <image name="settings_tabbar_icon" width="29" height="29.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CGj-uN-xFe"/>
+        <segue reference="ge5-nE-AiN"/>
     </inferredMetricsTieBreakers>
 </document>

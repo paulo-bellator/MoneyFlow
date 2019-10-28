@@ -27,9 +27,11 @@ class AccountsViewController: UIViewController, UpdatableViewController {
     let accountTableViewCellIdentifier = "accountCell"
     let currencyCollectionViewCellIdentifier = "currencyCell"
     let emptyAccountsListTableViewCellIdentifier = "emptyAccountsListCell"
+    let headerCellTableViewIdentifier = "headerCell"
     let tableViewRowHeight: CGFloat = 80
+    let headerCellTableViewRowHeight: CGFloat = 55
     lazy var tableViewEmptyCellRowHeight: CGFloat = {
-        return tableView.bounds.height - 301
+        return tableView.bounds.height - 301 - headerCellTableViewRowHeight
     }()
     
     var isDataReady = false
