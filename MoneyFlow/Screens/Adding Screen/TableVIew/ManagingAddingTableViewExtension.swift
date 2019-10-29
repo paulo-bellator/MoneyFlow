@@ -86,9 +86,14 @@ extension AddingViewController: UITableViewDelegate, UITableViewDataSource  {
         guard !operationListIsEmpty else { return nil }
         let delete = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, view, nil) in
             let idOfOperationsToRemove = self.operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
-            print(idOfOperationsToRemove)
             self.deleteOperation(with: idOfOperationsToRemove)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            if self.operationsByDays[indexPath.section].ops.isEmpty {
+                self.operationsByDays.remove(at: indexPath.section)
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
         delete.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
         delete.image = #imageLiteral(resourceName: "delete_icon")

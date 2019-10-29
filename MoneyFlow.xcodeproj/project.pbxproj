@@ -315,8 +315,8 @@
 		F98B18462360805500FB7A48 /* TableVIew */ = {
 			isa = PBXGroup;
 			children = (
-				F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */,
 				F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */,
+				F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */,
 			);
 			path = TableVIew;
 			sourceTree = "<group>";

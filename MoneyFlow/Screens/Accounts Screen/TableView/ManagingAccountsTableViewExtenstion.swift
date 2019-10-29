@@ -49,7 +49,7 @@ extension AccountsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        if dataSourceIsEmpty { return nil }
         let header = tableView.dequeueReusableCell(withIdentifier: headerCellTableViewIdentifier) as! OperationsHeaderTableViewCell
-        header.periodLabel.text = listType.rawValue + ", " + mainCurrency.rawValue
+        header.periodLabel.text = listType.rawValue + ",  " + mainCurrency.rawValue
         header.sumLabel.isHidden = true
         
         return header.contentView
