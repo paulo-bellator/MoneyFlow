@@ -56,6 +56,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         picker.locale = Locale(identifier: Constants.localeIdentifier)
         picker.datePickerMode = .dateAndTime
         picker.date = Date()
+        picker.maximumDate = Date() + 60*60
         picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         return picker
     }()
