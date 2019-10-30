@@ -41,6 +41,8 @@
 		F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */; };
 		F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847D233270FB00FAD863 /* CircleGraphView.swift */; };
 		F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */; };
+		F9880BED2369BF8F00510E83 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9880BEC2369BF8F00510E83 /* GreetingViewController.swift */; };
+		F9880BF02369C7E400510E83 /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9880BEF2369C7E400510E83 /* VerifyEmailViewController.swift */; };
 		F98B1840235F50EC00FB7A48 /* AddedOperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */; };
 		F98B1842235F591900FB7A48 /* AddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98B1841235F591900FB7A48 /* AddingViewController.swift */; };
 		F98B1845235F678300FB7A48 /* ManagingAddingTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */; };
@@ -74,7 +76,7 @@
 		F9D49F91235A007B00ADE93D /* DataSourceLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D49F90235A007B00ADE93D /* DataSourceLoadManager.swift */; };
 		F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */; };
 		F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */; };
-		F9E1F600234B6C93000B6DB4 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */; };
+		F9E1F600234B6C93000B6DB4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E1F5FF234B6C93000B6DB4 /* AuthViewController.swift */; };
 		F9E728DA2364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728D92364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift */; };
 		F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */; };
 		F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */; };
@@ -119,6 +121,8 @@
 		F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryGraphTableViewCell.swift; sourceTree = "<group>"; };
 		F986847D233270FB00FAD863 /* CircleGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGraphView.swift; sourceTree = "<group>"; };
 		F986847F2332B48E00FAD863 /* SummaryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		F9880BEC2369BF8F00510E83 /* GreetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
+		F9880BEF2369C7E400510E83 /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedOperationTableViewCell.swift; sourceTree = "<group>"; };
 		F98B1841235F591900FB7A48 /* AddingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingViewController.swift; sourceTree = "<group>"; };
 		F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAddingTableViewExtension.swift; sourceTree = "<group>"; };
@@ -154,7 +158,7 @@
 		F9D49F90235A007B00ADE93D /* DataSourceLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceLoadManager.swift; sourceTree = "<group>"; };
 		F9E1F5FB234A3CFD000B6DB4 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		F9E1F5FD234B5898000B6DB4 /* ButtonSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectorView.swift; sourceTree = "<group>"; };
-		F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		F9E1F5FF234B6C93000B6DB4 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		F9E728D92364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAccountsTableViewExtenstion.swift; sourceTree = "<group>"; };
 		F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAccountsCollectionViewExtension.swift; sourceTree = "<group>"; };
@@ -255,8 +259,8 @@
 			children = (
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
-				F9E1F5FF234B6C93000B6DB4 /* EmptyViewController.swift */,
 				F9EB79032354A5530081C84E /* LoadingView.swift */,
+				F9880BEE2369C7B700510E83 /* Authorization */,
 				F98B1843235F591F00FB7A48 /* Adding Screen */,
 				F9B2D6822341223900711F59 /* ImagePicker Screen */,
 				F9D4087A232E214B0034B913 /* Summary Screen */,
@@ -300,6 +304,16 @@
 				F9D3A9FA232165D400895A80 /* CollectionView */,
 			);
 			path = "Operations Screen";
+			sourceTree = "<group>";
+		};
+		F9880BEE2369C7B700510E83 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				F9880BEC2369BF8F00510E83 /* GreetingViewController.swift */,
+				F9E1F5FF234B6C93000B6DB4 /* AuthViewController.swift */,
+				F9880BEF2369C7E400510E83 /* VerifyEmailViewController.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		F98B1843235F591F00FB7A48 /* Adding Screen */ = {
@@ -592,9 +606,11 @@
 				F9063DE5232139FE00F08E84 /* FlowOperation.swift in Sources */,
 				F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */,
 				F9172DD32345058A0067B9AE /* CombinedSettingsDataSource.swift in Sources */,
+				F9880BF02369C7E400510E83 /* VerifyEmailViewController.swift in Sources */,
 				F98B1840235F50EC00FB7A48 /* AddedOperationTableViewCell.swift in Sources */,
 				F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */,
 				F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */,
+				F9880BED2369BF8F00510E83 /* GreetingViewController.swift in Sources */,
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
 				F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */,
 				F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */,
@@ -604,7 +620,7 @@
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
 				F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
-				F9E1F600234B6C93000B6DB4 /* EmptyViewController.swift in Sources */,
+				F9E1F600234B6C93000B6DB4 /* AuthViewController.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,
 				F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */,
@@ -778,6 +794,7 @@
 			baseConfigurationReference = 30B9068C0FBCDFEB5D5EB980 /* Pods-MoneyFlow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MoneyFlow/MoneyFlow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LNP459PJ4M;
 				INFOPLIST_FILE = MoneyFlow/Info.plist;
@@ -788,7 +805,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nikita.MoneyFlow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -797,6 +814,7 @@
 			baseConfigurationReference = DF7AF6C5C22ED47D906392DA /* Pods-MoneyFlow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MoneyFlow/MoneyFlow.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LNP459PJ4M;
 				INFOPLIST_FILE = MoneyFlow/Info.plist;
@@ -807,7 +825,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nikita.MoneyFlow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

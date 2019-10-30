@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6jo-4r-O6d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zEG-Nh-eGT">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -23,17 +23,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="OperationsViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading error occured." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtY-Qr-Bhu">
-                                <rect key="frame" x="40" y="324.33333333333331" width="334" height="18.666666666666686"/>
+                                <rect key="frame" x="40" y="334.33333333333331" width="334" height="18.666666666666686"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sp3-Aw-gG3">
-                                <rect key="frame" x="169.66666666666666" y="363" width="75" height="31"/>
+                                <rect key="frame" x="169.66666666666666" y="373" width="75" height="31"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                                 <state key="normal" title="Повторить">
                                     <color key="titleColor" red="0.59655062420000005" green="0.65530419750000002" blue="0.94901960780000005" alpha="0.95283604450000003" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,7 +81,7 @@
                                 </cells>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VqW-fa-Ih6">
-                                <rect key="frame" x="0.0" y="55" width="414" height="612"/>
+                                <rect key="frame" x="0.0" y="55" width="414" height="632"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="emptyOperationsListCell" rowHeight="604" id="Pny-lf-fCN">
@@ -207,7 +207,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aCK-Ph-8Hf">
                                                     <rect key="frame" x="282" y="27.333333333333332" width="100" height="37.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="17.333333333333332"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="B0I-TM-srh"/>
@@ -216,7 +216,7 @@
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
                                                             <rect key="frame" x="0.0" y="25.333333333333332" width="100" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -246,7 +246,7 @@
                                 <sections/>
                             </tableView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="llb-yi-qlg">
-                                <rect key="frame" x="0.0" y="664.33333333333337" width="414" height="2.6666666666666288"/>
+                                <rect key="frame" x="0.0" y="684.33333333333337" width="414" height="2.6666666666666288"/>
                                 <color key="progressTintColor" red="1" green="0.74117668110000001" blue="0.07064201363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
                         </subviews>
@@ -290,21 +290,313 @@
             </objects>
             <point key="canvasLocation" x="1109" y="115"/>
         </scene>
-        <!--Empty View Controller-->
+        <!--Auth View Controller-->
         <scene sceneID="GIH-bs-E9b">
             <objects>
-                <viewController id="ckA-Kd-f4r" customClass="EmptyViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ckA-Kd-f4r" customClass="AuthViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Or-6u-tOb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMV-ar-CKc" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="40" y="187.33333333333334" width="334" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="teT-Xg-jS9">
+                                        <rect key="frame" x="15" y="0.0" width="304" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" textContentType="email"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="teT-Xg-jS9" secondAttribute="bottom" id="1hm-nB-vVz"/>
+                                    <constraint firstItem="teT-Xg-jS9" firstAttribute="leading" secondItem="RMV-ar-CKc" secondAttribute="leading" constant="15" id="7Qc-K8-dFy"/>
+                                    <constraint firstItem="teT-Xg-jS9" firstAttribute="top" secondItem="RMV-ar-CKc" secondAttribute="top" id="EAy-dS-pHq"/>
+                                    <constraint firstAttribute="height" constant="55" id="NSL-mc-Yrj"/>
+                                    <constraint firstAttribute="trailing" secondItem="teT-Xg-jS9" secondAttribute="trailing" constant="15" id="b3K-8Z-gRv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регистрация" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ltu-KZ-tDi">
+                                <rect key="frame" x="50.000000000000007" y="141.33333333333334" width="110.66666666666669" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIw-eX-h8a">
+                                <rect key="frame" x="302" y="375" width="57" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="k6E-cj-Ctz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="15"/>
+                                <state key="normal" title="Вперед">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.69411764710000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="de2-1B-RkV"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4r-DW-Imh" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="40" y="262.33333333333331" width="334" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FxA-bc-RSO">
+                                        <rect key="frame" x="15" y="0.0" width="304" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="go" smartDashesType="no" textContentType="password"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="FxA-bc-RSO" firstAttribute="leading" secondItem="b4r-DW-Imh" secondAttribute="leading" constant="15" id="Hd6-RD-0y8"/>
+                                    <constraint firstItem="FxA-bc-RSO" firstAttribute="top" secondItem="b4r-DW-Imh" secondAttribute="top" id="I8k-Ez-8Ub"/>
+                                    <constraint firstAttribute="bottom" secondItem="FxA-bc-RSO" secondAttribute="bottom" id="bva-FV-NJC"/>
+                                    <constraint firstAttribute="trailing" secondItem="FxA-bc-RSO" secondAttribute="trailing" constant="15" id="cPb-Hh-iv9"/>
+                                    <constraint firstAttribute="height" constant="55" id="n1S-y6-yO8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3o0-3f-C5F">
+                                <rect key="frame" x="55" y="325.33333333333331" width="304" height="29.666666666666686"/>
+                                <string key="text">На него мы вышлем письмо с подтвреждающей
+ссылкой</string>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="rwl-bJ-4w8">
+                                <rect key="frame" x="320.66666666666669" y="381.33333333333331" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MIw-eX-h8a" firstAttribute="top" secondItem="3o0-3f-C5F" secondAttribute="bottom" constant="20" id="7DN-a9-esf"/>
+                            <constraint firstItem="RMV-ar-CKc" firstAttribute="centerY" secondItem="jCt-Gn-k1X" secondAttribute="centerY" multiplier="0.6" id="7mk-dL-Xc2"/>
+                            <constraint firstItem="RMV-ar-CKc" firstAttribute="top" secondItem="Ltu-KZ-tDi" secondAttribute="bottom" constant="25" id="AwC-Ed-1bu"/>
+                            <constraint firstItem="MIw-eX-h8a" firstAttribute="trailing" secondItem="3o0-3f-C5F" secondAttribute="trailing" id="JoO-El-ZNu"/>
+                            <constraint firstItem="jCt-Gn-k1X" firstAttribute="trailing" secondItem="RMV-ar-CKc" secondAttribute="trailing" constant="40" id="Lvw-hY-Z5f"/>
+                            <constraint firstItem="3o0-3f-C5F" firstAttribute="leading" secondItem="FxA-bc-RSO" secondAttribute="leading" id="Ur2-4H-7X0"/>
+                            <constraint firstItem="b4r-DW-Imh" firstAttribute="leading" secondItem="RMV-ar-CKc" secondAttribute="leading" id="dJc-M2-Wx9"/>
+                            <constraint firstItem="3o0-3f-C5F" firstAttribute="width" secondItem="FxA-bc-RSO" secondAttribute="width" id="dMF-2f-sdm"/>
+                            <constraint firstItem="b4r-DW-Imh" firstAttribute="width" secondItem="RMV-ar-CKc" secondAttribute="width" id="ddV-It-ebm"/>
+                            <constraint firstItem="b4r-DW-Imh" firstAttribute="height" secondItem="RMV-ar-CKc" secondAttribute="height" id="eJO-VF-cd4"/>
+                            <constraint firstItem="Ltu-KZ-tDi" firstAttribute="leading" secondItem="RMV-ar-CKc" secondAttribute="leading" constant="10" id="fij-lb-rDe"/>
+                            <constraint firstItem="rwl-bJ-4w8" firstAttribute="centerX" secondItem="MIw-eX-h8a" secondAttribute="centerX" id="gf9-3r-qaD"/>
+                            <constraint firstItem="rwl-bJ-4w8" firstAttribute="centerY" secondItem="MIw-eX-h8a" secondAttribute="centerY" id="kBU-UN-8Ev"/>
+                            <constraint firstItem="b4r-DW-Imh" firstAttribute="top" secondItem="RMV-ar-CKc" secondAttribute="bottom" constant="20" id="naL-CB-UTd"/>
+                            <constraint firstItem="3o0-3f-C5F" firstAttribute="top" secondItem="FxA-bc-RSO" secondAttribute="bottom" constant="8" id="rGt-3w-aHI"/>
+                            <constraint firstItem="RMV-ar-CKc" firstAttribute="leading" secondItem="jCt-Gn-k1X" secondAttribute="leading" constant="40" id="v5F-Mb-05o"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jCt-Gn-k1X"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="settings_tabbar_icon" id="V96-mM-bmM"/>
+                    <navigationItem key="navigationItem" id="YFA-bR-yEZ"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="rwl-bJ-4w8" id="YF7-t8-3gj"/>
+                        <outlet property="emailTextField" destination="teT-Xg-jS9" id="0kP-Kr-Cad"/>
+                        <outlet property="errorLabel" destination="3o0-3f-C5F" id="1I2-tI-Jv1"/>
+                        <outlet property="nextButton" destination="MIw-eX-h8a" id="z4H-3W-mBp"/>
+                        <outlet property="passwordTextField" destination="FxA-bc-RSO" id="cGX-E0-FI2"/>
+                        <outlet property="titleLabel" destination="Ltu-KZ-tDi" id="uh6-1U-rAj"/>
+                        <segue destination="NFb-X4-xPj" kind="show" identifier="emailVerifySegue" id="mP2-ek-aAk"/>
+                        <segue destination="6jo-4r-O6d" kind="presentation" identifier="tabBarSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Kho-Py-wFp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UP4-uB-C06" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="-1318"/>
+            <point key="canvasLocation" x="-522" y="-625"/>
+        </scene>
+        <!--Greeting View Controller-->
+        <scene sceneID="jW3-eD-uOb">
+            <objects>
+                <viewController id="zEG-Nh-eGT" customClass="GreetingViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QGa-Hd-Ez4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожалавать" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nb6-kt-viE">
+                                <rect key="frame" x="55.999999999999986" y="118.33333333333331" width="166.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKx-Jy-afe">
+                                <rect key="frame" x="56" y="177" width="323" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="fse-gV-9yc"/>
+                                </constraints>
+                                <string key="text">Создайте аккаунт или авторизуйтесь в уже существующем. 
+
+Это необходимо для того, чтобы безопасно хранить ваши данные на сервере. И вы смогли с любого устройства получить к ним доступ. 
+
+Мы не рассылаем спам.</string>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sg9-R8-bza">
+                                <rect key="frame" x="56" y="385" width="98" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="ge9-tC-M1Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="15"/>
+                                <state key="normal" title="Регистрация">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.69411764710000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="Pcr-m6-XXb"/>
+                                    <segue destination="ckA-Kd-f4r" kind="show" identifier="singUpSegue" id="WBo-Ng-Sus"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BK0-IZ-8cB">
+                                <rect key="frame" x="195" y="385" width="100" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="NET-Ur-tHd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="15"/>
+                                <state key="normal" title="Авторизация">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.69411764710000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="cLy-n3-tk1"/>
+                                    <segue destination="ckA-Kd-f4r" kind="show" identifier="singInSegue" id="YKV-tg-zEK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Nb6-kt-viE" firstAttribute="leading" secondItem="bK2-87-45y" secondAttribute="leading" constant="56" id="2CI-3S-5GN"/>
+                            <constraint firstItem="kKx-Jy-afe" firstAttribute="top" secondItem="Nb6-kt-viE" secondAttribute="bottom" constant="37.666666666666686" id="51X-bI-0sQ"/>
+                            <constraint firstItem="bK2-87-45y" firstAttribute="trailing" secondItem="kKx-Jy-afe" secondAttribute="trailing" constant="35" id="7PA-2f-3Ye"/>
+                            <constraint firstItem="BK0-IZ-8cB" firstAttribute="leading" secondItem="Sg9-R8-bza" secondAttribute="trailing" constant="41" id="AbZ-jL-MJ0"/>
+                            <constraint firstItem="Nb6-kt-viE" firstAttribute="centerY" secondItem="bK2-87-45y" secondAttribute="centerY" multiplier="0.35" id="FSx-wc-kn0"/>
+                            <constraint firstItem="kKx-Jy-afe" firstAttribute="leading" secondItem="Nb6-kt-viE" secondAttribute="leading" id="Pcg-lx-UWw"/>
+                            <constraint firstItem="Sg9-R8-bza" firstAttribute="top" secondItem="kKx-Jy-afe" secondAttribute="bottom" constant="58" id="R0y-X8-Jri"/>
+                            <constraint firstItem="BK0-IZ-8cB" firstAttribute="centerY" secondItem="Sg9-R8-bza" secondAttribute="centerY" id="bgc-3s-opW"/>
+                            <constraint firstItem="Sg9-R8-bza" firstAttribute="leading" secondItem="kKx-Jy-afe" secondAttribute="leading" id="z0B-U4-msA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bK2-87-45y"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DV8-VK-tjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1333" y="-625"/>
+        </scene>
+        <!--Verify Email View Controller-->
+        <scene sceneID="Aa7-hT-MTB">
+            <objects>
+                <viewController id="NFb-X4-xPj" customClass="VerifyEmailViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ngZ-sz-PIH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подтвердите e-mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0c-zS-btX">
+                                <rect key="frame" x="56" y="114.66666666666667" width="174" height="21.000000000000014"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail@mail.ru" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puf-Ph-vcn">
+                                <rect key="frame" x="56.000000000000007" y="143.33333333333334" width="91.666666666666686" height="18.666666666666657"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                <color key="textColor" red="0.95686274510000002" green="0.69411764710000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLr-A3-gRS">
+                                <rect key="frame" x="56" y="212" width="323" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Lg1-ka-Dcr"/>
+                                </constraints>
+                                <string key="text">Мы отправили письмо на указанный e-mail с инструкциями для подтвреждения.
+
+Как только подтвердите e-mail, вернитесь в приложение и нажимите кнопку "Подтвредить"</string>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvN-PA-DwP">
+                                <rect key="frame" x="56" y="370" width="100" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="plB-KT-hMF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="15"/>
+                                <state key="normal" title="Подтвредить">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.69411764710000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="JrR-7j-asH"/>
+                                    <action selector="verifyButtonTouched:" destination="NFb-X4-xPj" eventType="touchUpInside" id="Rev-TU-QnT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHC-Fu-asX">
+                                <rect key="frame" x="196" y="370" width="130" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Ula-Wh-4HN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                <state key="normal" title="Отправить повторное">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="YLd-bF-PrY"/>
+                                    <action selector="sendAgainButtonTouched:" destination="NFb-X4-xPj" eventType="touchUpInside" id="Ugg-iL-NVN"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ilc-Wm-u6H">
+                                <rect key="frame" x="96" y="376.66666666666669" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Почта не подтверждена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6e-rb-TId">
+                                <rect key="frame" x="56" y="172" width="145" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="xvq-uw-pkg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BLr-A3-gRS" firstAttribute="leading" secondItem="F0c-zS-btX" secondAttribute="leading" id="0O2-GI-g9o"/>
+                            <constraint firstItem="puf-Ph-vcn" firstAttribute="leading" secondItem="F0c-zS-btX" secondAttribute="leading" id="4aw-J1-hyn"/>
+                            <constraint firstItem="F0c-zS-btX" firstAttribute="leading" secondItem="b1y-VG-0h5" secondAttribute="leading" constant="56" id="8gy-Cf-rWl"/>
+                            <constraint firstItem="f6e-rb-TId" firstAttribute="leading" secondItem="puf-Ph-vcn" secondAttribute="leading" id="BLx-Ys-PLu"/>
+                            <constraint firstItem="b1y-VG-0h5" firstAttribute="trailing" secondItem="BLr-A3-gRS" secondAttribute="trailing" constant="35" id="Dky-U5-7Gh"/>
+                            <constraint firstItem="puf-Ph-vcn" firstAttribute="top" secondItem="F0c-zS-btX" secondAttribute="bottom" constant="7.6666666666666856" id="PXS-pA-nXw"/>
+                            <constraint firstItem="HvN-PA-DwP" firstAttribute="leading" secondItem="BLr-A3-gRS" secondAttribute="leading" id="Rfs-92-22w"/>
+                            <constraint firstItem="f6e-rb-TId" firstAttribute="top" secondItem="puf-Ph-vcn" secondAttribute="bottom" constant="10" id="S8V-32-Aeu"/>
+                            <constraint firstItem="aHC-Fu-asX" firstAttribute="leading" secondItem="HvN-PA-DwP" secondAttribute="trailing" constant="40" id="T31-6D-3fH"/>
+                            <constraint firstItem="F0c-zS-btX" firstAttribute="centerY" secondItem="b1y-VG-0h5" secondAttribute="centerY" multiplier="0.35" id="ZkT-Eb-Co9"/>
+                            <constraint firstItem="BLr-A3-gRS" firstAttribute="top" secondItem="puf-Ph-vcn" secondAttribute="bottom" constant="50" id="eTY-gv-T33"/>
+                            <constraint firstItem="HvN-PA-DwP" firstAttribute="top" secondItem="BLr-A3-gRS" secondAttribute="bottom" constant="58" id="mPq-VF-Tti"/>
+                            <constraint firstItem="aHC-Fu-asX" firstAttribute="centerY" secondItem="HvN-PA-DwP" secondAttribute="centerY" id="qgZ-ta-1l7"/>
+                            <constraint firstItem="ilc-Wm-u6H" firstAttribute="centerY" secondItem="HvN-PA-DwP" secondAttribute="centerY" id="x3R-hn-zxe"/>
+                            <constraint firstItem="ilc-Wm-u6H" firstAttribute="centerX" secondItem="HvN-PA-DwP" secondAttribute="centerX" id="yGz-xY-43F"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b1y-VG-0h5"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dKR-Gj-FtF"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="ilc-Wm-u6H" id="Kdx-x4-s2S"/>
+                        <outlet property="didNotVerifiedLabel" destination="f6e-rb-TId" id="eq9-Eb-VZ1"/>
+                        <outlet property="emailLabel" destination="puf-Ph-vcn" id="GBK-Ac-ztm"/>
+                        <outlet property="sendAgainButton" destination="aHC-Fu-asX" id="JT3-bn-kRc"/>
+                        <outlet property="verifyButton" destination="HvN-PA-DwP" id="v0U-F2-Yar"/>
+                        <segue destination="6jo-4r-O6d" kind="show" identifier="tabBarSegue" id="YRK-dn-Pou"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TRt-5v-njy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="299" y="-625"/>
         </scene>
         <!--Add Operation View Controller-->
         <scene sceneID="i9I-db-mBe">
@@ -631,15 +923,15 @@
             <objects>
                 <viewController id="WsQ-IA-01a" customClass="SummaryViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FgU-bq-FyN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hie-uk-OMn">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="444.66666666666669"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="458"/>
                                 <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oJw-MY-sX1">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="PoP-0c-ZJX">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="470"/>
@@ -736,7 +1028,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BY8-eZ-Hr7">
-                                                    <rect key="frame" x="20" y="91" width="24.666666666666671" height="24"/>
+                                                    <rect key="frame" x="20" y="91.333333333333314" width="24.333333333333329" height="23.666666666666671"/>
                                                     <connections>
                                                         <action selector="presentationTypeButtonTouched:" destination="WsQ-IA-01a" eventType="touchUpInside" id="BIK-0d-v7K"/>
                                                     </connections>
@@ -1449,6 +1741,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6jo-4r-O6d" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="2Xh-Sd-35s"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fqC-F9-h45">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1461,7 +1754,6 @@
                         <segue destination="0q6-mn-0kK" kind="relationship" relationship="viewControllers" id="AVk-pI-vyb"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bna-aQ-RRZ"/>
                         <segue destination="WsQ-IA-01a" kind="relationship" relationship="viewControllers" id="qHJ-uf-kUR"/>
-                        <segue destination="ckA-Kd-f4r" kind="relationship" relationship="viewControllers" id="kOu-FE-HTS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztz-Tf-TNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1473,11 +1765,11 @@
             <objects>
                 <viewController id="0q6-mn-0kK" customClass="AccountsViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vTa-lQ-hSr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Qg-2Z-L2a">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="K5M-mL-i3r">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
@@ -1821,5 +2113,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ge5-nE-AiN"/>
+        <segue reference="Kho-Py-wFp"/>
+        <segue reference="YKV-tg-zEK"/>
     </inferredMetricsTieBreakers>
 </document>
