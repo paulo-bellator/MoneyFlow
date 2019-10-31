@@ -151,7 +151,7 @@ extension Double {
         let intValue = abs(Int(self))
         let sign = self < 0 ? "-" : ""
         switch intValue {
-        case _ where intValue < 1000: return "\(intValue)"
+        case _ where intValue < 1000: return sign + "\(intValue)"
         case _ where intValue < 100_000:
             var result = "\(intValue / 1000)" + "."
             let remainder = Int(round(Double(intValue % 1000), toNearest: 10))/10
