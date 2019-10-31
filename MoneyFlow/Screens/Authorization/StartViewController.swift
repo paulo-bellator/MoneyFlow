@@ -8,6 +8,7 @@
 
 import UIKit
 import LocalAuthentication
+import FirebaseAuth
 
 class StartViewController: UIViewController {
 
@@ -21,7 +22,9 @@ class StartViewController: UIViewController {
     
     @IBAction func logInButtonTouched(_ sender: UIButton) {
         logIn()
+        try? Auth.auth().signOut()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
