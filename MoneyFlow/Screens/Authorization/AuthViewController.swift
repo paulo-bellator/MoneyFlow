@@ -31,9 +31,6 @@ class AuthViewController: UIViewController {
                 signIn(email: validData.email, password: validData.password)
             }
         }
-//        if let user = Auth.auth().currentUser {
-//            print("Current user is \(user.email)")
-//        }
     }
     
     private func validData() -> (email: String, password: String)? {

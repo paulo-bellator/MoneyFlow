@@ -81,6 +81,7 @@
 		F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */; };
 		F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */; };
 		F9EB79042354A5530081C84E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB79032354A5530081C84E /* LoadingView.swift */; };
+		F9F68C18236B1D870069729F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F68C17236B1D870069729F /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +164,7 @@
 		F9E728DC2364E96A00393C2B /* CurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAccountsCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F9EB79032354A5530081C84E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		F9F68C17236B1D870069729F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 		F9880BEE2369C7B700510E83 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				F9F68C17236B1D870069729F /* StartViewController.swift */,
 				F9880BEC2369BF8F00510E83 /* GreetingViewController.swift */,
 				F9E1F5FF234B6C93000B6DB4 /* AuthViewController.swift */,
 				F9880BEF2369C7E400510E83 /* VerifyEmailViewController.swift */,
@@ -644,6 +647,7 @@
 				F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */,
 				F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */,
 				F98D8BAA2364D8CC0080A08B /* AccountTableViewCell.swift in Sources */,
+				F9F68C18236B1D870069729F /* StartViewController.swift in Sources */,
 				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,

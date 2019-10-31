@@ -13,15 +13,30 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    static let isThisNotFirstLaunch: Bool = UserDefaults().bool(forKey: "firstLaunch")
+    static let isThisNotFirstLaunch: Bool = UserDefaults().bool(forKey: Constants.firstLaunchDefaultsKey)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        FirebaseApp.configure()
+        
         if !AppDelegate.isThisNotFirstLaunch {
-            UserDefaults().set(true, forKey: "firstLaunch")
+            UserDefaults().set(true, forKey: Constants.firstLaunchDefaultsKey)
         }
+        
+        var storyboardID: String
+        if let user = Auth.auth().currentUser, user.isEmailVerified {
+            (MainGenerator.generator as? CloudIDGenerator)?.configure()
+            (MainData.settings as? CloudSettingsDataSource)?.configure()
+            (MainData.source as? CloudOperationDataSource)?.configure()
+            storyboardID = Constants.startVCStoryboardID
+        } else {
+            storyboardID = Constants.greetingVCStoryboardID
+        }
+        
+        let mainStoryboardIpad = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewControlleripad = mainStoryboardIpad.instantiateViewController(withIdentifier: storyboardID) as UIViewController
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = initialViewControlleripad
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
@@ -54,10 +69,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         super.init()
         FirebaseApp.configure()
-        (MainGenerator.generator as? CloudIDGenerator)?.configure()
-        (MainData.settings as? CloudSettingsDataSource)?.configure()
-        (MainData.source as? CloudOperationDataSource)?.configure()
     }
 
+}
+
+private extension AppDelegate {
+    struct Constants {
+        static let firstLaunchDefaultsKey = "firstLaunch"
+        static let startVCStoryboardID = "startVC"
+        static let greetingVCStoryboardID = "greetingVC"
+    }
 }
 

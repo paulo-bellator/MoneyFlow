@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to access your photo</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Мы хотим убедить, что именно вы владелец данного устройства.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
