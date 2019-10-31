@@ -114,6 +114,19 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         tableViewScrollOffset = 0
     }
     
+    fileprivate func reloadFilterCollectionView() {
+        var result = [FilterUnit]()
+        
+        result.append(FilterUnit.all("Все"))
+        for currency in presenter.settings.currenciesSignesSorted { result.append(FilterUnit.currency(currency)) }
+        for account in presenter.settings.accountsSorted { result.append(FilterUnit.account(account)) }
+        for category in presenter.settings.allCategoriesSorted { result.append(FilterUnit.category(category)) }
+        for contact in presenter.settings.contactsSorted { result.append(FilterUnit.contact(contact)) }
+        
+        arrayOfAllFilterUnits = result
+        collectionView.reloadData()
+    }
+    
     private func countUpperBound() {
         let ops = presenter.all().map({ abs($0.value) }).sorted(by: <)
         if ops.isEmpty { return }
@@ -337,6 +350,7 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
     private func showLoadedData() {
         Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
             self?.countUpperBound()
+            self?.reloadFilterCollectionView()
             self?.applyFilter()
             self?.tableView.isHidden = false
             self?.collectionView.isHidden = false

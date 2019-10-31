@@ -440,8 +440,8 @@
 			isa = PBXGroup;
 			children = (
 				F9A4F8952333D402008D606A /* SummaryPresenter.swift */,
-				F9D40878232E212E0034B913 /* SummaryViewController.swift */,
 				F96C4092233CCB41008670B2 /* SummaryMonthData.swift */,
+				F9D40878232E212E0034B913 /* SummaryViewController.swift */,
 				F9A4F8972333D426008D606A /* TableView */,
 				F907D3D0232BE6BE00E9E3C2 /* Graph Chart */,
 			);

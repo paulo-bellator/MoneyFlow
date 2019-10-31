@@ -24,7 +24,7 @@ class AddOperationPresenter {
         var sortedCategories = MainData.settings.outcomeCategories
         var categoriesFrequency = Array(repeating: 0, count: sortedCategories.count)
         
-        for op in operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
+        for op in operations.filter({ $0 is FlowOperation && $0.value < 0 }) as! [FlowOperation] {
             if let index = sortedCategories.firstIndex(of: op.category) {
                 categoriesFrequency[index] += 1
             }
@@ -42,7 +42,7 @@ class AddOperationPresenter {
         var sortedCategories = MainData.settings.incomeCategories
         var categoriesFrequency = Array(repeating: 0, count: sortedCategories.count)
         
-        for op in operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
+        for op in operations.filter({ $0 is FlowOperation && $0.value >= 0 }) as! [FlowOperation] {
             if let index = sortedCategories.firstIndex(of: op.category) {
                 categoriesFrequency[index] += 1
             }
