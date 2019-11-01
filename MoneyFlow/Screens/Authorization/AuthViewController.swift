@@ -86,8 +86,8 @@ class AuthViewController: UIViewController {
             }
             if let result = authResult {
                 print("ID: \(result.user.uid)")
-                print("Email: \(result.user.email)")
-                print("Verified: \(result.user.isEmailVerified)")
+                print("Email: \(result.user.email ?? "lack of email")")
+                print("Verified: \(result.user.isEmailVerified)\n")
                 if !result.user.isEmailVerified { self!.verifyEmail(for: result.user) }
                 else { self!.performSegue(withIdentifier: self!.tabBarsegueIdentifier, sender: nil) }
             }
@@ -107,8 +107,8 @@ class AuthViewController: UIViewController {
             }
             if let result = authResult {
                 print("ID: \(result.user.uid)")
-                print("Email: \(result.user.email)")
-                print("Verified: \(result.user.isEmailVerified)")
+                print("Email: \(result.user.email ?? "lack of email")")
+                print("Verified: \(result.user.isEmailVerified)\n")
                 if !result.user.isEmailVerified { self!.verifyEmail(for: result.user) }
             }
             

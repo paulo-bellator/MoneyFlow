@@ -27,9 +27,36 @@ class StartViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        logInButton.isHidden = true
+        Auth.auth().currentUser!.reload { [weak self] error in
+            if let self = self {
+                if let error = error, !error.localizedDescription.contains("Network error") {
+                    print(error.localizedDescription)
+                    if Auth.auth().currentUser == nil {
+                        self.performSegue(withIdentifier: self.greetingSegueIdentifier, sender: nil)
+                    }
+                } else {
+                    self.checkBiometricAuthPossibilities()
+                    self.logInButton.isHidden = false
+                }
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer?.invalidate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        currencySignsAppearingAnimation()
+    }
+    
+    private func checkBiometricAuthPossibilities() {
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             canEvaluatePolicy = true
@@ -52,31 +79,23 @@ class StartViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        timer?.invalidate()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        currencySignsAppearingAnimation()
-    }
-    
     private func logIn() {
         let biometricService = context.biometryType == .faceID ? "FaceID" : "Touch ID"
         if canEvaluatePolicy {
             let reason = "Авторизуйтесь при помощи " + biometricService
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) {
-                [unowned self] success, authenticationError in
+                [weak self] success, authenticationError in
                 
                 DispatchQueue.main.async {
                     if success {
-                        self.segueToNextScreen()
+                        self?.segueToNextScreen()
                     } else {
                         let errorMessage = authenticationError?.localizedDescription ?? "Неизвестная ошибка"
-                        let ac = UIAlertController(title: "Авторизация не пройдена", message: errorMessage, preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(ac, animated: true)
+                        if !errorMessage.contains("Canceled") {
+                            let ac = UIAlertController(title: "Авторизация не пройдена", message: errorMessage, preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .default))
+                            self?.present(ac, animated: true)
+                        }
                     }
                 }
             }

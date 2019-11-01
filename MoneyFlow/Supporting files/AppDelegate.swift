@@ -9,11 +9,13 @@
 import UIKit
 import Firebase
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     static let isThisNotFirstLaunch: Bool = UserDefaults().bool(forKey: Constants.firstLaunchDefaultsKey)
+    private var authDidChangeHandle: AuthStateDidChangeListenerHandle?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -21,29 +23,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults().set(true, forKey: Constants.firstLaunchDefaultsKey)
         }
         
-        var storyboardID: String
         if let user = Auth.auth().currentUser, user.isEmailVerified {
-            (MainGenerator.generator as? CloudIDGenerator)?.configure()
-            (MainData.settings as? CloudSettingsDataSource)?.configure()
-            (MainData.source as? CloudOperationDataSource)?.configure()
-            storyboardID = Constants.startVCStoryboardID
+            instantiateViewController(withIdentifier: Constants.startVCStoryboardID)
         } else {
-            storyboardID = Constants.greetingVCStoryboardID
+            instantiateViewController(withIdentifier: Constants.greetingVCStoryboardID)
         }
         
-        let mainStoryboardIpad = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewControlleripad = mainStoryboardIpad.instantiateViewController(withIdentifier: storyboardID) as UIViewController
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = initialViewControlleripad
-        self.window?.makeKeyAndVisible()
+        authDidChangeHandle = Auth.auth().addStateDidChangeListener { [unowned self] (auth, user) in
+            if user == nil || !(user?.isEmailVerified ?? false) {
+                self.instantiateViewController(withIdentifier: Constants.greetingVCStoryboardID)
+            }
+            print("Auth did change its state. Current user is \(user?.email ?? "none")")
+        }
         
         return true
     }
+    
+    private func instantiateViewController(withIdentifier identifier: String) {
+        let mainStoryboardIpad = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewControlleripad = mainStoryboardIpad.instantiateViewController(withIdentifier: identifier) as UIViewController
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = initialViewControlleripad
+        self.window?.makeKeyAndVisible()
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        if let cloudGenerator = MainGenerator.generator as? CloudIDGenerator {
-            cloudGenerator.save()
-        }
         
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

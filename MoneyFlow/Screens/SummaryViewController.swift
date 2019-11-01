@@ -74,10 +74,10 @@ class SummaryViewController: UIViewController, UpdatableViewController {
         
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             self.monthData.reset()
-            self.updateMonthData()
             self.mainCurrency = self.presenter.settings.currencies.first ?? .rub
             self.summaryByMonth = self.presenter.summary(by: .months, for: self.mainCurrency)
             self.summaryMinMax = self.presenter.maxAndMinValuesFromSummary(by: .months, for: self.mainCurrency)
+            self.updateMonthData()
             self.isDataReady = true
             DispatchQueue.main.async {
                 self.setupMonthHeader()

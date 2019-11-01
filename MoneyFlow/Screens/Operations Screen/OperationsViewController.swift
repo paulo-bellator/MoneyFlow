@@ -183,7 +183,9 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         loadManager.newSession()
         (MainData.source as? CloudOperationDataSource)?.updateData()
         (MainData.settings as? CloudSettingsDataSource)?.updateData()
-        showLoadingView(withProcessName: "Загрузка", animated: true)
+        if !loadManager.isDownloadComplete {
+            showLoadingView(withProcessName: "Загрузка", animated: true)
+        }
     }
     
     
@@ -355,6 +357,7 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
             self?.tableView.isHidden = false
             self?.collectionView.isHidden = false
             self?.buttonSelector.isHidden = false
+            self?.sendUpdateRequirementToVCs()
             self?.removeLoadingView()
         }
     }
