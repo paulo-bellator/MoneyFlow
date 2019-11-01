@@ -39,8 +39,13 @@ class StartViewController: UIViewController {
                         self.performSegue(withIdentifier: self.greetingSegueIdentifier, sender: nil)
                     }
                 } else {
-                    self.checkBiometricAuthPossibilities()
-                    self.logInButton.isHidden = false
+                    let biometricAuthEnabled = UserDefaults().bool(forKey: GlobalConstants.securityEnablingDefaultsKey)
+                    if biometricAuthEnabled {
+                        self.checkBiometricAuthPossibilities()
+                        self.logInButton.isHidden = false
+                    } else {
+                        self.segueToNextScreen()
+                    }
                 }
             }
         }

@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Constants {
-
+struct GlobalConstants {
+    static let securityEnablingDefaultsKey = "securityEnabling"
 }

@@ -32,6 +32,8 @@
 		F94BDFA52340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BDFA42340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift */; };
 		F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BDFA62340CBFA00CE87F8 /* PhotoCollectionViewCell.swift */; };
 		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
+		F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629858236C964800A18EE7 /* SettingsViewController.swift */; };
+		F962985B236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */; };
 		F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */; };
 		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
 		F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4092233CCB41008670B2 /* SummaryMonthData.swift */; };
@@ -113,6 +115,8 @@
 		F94BDFA42340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewController.swift; sourceTree = "<group>"; };
 		F94BDFA62340CBFA00CE87F8 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
+		F9629858236C964800A18EE7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabledTableViewCell.swift; sourceTree = "<group>"; };
 		F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryTableViewExtension.swift; sourceTree = "<group>"; };
 		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
 		F96C4092233CCB41008670B2 /* SummaryMonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMonthData.swift; sourceTree = "<group>"; };
@@ -262,7 +266,8 @@
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9EB79032354A5530081C84E /* LoadingView.swift */,
-				F9880BEE2369C7B700510E83 /* Authorization */,
+				F962985C236CAD9400A18EE7 /* Settings Screen */,
+				F9880BEE2369C7B700510E83 /* Authorization Screens */,
 				F98B1843235F591F00FB7A48 /* Adding Screen */,
 				F9B2D6822341223900711F59 /* ImagePicker Screen */,
 				F9D4087A232E214B0034B913 /* Summary Screen */,
@@ -308,7 +313,16 @@
 			path = "Operations Screen";
 			sourceTree = "<group>";
 		};
-		F9880BEE2369C7B700510E83 /* Authorization */ = {
+		F962985C236CAD9400A18EE7 /* Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9629858236C964800A18EE7 /* SettingsViewController.swift */,
+				F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */,
+			);
+			path = "Settings Screen";
+			sourceTree = "<group>";
+		};
+		F9880BEE2369C7B700510E83 /* Authorization Screens */ = {
 			isa = PBXGroup;
 			children = (
 				F9F68C17236B1D870069729F /* StartViewController.swift */,
@@ -316,7 +330,7 @@
 				F9E1F5FF234B6C93000B6DB4 /* AuthViewController.swift */,
 				F9880BEF2369C7E400510E83 /* VerifyEmailViewController.swift */,
 			);
-			path = Authorization;
+			path = "Authorization Screens";
 			sourceTree = "<group>";
 		};
 		F98B1843235F591F00FB7A48 /* Adding Screen */ = {
@@ -622,6 +636,7 @@
 				F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
 				F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */,
+				F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
 				F9E1F600234B6C93000B6DB4 /* AuthViewController.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
@@ -646,6 +661,7 @@
 				F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */,
 				F9E1F5FC234A3CFE000B6DB4 /* RoundedView.swift in Sources */,
 				F94BDFA72340CBFA00CE87F8 /* PhotoCollectionViewCell.swift in Sources */,
+				F962985B236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift in Sources */,
 				F98D8BAA2364D8CC0080A08B /* AccountTableViewCell.swift in Sources */,
 				F9F68C18236B1D870069729F /* StartViewController.swift in Sources */,
 				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,

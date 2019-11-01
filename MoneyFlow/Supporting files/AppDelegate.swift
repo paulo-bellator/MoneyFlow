@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if !AppDelegate.isThisNotFirstLaunch {
-            UserDefaults().set(true, forKey: Constants.firstLaunchDefaultsKey)
+            let defaults = UserDefaults()
+            defaults.set(true, forKey: Constants.firstLaunchDefaultsKey)
+            defaults.set(true, forKey: GlobalConstants.securityEnablingDefaultsKey)
         }
         
         if let user = Auth.auth().currentUser, user.isEmailVerified {
@@ -41,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func instantiateViewController(withIdentifier identifier: String) {
         let mainStoryboardIpad = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewControlleripad = mainStoryboardIpad.instantiateViewController(withIdentifier: identifier) as UIViewController
+        let initialViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: identifier) as UIViewController
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = initialViewControlleripad
+        self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
     }
 
