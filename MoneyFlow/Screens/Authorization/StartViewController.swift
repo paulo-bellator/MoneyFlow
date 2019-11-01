@@ -95,6 +95,7 @@ class StartViewController: UIViewController {
     }
 }
 
+
 extension StartViewController {
     private struct Constants {
         static let currencySigns = ["$","€","¥","£","₽"]
@@ -114,8 +115,7 @@ extension StartViewController {
             }
         }
         timer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) { [weak self] _ in
-            self?.currencySignAppear()
-            for step in 1...7 {
+            for step in 0...7 {
                 Timer.scheduledTimer(withTimeInterval: 0.15 * Double(step), repeats: false) { [weak self] _ in
                     self?.currencySignAppear()
                 }
