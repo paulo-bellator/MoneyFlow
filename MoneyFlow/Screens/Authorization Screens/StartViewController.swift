@@ -23,7 +23,6 @@ class StartViewController: UIViewController {
     
     @IBAction func logInButtonTouched(_ sender: UIButton) {
         logIn()
-        try? Auth.auth().signOut()
     }
     
     
