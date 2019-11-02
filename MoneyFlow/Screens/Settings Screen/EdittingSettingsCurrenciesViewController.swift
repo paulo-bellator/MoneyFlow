@@ -14,6 +14,8 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
     let settingEntityTableViewCellIdentifier = "settingEntityCell"
     private let tableViewRowHeight: CGFloat = 65
     private let headerCellTableViewRowHeight: CGFloat = 55
+    private let currencyNameFont = UIFont(name: "CenturyGothic", size: 14.0)
+    private let currencySignFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
     private let presenter = SettingsPresenter.shared
     
     @IBOutlet weak var tableView: UITableView!
@@ -53,10 +55,20 @@ extension EdittingSettingsCurrenciesViewController: UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: settingEntityTableViewCellIdentifier, for: indexPath) as! SettingEntityTableViewCell
-        cell.titleLabel.text = currencyName(for: presenter.currencies[indexPath.row])
-        cell.titleLabel.text! += ",  " + presenter.currenciesSignes[indexPath.row]
+        let currencyNameString = NSAttributedString(
+            string: currencyName(for: presenter.currencies[indexPath.row]) + ",  ",
+            attributes: [NSAttributedString.Key.font: currencyNameFont])
+        let currencySignString = NSAttributedString(
+            string: presenter.currenciesSignes[indexPath.row],
+            attributes: [NSAttributedString.Key.font: currencySignFont])
+        let finalString = NSMutableAttributedString()
+        finalString.append(currencyNameString)
+        finalString.append(currencySignString)
+        
+        cell.titleLabel.attributedText = finalString
         cell.operationsCountLabel.text = "100"
         cell.enableSwitch.isOn = Bool.random()
+        
         cell.enableSwitchValueDidChangeAction = { enable in
             print("Switcher #\(indexPath.row)'s state is \(enable)")
         }

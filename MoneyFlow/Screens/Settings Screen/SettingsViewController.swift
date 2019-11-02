@@ -77,6 +77,12 @@ class SettingsViewController: UITableViewController {
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
+    @objc func currencyEditingTapGestureRecognized(_ recognizer: UITapGestureRecognizer) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        performSegue(withIdentifier: edittingCurrenciesSegueIdentifier, sender: nil)
+    }
 
     // MARK: - Table view data source
     
@@ -107,6 +113,11 @@ class SettingsViewController: UITableViewController {
         case 0:
             cell.leftLabel.text = settingsTitles[indexPath.row]
             cell.rightLabel.text = settingValues[indexPath.row]
+            if indexPath.row == 0 {
+                let tapGestureRecognizer = UITapGestureRecognizer()
+                tapGestureRecognizer.addTarget(self, action: #selector(currencyEditingTapGestureRecognized(_:)))
+                cell.addGestureRecognizer(tapGestureRecognizer)
+            }
         case 1:
             cell.leftLabel.text = securityTitle
             cell.rightLabel?.removeFromSuperview()
@@ -131,22 +142,6 @@ class SettingsViewController: UITableViewController {
         header.sumLabel.isHidden = true
         
         return header.contentView
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
-        if indexPath.section == 0 {
-            switch indexPath.row {
-            case 0:
-                performSegue(withIdentifier: edittingCurrenciesSegueIdentifier, sender: nil)
-                print("selected")
-            case 1: break
-            case 2: break
-            case 3: break
-            case 4: break
-            default: break
-            }
-        }
     }
     
     /*
