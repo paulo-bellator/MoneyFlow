@@ -31,19 +31,19 @@ protocol CloudDataSourceDelegate: class {
 }
 
 protocol SettingsDataSource {
-    var outcomeCategories: [String] { get }
-    var incomeCategories: [String] { get }
-    var contacts: [String] { get set }
-    var accounts: [String] { get }
-    var currencies: [Currency] { get }
+    var outcomeCategories: [SettingsEntity] { get }
+    var incomeCategories: [SettingsEntity] { get }
+    var contacts: [SettingsEntity] { get set }
+    var accounts: [SettingsEntity] { get }
+    var currencies: [CurrencySettingsEntity] { get }
     var emojiForCategory: [String: String] { get }
     var emojiForContact: [String: String] { get }
     
-    func set(outcomeCategories: [String])
-    func set(incomeCategories: [String])
-    func set(contacts: [String])
-    func set(accounts: [String])
-    func set(currencies: [Currency])
+    func set(outcomeCategories: [SettingsEntity])
+    func set(incomeCategories: [SettingsEntity])
+    func set(contacts: [SettingsEntity])
+    func set(accounts: [SettingsEntity])
+    func set(currencies: [CurrencySettingsEntity])
     func set(emoji: String?, forCategory category: String)
     func set(emoji: String?, forContact contact: String)
     func save()

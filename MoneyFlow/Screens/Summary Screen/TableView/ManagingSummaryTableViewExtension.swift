@@ -17,8 +17,8 @@ extension SummaryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (isDataReady && !presenter.operationListIsEmpty) {
             switch section {
-            case 0: return presenter.settings.incomeCategories.count + 1
-            case 1: return presenter.settings.outcomeCategories.count + 1
+            case 0: return presenter.settings.enabledIncomeCategories.count + 1
+            case 1: return presenter.settings.enabledOutcomeCategories.count + 1
             case 2: return 2 + 1
             default: return 1
             }

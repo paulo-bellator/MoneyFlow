@@ -47,7 +47,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         willSet { lastButOneTableViewScrollOffset = tableViewScrollOffset }
     }
     var lastButOneTableViewScrollOffset: CGFloat = 0
-    lazy var mainCurrency: Currency = presenter.settings.currencies.first ?? .rub
+    lazy var mainCurrency: Currency = presenter.settings.enabledCurrencies.first ?? .rub
     
     var appliedFilterCells = [IndexPath(row: 0, section: 0)] {
         didSet { applyFilter() }
@@ -57,10 +57,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         var result = [FilterUnit]()
         
         result.append(FilterUnit.all("Все"))
-        for currency in presenter.settings.currenciesSignesSorted { result.append(FilterUnit.currency(currency)) }
-        for account in presenter.settings.accountsSorted { result.append(FilterUnit.account(account)) }
-        for category in presenter.settings.allCategoriesSorted { result.append(FilterUnit.category(category)) }
-        for contact in presenter.settings.contactsSorted { result.append(FilterUnit.contact(contact)) }
+        for currency in presenter.settings.enabledCurrenciesSignesSorted { result.append(FilterUnit.currency(currency)) }
+        for account in presenter.settings.enabledAccountsSorted { result.append(FilterUnit.account(account)) }
+        for category in presenter.settings.allEnabledCategoriesSorted { result.append(FilterUnit.category(category)) }
+        for contact in presenter.settings.enabledContactsSorted { result.append(FilterUnit.contact(contact)) }
         
         return result
     }()
@@ -73,7 +73,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             switch filterUnit {
             case .all:
                 operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
-                mainCurrency = presenter.settings.currencies.first ?? .rub
+                mainCurrency = presenter.settings.enabledCurrencies.first ?? .rub
                 reloadTableView()
                 return
             default: break
@@ -101,7 +101,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         switch requiredCurrencies.count {
         case 1: mainCurrency = requiredCurrencies.first!
         case 2: for currency in Currency.all { if requiredCurrencies.contains(currency) { mainCurrency = currency; break } }
-        default: mainCurrency = presenter.settings.currencies.first!
+        default: mainCurrency = presenter.settings.enabledCurrencies.first!
         }
         
         reloadTableView()
@@ -118,10 +118,10 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         var result = [FilterUnit]()
         
         result.append(FilterUnit.all("Все"))
-        for currency in presenter.settings.currenciesSignesSorted { result.append(FilterUnit.currency(currency)) }
-        for account in presenter.settings.accountsSorted { result.append(FilterUnit.account(account)) }
-        for category in presenter.settings.allCategoriesSorted { result.append(FilterUnit.category(category)) }
-        for contact in presenter.settings.contactsSorted { result.append(FilterUnit.contact(contact)) }
+        for currency in presenter.settings.enabledCurrenciesSignesSorted { result.append(FilterUnit.currency(currency)) }
+        for account in presenter.settings.enabledAccountsSorted { result.append(FilterUnit.account(account)) }
+        for category in presenter.settings.allEnabledCategoriesSorted { result.append(FilterUnit.category(category)) }
+        for contact in presenter.settings.enabledContactsSorted { result.append(FilterUnit.contact(contact)) }
         
         arrayOfAllFilterUnits = result
         collectionView.reloadData()

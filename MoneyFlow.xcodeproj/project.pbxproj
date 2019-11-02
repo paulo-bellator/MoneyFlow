@@ -40,6 +40,8 @@
 		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
 		F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4092233CCB41008670B2 /* SummaryMonthData.swift */; };
 		F96EFFC1233F83D000A51C54 /* FirebaseIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96EFFC0233F83D000A51C54 /* FirebaseIDGenerator.swift */; };
+		F97ECAB9236E00DD000BF62D /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ECAB8236E00DD000BF62D /* SettingsModel.swift */; };
+		F97ECABB236E11D9000BF62D /* SettingsEditingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */; };
 		F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */; };
 		F986847A233257B400FAD863 /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9868479233257B400FAD863 /* SummaryTableViewCell.swift */; };
 		F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */; };
@@ -125,6 +127,8 @@
 		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
 		F96C4092233CCB41008670B2 /* SummaryMonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMonthData.swift; sourceTree = "<group>"; };
 		F96EFFC0233F83D000A51C54 /* FirebaseIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseIDGenerator.swift; sourceTree = "<group>"; };
+		F97ECAB8236E00DD000BF62D /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingPresenter.swift; sourceTree = "<group>"; };
 		F9833B842326CDFB0036B5EE /* AddOperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationPresenter.swift; sourceTree = "<group>"; };
 		F9868479233257B400FAD863 /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		F986847B23326BE500FAD863 /* SummaryGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryGraphTableViewCell.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				F9063DD6232139FE00F08E84 /* DebtOperation.swift */,
 				F9063DD7232139FE00F08E84 /* FlowOperation.swift */,
 				F9063DD8232139FE00F08E84 /* Operation.swift */,
+				F97ECAB8236E00DD000BF62D /* SettingsModel.swift */,
 			);
 			path = "Operation Models";
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				F9629858236C964800A18EE7 /* SettingsViewController.swift */,
+				F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */,
 				F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */,
 				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
 				F962985F236DEA1F00A18EE7 /* EdittingSettingsCurrenciesViewController.swift */,
@@ -633,6 +639,7 @@
 				F9880BF02369C7E400510E83 /* VerifyEmailViewController.swift in Sources */,
 				F98B1840235F50EC00FB7A48 /* AddedOperationTableViewCell.swift in Sources */,
 				F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */,
+				F97ECAB9236E00DD000BF62D /* SettingsModel.swift in Sources */,
 				F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */,
 				F9880BED2369BF8F00510E83 /* GreetingViewController.swift in Sources */,
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
@@ -641,6 +648,7 @@
 				F94BDFA32340BF8B00CE87F8 /* OperationVisionRecognizer.swift in Sources */,
 				F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */,
 				F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */,
+				F97ECABB236E11D9000BF62D /* SettingsEditingPresenter.swift in Sources */,
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
 				F962985E236DE77800A18EE7 /* SettingEntityTableViewCell.swift in Sources */,
 				F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */,

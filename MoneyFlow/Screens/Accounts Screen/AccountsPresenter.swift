@@ -17,8 +17,8 @@ class AccountsPresenter {
         return MainData.source.operations
     }
     
-    var accounts: [String] { return settings.accounts }
-    var currencies: [Currency] { settings.currencies }
+    var accounts: [String] { return settings.enabledAccounts }
+    var currencies: [Currency] { settings.enabledCurrencies }
     var currencySignes: [String] { currencies.map({ $0.rawValue }) }
     
     func availableMoney(in currency: Currency) -> Double {
@@ -89,7 +89,7 @@ class AccountsPresenter {
                 }
             }
         }
-        for account in settings.accounts {
+        for account in settings.enabledAccounts {
             if let amount = dictionary[account] {
                 result.append((account, amount))
             }
@@ -115,7 +115,7 @@ class AccountsPresenter {
                 }
             }
         }
-        for contact in settings.contacts {
+        for contact in settings.enabledContacts {
             if let amount = dictionary[contact] {
                 if amount > 0 { result.append((contact, amount)) }
             }
@@ -141,7 +141,7 @@ class AccountsPresenter {
                 }
             }
         }
-        for contact in settings.contacts {
+        for contact in settings.enabledContacts {
             if let amount = dictionary[contact] {
                 if amount <= 0 { result.append((contact, abs(amount))) }
             } else {

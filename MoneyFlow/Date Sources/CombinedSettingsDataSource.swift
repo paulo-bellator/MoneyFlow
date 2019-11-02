@@ -40,28 +40,28 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     
     // MARK: Public API
     
-    var outcomeCategories = [String]() { didSet { thereAreUnsavedChanges = true } }
-    var incomeCategories = [String]() { didSet { thereAreUnsavedChanges = true } }
-    var contacts = [String](){ didSet { thereAreUnsavedChanges = true } }
-    var accounts = [String]() { didSet { thereAreUnsavedChanges = true } }
-    var currencies = [Currency]() { didSet { thereAreUnsavedChanges = true } }
+    var outcomeCategories = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
+    var incomeCategories = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
+    var contacts = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
+    var accounts = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
+    var currencies = [CurrencySettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
     
     var emojiForCategory = [String: String]() { didSet { thereAreUnsavedChanges = true } }
     var emojiForContact = [String: String]() { didSet { thereAreUnsavedChanges = true } }
     
-    func set(outcomeCategories: [String]) {
+    func set(outcomeCategories: [SettingsEntity]) {
         self.outcomeCategories = outcomeCategories
     }
-    func set(incomeCategories: [String]) {
+    func set(incomeCategories: [SettingsEntity]) {
         self.incomeCategories = incomeCategories
     }
-    func set(contacts: [String]) {
+    func set(contacts: [SettingsEntity]) {
         self.contacts = contacts
     }
-    func set(accounts: [String]) {
+    func set(accounts: [SettingsEntity]) {
         self.accounts = accounts
     }
-    func set(currencies: [Currency]) {
+    func set(currencies: [CurrencySettingsEntity]) {
         self.currencies = currencies
     }
     func set(emoji: String?, forCategory category: String) {
@@ -141,7 +141,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
                 self.settings = settings
             }
         }
-        if currencies.isEmpty { currencies = Currency.all }
+        if currencies.isEmpty { currencies = Currency.all.map { CurrencySettingsEntity(currency: $0) } }
         thereAreUnsavedChanges = false
         isSyncronized = false
     }
@@ -183,13 +183,13 @@ extension CombinedSettingDataSource {
         }
     }
     private struct Settings: Codable {
-        var uploadDate: Date = Date()
+       var uploadDate: Date = Date()
         var uploadDateFormatted = Date().formattedDescription
-        var outcomeCategories: [String]
-        var incomeCategories: [String]
-        var contacts: [String]
-        var accounts: [String]
-        var currencies: [Currency]
+        var outcomeCategories: [SettingsEntity]
+        var incomeCategories: [SettingsEntity]
+        var contacts: [SettingsEntity]
+        var accounts: [SettingsEntity]
+        var currencies: [CurrencySettingsEntity]
         var emojiForCategory: [String: String]
         var emojiForContact: [String: String]
     }

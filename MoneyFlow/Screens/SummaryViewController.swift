@@ -37,7 +37,7 @@ class SummaryViewController: UIViewController, UpdatableViewController {
     var needToUpdate: Bool = true
     private var loadingView: LoadingView!
     
-    lazy var mainCurrency: Currency = presenter.settings.currencies.first ?? .rub
+    lazy var mainCurrency: Currency = presenter.settings.enabledCurrencies.first ?? .rub
     lazy var summaryByMonth = presenter.summary(by: .months, for: mainCurrency)
     lazy var summaryMinMax = presenter.maxAndMinValuesFromSummary(by: .months, for: mainCurrency)
     var currentMonthIndex = 0 { didSet { updateMonthData(); setupMonthHeader() } }
@@ -74,7 +74,7 @@ class SummaryViewController: UIViewController, UpdatableViewController {
         
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             self.monthData.reset()
-            self.mainCurrency = self.presenter.settings.currencies.first ?? .rub
+            self.mainCurrency = self.presenter.settings.enabledCurrencies.first ?? .rub
             self.summaryByMonth = self.presenter.summary(by: .months, for: self.mainCurrency)
             self.summaryMinMax = self.presenter.maxAndMinValuesFromSummary(by: .months, for: self.mainCurrency)
             self.updateMonthData()

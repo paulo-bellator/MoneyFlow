@@ -14,16 +14,24 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
     let settingEntityTableViewCellIdentifier = "settingEntityCell"
     private let tableViewRowHeight: CGFloat = 65
     private let headerCellTableViewRowHeight: CGFloat = 55
-    private let currencyNameFont = UIFont(name: "CenturyGothic", size: 14.0)
-    private let currencySignFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)
-    private let presenter = SettingsPresenter.shared
+    private let currencyNameFont = UIFont(name: "CenturyGothic", size: 14.0)!
+    private let currencySignFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
+    private let presenter = SettingEditingPresenter()
+    private lazy var currencies = presenter.currencies
     
     @IBOutlet weak var tableView: UITableView!
     
     
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        
+        if currencies.compactMap({ $0.enable ? $0 : nil }).isEmpty {
+            showErrorAlertSheet()
+        } else {
+            presenter.currencies = currencies
+            presenter.syncronize()
+            self.dismiss(animated: true)
+        }
     }
+    
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
@@ -36,6 +44,13 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    private func showErrorAlertSheet() {
+        let message = "Как минимум одна валюта должна быть активна."
+        let ac = UIAlertController(title: "Так не пойдет... ", message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Oк", style: .default))
+        present(ac, animated: true)
+    }
+    
     private func currencyName(for currency: Currency) -> String {
         switch currency {
         case .eur: return "Евро"
@@ -43,8 +58,6 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
         case .usd: return "Доллар"
         }
     }
-    
-
 }
 
 extension EdittingSettingsCurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -55,22 +68,23 @@ extension EdittingSettingsCurrenciesViewController: UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: settingEntityTableViewCellIdentifier, for: indexPath) as! SettingEntityTableViewCell
+        let currency = currencies[indexPath.row].currency
         let currencyNameString = NSAttributedString(
-            string: currencyName(for: presenter.currencies[indexPath.row]) + ",  ",
+            string: currencyName(for: currency) + ",  ",
             attributes: [NSAttributedString.Key.font: currencyNameFont])
         let currencySignString = NSAttributedString(
-            string: presenter.currenciesSignes[indexPath.row],
+            string: currency.rawValue,
             attributes: [NSAttributedString.Key.font: currencySignFont])
         let finalString = NSMutableAttributedString()
         finalString.append(currencyNameString)
         finalString.append(currencySignString)
         
         cell.titleLabel.attributedText = finalString
-        cell.operationsCountLabel.text = "100"
-        cell.enableSwitch.isOn = Bool.random()
+        cell.operationsCountLabel.text = "\(presenter.operationsCountWithCurrencies[currency] ?? 0)"
+        cell.enableSwitch.isOn = currencies[indexPath.row].enable
         
-        cell.enableSwitchValueDidChangeAction = { enable in
-            print("Switcher #\(indexPath.row)'s state is \(enable)")
+        cell.enableSwitchValueDidChangeAction = { [weak self] enable in
+            self?.currencies[indexPath.row].enable = enable
         }
         
         return cell

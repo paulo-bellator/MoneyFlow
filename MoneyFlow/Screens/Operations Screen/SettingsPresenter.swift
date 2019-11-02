@@ -17,29 +17,50 @@ class SettingsPresenter {
     
     static let shared = SettingsPresenter()
     
-    var outcomeCategories: [String] {
+    var outcomeCategories: [SettingsEntity] {
         get { return MainData.settings.outcomeCategories }
         set { MainData.settings.set(outcomeCategories: newValue) }
     }
-    var incomeCategories: [String] {
+    var enabledOutcomeCategories: [String] {
+        return outcomeCategories.compactMap { $0.enable ? $0.name : nil }
+    }
+    
+    var incomeCategories: [SettingsEntity] {
         get { return MainData.settings.incomeCategories }
         set { MainData.settings.set(incomeCategories: newValue) }
     }
-    var contacts: [String] {
+    var enabledIncomeCategories: [String] {
+        return incomeCategories.compactMap { $0.enable ? $0.name : nil }
+    }
+    
+    var contacts: [SettingsEntity] {
         get { return MainData.settings.contacts }
         set { MainData.settings.set(contacts: newValue) }
     }
-    var accounts: [String] {
+    var enabledContacts: [String] {
+        return contacts.compactMap { $0.enable ? $0.name : nil }
+    }
+    
+    var accounts: [SettingsEntity] {
         get { return MainData.settings.accounts }
         set { MainData.settings.set(accounts: newValue) }
     }
-    var currencies: [Currency] {
+    var enabledAccounts: [String] {
+        return accounts.compactMap { $0.enable ? $0.name : nil }
+    }
+    
+    var currencies: [CurrencySettingsEntity] {
         get { return MainData.settings.currencies }
         set { MainData.settings.set(currencies: newValue) }
     }
-    var currenciesSignes: [String] {
-        return currencies.compactMap { $0.rawValue }
+    var enabledCurrencies: [Currency] {
+        return currencies.compactMap { $0.enable ? $0.currency : nil }
     }
+    
+    var enabledCurrenciesSignes: [String] {
+        return enabledCurrencies.compactMap { $0.rawValue }
+    }
+    
     func emojiFor(category: String) -> String {
         return MainData.settings.emojiForCategory[category] ?? DefaultEmoji.category
     }
@@ -54,8 +75,8 @@ class SettingsPresenter {
     }
     func syncronize() { MainData.settings.save() }
     
-    var allCategoriesSorted: [String] {
-        let categories = Array(Set(outcomeCategories + incomeCategories))
+    var allEnabledCategoriesSorted: [String] {
+        let categories = Array(Set(enabledOutcomeCategories + enabledIncomeCategories))
         var categoriesFrequency = Array(repeating: 0, count: categories.count)
         
         for op in MainData.source.operations.filter({ $0 is FlowOperation }) as! [FlowOperation] {
@@ -70,8 +91,8 @@ class SettingsPresenter {
         }
     }
     
-    var contactsSorted: [String] {
-        let contacts = self.contacts
+    var enabledContactsSorted: [String] {
+        let contacts = self.enabledContacts
         var contactsFrequency = Array(repeating: 0, count: contacts.count)
         
         for op in MainData.source.operations.filter({ $0 is DebtOperation }) as! [DebtOperation] {
@@ -86,8 +107,8 @@ class SettingsPresenter {
         }
     }
     
-    var accountsSorted: [String] {
-        let accounts = self.accounts
+    var enabledAccountsSorted: [String] {
+        let accounts = self.enabledAccounts
         var accountsFrequency = Array(repeating: 0, count: accounts.count)
         
         for op in MainData.source.operations {
@@ -102,8 +123,8 @@ class SettingsPresenter {
         }
     }
     
-    var currenciesSorted: [Currency] {
-        let currencies = self.currencies
+    var enabledCurrenciesSorted: [Currency] {
+        let currencies = self.enabledCurrencies
         var currenciesFrequency = Array(repeating: 0, count: currencies.count)
         
         for op in MainData.source.operations {
@@ -118,8 +139,8 @@ class SettingsPresenter {
         }
     }
     
-    var currenciesSignesSorted: [String] {
-        return currenciesSorted.compactMap { $0.rawValue }
+    var enabledCurrenciesSignesSorted: [String] {
+        return enabledCurrenciesSorted.compactMap { $0.rawValue }
     }
     
     private init() {}

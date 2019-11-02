@@ -81,14 +81,14 @@ class SummaryMonthData {
         var debtsByDirection = [String: [Double]]()
         
         for week in allWeeks {
-            source.settings.incomeCategories.forEach {
+            source.settings.enabledIncomeCategories.forEach {
                 let income = source.income(for: week, from: [$0], in: currency)
                 if income != 0 {
                     incomes.append(income)
                     incomesByCategories[$0] = (incomesByCategories[$0] ?? []) + [income]
                 }
             }
-            source.settings.outcomeCategories.forEach {
+            source.settings.enabledOutcomeCategories.forEach {
                 let outcome = source.outcome(for: week, from: [$0], in: currency)
                 if outcome != 0 {
                     outcomes.append(source.outcome(for: week, from: [$0], in: currency))
@@ -171,13 +171,13 @@ class SummaryMonthData {
         var debtValues = [[Double]]()
         var values = [Double]()
         
-        for category in source.settings.incomeCategories {
+        for category in source.settings.enabledIncomeCategories {
             values = []
             weeks.forEach { values.append( source.income(for: $0, from: [category], in: currency) ) }
             incomeValues.append(values)
             incomesByWeeks.append( (category, values.map({ $0.shortString })) )
         }
-        for category in source.settings.outcomeCategories {
+        for category in source.settings.enabledOutcomeCategories {
             values = []
             weeks.forEach { values.append( source.outcome(for: $0, from: [category], in: currency) ) }
             outcomeValues.append(values)

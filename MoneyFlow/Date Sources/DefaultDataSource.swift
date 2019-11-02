@@ -100,19 +100,19 @@ extension DefaultDataSource {
 private extension DefaultDataSource {
     
     private var currencies: [Currency] {
-        return MainData.settings.currencies
+        return MainData.settings.currencies.map { $0.currency }
     }
     private var outcomeCategories: [String] {
-        return MainData.settings.outcomeCategories
+        return MainData.settings.outcomeCategories.map { $0.name }
     }
     private var incomeCategories: [String] {
-        return MainData.settings.incomeCategories
+        return MainData.settings.incomeCategories.map { $0.name }
     }
     private var contacts: [String] {
-        return MainData.settings.contacts
+        return MainData.settings.contacts.map { $0.name }
     }
     private var accounts: [String] {
-        return MainData.settings.accounts
+        return MainData.settings.accounts.map { $0.name }
     }
     
     private var randomValue: Double {

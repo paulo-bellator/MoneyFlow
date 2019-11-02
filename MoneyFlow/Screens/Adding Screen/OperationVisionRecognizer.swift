@@ -306,7 +306,7 @@ class OperationVisionRecognizer {
 private struct Accounts {
        private static let defaultSberbankAccount = "Сбербанк"
        private static let defaultHomeCreditAccount = "Хоум кредит"
-       private static var accounts = SettingsPresenter.shared.accountsSorted
+       private static var accounts = SettingsPresenter.shared.enabledAccountsSorted
        
        static var sberbank: String {
            for account in accounts {

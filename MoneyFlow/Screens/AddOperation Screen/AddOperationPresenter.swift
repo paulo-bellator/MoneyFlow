@@ -21,7 +21,7 @@ class AddOperationPresenter {
     
     /// Return outcome categories sorted by frequency of use
     private(set) lazy var outcomeCategories: [String] = {
-        var sortedCategories = MainData.settings.outcomeCategories
+        var sortedCategories = MainData.settings.outcomeCategories.compactMap { $0.enable ? $0.name : nil }
         var categoriesFrequency = Array(repeating: 0, count: sortedCategories.count)
         
         for op in operations.filter({ $0 is FlowOperation && $0.value < 0 }) as! [FlowOperation] {
@@ -39,7 +39,7 @@ class AddOperationPresenter {
     
     /// Return income categories sorted by frequency of use
     private(set) lazy var incomeCategories: [String] = {
-        var sortedCategories = MainData.settings.incomeCategories
+        var sortedCategories = MainData.settings.incomeCategories.compactMap { $0.enable ? $0.name : nil }
         var categoriesFrequency = Array(repeating: 0, count: sortedCategories.count)
         
         for op in operations.filter({ $0 is FlowOperation && $0.value >= 0 }) as! [FlowOperation] {
@@ -57,7 +57,7 @@ class AddOperationPresenter {
     
     /// Return contacts sorted by frequency of use
     private(set) lazy var contacts: [String] = {
-        var sortedContacts = MainData.settings.contacts
+        var sortedContacts = MainData.settings.contacts.compactMap { $0.enable ? $0.name : nil }
         var contactsFrequency = Array(repeating: 0, count: sortedContacts.count)
         
         for op in operations.filter({ $0 is DebtOperation }) as! [DebtOperation] {
@@ -75,7 +75,7 @@ class AddOperationPresenter {
     
     /// Return accounts sorted by frequency of use
     private(set) lazy var accounts: [String] = {
-        var sortedAccounts = MainData.settings.accounts
+        var sortedAccounts = MainData.settings.accounts.compactMap { $0.enable ? $0.name : nil }
         var accountsFrequency = Array(repeating: 0, count: sortedAccounts.count)
         
         for op in operations {
@@ -90,7 +90,7 @@ class AddOperationPresenter {
         }
     }()
     
-    let currencies = MainData.settings.currencies
+    let currencies = MainData.settings.currencies.compactMap { $0.enable ? $0.currency : nil }
     var currenciesSignes: [String] {
         return currencies.compactMap { $0.rawValue }
     }
