@@ -34,6 +34,8 @@
 		F94FEDAE232ACEF700713AE7 /* FirebaseSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */; };
 		F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629858236C964800A18EE7 /* SettingsViewController.swift */; };
 		F962985B236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */; };
+		F962985E236DE77800A18EE7 /* SettingEntityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */; };
+		F9629860236DEA1F00A18EE7 /* EdittingSettingsCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985F236DEA1F00A18EE7 /* EdittingSettingsCurrenciesViewController.swift */; };
 		F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */; };
 		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
 		F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4092233CCB41008670B2 /* SummaryMonthData.swift */; };
@@ -117,6 +119,8 @@
 		F94FEDAD232ACEF700713AE7 /* FirebaseSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSettingsDataSource.swift; sourceTree = "<group>"; };
 		F9629858236C964800A18EE7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabledTableViewCell.swift; sourceTree = "<group>"; };
+		F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEntityTableViewCell.swift; sourceTree = "<group>"; };
+		F962985F236DEA1F00A18EE7 /* EdittingSettingsCurrenciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdittingSettingsCurrenciesViewController.swift; sourceTree = "<group>"; };
 		F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryTableViewExtension.swift; sourceTree = "<group>"; };
 		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
 		F96C4092233CCB41008670B2 /* SummaryMonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMonthData.swift; sourceTree = "<group>"; };
@@ -318,6 +322,8 @@
 			children = (
 				F9629858236C964800A18EE7 /* SettingsViewController.swift */,
 				F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */,
+				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
+				F962985F236DEA1F00A18EE7 /* EdittingSettingsCurrenciesViewController.swift */,
 			);
 			path = "Settings Screen";
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F9D49F91235A007B00ADE93D /* DataSourceLoadManager.swift in Sources */,
+				F9629860236DEA1F00A18EE7 /* EdittingSettingsCurrenciesViewController.swift in Sources */,
 				F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */,
 				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
@@ -635,6 +642,7 @@
 				F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */,
 				F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */,
 				F9D08D8C23253EA90008109E /* SettingsPresenter.swift in Sources */,
+				F962985E236DE77800A18EE7 /* SettingEntityTableViewCell.swift in Sources */,
 				F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */,
 				F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,

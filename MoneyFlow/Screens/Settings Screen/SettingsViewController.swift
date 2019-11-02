@@ -14,6 +14,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var securityEnablingSwitch: UISwitch!
     @IBOutlet var signOutButton: UIButton!
     
+    private let edittingCurrenciesSegueIdentifier = "currenciesSegue"
+    private let edittingSettingsSegueIdentifier = "settingsSegue"
     private let headerTableViewCellIdentifier = "headerCell"
     private let settingTableViewCellIdentifier = "settingCell"
     private let tableViewRowHeight: CGFloat = 65
@@ -129,6 +131,22 @@ class SettingsViewController: UITableViewController {
         header.sumLabel.isHidden = true
         
         return header.contentView
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: edittingCurrenciesSegueIdentifier, sender: nil)
+                print("selected")
+            case 1: break
+            case 2: break
+            case 3: break
+            case 4: break
+            default: break
+            }
+        }
     }
     
     /*
