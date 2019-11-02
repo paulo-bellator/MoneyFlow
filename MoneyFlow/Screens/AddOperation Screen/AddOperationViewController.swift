@@ -139,7 +139,9 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             addOperation()
             print("done")
         }
-        
+    }
+    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+        dismiss()
     }
     
     // MARK: ViewDidLoad
