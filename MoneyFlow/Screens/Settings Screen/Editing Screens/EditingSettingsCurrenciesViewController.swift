@@ -8,7 +8,11 @@
 
 import UIKit
 
-class EdittingSettingsCurrenciesViewController: UIViewController {
+protocol EditingSettingsViewControllerDelegate: class {
+    func dataChanged()
+}
+
+class EditingSettingsCurrenciesViewController: UIViewController {
     
     let headerTableViewCellIdentifier = "headerCell"
     let settingEntityTableViewCellIdentifier = "settingEntityCell"
@@ -16,8 +20,9 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
     private let headerCellTableViewRowHeight: CGFloat = 55
     private let currencyNameFont = UIFont(name: "CenturyGothic", size: 14.0)!
     private let currencySignFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
-    private let presenter = SettingEditingPresenter()
+    private lazy var presenter = SettingEditingPresenter()
     private lazy var currencies = presenter.currencies
+    weak var delegate: EditingSettingsViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,6 +31,7 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
         if currencies.compactMap({ $0.enable ? $0 : nil }).isEmpty {
             showErrorAlertSheet()
         } else {
+            delegate?.dataChanged()
             presenter.currencies = currencies
             presenter.syncronize()
             self.dismiss(animated: true)
@@ -60,7 +66,7 @@ class EdittingSettingsCurrenciesViewController: UIViewController {
     }
 }
 
-extension EdittingSettingsCurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
+extension EditingSettingsCurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.currencies.count
@@ -105,6 +111,4 @@ extension EdittingSettingsCurrenciesViewController: UITableViewDelegate, UITable
         
         return header.contentView
     }
-    
-    
 }

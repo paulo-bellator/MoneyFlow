@@ -18,13 +18,17 @@ extension AccountsViewController: UICollectionViewDelegate, UICollectionViewData
         return AccountsViewController.ListType.all
     }
     
+    private var currenciesCount: Int {
+        return presenter.currencies.count == 1 ? 0 : presenter.currencies.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.currencies.count + listTypeRawValues.count
+        return currenciesCount + listTypeRawValues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: currencyCollectionViewCellIdentifier, for: indexPath) as! CurrencyCollectionViewCell
-        if indexPath.row < presenter.currencies.count {
+        if indexPath.row < currenciesCount {
             cell.label.text = presenter.currencySignes[indexPath.row]
             if mainCurrency == presenter.currencies[indexPath.row] {
                 cell.label.textColor = .white
@@ -32,7 +36,7 @@ extension AccountsViewController: UICollectionViewDelegate, UICollectionViewData
                 cell.label.textColor = #colorLiteral(red: 0.4980392157, green: 0.4980392157, blue: 0.4980392157, alpha: 1)
             }
         } else {
-            let index = indexPath.row - presenter.currencies.count
+            let index = indexPath.row - currenciesCount
             cell.label.text = listTypeRawValues[index]
             if listType == listTypes[index] {
                 cell.label.textColor = .white
@@ -46,10 +50,10 @@ extension AccountsViewController: UICollectionViewDelegate, UICollectionViewData
     // set size of cells
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel()
-        if indexPath.row < presenter.currencies.count {
+        if indexPath.row < currenciesCount {
             label.text = "___" + presenter.currencySignes[indexPath.row] + "___"
         } else {
-            let index = indexPath.row - presenter.currencies.count
+            let index = indexPath.row - currenciesCount
             label.text = "__" + listTypeRawValues[index] + "__"
         }
         label.sizeToFit()
@@ -61,11 +65,11 @@ extension AccountsViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row < presenter.currencies.count {
+        if indexPath.row < currenciesCount {
             guard mainCurrency != presenter.currencies[indexPath.row] else { return }
             mainCurrency = presenter.currencies[indexPath.row]
         } else {
-            let index = indexPath.row - presenter.currencies.count
+            let index = indexPath.row - currenciesCount
             guard listType != listTypes[index] else { return }
             listType = listTypes[index]
         }

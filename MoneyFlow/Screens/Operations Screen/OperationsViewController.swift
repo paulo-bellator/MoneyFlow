@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, AddingViewControllerDelegate {
+class OperationsViewController: UIViewController, AddOperationViewControllerDelegate, AddingViewControllerDelegate, UpdatableViewController {
     
     // MARK: Outlets
     
@@ -40,6 +40,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     var loadingView: LoadingView?
     fileprivate let loadManager = DataSourceLoadManager()
     var indexPathToScroll: IndexPath?
+    var needToUpdate: Bool = false
     
     let presenter = Presenter()
     lazy var operationsByDays = presenter.operationsSorted(byFormatted: filterPeriod)
@@ -125,6 +126,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         
         arrayOfAllFilterUnits = result
         collectionView.reloadData()
+        needToUpdate = false
     }
     
     private func countUpperBound() {
@@ -211,6 +213,14 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 2, left: 7, bottom: 2, right: 7)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if needToUpdate {
+            reloadFilterCollectionView()
+            appliedFilterCells = [IndexPath(row: 0, section: 0)]
+        }
     }
     
     // MARK: Button selector

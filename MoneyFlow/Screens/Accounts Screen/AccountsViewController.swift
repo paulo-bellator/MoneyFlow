@@ -56,7 +56,11 @@ class AccountsViewController: UIViewController, UpdatableViewController {
     
     
     func updateData() {
-//        mainCurrency = presenter.currencies.first ?? .rub
+        let currencyCount = presenter.currencies.count == 1 ? 0 : presenter.currencies.count
+        if collectionView.numberOfItems(inSection: 0) - 3 != currencyCount {
+            mainCurrency = presenter.currencies.first ?? .rub
+            collectionView.reloadData()
+        }
         moneyAmountByAccounts = presenter.formattedMoneyAmountByAccounts(in: mainCurrency)
         availableMoneyLabel.text = presenter.availableMoneyString(in: mainCurrency)
         allMoneyLabel.text = presenter.totalMoneyString(in: mainCurrency)

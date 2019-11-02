@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController, EditingSettingsViewControllerDelegate {
     
     @IBOutlet var securityEnablingSwitch: UISwitch!
     @IBOutlet var signOutButton: UIButton!
@@ -83,6 +83,32 @@ class SettingsViewController: UITableViewController {
         generator.impactOccurred()
         performSegue(withIdentifier: edittingCurrenciesSegueIdentifier, sender: nil)
     }
+    
+    func dataChanged() {
+        loadData()
+        tableView.reloadData()
+        sendUpdateRequirementToVCs()
+        print("dataChanged")
+    }
+    
+    private func sendUpdateRequirementToVCs() {
+        if let tabVC = tabBarController {
+            for vc in tabVC.viewControllers ?? [] {
+                if var updatableVC = vc as? UpdatableViewController {
+                    updatableVC.needToUpdate = true
+                }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navVC = segue.destination as? UINavigationController {
+            if let vc = navVC.viewControllers[0] as? EditingSettingsCurrenciesViewController {
+                vc.delegate = self
+            }
+        }
+    }
+    
 
     // MARK: - Table view data source
     
@@ -143,15 +169,5 @@ class SettingsViewController: UITableViewController {
         
         return header.contentView
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
