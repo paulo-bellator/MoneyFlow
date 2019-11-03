@@ -335,9 +335,9 @@
 		F97ECABC236E1FB6000BF62D /* Editing Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F962985F236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift */,
 				F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */,
 				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
-				F962985F236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift */,
 			);
 			path = "Editing Screens";
 			sourceTree = "<group>";

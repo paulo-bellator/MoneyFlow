@@ -20,9 +20,12 @@ class EditingSettingsCurrenciesViewController: UIViewController {
     private let headerCellTableViewRowHeight: CGFloat = 55
     private let currencyNameFont = UIFont(name: "CenturyGothic", size: 14.0)!
     private let currencySignFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
-    private lazy var presenter = SettingEditingPresenter()
+    private let settingsType: SettingsEntityType = .currencies
     private lazy var currencies = presenter.currencies
+    private lazy var defaultPresenter = SettingEditingPresenter()
+    weak var presenter: SettingEditingPresenter!
     weak var delegate: EditingSettingsViewControllerDelegate?
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,10 +51,14 @@ class EditingSettingsCurrenciesViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if presenter == nil {
+            presenter = defaultPresenter
+        }
     }
     
     private func showErrorAlertSheet() {
-        let message = "Как минимум одна валюта должна быть активна."
+        let message = "Как минимум одна \(settingsType.singularString.lowercased()) должна быть активна."
         let ac = UIAlertController(title: "Так не пойдет... ", message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Oк", style: .default))
         present(ac, animated: true)
@@ -106,7 +113,7 @@ extension EditingSettingsCurrenciesViewController: UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCell(withIdentifier: headerTableViewCellIdentifier) as! OperationsHeaderTableViewCell
-        header.periodLabel.text = "Валюты"
+        header.periodLabel.text = settingsType.pluralString
         header.sumLabel.isHidden = true
         
         return header.contentView

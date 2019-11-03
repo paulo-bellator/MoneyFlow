@@ -22,12 +22,13 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
     private let headerCellTableViewRowHeight: CGFloat = 55
     
     private let headerTitles = ["Настройки","Безопасность","Аккаунт"]
-    private let settingsTitles = ["Валюты","Счета","Категории доходов","Категории расходов","Контакты"]
+    private let settingsTitles = SettingsEntityType.allPluralStrings
     private var settingValues = [String]()
     private let securityTitle = "Вход в приложение по Touch/Face ID"
     private var accountTitle: String = "Не авторизован"
     
     private let presenter = SettingsPresenter.shared
+    private lazy var settingEditingPresenter = SettingEditingPresenter()
     var needToUpdate: Bool = false
 
     @IBAction func signOutButtonTouched(_ sender: UIButton) {
@@ -105,6 +106,7 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
         if let navVC = segue.destination as? UINavigationController {
             if let vc = navVC.viewControllers[0] as? EditingSettingsCurrenciesViewController {
                 vc.delegate = self
+//                vc.presenter = settingEditingPresenter
             }
         }
     }
@@ -170,4 +172,30 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
         return header.contentView
     }
 
+}
+
+enum SettingsEntityType {
+    case currencies, accounts, incomeCategories, outcomeCategories, contacts
+    
+    var pluralString: String {
+        switch self {
+        case .currencies: return "Валюты"
+        case .accounts: return "Счета"
+        case .incomeCategories: return "Категории доходов"
+        case .outcomeCategories: return "Категории расходов"
+        case .contacts: return "Контакты"
+        }
+    }
+    
+    var singularString: String {
+        switch self {
+        case .currencies: return "Валюта"
+        case .accounts: return "Счет"
+        case .incomeCategories: return "Категория доходов"
+        case .outcomeCategories: return "Категория расходов"
+        case .contacts: return "Контакт"
+        }
+    }
+    
+    static let allPluralStrings = ["Валюты","Счета","Категории доходов","Категории расходов","Контакты"]
 }
