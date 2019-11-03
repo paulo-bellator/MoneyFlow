@@ -51,8 +51,15 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
         }
         let edit = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, nil) in
             if self != nil {
-//                self!.performSegue(withIdentifier: self!.addOperationSegueIdentifier, sender: indexPath)
-//                self!.indexPathToScroll = indexPath
+
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let navVC = storyboard.instantiateViewController(withIdentifier: "editNameNavVC") as! UINavigationController
+                let editVC = navVC.viewControllers[0] as! SettingsEditingNameViewController
+                editVC.delegate = self
+                editVC.currentValue = self!.settingsEntites[indexPath.row].name
+                editVC.settingsType = self!.settingsType
+                self!.present(navVC, animated: true)
+                
                 tableView.setEditing(false, animated: true)
             }
         }

@@ -56,7 +56,7 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         }
     }
     
-    private func loadData() {
+    private func loadData(updatePresenter: Bool = true) {
         var array = [String]()
         array.append("\(presenter.currencies.count)")
         array.append("\(presenter.accounts.count)")
@@ -65,9 +65,11 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         array.append("\(presenter.contacts.count)")
         settingValues = array
         accountTitle = Auth.auth().currentUser?.email ?? "Не авторизован"
-        settingEditingPresenter = nil
-        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-            self.settingEditingPresenter = SettingEditingPresenter()
+        if updatePresenter {
+            settingEditingPresenter = nil
+            DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+                self.settingEditingPresenter = SettingEditingPresenter()
+            }
         }
         
     }
@@ -98,8 +100,8 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         }
     }
     
-    func dataChanged() {
-        loadData()
+    func dataChanged(updatePresenter: Bool) {
+        loadData(updatePresenter: updatePresenter)
         tableView.reloadData()
         sendUpdateRequirementToVCs()
     }

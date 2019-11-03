@@ -64,6 +64,7 @@
 		F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */; };
 		F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981032321410900F630F9 /* OperationPresenter.swift */; };
 		F9A981062321416000F630F9 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981052321416000F630F9 /* Presenter.swift */; };
+		F9AED542236F428000CC1502 /* SettingsEditingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */; };
 		F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2FE67231B227400ABF7AC /* AppDelegate.swift */; };
 		F9B2FE6D231B227400ABF7AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6B231B227400ABF7AC /* Main.storyboard */; };
 		F9B2FE6F231B227700ABF7AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9B2FE6E231B227700ABF7AC /* Assets.xcassets */; };
@@ -154,6 +155,7 @@
 		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OperationTableViewCell.swift; path = ../OperationTableViewCell.swift; sourceTree = "<group>"; };
 		F9A981032321410900F630F9 /* OperationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
 		F9A981052321416000F630F9 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingNameViewController.swift; sourceTree = "<group>"; };
 		F9B2FE64231B227400ABF7AC /* MoneyFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B2FE67231B227400ABF7AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9B2FE6C231B227400ABF7AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			children = (
 				F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */,
 				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
+				F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */,
 				F9C567BE236EE56B00D57969 /* Editing currencies Screen */,
 				F9C567BF236EE68000D57969 /* Editing other settings Screen */,
 			);
@@ -717,6 +720,7 @@
 				F98D8BAA2364D8CC0080A08B /* AccountTableViewCell.swift in Sources */,
 				F9F68C18236B1D870069729F /* StartViewController.swift in Sources */,
 				F986847C23326BE500FAD863 /* SummaryGraphTableViewCell.swift in Sources */,
+				F9AED542236F428000CC1502 /* SettingsEditingNameViewController.swift in Sources */,
 				F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */,
 				F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */,
 				F9B4311C234F50D9002F28B5 /* OperationCleanDesignTableViewCell.swift in Sources */,

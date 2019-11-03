@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingsEditingViewControllerDelegate: class {
-    func dataChanged()
+    func dataChanged(updatePresenter: Bool)
 }
 
 class SettingsEditingCurrenciesViewController: UIViewController {
@@ -37,7 +37,7 @@ class SettingsEditingCurrenciesViewController: UIViewController {
             if presenter.currencies != currencies {
                 presenter.currencies = currencies
                 presenter.syncronize()
-                delegate?.dataChanged()
+                delegate?.dataChanged(updatePresenter: true)
             }
             self.dismiss(animated: true)
         }

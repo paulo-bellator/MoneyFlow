@@ -8,8 +8,9 @@
 
 import UIKit
 
-class SettingsEditingViewController: UIViewController {
+class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate {
     
+    let nameEditingSegueIdentifier = "nameEditingSegue"
     let headerTableViewCellIdentifier = "headerCell"
     let settingEntityTableViewCellIdentifier = "settingEntityCell"
     let tableViewRowHeight: CGFloat = 65
@@ -59,7 +60,7 @@ class SettingsEditingViewController: UIViewController {
             if presenterSettingEntites != settingsEntites {
                 presenterSettingEntites = settingsEntites
                 presenter.syncronize()
-                delegate?.dataChanged()
+                delegate?.dataChanged(updatePresenter: true)
             }
             self.dismiss(animated: true)
         }
@@ -100,6 +101,48 @@ class SettingsEditingViewController: UIViewController {
         let ac = UIAlertController(title: "Так не пойдет... ", message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Oк", style: .default))
         present(ac, animated: true)
+    }
+    
+    func settingEntityRenamed(type: SettingsEntityType, oldValue: String, newValue: String) {
+        operationsCount[newValue] = operationsCount[oldValue]
+        operationsCount[oldValue] = nil
+        for (index, var settingsEntity) in settingsEntites.enumerated() {
+            if settingsEntity.name == oldValue {
+                settingsEntity.name = newValue
+                settingsEntites[index] = settingsEntity
+                tableView.reloadData()
+                break
+            }
+        }
+        var originSettingsEntites = presenterSettingEntites
+        for (index, var settingsEntity) in originSettingsEntites.enumerated() {
+            if settingsEntity.name == oldValue {
+                settingsEntity.name = newValue
+                originSettingsEntites[index] = settingsEntity
+                break
+            }
+        }
+        presenterSettingEntites = originSettingsEntites
+        switch settingsType {
+        case .accounts: presenter.replaceAccountInOperations(currentAccount: oldValue, newAccount: newValue, syncronize: true)
+        case .incomeCategories: presenter.replaceIncomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: true)
+        case .outcomeCategories: presenter.replaceOutcomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: true)
+        case .contacts: presenter.replaceContactInOperations(currentContact: oldValue, newContact: newValue, syncronize: true)
+        default: break
+        }
+        
+        presenter.syncronize()
+        delegate?.dataChanged(updatePresenter: false)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nameEditVC = segue.destination as? SettingsEditingNameViewController {
+            nameEditVC.delegate = self
+            nameEditVC.settingsType = settingsType
+            if let indexPath = sender as? IndexPath {
+                nameEditVC.currentValue = settingsEntites[indexPath.row].name
+            }
+        }
     }
     
 }
