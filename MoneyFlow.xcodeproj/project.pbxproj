@@ -35,7 +35,7 @@
 		F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629858236C964800A18EE7 /* SettingsViewController.swift */; };
 		F962985B236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */; };
 		F962985E236DE77800A18EE7 /* SettingEntityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */; };
-		F9629860236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985F236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift */; };
+		F9629860236DEA1F00A18EE7 /* SettingsEditingCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F962985F236DEA1F00A18EE7 /* SettingsEditingCurrenciesViewController.swift */; };
 		F96C408F233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */; };
 		F96C4091233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */; };
 		F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C4092233CCB41008670B2 /* SummaryMonthData.swift */; };
@@ -72,6 +72,8 @@
 		F9C18CDC234524100048F081 /* CombinedIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */; };
 		F9C3D78F23269D1700C99482 /* OperationsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */; };
 		F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */; };
+		F9C567BB236EE3A000D57969 /* SettingsEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C567BA236EE3A000D57969 /* SettingsEditingViewController.swift */; };
+		F9C567BD236EE53F00D57969 /* SettingsEditingCurrenciesManagingTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C567BC236EE53F00D57969 /* SettingsEditingCurrenciesManagingTableViewExtension.swift */; };
 		F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A5232C04C800654DD9 /* ChartView.swift */; };
 		F9C608A8232C08B400654DD9 /* ChartColumnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */; };
 		F9D08D8A23252B240008109E /* DefaultSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */; };
@@ -88,6 +90,7 @@
 		F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */; };
 		F9EB79042354A5530081C84E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB79032354A5530081C84E /* LoadingView.swift */; };
 		F9F68C18236B1D870069729F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F68C17236B1D870069729F /* StartViewController.swift */; };
+		F9F99DEF236EEC26003D7597 /* SettingsEditingTableViewManagingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F99DEE236EEC26003D7597 /* SettingsEditingTableViewManagingExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,7 +125,7 @@
 		F9629858236C964800A18EE7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F962985A236CAD8D00A18EE7 /* TwoLabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabledTableViewCell.swift; sourceTree = "<group>"; };
 		F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEntityTableViewCell.swift; sourceTree = "<group>"; };
-		F962985F236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingSettingsCurrenciesViewController.swift; sourceTree = "<group>"; };
+		F962985F236DEA1F00A18EE7 /* SettingsEditingCurrenciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingCurrenciesViewController.swift; sourceTree = "<group>"; };
 		F96C408E233BFCEC008670B2 /* ManagingSummaryTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryTableViewExtension.swift; sourceTree = "<group>"; };
 		F96C4090233BFE5F008670B2 /* ManagingSummaryChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSummaryChartViewExtension.swift; sourceTree = "<group>"; };
 		F96C4092233CCB41008670B2 /* SummaryMonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMonthData.swift; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 		F9C18CDB234524100048F081 /* CombinedIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedIDGenerator.swift; sourceTree = "<group>"; };
 		F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F9C3D79023269E4E00C99482 /* RoundedSoaringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedSoaringView.swift; sourceTree = "<group>"; };
+		F9C567BA236EE3A000D57969 /* SettingsEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingViewController.swift; sourceTree = "<group>"; };
+		F9C567BC236EE53F00D57969 /* SettingsEditingCurrenciesManagingTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingCurrenciesManagingTableViewExtension.swift; sourceTree = "<group>"; };
 		F9C608A5232C04C800654DD9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		F9C608A7232C08B400654DD9 /* ChartColumnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9D08D8923252B240008109E /* DefaultSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsDataSource.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 		F9E728DE2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingAccountsCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F9EB79032354A5530081C84E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F9F68C17236B1D870069729F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		F9F99DEE236EEC26003D7597 /* SettingsEditingTableViewManagingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingTableViewManagingExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,9 +341,10 @@
 		F97ECABC236E1FB6000BF62D /* Editing Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F962985F236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift */,
 				F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */,
 				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
+				F9C567BF236EE68000D57969 /* Editing other settings Screen */,
+				F9C567BE236EE56B00D57969 /* Editing currencies Screen */,
 			);
 			path = "Editing Screens";
 			sourceTree = "<group>";
@@ -447,6 +454,24 @@
 				F9B2FE70231B227700ABF7AC /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		F9C567BE236EE56B00D57969 /* Editing currencies Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F962985F236DEA1F00A18EE7 /* SettingsEditingCurrenciesViewController.swift */,
+				F9C567BC236EE53F00D57969 /* SettingsEditingCurrenciesManagingTableViewExtension.swift */,
+			);
+			path = "Editing currencies Screen";
+			sourceTree = "<group>";
+		};
+		F9C567BF236EE68000D57969 /* Editing other settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9C567BA236EE3A000D57969 /* SettingsEditingViewController.swift */,
+				F9F99DEE236EEC26003D7597 /* SettingsEditingTableViewManagingExtension.swift */,
+			);
+			path = "Editing other settings Screen";
 			sourceTree = "<group>";
 		};
 		F9D3A9F9232165BB00895A80 /* TableView */ = {
@@ -628,13 +653,15 @@
 				F98D8BA82364D8000080A08B /* AccountsViewController.swift in Sources */,
 				F94BDFA52340CAFD00CE87F8 /* ImagePickerCollectionViewController.swift in Sources */,
 				F9E728DA2364E83D00393C2B /* ManagingAccountsTableViewExtenstion.swift in Sources */,
+				F9C567BD236EE53F00D57969 /* SettingsEditingCurrenciesManagingTableViewExtension.swift in Sources */,
 				F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */,
+				F9F99DEF236EEC26003D7597 /* SettingsEditingTableViewManagingExtension.swift in Sources */,
 				F9D40879232E212E0034B913 /* SummaryViewController.swift in Sources */,
 				F9172DD12343E8810067B9AE /* CombinedDataSource.swift in Sources */,
 				F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F9D49F91235A007B00ADE93D /* DataSourceLoadManager.swift in Sources */,
-				F9629860236DEA1F00A18EE7 /* EditingSettingsCurrenciesViewController.swift in Sources */,
+				F9629860236DEA1F00A18EE7 /* SettingsEditingCurrenciesViewController.swift in Sources */,
 				F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */,
 				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
 				F9063DE6232139FE00F08E84 /* Operation.swift in Sources */,
@@ -663,6 +690,7 @@
 				F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
 				F9E1F600234B6C93000B6DB4 /* AuthViewController.swift in Sources */,
+				F9C567BB236EE3A000D57969 /* SettingsEditingViewController.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,
 				F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */,

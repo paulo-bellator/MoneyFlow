@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct SettingsEntity: Codable {
+struct SettingsEntity: Codable, Equatable {
     var name: String
     var enable: Bool = true
 }
 
-struct CurrencySettingsEntity: Codable {
+struct CurrencySettingsEntity: Codable, Equatable {
     let currency: Currency
     var enable: Bool = true
 }

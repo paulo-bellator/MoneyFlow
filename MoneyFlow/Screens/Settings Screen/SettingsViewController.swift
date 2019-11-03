@@ -9,13 +9,13 @@
 import UIKit
 import FirebaseAuth
 
-class SettingsViewController: UITableViewController, EditingSettingsViewControllerDelegate {
+class SettingsViewController: UITableViewController, SettingsEditingViewControllerDelegate, UpdatableViewController {
     
     @IBOutlet var securityEnablingSwitch: UISwitch!
     @IBOutlet var signOutButton: UIButton!
     
-    private let edittingCurrenciesSegueIdentifier = "currenciesSegue"
-    private let edittingSettingsSegueIdentifier = "settingsSegue"
+    private let editingCurrenciesSegueIdentifier = "currenciesSegue"
+    private let editingSettingsSegueIdentifier = "settingsSegue"
     private let headerTableViewCellIdentifier = "headerCell"
     private let settingTableViewCellIdentifier = "settingCell"
     private let tableViewRowHeight: CGFloat = 65
@@ -28,7 +28,7 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
     private var accountTitle: String = "Не авторизован"
     
     private let presenter = SettingsPresenter.shared
-    private lazy var settingEditingPresenter = SettingEditingPresenter()
+    private var settingEditingPresenter: SettingEditingPresenter?
     var needToUpdate: Bool = false
 
     @IBAction func signOutButtonTouched(_ sender: UIButton) {
@@ -65,6 +65,11 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
         array.append("\(presenter.contacts.count)")
         settingValues = array
         accountTitle = Auth.auth().currentUser?.email ?? "Не авторизован"
+        settingEditingPresenter = nil
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            self.settingEditingPresenter = SettingEditingPresenter()
+        }
+        
     }
     
     private func showSignOutActionSheet() {
@@ -79,17 +84,24 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @objc func currencyEditingTapGestureRecognized(_ recognizer: UITapGestureRecognizer) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-        performSegue(withIdentifier: edittingCurrenciesSegueIdentifier, sender: nil)
+    @objc func settingsEditingTapGestureRecognized(_ recognizer: UITapGestureRecognizer) {
+        if let recognizerName = recognizer.name {
+            if let settingsType = SettingsEntityType.settingsEntityTypeFrom(pluralString: recognizerName) {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+                if settingsType == .currencies {
+                    performSegue(withIdentifier: editingCurrenciesSegueIdentifier, sender: nil)
+                } else {
+                    performSegue(withIdentifier: editingSettingsSegueIdentifier, sender: settingsType)
+                }
+            }
+        }
     }
     
     func dataChanged() {
         loadData()
         tableView.reloadData()
         sendUpdateRequirementToVCs()
-        print("dataChanged")
     }
     
     private func sendUpdateRequirementToVCs() {
@@ -104,9 +116,15 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navVC = segue.destination as? UINavigationController {
-            if let vc = navVC.viewControllers[0] as? EditingSettingsCurrenciesViewController {
+            if let vc = navVC.viewControllers[0] as? SettingsEditingCurrenciesViewController {
                 vc.delegate = self
-//                vc.presenter = settingEditingPresenter
+                vc.presenter = settingEditingPresenter
+            } else if let vc = navVC.viewControllers[0] as? SettingsEditingViewController {
+                vc.delegate = self
+                vc.presenter = settingEditingPresenter
+                if let settingsType = sender as? SettingsEntityType {
+                    vc.settingsType = settingsType
+                }
             }
         }
     }
@@ -141,11 +159,11 @@ class SettingsViewController: UITableViewController, EditingSettingsViewControll
         case 0:
             cell.leftLabel.text = settingsTitles[indexPath.row]
             cell.rightLabel.text = settingValues[indexPath.row]
-            if indexPath.row == 0 {
-                let tapGestureRecognizer = UITapGestureRecognizer()
-                tapGestureRecognizer.addTarget(self, action: #selector(currencyEditingTapGestureRecognized(_:)))
-                cell.addGestureRecognizer(tapGestureRecognizer)
-            }
+            
+            let tapGestureRecognizer = UITapGestureRecognizer()
+            tapGestureRecognizer.addTarget(self, action: #selector(settingsEditingTapGestureRecognized(_:)))
+            tapGestureRecognizer.name = settingsTitles[indexPath.row]
+            cell.addGestureRecognizer(tapGestureRecognizer)
         case 1:
             cell.leftLabel.text = securityTitle
             cell.rightLabel?.removeFromSuperview()
@@ -198,4 +216,15 @@ enum SettingsEntityType {
     }
     
     static let allPluralStrings = ["Валюты","Счета","Категории доходов","Категории расходов","Контакты"]
+    
+    static func settingsEntityTypeFrom(pluralString string: String) -> SettingsEntityType? {
+        switch string {
+        case "Валюты": return .currencies
+        case "Счета": return .accounts
+        case "Категории доходов": return .incomeCategories
+        case "Категории расходов": return .outcomeCategories
+        case "Контакты": return .contacts
+        default: return nil
+        }
+    }
 }
