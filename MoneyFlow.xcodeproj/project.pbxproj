@@ -15,7 +15,7 @@
 		F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDB232139FE00F08E84 /* DefaultIDGenerator.swift */; };
 		F9063DE9232139FE00F08E84 /* DefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */; };
 		F9063DEA232139FE00F08E84 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DDE232139FE00F08E84 /* DataSource.swift */; };
-		F9063DED23213A1000F08E84 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DEC23213A0F00F08E84 /* Constants.swift */; };
+		F9063DED23213A1000F08E84 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9063DEC23213A0F00F08E84 /* GlobalConstants.swift */; };
 		F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */; };
 		F90F2887232166E600B1F3D5 /* ManagingCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */; };
 		F9172DD12343E8810067B9AE /* CombinedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9172DD02343E8810067B9AE /* CombinedDataSource.swift */; };
@@ -104,7 +104,7 @@
 		F9063DDB232139FE00F08E84 /* DefaultIDGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIDGenerator.swift; sourceTree = "<group>"; };
 		F9063DDD232139FE00F08E84 /* DefaultDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultDataSource.swift; sourceTree = "<group>"; };
 		F9063DDE232139FE00F08E84 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		F9063DEC23213A0F00F08E84 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Supporting files/Constants.swift"; sourceTree = "<group>"; };
+		F9063DEC23213A0F00F08E84 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		F907D3D3232BE87200E9E3C2 /* ChartColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColumnView.swift; sourceTree = "<group>"; };
 		F90F2886232166E600B1F3D5 /* ManagingCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingCollectionViewExtension.swift; sourceTree = "<group>"; };
 		F9172DD02343E8810067B9AE /* CombinedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedDataSource.swift; sourceTree = "<group>"; };
@@ -281,6 +281,7 @@
 				F995B0C5232A95EA008DF78D /* LoadingViewController.swift */,
 				F9D08D8B23253EA90008109E /* SettingsPresenter.swift */,
 				F9EB79032354A5530081C84E /* LoadingView.swift */,
+				F9063DEC23213A0F00F08E84 /* GlobalConstants.swift */,
 				F962985C236CAD9400A18EE7 /* Settings Screen */,
 				F9880BEE2369C7B700510E83 /* Authorization Screens */,
 				F98B1843235F591F00FB7A48 /* Adding Screen */,
@@ -343,8 +344,8 @@
 			children = (
 				F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */,
 				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
-				F9C567BF236EE68000D57969 /* Editing other settings Screen */,
 				F9C567BE236EE56B00D57969 /* Editing currencies Screen */,
+				F9C567BF236EE68000D57969 /* Editing other settings Screen */,
 			);
 			path = "Editing Screens";
 			sourceTree = "<group>";
@@ -438,7 +439,6 @@
 				F9063DD9232139FE00F08E84 /* ID Generators */,
 				F9B2FE79231B228C00ABF7AC /* Supporting files */,
 				F9B2FE6B231B227400ABF7AC /* Main.storyboard */,
-				F9063DEC23213A0F00F08E84 /* Constants.swift */,
 				F9B2FE73231B227700ABF7AC /* Info.plist */,
 				F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */,
 			);
@@ -706,7 +706,7 @@
 				F96EFFC1233F83D000A51C54 /* FirebaseIDGenerator.swift in Sources */,
 				F9C608A6232C04C800654DD9 /* ChartView.swift in Sources */,
 				F98B1842235F591900FB7A48 /* AddingViewController.swift in Sources */,
-				F9063DED23213A1000F08E84 /* Constants.swift in Sources */,
+				F9063DED23213A1000F08E84 /* GlobalConstants.swift in Sources */,
 				F9A981062321416000F630F9 /* Presenter.swift in Sources */,
 				F986847A233257B400FAD863 /* SummaryTableViewCell.swift in Sources */,
 				F98684802332B48E00FAD863 /* SummaryHeaderTableViewCell.swift in Sources */,
