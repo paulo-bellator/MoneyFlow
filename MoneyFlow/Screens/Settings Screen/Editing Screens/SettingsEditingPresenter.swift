@@ -71,6 +71,65 @@ class SettingEditingPresenter {
         }
     }
     
+    func replaceIncomeCategoryInOperations(currentCategory: String, newCategory: String, syncronize: Bool = false) {
+        let operations = MainData.source.operations
+        for operation in operations {
+            if let flowOp = operation as? FlowOperation,
+                flowOp.value >= 0,
+                flowOp.category == currentCategory {
+                edit(operation: operation, categoryOrContact: newCategory)
+            }
+        }
+        if syncronize { MainData.source.save() }
+    }
+    
+    func replaceOutcomeCategoryInOperations(currentCategory: String, newCategory: String, syncronize: Bool = false) {
+        let operations = MainData.source.operations
+        for operation in operations {
+            if let flowOp = operation as? FlowOperation,
+                flowOp.value < 0,
+                flowOp.category == currentCategory {
+                edit(operation: operation, categoryOrContact: newCategory)
+            }
+        }
+        if syncronize { MainData.source.save() }
+    }
+    
+    func replaceAccountInOperations(currentAccount: String, newAccount: String, syncronize: Bool = false) {
+        let operations = MainData.source.operations
+        for operation in operations {
+            if operation.account == currentAccount {
+                edit(operation: operation, account: newAccount)
+            }
+        }
+        if syncronize { MainData.source.save() }
+    }
+    
+    func replaceContactInOperations(currentContact: String, newContact: String, syncronize: Bool = false) {
+        let operations = MainData.source.operations
+        for operation in operations {
+            if let debtOp = operation as? DebtOperation, debtOp.contact == currentContact {
+                edit(operation: operation, categoryOrContact: newContact)
+            }
+        }
+        if syncronize { MainData.source.save() }
+    }
+    
+    private func edit(operation: Operation, date: Date? = nil, value: Double? = nil, currency: Currency? = nil, categoryOrContact: String? = nil, account: String? = nil, comment: String? = "unedited comment") {
+        var resultComment = comment
+        if comment == "unedited comment" {
+            resultComment = ((operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment)
+        }
+        MainData.source.editOperation(
+            with: operation.id,
+            date: date ?? operation.date,
+            value: value ?? operation.value,
+            currency: currency ?? operation.currency,
+            categoryOrContact: categoryOrContact ?? ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!,
+            account: account ?? operation.account,
+            comment: resultComment
+        )
+    }
     
 }
 
