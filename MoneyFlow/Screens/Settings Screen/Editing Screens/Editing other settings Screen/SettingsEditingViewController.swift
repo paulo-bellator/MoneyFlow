@@ -8,12 +8,14 @@
 
 import UIKit
 
-class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate, SettingsDeletingViewControllerDelegate {
+class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate, SettingsDeletingViewControllerDelegate, AddSettingsEntityViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var buttonSubstrateView: UIView!
     let renameVCStoryboardID = "editNameNavVC"
-    let deleteVCStoryboard = "deleteNavVC"
+    let deleteVCStoryboardID = "deleteNavVC"
+    let addVCStoryboardID = "addNavVC"
     let nameEditingSegueIdentifier = "nameEditingSegue"
     let headerTableViewCellIdentifier = "headerCell"
     let settingEntityTableViewCellIdentifier = "settingEntityCell"
@@ -60,12 +62,25 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         }
     }
     
+    @IBAction func addButtonTouched(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navVC = storyboard.instantiateViewController(withIdentifier: addVCStoryboardID) as! UINavigationController
+        let addVC = navVC.viewControllers[0] as! AddSettingsEntityViewController
+        addVC.delegate = self
+        addVC.settingsType = settingsType
+        present(navVC, animated: true)
+    }
+    
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buttonSubstrateView.layer.cornerRadius = buttonSubstrateView.bounds.width / 2.0
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -119,7 +134,6 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
     func settingEntityDeleted(type: SettingsEntityType, deletedItem: String, moveIntoItem: String) {
         operationsCount[moveIntoItem]! += operationsCount[deletedItem]!
         operationsCount[deletedItem] = nil
-        
         presenterSettingEntites = presenterSettingEntites.compactMap { $0.name == deletedItem ? nil : $0 }
         settingsEntites = presenterSettingEntites
         tableView.reloadData()
@@ -132,6 +146,16 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         operationsCount[name] = nil
         presenterSettingEntites = presenterSettingEntites.compactMap { $0.name == name ? nil : $0 }
         settingsEntites = presenterSettingEntites
+        presenter.syncronize()
+        delegate?.dataChanged()
+    }
+    
+    func settingsEntityAdded(type: SettingsEntityType, name: String) {
+        operationsCount[name] = 0
+        let entity = SettingsEntity(name: name)
+        presenterSettingEntites = presenterSettingEntites + [entity]
+        settingsEntites = presenterSettingEntites
+        tableView.reloadData()
         presenter.syncronize()
         delegate?.dataChanged()
     }

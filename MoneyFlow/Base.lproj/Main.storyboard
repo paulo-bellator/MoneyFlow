@@ -207,7 +207,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aCK-Ph-8Hf">
                                                     <rect key="frame" x="282" y="27.333333333333332" width="100" height="37.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="17.333333333333332"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="B0I-TM-srh"/>
@@ -216,7 +216,7 @@
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
                                                             <rect key="frame" x="0.0" y="25.333333333333332" width="100" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1337,16 +1337,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b8F-Jg-uIO">
-                                                    <rect key="frame" x="10" y="304.66666666666669" width="394" height="54.666666666666686"/>
+                                                    <rect key="frame" x="10" y="303.33333333333331" width="394" height="57.333333333333314"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Список операций пуст" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-WK-WSR">
-                                                            <rect key="frame" x="123" y="0.0" width="148" height="23.333333333333332"/>
+                                                            <rect key="frame" x="115" y="0.0" width="164" height="24.666666666666668"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="14"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBp-XG-a3W">
-                                                            <rect key="frame" x="101.33333333333333" y="31.333333333333314" width="191.33333333333337" height="23.333333333333329"/>
+                                                            <rect key="frame" x="96.333333333333329" y="32.666666666666686" width="201.66666666666669" height="24.666666666666671"/>
                                                             <string key="text">Чтобы добавить операции, используйте 
 кнопки в правой нижней части экрана</string>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
@@ -1356,7 +1356,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="click_icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="Vts-el-JmC">
-                                                    <rect key="frame" x="184.66666666666666" y="239.66666666666663" width="45" height="45"/>
+                                                    <rect key="frame" x="184.66666666666666" y="238.33333333333337" width="45" height="45"/>
                                                     <color key="tintColor" red="0.27312024109999999" green="0.27312024109999999" blue="0.27312024109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="Ocu-Xa-bxO"/>
@@ -1383,16 +1383,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ug5-Nz-6JA">
-                                                    <rect key="frame" x="17" y="23.333333333333336" width="377" height="16.333333333333336"/>
+                                                    <rect key="frame" x="17" y="23" width="377" height="17.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="24 октября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nX-4o-pho">
-                                                            <rect key="frame" x="0.0" y="0.0" width="301" height="16.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="302" height="17.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 178 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yr8-mp-7Vn">
-                                                            <rect key="frame" x="321" y="0.0" width="56" height="16.333333333333332"/>
+                                                            <rect key="frame" x="322" y="0.0" width="55" height="17.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1420,13 +1420,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rWu-YG-7iH">
-                                                    <rect key="frame" x="23" y="32" width="141.33333333333334" height="37.333333333333343"/>
+                                                    <rect key="frame" x="23" y="31" width="153" height="39"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Zh4-Dp-1bz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="17.666666666666668"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="18.666666666666668"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmY-c5-yqx">
-                                                                    <rect key="frame" x="0.0" y="3.6666666666666643" width="10" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="4.3333333333333357" width="10" height="10"/>
                                                                     <color key="backgroundColor" red="0.40000000000000002" green="0.46274509800000002" blue="0.94901960780000005" alpha="0.95283604450000003" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="10" id="DgO-eG-Bmb"/>
@@ -1434,7 +1434,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Продукты" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFF-7u-v7t">
-                                                                    <rect key="frame" x="24" y="0.0" width="70" height="17.666666666666668"/>
+                                                                    <rect key="frame" x="24" y="0.0" width="71" height="18.666666666666668"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1442,7 +1442,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Купил майонез в перекрестке" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hd5-LO-iSB">
-                                                            <rect key="frame" x="0.0" y="25.666666666666664" width="141.33333333333334" height="11.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="26.666666666666661" width="153" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1450,10 +1450,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CIB-Ql-z7R">
-                                                    <rect key="frame" x="282" y="28" width="100" height="36"/>
+                                                    <rect key="frame" x="282" y="27.333333333333332" width="100" height="37.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLw-SG-nul">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="16.333333333333332"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLw-SG-nul">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="17.333333333333332"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Yvo-Jk-ANC"/>
                                                             </constraints>
@@ -1461,8 +1461,8 @@
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twm-xA-KrA">
-                                                            <rect key="frame" x="44.333333333333314" y="24.333333333333336" width="55.666666666666657" height="11.666666666666664"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twm-xA-KrA">
+                                                            <rect key="frame" x="37.333333333333314" y="25.333333333333332" width="62.666666666666657" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1829,13 +1829,13 @@ Flow</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Валюты" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VQ-qi-JCc">
-                                            <rect key="frame" x="29.999999999999996" y="24.999999999999996" width="48.666666666666657" height="15.333333333333332"/>
+                                            <rect key="frame" x="30.000000000000004" y="24.666666666666671" width="48.333333333333343" height="16"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIG-7r-xCL">
-                                            <rect key="frame" x="344" y="24.999999999999996" width="40" height="15.333333333333332"/>
+                                            <rect key="frame" x="344" y="24.666666666666671" width="40" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Roe-Th-rgl"/>
                                             </constraints>
@@ -1865,16 +1865,16 @@ Flow</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="L1M-p3-GkB">
-                                            <rect key="frame" x="17" y="23.333333333333336" width="377" height="16.333333333333336"/>
+                                            <rect key="frame" x="17" y="23" width="377" height="17.333333333333329"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="24 октября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rA-31-SH4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="301" height="16.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="17.333333333333332"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 178 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owb-To-0ji">
-                                                    <rect key="frame" x="321" y="0.0" width="56" height="16.333333333333332"/>
+                                                    <rect key="frame" x="322" y="0.0" width="55" height="17.333333333333332"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2069,7 +2069,7 @@ Flow</string>
                                 <action selector="cancelButtonTouched:" destination="CQc-gA-rEq" id="6Tj-3F-vAy"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" style="done" id="1kf-aF-41O">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="1kf-aF-41O">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveButtonTouched:" destination="CQc-gA-rEq" id="dcy-vE-GYV"/>
@@ -2100,55 +2100,55 @@ Flow</string>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Доступно:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfg-Es-JtA">
-                                            <rect key="frame" x="38" y="50" width="52.666666666666657" height="13"/>
+                                            <rect key="frame" x="38" y="50" width="56.333333333333343" height="13.666666666666664"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112 045 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Br-4o-gWg">
-                                            <rect key="frame" x="37.999999999999993" y="66" width="102.33333333333331" height="27"/>
+                                            <rect key="frame" x="37.999999999999993" y="66.666666666666671" width="103.33333333333331" height="28.333333333333329"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="23"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vyb-4J-Ztb">
-                                            <rect key="frame" x="258.66666666666669" y="50" width="33.666666666666686" height="13"/>
+                                            <rect key="frame" x="258.66666666666669" y="50" width="35" height="13.666666666666664"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 120 045 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e6-fz-E4h">
-                                            <rect key="frame" x="258.66666666666669" y="66" width="134.33333333333331" height="27"/>
+                                            <rect key="frame" x="258.66666666666669" y="66.666666666666671" width="135.33333333333331" height="28.333333333333329"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="23"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Я должен:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55v-mj-vvZ">
-                                            <rect key="frame" x="38" y="133" width="53.333333333333343" height="13"/>
+                                            <rect key="frame" x="38" y="135" width="54.666666666666657" height="13.666666666666657"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112 045 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRk-aB-F6n">
-                                            <rect key="frame" x="37.999999999999993" y="149" width="102.33333333333331" height="27"/>
+                                            <rect key="frame" x="37.999999999999993" y="151.66666666666666" width="103.33333333333331" height="28.333333333333343"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="23"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мне должны:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebp-cH-6Lw">
-                                            <rect key="frame" x="258.66666666666669" y="133" width="69.333333333333314" height="13"/>
+                                            <rect key="frame" x="258.66666666666669" y="135" width="72.333333333333314" height="13.666666666666657"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112 045 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-zh-wGE">
-                                            <rect key="frame" x="258.66666666666669" y="149" width="102.33333333333331" height="27"/>
+                                            <rect key="frame" x="258.66666666666669" y="151.66666666666666" width="103.33333333333331" height="28.333333333333343"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="23"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2B-Dt-Lsv">
-                                            <rect key="frame" x="38" y="184" width="110" height="5"/>
+                                            <rect key="frame" x="38" y="188" width="110" height="5"/>
                                             <color key="backgroundColor" red="0.95686274509803915" green="0.69411764705882351" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="5" id="aNc-5Z-ApG"/>
@@ -2156,7 +2156,7 @@ Flow</string>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6iT-2f-FDa">
-                                            <rect key="frame" x="258.66666666666669" y="184" width="110" height="5"/>
+                                            <rect key="frame" x="258.66666666666669" y="188" width="110" height="5"/>
                                             <color key="backgroundColor" red="0.78823529411764703" green="0.88627450980392153" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gfh-V3-h6x">
@@ -2180,7 +2180,7 @@ Flow</string>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-VC-ZzA">
-                                                                <rect key="frame" x="61.333333333333336" y="16.333333333333329" width="8.6666666666666643" height="17.666666666666671"/>
+                                                                <rect key="frame" x="61.333333333333336" y="15.666666666666666" width="8.6666666666666643" height="18.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -2240,13 +2240,13 @@ Flow</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOj-lN-UCW">
-                                                    <rect key="frame" x="30.000000000000004" y="38.333333333333336" width="60.333333333333343" height="15.333333333333336"/>
+                                                    <rect key="frame" x="30.000000000000007" y="38" width="68.666666666666686" height="16"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120 000 $" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCq-yN-rJ7">
-                                                    <rect key="frame" x="284" y="38.333333333333336" width="100" height="15.333333333333336"/>
+                                                    <rect key="frame" x="284" y="38" width="100" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="X3V-Ag-iCU"/>
                                                     </constraints>
@@ -2276,16 +2276,16 @@ Flow</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Anp-bP-8n6">
-                                                    <rect key="frame" x="10" y="163.33333333333334" width="394" height="54.666666666666657"/>
+                                                    <rect key="frame" x="10" y="162" width="394" height="57.333333333333343"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Список пуст" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FO-6M-j1N">
-                                                            <rect key="frame" x="156.33333333333334" y="0.0" width="81.333333333333343" height="23.333333333333332"/>
+                                                            <rect key="frame" x="153" y="0.0" width="88" height="24.666666666666668"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="14"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZI-r6-X3B">
-                                                            <rect key="frame" x="122.33333333333336" y="31.333333333333314" width="149.66666666666663" height="23.333333333333329"/>
+                                                            <rect key="frame" x="115.66666666666667" y="32.666666666666657" width="162.66666666666663" height="24.666666666666671"/>
                                                             <string key="text">Измените найстройки фильтра 
 или добавьте операции</string>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
@@ -2295,7 +2295,7 @@ Flow</string>
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter_icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="pJm-yl-bAT">
-                                                    <rect key="frame" x="187" y="98.333333333333329" width="40" height="44.999999999999986"/>
+                                                    <rect key="frame" x="187" y="97" width="40" height="45"/>
                                                     <color key="tintColor" red="0.27312024109999999" green="0.27312024109999999" blue="0.27312024109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="7qK-f2-e8w"/>
@@ -2322,16 +2322,16 @@ Flow</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2db-ek-ziZ">
-                                                    <rect key="frame" x="17" y="23.333333333333336" width="377" height="16.333333333333336"/>
+                                                    <rect key="frame" x="17" y="23" width="377" height="17.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="24 октября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG1-qT-Gr5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="301" height="16.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="302" height="17.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 178 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhC-c9-S4y">
-                                                            <rect key="frame" x="321" y="0.0" width="56" height="16.333333333333332"/>
+                                                            <rect key="frame" x="322" y="0.0" width="55" height="17.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -2524,7 +2524,7 @@ Flow</string>
                         <barButtonItem key="leftBarButtonItem" title="Отменить" id="Ihh-d8-TO8">
                             <color key="tintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" style="done" id="enX-hA-WHy">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="enX-hA-WHy">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -2809,29 +2809,29 @@ Cgo
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MyV-tT-cyY">
-                                <rect key="frame" x="0.0" y="56" width="414" height="660"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="542.66666666666663"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="G6n-uz-qTG">
+                                <view key="tableFooterView" contentMode="scaleToFill" id="HWy-cq-o6S">
                                     <rect key="frame" x="0.0" y="176" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THa-uZ-dOX">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihv-gr-Z4T">
                                             <rect key="frame" x="30" y="7" width="148" height="30"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="14"/>
                                             <state key="normal" title="Справка по экрану">
                                                 <color key="titleColor" red="0.95686274510000002" green="0.69411764710000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="TBn-Uu-JLQ"/>
-                                                <segue destination="Bu1-7j-nRi" kind="show" id="bkR-GK-jSt"/>
+                                                <action selector="nextButtonTouched:" destination="ckA-Kd-f4r" eventType="touchUpInside" id="Uwl-Ge-Oet"/>
+                                                <segue destination="Bu1-7j-nRi" kind="show" id="kiN-LQ-ZrA"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="THa-uZ-dOX" firstAttribute="leading" secondItem="G6n-uz-qTG" secondAttribute="leading" constant="30" id="Y0J-B7-QKG"/>
-                                        <constraint firstItem="THa-uZ-dOX" firstAttribute="centerY" secondItem="G6n-uz-qTG" secondAttribute="centerY" id="dY9-cA-skB"/>
-                                        <constraint firstAttribute="trailing" secondItem="THa-uZ-dOX" secondAttribute="trailing" constant="236" id="v3N-8x-4nt"/>
+                                        <constraint firstItem="ihv-gr-Z4T" firstAttribute="leading" secondItem="HWy-cq-o6S" secondAttribute="leading" constant="30" id="Air-lO-rda"/>
+                                        <constraint firstAttribute="trailing" secondItem="ihv-gr-Z4T" secondAttribute="trailing" constant="236" id="fyW-Rx-fHu"/>
+                                        <constraint firstItem="ihv-gr-Z4T" firstAttribute="centerY" secondItem="HWy-cq-o6S" secondAttribute="centerY" id="hlV-k4-5t9"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -2919,13 +2919,37 @@ Cgo
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8F1-AK-U3T">
+                                <rect key="frame" x="321.66666666666669" y="603.66666666666663" width="72.333333333333314" height="72.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKD-Eg-J3W">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.333333333333329" height="72.333333333333329"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="plus_icon_white"/>
+                                        <connections>
+                                            <action selector="addButtonTouched:" destination="dPI-IR-nkN" eventType="touchUpInside" id="NlY-yU-6G7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gKD-Eg-J3W" secondAttribute="trailing" id="F6r-3W-gPP"/>
+                                    <constraint firstAttribute="width" secondItem="8F1-AK-U3T" secondAttribute="height" multiplier="1:1" id="KJh-fQ-Nge"/>
+                                    <constraint firstItem="gKD-Eg-J3W" firstAttribute="top" secondItem="8F1-AK-U3T" secondAttribute="top" id="gz3-mH-dza"/>
+                                    <constraint firstAttribute="bottom" secondItem="gKD-Eg-J3W" secondAttribute="bottom" id="nfc-m9-dLJ"/>
+                                    <constraint firstItem="gKD-Eg-J3W" firstAttribute="leading" secondItem="8F1-AK-U3T" secondAttribute="leading" id="wN0-YS-mHV"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MyV-tT-cyY" firstAttribute="top" secondItem="qRx-L2-GDK" secondAttribute="top" id="3Yb-qS-uLk"/>
                             <constraint firstItem="MyV-tT-cyY" firstAttribute="leading" secondItem="qRx-L2-GDK" secondAttribute="leading" id="HRq-HK-Esa"/>
-                            <constraint firstItem="qRx-L2-GDK" firstAttribute="bottom" secondItem="MyV-tT-cyY" secondAttribute="bottom" id="U4n-WO-68v"/>
+                            <constraint firstItem="8F1-AK-U3T" firstAttribute="width" secondItem="MyV-tT-cyY" secondAttribute="width" multiplier="0.175" id="QiS-pP-Coo"/>
                             <constraint firstItem="MyV-tT-cyY" firstAttribute="trailing" secondItem="qRx-L2-GDK" secondAttribute="trailing" id="crG-L7-Ghs"/>
+                            <constraint firstItem="8F1-AK-U3T" firstAttribute="top" secondItem="MyV-tT-cyY" secondAttribute="bottom" constant="5" id="kcp-vh-lvb"/>
+                            <constraint firstItem="qRx-L2-GDK" firstAttribute="bottom" secondItem="8F1-AK-U3T" secondAttribute="bottom" constant="40" id="mXY-0E-l8o"/>
+                            <constraint firstItem="qRx-L2-GDK" firstAttribute="trailing" secondItem="8F1-AK-U3T" secondAttribute="trailing" constant="20" id="whU-WR-yor"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qRx-L2-GDK"/>
                     </view>
@@ -2937,7 +2961,7 @@ Cgo
                                 <action selector="cancelButtonTouched:" destination="dPI-IR-nkN" id="BDn-RO-7AF"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" style="done" id="T9k-7B-DNP">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="T9k-7B-DNP">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveButtonTouched:" destination="dPI-IR-nkN" id="KUr-hh-ROO"/>
@@ -2945,12 +2969,13 @@ Cgo
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonSubstrateView" destination="8F1-AK-U3T" id="Aij-5o-nIV"/>
                         <outlet property="tableView" destination="MyV-tT-cyY" id="zr1-Vo-GLf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Riv-cL-6hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="2260"/>
+            <point key="canvasLocation" x="2528.985507246377" y="2259.7826086956525"/>
         </scene>
         <!--Settings Editing Name View Controller-->
         <scene sceneID="iUF-cx-Sfx">
@@ -3077,7 +3102,7 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q8w-RH-v9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3975" y="2277"/>
+            <point key="canvasLocation" x="4717" y="1599"/>
         </scene>
         <!--Settings Deleting View Controller-->
         <scene sceneID="uDT-Yd-haO">
@@ -3206,7 +3231,89 @@ Cgo
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pll-OT-Gg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3974" y="2955"/>
+            <point key="canvasLocation" x="4717" y="2277"/>
+        </scene>
+        <!--Add Settings Entity View Controller-->
+        <scene sceneID="ZsC-sT-Coh">
+            <objects>
+                <viewController id="CtW-i1-aRE" customClass="AddSettingsEntityViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tTD-z6-n9M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-8a-DV9" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="35" y="133" width="344" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iSQ-GS-8Jy">
+                                        <rect key="frame" x="15" y="0.0" width="314" height="55"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="GJF-QG-2Zd"/>
+                                    <constraint firstAttribute="trailing" secondItem="iSQ-GS-8Jy" secondAttribute="trailing" constant="15" id="LF8-zl-SfJ"/>
+                                    <constraint firstItem="iSQ-GS-8Jy" firstAttribute="leading" secondItem="Ftb-8a-DV9" secondAttribute="leading" constant="15" id="krE-cK-Ke1"/>
+                                    <constraint firstItem="iSQ-GS-8Jy" firstAttribute="top" secondItem="Ftb-8a-DV9" secondAttribute="top" id="ljW-J0-WCp"/>
+                                    <constraint firstAttribute="bottom" secondItem="iSQ-GS-8Jy" secondAttribute="bottom" id="o8d-le-G3Y"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название категории" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHs-1N-CaB">
+                                <rect key="frame" x="45" y="99" width="177" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmS-ax-bbe">
+                                <rect key="frame" x="50" y="195" width="314" height="0.0"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="TmS-ax-bbe" firstAttribute="leading" secondItem="iSQ-GS-8Jy" secondAttribute="leading" id="AuR-Kq-o7c"/>
+                            <constraint firstItem="Ftb-8a-DV9" firstAttribute="leading" secondItem="LvA-s8-OM0" secondAttribute="leading" constant="35" id="F4b-h7-gMk"/>
+                            <constraint firstItem="TmS-ax-bbe" firstAttribute="width" secondItem="iSQ-GS-8Jy" secondAttribute="width" id="MgK-Be-jSX"/>
+                            <constraint firstItem="LvA-s8-OM0" firstAttribute="trailing" secondItem="Ftb-8a-DV9" secondAttribute="trailing" constant="35" id="XjX-te-oTS"/>
+                            <constraint firstItem="xHs-1N-CaB" firstAttribute="leading" secondItem="Ftb-8a-DV9" secondAttribute="leading" constant="10" id="ZAM-de-yHB"/>
+                            <constraint firstItem="Ftb-8a-DV9" firstAttribute="top" secondItem="xHs-1N-CaB" secondAttribute="bottom" constant="13" id="lIV-fA-66x"/>
+                            <constraint firstItem="TmS-ax-bbe" firstAttribute="top" secondItem="Ftb-8a-DV9" secondAttribute="bottom" constant="7" id="oDm-BQ-Pyu"/>
+                            <constraint firstItem="xHs-1N-CaB" firstAttribute="top" secondItem="LvA-s8-OM0" secondAttribute="top" constant="55" id="xmK-Ld-S9B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LvA-s8-OM0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SgR-V9-a0t">
+                        <barButtonItem key="leftBarButtonItem" title="Отменить" id="WvJ-Ew-f1t">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="CtW-i1-aRE" id="DTZ-IK-yUU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Добавить" style="done" id="hIR-Hu-QwU">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveButtonTouched:" destination="CtW-i1-aRE" id="ocm-u8-dfg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="errorLabel" destination="TmS-ax-bbe" id="jVb-za-Dli"/>
+                        <outlet property="itemNameTextField" destination="iSQ-GS-8Jy" id="fu1-kd-vFm"/>
+                        <outlet property="titleLabel" destination="xHs-1N-CaB" id="OVG-Px-raD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XG4-n3-dyw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4716" y="2966"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nUd-Iq-eEx">
@@ -3262,7 +3369,7 @@ Cgo
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7D-6N-gYH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3261" y="2277"/>
+            <point key="canvasLocation" x="4004" y="1599"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gIO-dU-y1g">
@@ -3280,7 +3387,25 @@ Cgo
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Paa-Y6-8Ui" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3261" y="2955"/>
+            <point key="canvasLocation" x="4004" y="2277"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cBg-J8-Hdr">
+            <objects>
+                <navigationController storyboardIdentifier="addNavVC" automaticallyAdjustsScrollViewInsets="NO" id="7HT-Z4-mEW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BYZ-cA-giP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CtW-i1-aRE" kind="relationship" relationship="rootViewController" id="VV6-Yu-3X4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZmJ-XK-QL5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4003" y="2966"/>
         </scene>
     </scenes>
     <resources>
@@ -3292,12 +3417,13 @@ Cgo
         <image name="graph_tabbar_icon" width="29.666666030883789" height="29"/>
         <image name="list_tabbar_icon" width="29.666666030883789" height="29"/>
         <image name="plus_icon" width="458" height="458"/>
+        <image name="plus_icon_white" width="454" height="456"/>
         <image name="save_icon" width="32.333332061767578" height="31.666666030883789"/>
         <image name="settings_tabbar_icon" width="29" height="29.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bkR-GK-jSt"/>
-        <segue reference="ge5-nE-AiN"/>
+        <segue reference="kiN-LQ-ZrA"/>
+        <segue reference="CGj-uN-xFe"/>
         <segue reference="Kho-Py-wFp"/>
         <segue reference="mP2-ek-aAk"/>
         <segue reference="YKV-tg-zEK"/>

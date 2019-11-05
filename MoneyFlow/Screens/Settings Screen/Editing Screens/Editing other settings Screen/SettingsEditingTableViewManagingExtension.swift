@@ -77,11 +77,11 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
                 let entityName = self!.settingsEntites[indexPath.row].name
                 if self!.operationsCount[entityName]! > 0 {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let navVC = storyboard.instantiateViewController(withIdentifier: self!.deleteVCStoryboard) as! UINavigationController
-                    let editVC = navVC.viewControllers[0] as! SettingsDeletingViewController
-                    editVC.delegate = self
-                    editVC.deletingItemName = entityName
-                    editVC.settingsType = self!.settingsType
+                    let navVC = storyboard.instantiateViewController(withIdentifier: self!.deleteVCStoryboardID) as! UINavigationController
+                    let deleteVC = navVC.viewControllers[0] as! SettingsDeletingViewController
+                    deleteVC.delegate = self
+                    deleteVC.deletingItemName = entityName
+                    deleteVC.settingsType = self!.settingsType
                     self!.present(navVC, animated: true)
                     tableView.setEditing(false, animated: true)
                 } else {

@@ -93,6 +93,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
                 tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
             } else {
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
             }
             self.sendUpdateRequirementToVCs()
         }
