@@ -136,6 +136,10 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         operationsCount[deletedItem] = nil
         presenterSettingEntites = presenterSettingEntites.compactMap { $0.name == deletedItem ? nil : $0 }
         settingsEntites = presenterSettingEntites
+        if settingsEntites.compactMap({ $0.enable ? $0 : nil }).isEmpty {
+            settingsEntites[0].enable = true
+            presenterSettingEntites = settingsEntites
+        }
         tableView.reloadData()
         replaceEntityInOperations(type: settingsType, oldValue: deletedItem, newValue: moveIntoItem, syncronize: true)
         presenter.syncronize()
@@ -146,6 +150,13 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         operationsCount[name] = nil
         presenterSettingEntites = presenterSettingEntites.compactMap { $0.name == name ? nil : $0 }
         settingsEntites = presenterSettingEntites
+        if settingsEntites.compactMap({ $0.enable ? $0 : nil }).isEmpty {
+            let cell = tableView.visibleCells[0]
+            let index = tableView.indexPath(for: cell)!.row
+            (cell as! SettingEntityTableViewCell).enableSwitch.setOn(true, animated: true)
+            settingsEntites[index].enable = true
+            presenterSettingEntites = settingsEntites
+        }
         presenter.syncronize()
         delegate?.dataChanged()
     }
