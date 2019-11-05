@@ -346,9 +346,9 @@
 			children = (
 				F97ECABA236E11D9000BF62D /* SettingsEditingPresenter.swift */,
 				F962985D236DE77800A18EE7 /* SettingEntityTableViewCell.swift */,
-				F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */,
 				F9C567BE236EE56B00D57969 /* Editing currencies Screen */,
 				F9C567BF236EE68000D57969 /* Editing other settings Screen */,
+				F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */,
 			);
 			path = "Editing Screens";
 			sourceTree = "<group>";

@@ -28,7 +28,6 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
     private var accountTitle: String = "Не авторизован"
     
     private let presenter = SettingsPresenter.shared
-    private var settingEditingPresenter: SettingEditingPresenter?
     var needToUpdate: Bool = false
 
     @IBAction func signOutButtonTouched(_ sender: UIButton) {
@@ -46,6 +45,7 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         loadData()
         let securityEnabled = UserDefaults().bool(forKey: GlobalConstants.securityEnablingDefaultsKey)
         securityEnablingSwitch.setOn(securityEnabled, animated: false)
+        SettingEditingPresenter.shared.configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +56,7 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         }
     }
     
-    private func loadData(updatePresenter: Bool = true) {
+    private func loadData() {
         var array = [String]()
         array.append("\(presenter.currencies.count)")
         array.append("\(presenter.accounts.count)")
@@ -65,13 +65,9 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         array.append("\(presenter.contacts.count)")
         settingValues = array
         accountTitle = Auth.auth().currentUser?.email ?? "Не авторизован"
-        if updatePresenter {
-            settingEditingPresenter = nil
-            DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
-                self.settingEditingPresenter = SettingEditingPresenter()
-            }
+        DispatchQueue.global(qos: .userInitiated).async {
+            SettingEditingPresenter.shared.updateData()
         }
-        
     }
     
     private func showSignOutActionSheet() {
@@ -100,8 +96,8 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         }
     }
     
-    func dataChanged(updatePresenter: Bool) {
-        loadData(updatePresenter: updatePresenter)
+    func dataChanged() {
+        loadData()
         tableView.reloadData()
         sendUpdateRequirementToVCs()
     }
@@ -120,10 +116,8 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
         if let navVC = segue.destination as? UINavigationController {
             if let vc = navVC.viewControllers[0] as? SettingsEditingCurrenciesViewController {
                 vc.delegate = self
-                vc.presenter = settingEditingPresenter
             } else if let vc = navVC.viewControllers[0] as? SettingsEditingViewController {
                 vc.delegate = self
-                vc.presenter = settingEditingPresenter
                 if let settingsType = sender as? SettingsEntityType {
                     vc.settingsType = settingsType
                 }

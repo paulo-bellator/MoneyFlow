@@ -20,8 +20,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
     var settingsType: SettingsEntityType = .accounts
     var settingsEntites = [SettingsEntity]()
     private(set) var operationsCount = [String: Int]()
-    private lazy var defaultPresenter = SettingEditingPresenter()
-    weak var presenter: SettingEditingPresenter!
+    private let presenter = SettingEditingPresenter.shared
     weak var delegate: SettingsEditingViewControllerDelegate?
     
     private var presenterSettingEntites: [SettingsEntity] {
@@ -60,7 +59,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
             if presenterSettingEntites != settingsEntites {
                 presenterSettingEntites = settingsEntites
                 presenter.syncronize()
-                delegate?.dataChanged(updatePresenter: true)
+                delegate?.dataChanged()
             }
             self.dismiss(animated: true)
         }
@@ -72,10 +71,6 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        if presenter == nil {
-            presenter = defaultPresenter
-        }
         
         settingsEntites = presenterSettingEntites
         switch settingsType {
@@ -106,14 +101,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
     func settingEntityRenamed(type: SettingsEntityType, oldValue: String, newValue: String) {
         operationsCount[newValue] = operationsCount[oldValue]
         operationsCount[oldValue] = nil
-        for (index, var settingsEntity) in settingsEntites.enumerated() {
-            if settingsEntity.name == oldValue {
-                settingsEntity.name = newValue
-                settingsEntites[index] = settingsEntity
-                tableView.reloadData()
-                break
-            }
-        }
+
         var originSettingsEntites = presenterSettingEntites
         for (index, var settingsEntity) in originSettingsEntites.enumerated() {
             if settingsEntity.name == oldValue {
@@ -123,6 +111,9 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
             }
         }
         presenterSettingEntites = originSettingsEntites
+        settingsEntites = presenterSettingEntites
+        tableView.reloadData()
+        
         switch settingsType {
         case .accounts: presenter.replaceAccountInOperations(currentAccount: oldValue, newAccount: newValue, syncronize: true)
         case .incomeCategories: presenter.replaceIncomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: true)
@@ -132,7 +123,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         }
         
         presenter.syncronize()
-        delegate?.dataChanged(updatePresenter: false)
+        delegate?.dataChanged()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

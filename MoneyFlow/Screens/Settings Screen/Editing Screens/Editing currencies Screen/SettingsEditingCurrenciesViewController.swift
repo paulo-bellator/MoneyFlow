@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingsEditingViewControllerDelegate: class {
-    func dataChanged(updatePresenter: Bool)
+    func dataChanged()
 }
 
 class SettingsEditingCurrenciesViewController: UIViewController {
@@ -22,8 +22,7 @@ class SettingsEditingCurrenciesViewController: UIViewController {
     let currencySignFont = UIFont(name: "HelveticaNeue-Light", size: 14.0)!
     let settingsType: SettingsEntityType = .currencies
     lazy var currencies = presenter.currencies
-    private lazy var defaultPresenter = SettingEditingPresenter()
-    weak var presenter: SettingEditingPresenter!
+    let presenter = SettingEditingPresenter.shared
     weak var delegate: SettingsEditingViewControllerDelegate?
     
     
@@ -37,7 +36,7 @@ class SettingsEditingCurrenciesViewController: UIViewController {
             if presenter.currencies != currencies {
                 presenter.currencies = currencies
                 presenter.syncronize()
-                delegate?.dataChanged(updatePresenter: true)
+                delegate?.dataChanged()
             }
             self.dismiss(animated: true)
         }
@@ -53,10 +52,6 @@ class SettingsEditingCurrenciesViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        
-        if presenter == nil {
-            presenter = defaultPresenter
-        }
     }
     
     private func showErrorAlertSheet() {

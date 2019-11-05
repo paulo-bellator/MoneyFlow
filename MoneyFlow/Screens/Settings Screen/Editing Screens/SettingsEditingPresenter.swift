@@ -10,6 +10,8 @@ import Foundation
 
 class SettingEditingPresenter {
     
+    static let shared = SettingEditingPresenter()
+    
     private let settingPresenter = SettingsPresenter.shared
     
     var outcomeCategories: [SettingsEntity] {
@@ -47,28 +49,44 @@ class SettingEditingPresenter {
         settingPresenter.syncronize()
     }
     
-    init() {
-        outcomeCategories.forEach { self.operationsCountWithOutcomeCategories[$0.name] = 0 }
-        incomeCategories.forEach { self.operationsCountWithIncomeCategories[$0.name] = 0 }
-        contacts.forEach { self.operationsCountWithContacts[$0.name] = 0 }
-        accounts.forEach { self.operationsCountWithAccounts[$0.name] = 0 }
-        outcomeCategories.forEach { self.operationsCountWithOutcomeCategories[$0.name] = 0 }
+    private init() {
+        updateData()
+    }
+    
+    func configure() {}
+    
+    func updateData() {
+        var outcomeCategoriesCountTemp = [String: Int]()
+        var incomeCategoriesCountTemp = [String: Int]()
+        var contactsCountTemp = [String: Int]()
+        var accountsCountTemp = [String: Int]()
+        var currenciesCountTemp = [Currency: Int]()
         
-        let operations = MainData.source.operations
-        for operation in operations {
-            operationsCountWithCurrencies.incrementByOne(key: operation.currency)
-            operationsCountWithAccounts.incrementByOne(key: operation.account)
+        outcomeCategories.forEach { outcomeCategoriesCountTemp[$0.name] = 0 }
+        incomeCategories.forEach { incomeCategoriesCountTemp[$0.name] = 0 }
+        contacts.forEach { contactsCountTemp[$0.name] = 0 }
+        accounts.forEach { accountsCountTemp[$0.name] = 0 }
+        currencies.forEach { currenciesCountTemp[$0.currency] = 0 }
+        
+        for operation in MainData.source.operations {
+            currenciesCountTemp.incrementByOne(key: operation.currency)
+            accountsCountTemp.incrementByOne(key: operation.account)
             
             if let flowOp = operation as? FlowOperation {
                 if flowOp.value < 0 {
-                    operationsCountWithOutcomeCategories.incrementByOne(key: flowOp.category)
+                    outcomeCategoriesCountTemp.incrementByOne(key: flowOp.category)
                 } else {
-                    operationsCountWithIncomeCategories.incrementByOne(key: flowOp.category)
+                    incomeCategoriesCountTemp.incrementByOne(key: flowOp.category)
                 }
             } else if let debtOp = operation as? DebtOperation {
-                operationsCountWithContacts.incrementByOne(key: debtOp.contact)
+                contactsCountTemp.incrementByOne(key: debtOp.contact)
             }
         }
+        operationsCountWithOutcomeCategories = outcomeCategoriesCountTemp
+        operationsCountWithIncomeCategories = incomeCategoriesCountTemp
+        operationsCountWithContacts = contactsCountTemp
+        operationsCountWithAccounts = accountsCountTemp
+        operationsCountWithCurrencies = currenciesCountTemp
     }
     
     func replaceIncomeCategoryInOperations(currentCategory: String, newCategory: String, syncronize: Bool = false) {
@@ -115,9 +133,9 @@ class SettingEditingPresenter {
         if syncronize { MainData.source.save() }
     }
     
-    private func edit(operation: Operation, date: Date? = nil, value: Double? = nil, currency: Currency? = nil, categoryOrContact: String? = nil, account: String? = nil, comment: String? = "unedited comment") {
+    private func edit(operation: Operation, date: Date? = nil, value: Double? = nil, currency: Currency? = nil, categoryOrContact: String? = nil, account: String? = nil, comment: String? = Constants.unspecifiedCommentValue) {
         var resultComment = comment
-        if comment == "unedited comment" {
+        if comment == Constants.unspecifiedCommentValue {
             resultComment = ((operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment)
         }
         MainData.source.editOperation(
@@ -131,6 +149,12 @@ class SettingEditingPresenter {
         )
     }
     
+}
+
+private extension SettingEditingPresenter {
+    private struct Constants {
+        static let unspecifiedCommentValue = "unspecifiedCommentValue777"
+    }
 }
 
 private extension Dictionary where Key == String, Value == Int {
