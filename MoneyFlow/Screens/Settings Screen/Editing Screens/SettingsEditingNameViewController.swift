@@ -46,14 +46,27 @@ class SettingsEditingNameViewController: UIViewController {
         newNameTextField.superview!.layer.borderWidth = 0.0
         underNewNameErrorLabel.isHidden = true
         
-        if let newName = newNameTextField.text, newName != "", newName != currentValue {
-            delegate?.settingEntityRenamed(type: settingsType, oldValue: currentValue, newValue: newName)
+        let presenter = SettingEditingPresenter.shared
+        var currentNames = [String]()
+        switch settingsType! {
+        case .accounts: currentNames = presenter.accounts.map { $0.name }
+        case .incomeCategories: currentNames = presenter.incomeCategories.map { $0.name }
+        case .outcomeCategories: currentNames = presenter.outcomeCategories.map { $0.name }
+        case .contacts: currentNames = presenter.contacts.map { $0.name }
+        default: break
+        }
+        
+        if let newName = newNameTextField.text, newName.trailingSpacesTrimmed != "", !currentNames.contains(newName.trailingSpacesTrimmed) {
+            delegate?.settingEntityRenamed(type: settingsType, oldValue: currentValue, newValue: newName.trailingSpacesTrimmed)
             dismiss(animated: true)
         } else {
             newNameTextField.superview!.layer.borderWidth = 1.0
             newNameTextField.superview!.layer.borderColor = #colorLiteral(red: 0.9333333333, green: 0.4078431373, blue: 0.4509803922, alpha: 1)
-            if newNameTextField.text == currentValue {
-                underNewNameErrorLabel.text = "New name should not be the same as current name."
+            if currentNames.contains((newNameTextField.text ?? "").trailingSpacesTrimmed) {
+                underNewNameErrorLabel.text = "Элемент c таким именем уже существует."
+                underNewNameErrorLabel.isHidden = false
+            } else {
+                underNewNameErrorLabel.text = "Имя не должно быть пустым или состоять из одних пробелов."
                 underNewNameErrorLabel.isHidden = false
             }
             newNameTextField.becomeFirstResponder()
@@ -62,6 +75,15 @@ class SettingsEditingNameViewController: UIViewController {
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
-    
 
+}
+
+extension String {
+    var trailingSpacesTrimmed: String {
+        var newString = self
+        while newString.last?.isWhitespace == true {
+            newString = String(newString.dropLast())
+        }
+        return newString
+    }
 }
