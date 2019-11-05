@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate, SettingsDeletingViewControllerDelegate {
     
+    let renameVCStoryboardID = "editNameNavVC"
+    let deleteVCStoryboard = "deleteNavVC"
     let nameEditingSegueIdentifier = "nameEditingSegue"
     let headerTableViewCellIdentifier = "headerCell"
     let settingEntityTableViewCellIdentifier = "settingEntityCell"
@@ -126,6 +128,14 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         settingsEntites = presenterSettingEntites
         tableView.reloadData()
         replaceEntityInOperations(type: settingsType, oldValue: deletedItem, newValue: moveIntoItem, syncronize: true)
+        presenter.syncronize()
+        delegate?.dataChanged()
+    }
+    
+    func deleteEntity(name: String) {
+        operationsCount[name] = nil
+        presenterSettingEntites = presenterSettingEntites.compactMap { $0.name == name ? nil : $0 }
+        settingsEntites = presenterSettingEntites
         presenter.syncronize()
         delegate?.dataChanged()
     }

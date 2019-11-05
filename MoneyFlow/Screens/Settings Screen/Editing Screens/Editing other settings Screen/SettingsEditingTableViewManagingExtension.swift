@@ -52,7 +52,7 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
         let edit = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, nil) in
             if self != nil {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let navVC = storyboard.instantiateViewController(withIdentifier: "editNameNavVC") as! UINavigationController
+                let navVC = storyboard.instantiateViewController(withIdentifier: self!.renameVCStoryboardID) as! UINavigationController
                 let editVC = navVC.viewControllers[0] as! SettingsEditingNameViewController
                 editVC.delegate = self
                 editVC.currentValue = self!.settingsEntites[indexPath.row].name
@@ -77,7 +77,7 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
                 let entityName = self!.settingsEntites[indexPath.row].name
                 if self!.operationsCount[entityName]! > 0 {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let navVC = storyboard.instantiateViewController(withIdentifier: "deleteNavVC") as! UINavigationController
+                    let navVC = storyboard.instantiateViewController(withIdentifier: self!.deleteVCStoryboard) as! UINavigationController
                     let editVC = navVC.viewControllers[0] as! SettingsDeletingViewController
                     editVC.delegate = self
                     editVC.deletingItemName = entityName
@@ -85,7 +85,8 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
                     self!.present(navVC, animated: true)
                     tableView.setEditing(false, animated: true)
                 } else {
-                    print("deleted")
+                    self!.deleteEntity(name: self!.settingsEntites[indexPath.row].name)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             }
         }
