@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate, SettingsDeletingViewControllerDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let renameVCStoryboardID = "editNameNavVC"
     let deleteVCStoryboard = "deleteNavVC"
     let nameEditingSegueIdentifier = "nameEditingSegue"
@@ -45,15 +47,6 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         }
     }
     
-
-    @IBOutlet weak var tableView: UITableView!
-    
-    
-
-    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true)
-    }
-    
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
         if settingsEntites.compactMap({ $0.enable ? $0 : nil }).isEmpty {
             showErrorAlertSheet()
@@ -67,6 +60,9 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         }
     }
     
+    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
