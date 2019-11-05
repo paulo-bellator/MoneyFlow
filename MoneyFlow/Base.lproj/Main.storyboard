@@ -207,7 +207,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aCK-Ph-8Hf">
                                                     <rect key="frame" x="282" y="27.333333333333332" width="100" height="37.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-3S-C25">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="17.333333333333332"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="B0I-TM-srh"/>
@@ -216,7 +216,7 @@
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Альфа банк" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-of-txr">
                                                             <rect key="frame" x="0.0" y="25.333333333333332" width="100" height="12.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="10"/>
                                                             <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1829,13 +1829,13 @@ Flow</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Валюты" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VQ-qi-JCc">
-                                            <rect key="frame" x="30.000000000000004" y="24.666666666666671" width="48.333333333333343" height="16"/>
+                                            <rect key="frame" x="29.999999999999996" y="24.999999999999996" width="48.666666666666657" height="15.333333333333332"/>
                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIG-7r-xCL">
-                                            <rect key="frame" x="344" y="24.666666666666671" width="40" height="16"/>
+                                            <rect key="frame" x="344" y="24.999999999999996" width="40" height="15.333333333333332"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Roe-Th-rgl"/>
                                             </constraints>
@@ -1865,16 +1865,16 @@ Flow</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="L1M-p3-GkB">
-                                            <rect key="frame" x="17" y="23" width="377" height="17.333333333333329"/>
+                                            <rect key="frame" x="17" y="23.333333333333336" width="377" height="16.333333333333336"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="24 октября" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rA-31-SH4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="17.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="301" height="16.333333333333332"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34 178 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owb-To-0ji">
-                                                    <rect key="frame" x="322" y="0.0" width="55" height="17.333333333333332"/>
+                                                    <rect key="frame" x="321" y="0.0" width="56" height="16.333333333333332"/>
                                                     <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3079,6 +3079,135 @@ Cgo
             </objects>
             <point key="canvasLocation" x="3975" y="2277"/>
         </scene>
+        <!--Settings Deleting View Controller-->
+        <scene sceneID="uDT-Yd-haO">
+            <objects>
+                <viewController id="UeD-aw-hlM" customClass="SettingsDeletingViewController" customModule="MoneyFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lpG-dW-dur">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAh-lW-Pmz" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="128" width="342" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Уход и здоровье" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wex-Zy-aoU">
+                                        <rect key="frame" x="15" y="0.0" width="312" height="55"/>
+                                        <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Wex-Zy-aoU" secondAttribute="bottom" id="6SH-qr-QO1"/>
+                                    <constraint firstAttribute="height" constant="55" id="isw-Mf-WHx"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wex-Zy-aoU" secondAttribute="trailing" constant="15" id="pzA-ZG-FxS"/>
+                                    <constraint firstItem="Wex-Zy-aoU" firstAttribute="top" secondItem="MAh-lW-Pmz" secondAttribute="top" id="uGF-vH-YEZ"/>
+                                    <constraint firstItem="Wex-Zy-aoU" firstAttribute="leading" secondItem="MAh-lW-Pmz" secondAttribute="leading" constant="15" id="xun-EH-enT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Удаляемая категория" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZk-Ff-Vjj">
+                                <rect key="frame" x="46" y="94" width="189" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnl-0q-W7a" customClass="RoundedView" customModule="MoneyFlow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="293.66666666666669" width="342" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Траты на себя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raU-ZY-sVV">
+                                        <rect key="frame" x="15" y="0.0" width="312" height="55"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="raU-ZY-sVV" secondAttribute="trailing" constant="15" id="1sZ-Xa-SHv"/>
+                                    <constraint firstItem="raU-ZY-sVV" firstAttribute="top" secondItem="Xnl-0q-W7a" secondAttribute="top" id="4CU-10-rH2"/>
+                                    <constraint firstItem="raU-ZY-sVV" firstAttribute="leading" secondItem="Xnl-0q-W7a" secondAttribute="leading" constant="15" id="9G8-Ph-crE"/>
+                                    <constraint firstAttribute="bottom" secondItem="raU-ZY-sVV" secondAttribute="bottom" id="X5s-2l-4IR"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория для переноса" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQi-Rf-AfO">
+                                <rect key="frame" x="46" y="259.66666666666669" width="215" height="21"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Данная категория будет удалена, а все операции из нее будут перенесены." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAC-8a-igt">
+                                <rect key="frame" x="51" y="190" width="312" height="29.666666666666657"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В эту категорию будут перенесены операции из удаленной категории." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="br5-Of-V4M">
+                                <rect key="frame" x="51" y="355.66666666666669" width="312" height="29.666666666666686"/>
+                                <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                <color key="textColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xnl-0q-W7a" firstAttribute="top" secondItem="SQi-Rf-AfO" secondAttribute="bottom" constant="13" id="1Qg-9k-x2Q"/>
+                            <constraint firstItem="MAh-lW-Pmz" firstAttribute="top" secondItem="qZk-Ff-Vjj" secondAttribute="bottom" constant="13" id="8A6-r7-T1S"/>
+                            <constraint firstItem="5LO-Aj-adF" firstAttribute="trailing" secondItem="MAh-lW-Pmz" secondAttribute="trailing" constant="36" id="D9U-z6-vms"/>
+                            <constraint firstItem="qZk-Ff-Vjj" firstAttribute="top" secondItem="5LO-Aj-adF" secondAttribute="top" constant="50" id="Dp2-D8-95E"/>
+                            <constraint firstItem="SQi-Rf-AfO" firstAttribute="leading" secondItem="Xnl-0q-W7a" secondAttribute="leading" constant="10" id="LNq-LD-3F5"/>
+                            <constraint firstItem="Xnl-0q-W7a" firstAttribute="leading" secondItem="MAh-lW-Pmz" secondAttribute="leading" id="MMP-fu-CAV"/>
+                            <constraint firstItem="br5-Of-V4M" firstAttribute="top" secondItem="Xnl-0q-W7a" secondAttribute="bottom" constant="7" id="OHR-WT-UAY"/>
+                            <constraint firstItem="br5-Of-V4M" firstAttribute="width" secondItem="raU-ZY-sVV" secondAttribute="width" id="PJv-Nr-709"/>
+                            <constraint firstItem="qZk-Ff-Vjj" firstAttribute="leading" secondItem="MAh-lW-Pmz" secondAttribute="leading" constant="10" id="VLf-P6-pZw"/>
+                            <constraint firstItem="SQi-Rf-AfO" firstAttribute="top" secondItem="OAC-8a-igt" secondAttribute="bottom" constant="40" id="WYd-RO-Ie0"/>
+                            <constraint firstItem="OAC-8a-igt" firstAttribute="top" secondItem="MAh-lW-Pmz" secondAttribute="bottom" constant="7" id="Wkv-nm-PGn"/>
+                            <constraint firstItem="Xnl-0q-W7a" firstAttribute="height" secondItem="MAh-lW-Pmz" secondAttribute="height" id="Ztg-Kd-DXc"/>
+                            <constraint firstItem="MAh-lW-Pmz" firstAttribute="leading" secondItem="5LO-Aj-adF" secondAttribute="leading" constant="36" id="eFv-a0-D63"/>
+                            <constraint firstItem="Xnl-0q-W7a" firstAttribute="width" secondItem="MAh-lW-Pmz" secondAttribute="width" id="kY5-n9-Wgy"/>
+                            <constraint firstItem="br5-Of-V4M" firstAttribute="leading" secondItem="raU-ZY-sVV" secondAttribute="leading" id="nFS-tP-Ojd"/>
+                            <constraint firstItem="OAC-8a-igt" firstAttribute="leading" secondItem="Wex-Zy-aoU" secondAttribute="leading" id="pcR-zH-TbQ"/>
+                            <constraint firstItem="OAC-8a-igt" firstAttribute="width" secondItem="Wex-Zy-aoU" secondAttribute="width" id="tKm-1h-Mtk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5LO-Aj-adF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qs4-bH-iah">
+                        <barButtonItem key="leftBarButtonItem" title="Отменить" id="alG-mU-N2c">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="UeD-aw-hlM" id="tl9-Zh-Wh7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Сохранить" style="done" id="vzE-d5-giK">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveButtonTouched:" destination="UeD-aw-hlM" id="oR1-xv-6u1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deletingInfoSubtitleLabel" destination="OAC-8a-igt" id="ngO-cs-lJp"/>
+                        <outlet property="deletingItemTextField" destination="Wex-Zy-aoU" id="Prw-ZE-g3w"/>
+                        <outlet property="deletingItemTitleLabel" destination="qZk-Ff-Vjj" id="ECO-Tq-1bg"/>
+                        <outlet property="moveIntoInfoSubtitleLabel" destination="br5-Of-V4M" id="Hhr-UY-j7B"/>
+                        <outlet property="moveIntoItemTextField" destination="raU-ZY-sVV" id="dwk-s8-7wo"/>
+                        <outlet property="moveIntoItemTitleLabel" destination="SQi-Rf-AfO" id="ueW-nV-4E9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pll-OT-Gg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3974" y="2955"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="nUd-Iq-eEx">
             <objects>
@@ -3134,6 +3263,24 @@ Cgo
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7D-6N-gYH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3261" y="2277"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gIO-dU-y1g">
+            <objects>
+                <navigationController storyboardIdentifier="deleteNavVC" automaticallyAdjustsScrollViewInsets="NO" id="tOu-he-74l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jif-IU-rLO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UeD-aw-hlM" kind="relationship" relationship="rootViewController" id="Ctg-DZ-p7b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Paa-Y6-8Ui" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3261" y="2955"/>
         </scene>
     </scenes>
     <resources>

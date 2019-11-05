@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate {
+class SettingsEditingViewController: UIViewController, SettingsEditingNameViewControllerDelegate, SettingsDeletingViewControllerDelegate {
     
     let nameEditingSegueIdentifier = "nameEditingSegue"
     let headerTableViewCellIdentifier = "headerCell"
@@ -113,26 +113,30 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         presenterSettingEntites = originSettingsEntites
         settingsEntites = presenterSettingEntites
         tableView.reloadData()
-        
-        switch settingsType {
-        case .accounts: presenter.replaceAccountInOperations(currentAccount: oldValue, newAccount: newValue, syncronize: true)
-        case .incomeCategories: presenter.replaceIncomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: true)
-        case .outcomeCategories: presenter.replaceOutcomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: true)
-        case .contacts: presenter.replaceContactInOperations(currentContact: oldValue, newContact: newValue, syncronize: true)
-        default: break
-        }
-        
+        replaceEntityInOperations(type: settingsType, oldValue: oldValue, newValue: newValue, syncronize: true)
         presenter.syncronize()
         delegate?.dataChanged()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nameEditVC = segue.destination as? SettingsEditingNameViewController {
-            nameEditVC.delegate = self
-            nameEditVC.settingsType = settingsType
-            if let indexPath = sender as? IndexPath {
-                nameEditVC.currentValue = settingsEntites[indexPath.row].name
-            }
+    func settingEntityDeleted(type: SettingsEntityType, deletedItem: String, moveIntoItem: String) {
+        operationsCount[moveIntoItem]! += operationsCount[deletedItem]!
+        operationsCount[deletedItem] = nil
+        
+        presenterSettingEntites = presenterSettingEntites.compactMap { $0.name == deletedItem ? nil : $0 }
+        settingsEntites = presenterSettingEntites
+        tableView.reloadData()
+        replaceEntityInOperations(type: settingsType, oldValue: deletedItem, newValue: moveIntoItem, syncronize: true)
+        presenter.syncronize()
+        delegate?.dataChanged()
+    }
+    
+    private func replaceEntityInOperations(type: SettingsEntityType, oldValue: String, newValue: String, syncronize: Bool = false) {
+        switch type {
+        case .accounts: presenter.replaceAccountInOperations(currentAccount: oldValue, newAccount: newValue, syncronize: syncronize)
+        case .incomeCategories: presenter.replaceIncomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: syncronize)
+        case .outcomeCategories: presenter.replaceOutcomeCategoryInOperations(currentCategory: oldValue, newCategory: newValue, syncronize: syncronize)
+        case .contacts: presenter.replaceContactInOperations(currentContact: oldValue, newContact: newValue, syncronize: syncronize)
+        default: break
         }
     }
     

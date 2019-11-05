@@ -58,6 +58,7 @@
 		F995B0C2232A4F2E008DF78D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */; };
 		F995B0C4232A555F008DF78D /* FirebaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */; };
 		F995B0C6232A95EA008DF78D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995B0C5232A95EA008DF78D /* LoadingViewController.swift */; };
+		F99670AE2371BF6000A70591 /* SettingsDeletingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99670AD2371BF6000A70591 /* SettingsDeletingViewController.swift */; };
 		F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */; };
 		F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A4F8952333D402008D606A /* SummaryPresenter.swift */; };
 		F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* OperationsViewController.swift */; };
@@ -149,6 +150,7 @@
 		F995B0C1232A4F2E008DF78D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F995B0C3232A555F008DF78D /* FirebaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataSource.swift; sourceTree = "<group>"; };
 		F995B0C5232A95EA008DF78D /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		F99670AD2371BF6000A70591 /* SettingsDeletingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDeletingViewController.swift; sourceTree = "<group>"; };
 		F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationViewController.swift; sourceTree = "<group>"; };
 		F9A4F8952333D402008D606A /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		F9A980FB2321409600F630F9 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				F9C567BE236EE56B00D57969 /* Editing currencies Screen */,
 				F9C567BF236EE68000D57969 /* Editing other settings Screen */,
 				F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */,
+				F99670AD2371BF6000A70591 /* SettingsDeletingViewController.swift */,
 			);
 			path = "Editing Screens";
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,
 				F9E1F5FE234B5898000B6DB4 /* ButtonSelectorView.swift in Sources */,
 				F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */,
+				F99670AE2371BF6000A70591 /* SettingsDeletingViewController.swift in Sources */,
 				F9063DE4232139FE00F08E84 /* DebtOperation.swift in Sources */,
 				F98D8BAD2364D95E0080A08B /* AccountsPresenter.swift in Sources */,
 				F98B1845235F678300FB7A48 /* ManagingAddingTableViewExtension.swift in Sources */,

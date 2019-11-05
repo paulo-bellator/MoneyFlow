@@ -51,7 +51,6 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
         }
         let edit = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, nil) in
             if self != nil {
-
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let navVC = storyboard.instantiateViewController(withIdentifier: "editNameNavVC") as! UINavigationController
                 let editVC = navVC.viewControllers[0] as! SettingsEditingNameViewController
@@ -69,22 +68,26 @@ extension SettingsEditingViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard !settingsEntites.isEmpty else { return nil }
+        guard settingsEntites.count > 1 else { return nil }
         if settingsType == .accounts && settingsEntites[indexPath.row].name == "Наличные" {
             return nil
         }
-        let delete = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, view, nil) in
-//            let idOfOperationsToRemove = self.operationsByDays[indexPath.section].ops.remove(at: indexPath.row).id
-//            self.presenter.removeOperationWith(identifier: idOfOperationsToRemove)
-//            self.presenter.syncronize()
-            
-//            if self.operationsByDays[indexPath.section].ops.isEmpty {
-//                self.operationsByDays.remove(at: indexPath.section)
-//                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
-//            } else {
-//                tableView.deleteRows(at: [indexPath], with: .fade)
-//            }
-//            self.sendUpdateRequirementToVCs()
+        let delete = UIContextualAction(style: .destructive, title: "") { [weak self] (action, view, nil) in
+            if self != nil {
+                let entityName = self!.settingsEntites[indexPath.row].name
+                if self!.operationsCount[entityName]! > 0 {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let navVC = storyboard.instantiateViewController(withIdentifier: "deleteNavVC") as! UINavigationController
+                    let editVC = navVC.viewControllers[0] as! SettingsDeletingViewController
+                    editVC.delegate = self
+                    editVC.deletingItemName = entityName
+                    editVC.settingsType = self!.settingsType
+                    self!.present(navVC, animated: true)
+                    tableView.setEditing(false, animated: true)
+                } else {
+                    print("deleted")
+                }
+            }
         }
         delete.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
         delete.image = #imageLiteral(resourceName: "delete_icon")
