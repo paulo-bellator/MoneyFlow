@@ -22,6 +22,7 @@ class SettingsEditingNameViewController: UIViewController {
     weak var delegate: SettingsEditingNameViewControllerDelegate?
     var settingsType: SettingsEntityType!
     var currentValue: String!
+    private var currentNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +39,10 @@ class SettingsEditingNameViewController: UIViewController {
         default:
             message = "Элемент так же будет переименован во всех операциях, относящихся к нему."
         }
+        
         underCurrentNameMessageLabel.text = message
-        newNameTextField.becomeFirstResponder()
-    }
-    
-    @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        newNameTextField.superview!.layer.borderWidth = 0.0
-        underNewNameErrorLabel.isHidden = true
         
         let presenter = SettingEditingPresenter.shared
-        var currentNames = [String]()
         switch settingsType! {
         case .accounts: currentNames = presenter.accounts.map { $0.name }
         case .incomeCategories: currentNames = presenter.incomeCategories.map { $0.name }
@@ -55,6 +50,13 @@ class SettingsEditingNameViewController: UIViewController {
         case .contacts: currentNames = presenter.contacts.map { $0.name }
         default: break
         }
+        
+        newNameTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
+        newNameTextField.superview!.layer.borderWidth = 0.0
+        underNewNameErrorLabel.isHidden = true
         
         if let newName = newNameTextField.text, newName.trailingSpacesTrimmed != "", !currentNames.contains(newName.trailingSpacesTrimmed) {
             delegate?.settingEntityRenamed(type: settingsType, oldValue: currentValue, newValue: newName.trailingSpacesTrimmed)
