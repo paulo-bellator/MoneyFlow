@@ -181,6 +181,9 @@ extension CombinedSettingDataSource {
         static var settings: String {
             return "\(deviceFolder)/\(settingsFile)"
         }
+        static var doesNotExistError: String {
+            return "Object " + settings + " does not exist."
+        }
     }
     private struct Settings: Codable {
        var uploadDate: Date = Date()

@@ -214,6 +214,9 @@ extension CombinedDataSource {
         static var operations: String {
             return "\(deviceFolder)/\(operationsFile)"
         }
+        static var doesNotExistError: String {
+            return "Object " + operations + " does not exist."
+        }
     }
     
     private struct UserDefaultsKeys {

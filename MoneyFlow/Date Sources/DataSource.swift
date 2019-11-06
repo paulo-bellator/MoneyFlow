@@ -64,9 +64,9 @@ protocol CloudSettingsDataSourceDelegate: class {
 class MainData {
 //    static let source: OperationDataSource = CombinedDataSource.shared
 //    static let settings: SettingsDataSource = CombinedSettingDataSource.shared
-    static let source: OperationDataSource = DefaultDataSource.shared
-    static let settings: SettingsDataSource = DefaultSettingsDataSource.shared
-//    static var source: OperationDataSource = FirebaseDataSource.shared
-//    static let settings: SettingsDataSource = FirebaseSettingsDataSource.shared
+//    static let source: OperationDataSource = DefaultDataSource.shared
+//    static let settings: SettingsDataSource = DefaultSettingsDataSource.shared
+    static var source: OperationDataSource = FirebaseDataSource.shared
+    static let settings: SettingsDataSource = FirebaseSettingsDataSource.shared
 }
 

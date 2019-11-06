@@ -108,6 +108,9 @@ extension CombinedIDGenerator {
         static var nextID: String {
             return "\(deviceFolder)/\(nextIDFile)"
         }
+        static var doesNotExistError: String {
+            return "Object " + nextID + " does not exist."
+        }
     }
     
     private struct UserDefaultsKeys {

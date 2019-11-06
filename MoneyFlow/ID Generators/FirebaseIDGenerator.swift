@@ -67,6 +67,8 @@ class FirebaseIDGenerator: CloudIDGenerator {
                     }
                 }
                 if self.nextID == nil { self.nextID = 0 }
+            } else if error!.localizedDescription == Path.doesNotExistError {
+                self.nextID = 0
             }
             self.delegate?.generatorDownloadComplete(with: error)
 //            print("Firebase generator download complete")
@@ -103,6 +105,9 @@ extension FirebaseIDGenerator {
         }
         static var nextID: String {
             return "\(deviceFolder)/\(nextIDFile)"
+        }
+        static var doesNotExistError: String {
+            return "Object " + nextID + " does not exist."
         }
     }
 }

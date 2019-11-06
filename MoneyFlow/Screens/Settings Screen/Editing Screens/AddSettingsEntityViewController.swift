@@ -26,7 +26,7 @@ class AddSettingsEntityViewController: UIViewController {
         errorLabel.isHidden = true
         
         if let name = itemNameTextField.text, name.trailingSpacesTrimmed != "", !usedNames.contains(name.trailingSpacesTrimmed) {
-            delegate?.settingsEntityAdded(type: settingsType, name: name)
+            delegate?.settingsEntityAdded(type: settingsType, name: name.trailingSpacesTrimmed)
             dismiss(animated: true)
         } else {
             itemNameTextField.superview!.layer.borderWidth = 1.0

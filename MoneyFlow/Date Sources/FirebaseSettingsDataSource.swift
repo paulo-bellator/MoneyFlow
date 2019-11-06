@@ -110,6 +110,8 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
                 }
                 self.isDownloadComplete = true
                 self.thereAreUnsavedChanges = false
+            } else if error!.localizedDescription == Path.doesNotExistError {
+                self.currencies = Currency.all.map { CurrencySettingsEntity(currency: $0) }
             }
             self.delegate?.settingsDownloadComplete(with: error)
         }
@@ -125,6 +127,9 @@ extension FirebaseSettingsDataSource {
         }
         static var settings: String {
             return "\(deviceFolder)/\(settingsFile)"
+        }
+        static var doesNotExistError: String {
+            return "Object " + settings + " does not exist."
         }
     }
     private struct Settings: Codable {

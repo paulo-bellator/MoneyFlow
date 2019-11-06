@@ -28,6 +28,8 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
     private(set) var operationsCount = [String: Int]()
     private let presenter = SettingEditingPresenter.shared
     weak var delegate: SettingsEditingViewControllerDelegate?
+    fileprivate let loadManager = DataSourceLoadManager.shared
+    fileprivate var loadingView: LoadingView?
     
     private var presenterSettingEntites: [SettingsEntity] {
         get {
@@ -81,7 +83,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         super.viewDidLoad()
         
         buttonSubstrateView.layer.cornerRadius = buttonSubstrateView.bounds.width / 2.0
-        
+        loadManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -127,6 +129,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         settingsEntites = presenterSettingEntites
         tableView.reloadData()
         replaceEntityInOperations(type: settingsType, oldValue: oldValue, newValue: newValue, syncronize: true)
+        loadManager.newSession()
         presenter.syncronize()
         delegate?.dataChanged()
     }
@@ -142,6 +145,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         }
         tableView.reloadData()
         replaceEntityInOperations(type: settingsType, oldValue: deletedItem, newValue: moveIntoItem, syncronize: true)
+        loadManager.newSession()
         presenter.syncronize()
         delegate?.dataChanged()
     }
@@ -157,6 +161,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
             settingsEntites[index].enable = true
             presenterSettingEntites = settingsEntites
         }
+        loadManager.newSession()
         presenter.syncronize()
         delegate?.dataChanged()
     }
@@ -167,6 +172,7 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         presenterSettingEntites = presenterSettingEntites + [entity]
         settingsEntites = presenterSettingEntites
         tableView.reloadData()
+        loadManager.newSession()
         presenter.syncronize()
         delegate?.dataChanged()
     }
@@ -181,4 +187,32 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
         }
     }
     
+}
+
+extension SettingsEditingViewController: DataSourceLoadManagerDelegate {
+    var uploadProgress: Double {
+        get { return 0 }
+        set {
+            if loadingView == nil { showLoadingView(withProcessName: "Сохранение", animated: true) }
+        }
+    }
+    func uploadComplete(with error: Error?) {
+        removeLoadingView()
+    }
+    private func showLoadingView(withProcessName name: String, animated: Bool = true) {
+        loadingView = LoadingView(superview: self.view)
+        tabBarController?.tabBar.isHidden = true
+        loadingView!.mainLabel.text = name
+        loadingView!.breakButton.setTitle("Прервать", for: .normal)
+        loadingView!.breakAction = { [weak self] in
+            self?.loadManager.cancelLoading()
+            self?.removeLoadingView()
+        }
+        loadingView!.appear(animated: animated)
+    }
+    private func removeLoadingView(animated: Bool = true) {
+        tabBarController?.tabBar.isHidden = false
+        loadingView?.remove(animated: animated, duration: 0.4)
+        loadingView = nil
+    }
 }

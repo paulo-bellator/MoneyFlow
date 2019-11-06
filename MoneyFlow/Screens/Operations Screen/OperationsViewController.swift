@@ -215,6 +215,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadManager.delegate = self
+        loadManager.newSession()
         if needToUpdate {
             reloadFilterCollectionView()
             appliedFilterCells = [IndexPath(row: 0, section: 0)]
@@ -346,7 +347,7 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
     }
     func uploadComplete(with error: Error?) { removeLoadingView() }
     func downloadComplete(with error: Error?) {
-        if let error = error {
+        if let error = error, !error.localizedDescription.contains("does not exist.") {
             errorLabel.text = "Loading error occured: \n\(error.localizedDescription)"
             removeLoadingView()
             

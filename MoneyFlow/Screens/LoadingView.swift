@@ -177,7 +177,7 @@ class LoadingView: UIView {
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // breakButton
-        let bottomConstraintButton = NSLayoutConstraint(item: breakButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -50)
+        let bottomConstraintButton = NSLayoutConstraint(item: breakButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -70)
         let centerXConstraintButton = NSLayoutConstraint(item: breakButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
         self.addConstraints([bottomConstraintButton, centerXConstraintButton])
         breakButton.translatesAutoresizingMaskIntoConstraints = false

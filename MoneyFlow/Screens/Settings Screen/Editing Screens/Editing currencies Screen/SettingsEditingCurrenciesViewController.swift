@@ -23,8 +23,7 @@ class SettingsEditingCurrenciesViewController: UIViewController {
     let settingsType: SettingsEntityType = .currencies
     lazy var currencies = presenter.currencies
     let presenter = SettingEditingPresenter.shared
-    weak var delegate: SettingsEditingViewControllerDelegate?
-    
+    weak var delegate: SettingsEditingViewControllerDelegate?    
     
     @IBOutlet weak var tableView: UITableView!
     
