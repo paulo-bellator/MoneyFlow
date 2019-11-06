@@ -238,7 +238,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         performSegue(withIdentifier: addSomeOperationsSegueIdentidier, sender: mode)
         buttonSelector.close(animated: false)
     }
-    @objc func addSomeOperations() {
+    @objc func addFewOperations() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         let mode: AddingViewController.AddingViewControllerMode = .add
@@ -252,7 +252,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         let button3 = UIButton(frame: CGRect.zero)
         button1.addTarget(self, action: #selector(addOperation), for: .touchUpInside)
         button2.addTarget(self, action: #selector(recognizeOperations), for: .touchUpInside)
-        button3.addTarget(self, action: #selector(addSomeOperations), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(addFewOperations), for: .touchUpInside)
         button1.backgroundColor = .clear
         button2.backgroundColor = .clear
         button3.backgroundColor = .clear
@@ -349,8 +349,6 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
     func uploadComplete(with error: Error?) { removeLoadingView() }
     func downloadComplete(with error: Error?) {
         if let error = error {
-            
-            // TODO: handle this case. Somehow forbid editing and give opports to reupdate data
             errorLabel.text = "Loading error occured: \n\(error.localizedDescription)"
             removeLoadingView()
             
