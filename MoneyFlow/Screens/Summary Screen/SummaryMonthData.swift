@@ -113,9 +113,13 @@ class SummaryMonthData {
         let maxOutcomeIndex = Int(Double(outcomes.count - 1) * (1.0 - offsetForMaxValueConstant))
         let maxDebtsIndex = Int(Double(debts.count - 1) * (1.0 - offsetForMaxValueConstant/2))
         
-        maxIncome = incomes.sorted(by: < )[maxIncomeIndex]
-        maxOutcome = outcomes.sorted(by: > )[maxOutcomeIndex]
-        maxDebt = debts.sorted(by: < )[maxDebtsIndex]
+        if incomes.isEmpty { maxIncome = 0 }
+        else { maxIncome = incomes.sorted(by: < )[maxIncomeIndex] }
+        if outcomes.isEmpty { maxOutcome = 0 }
+        else { maxOutcome = outcomes.sorted(by: > )[maxOutcomeIndex] }
+        if debts.isEmpty { maxDebt = 0 }
+        else { maxDebt = debts.sorted(by: < )[maxDebtsIndex] }
+        
         
         let lowerBoundsConstant = 0.2
         let upperBoundsConstant = 0.8

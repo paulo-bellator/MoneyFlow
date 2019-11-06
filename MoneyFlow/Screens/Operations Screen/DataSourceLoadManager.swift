@@ -15,7 +15,23 @@ protocol DataSourceLoadManagerDelegate: class {
     func uploadComplete(with error: Error?)
 }
 
+extension DataSourceLoadManagerDelegate {
+    var downloadProgress: Double {
+        get { return 0 }
+        set{}
+    }
+    var uploadProgress: Double {
+        get{ return 0 }
+        set{}
+    }
+    func downloadComplete(with error: Error?) {}
+    func uploadComplete(with error: Error?) {}
+    
+}
+
 class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDelegate, CloudIDGeneratorDelegate {
+    
+    static let shared = DataSourceLoadManager()
     
     private var source = MainData.source as? CloudOperationDataSource
     private var settings = MainData.settings as? CloudSettingsDataSource
@@ -130,6 +146,18 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     
     // MARK: Resetting and init
     
+    func updateData() {
+        newSession()
+        source?.updateData()
+        settings?.updateData()
+    }
+    
+    func cancelLoading() {
+        source?.cancelLoading()
+        settings?.cancelLoading()
+        generator?.cancelLoading()
+    }
+    
     func newSession() {
         downloadProgress = 0
         uploadProgress = 0
@@ -138,7 +166,7 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         print("New load session created")
     }
     
-    init() {
+    private init() {
         source?.delegate = self
         settings?.delegate = self
         generator?.delegate = self

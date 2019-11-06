@@ -38,7 +38,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     private var buttonSelector: ButtonSelectorView!
     private weak var timer: Timer?
     var loadingView: LoadingView?
-    fileprivate let loadManager = DataSourceLoadManager()
+    fileprivate let loadManager = DataSourceLoadManager.shared
     var indexPathToScroll: IndexPath?
     var needToUpdate: Bool = false
     
@@ -182,9 +182,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     }
     
     @IBAction func repeatDownloadButtonTouched(_ sender: UIButton) {
-        loadManager.newSession()
-        (MainData.source as? CloudOperationDataSource)?.updateData()
-        (MainData.settings as? CloudSettingsDataSource)?.updateData()
+        loadManager.updateData()
         if !loadManager.isDownloadComplete {
             showLoadingView(withProcessName: "Загрузка", animated: true)
         }
@@ -198,7 +196,6 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         super.viewDidLoad()
         addButtonSelector()
         
-        loadManager.delegate = self
         if !loadManager.isDownloadComplete {
             showLoadingView(withProcessName: "Загрузка", animated: false)
             tableView.isHidden = true
@@ -217,6 +214,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadManager.delegate = self
         if needToUpdate {
             reloadFilterCollectionView()
             appliedFilterCells = [IndexPath(row: 0, section: 0)]
@@ -375,9 +373,7 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
         loadingView!.mainLabel.text = name
         loadingView!.breakButton.setTitle("Прервать", for: .normal)
         loadingView!.breakAction = { [weak self] in
-            (MainData.source as? CloudOperationDataSource)?.cancelLoading()
-            (MainData.settings as? CloudSettingsDataSource)?.cancelLoading()
-            (MainGenerator.generator as? CloudIDGenerator)?.cancelLoading()
+            self?.loadManager.cancelLoading()
             self?.removeLoadingView()
         }
         loadingView!.appear(animated: animated)
