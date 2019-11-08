@@ -19,10 +19,15 @@ protocol OperationDataSource {
 protocol CloudOperationDataSource: OperationDataSource {
     var delegate: CloudDataSourceDelegate? { get set }
     var isDownloadComplete: Bool { get }
+    func saveToStorageForced()
     func updateData()
     func cancelLoading()
     func configure()
 }
+extension CloudOperationDataSource {
+    func saveToStorageForced() { save() }
+}
+
 protocol CloudDataSourceDelegate: class {
     var downloadProgress: Double { get set }
     var uploadProgress: Double { get set }

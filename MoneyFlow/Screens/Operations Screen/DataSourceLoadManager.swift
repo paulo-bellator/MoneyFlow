@@ -37,6 +37,10 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
     private var settings = MainData.settings as? CloudSettingsDataSource
     private var generator = MainGenerator.generator as? CloudIDGenerator
     
+    private(set) lazy var isCloudDataSource: Bool = {
+        return (source != nil) || (settings != nil) || (generator != nil)
+    }()
+    
     weak var delegate: DataSourceLoadManagerDelegate!
     
     var downloadProgress: Double = 0 {

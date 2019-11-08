@@ -88,6 +88,11 @@ class CombinedDataSource: CloudOperationDataSource {
         }
     }
     
+    func saveToStorageForced() {
+        cloudGenerator?.save()
+        saveDataToStorage()
+    }
+    
     func updateData() {
         cloudGenerator?.updateData()
         getDataFromStorage()

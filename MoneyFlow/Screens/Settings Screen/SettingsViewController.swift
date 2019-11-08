@@ -29,6 +29,8 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
     
     private let presenter = SettingsPresenter.shared
     var needToUpdate: Bool = false
+    var loadingView: LoadingView?
+    lazy var loadManager = DataSourceLoadManager.shared
 
     @IBAction func signOutButtonTouched(_ sender: UIButton) {
         showSignOutActionSheet()
@@ -72,14 +74,26 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
     
     private func showSignOutActionSheet() {
         let actionSheet = UIAlertController(title: "Вы уверены что хотите выйти?", message: " Из аккаунта \(accountTitle)", preferredStyle: .actionSheet)
-        let signOutAction = UIAlertAction(title: "Выйти", style: .destructive) { _ in
-            try? Auth.auth().signOut()
-            print("SIGN OUT")
+        let signOutAction = UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
+            self?.saveDataAndSignOut()
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
         actionSheet.addAction(signOutAction)
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func saveDataAndSignOut() {
+        if loadManager.isCloudDataSource {
+            showLoadingView(withProcessName: "Сохранение")
+            loadManager.delegate = self
+            loadManager.newSession()
+            (MainData.source as? CloudOperationDataSource)?.saveToStorageForced()
+            (MainData.settings as? CloudSettingsDataSource)?.save()
+        } else {
+            try? Auth.auth().signOut()
+            print("SIGN OUT")
+        }
     }
     
     @objc func settingsEditingTapGestureRecognized(_ recognizer: UITapGestureRecognizer) {
@@ -222,5 +236,46 @@ enum SettingsEntityType {
         case "Контакты": return .contacts
         default: return nil
         }
+    }
+}
+
+extension SettingsViewController: DataSourceLoadManagerDelegate {
+    func uploadComplete(with error: Error?) {
+        removeLoadingView()
+        if error == nil {
+            try? Auth.auth().signOut()
+            print("SIGN OUT")
+        }
+    }
+    private func showLoadingView(withProcessName name: String, animated: Bool = true) {
+        loadingView = LoadingView(superview: self.view)
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+        loadingView!.mainLabel.text = name
+        loadingView!.breakButton.setTitle("Прервать", for: .normal)
+        loadingView!.breakAction = { [weak self] in
+            self?.loadManager.cancelLoading()
+            self?.removeLoadingView()
+            self?.showErrorSaveDataAlertSheet()
+        }
+        loadingView!.appear(animated: animated)
+    }
+    private func removeLoadingView(animated: Bool = true) {
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+        loadingView?.remove(animated: animated, duration: 0.4)
+        loadingView = nil
+    }
+    
+    private func showErrorSaveDataAlertSheet() {
+        var message = "Данные могли быть не сохранены."
+        let ac = UIAlertController(title: "Ошибка сохранения.", message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Остаться", style: .cancel))
+        let logOutAction = UIAlertAction(title: "Выйти", style: .destructive) { _ in
+            try? Auth.auth().signOut()
+            print("SIGN OUT")
+        }
+        ac.addAction(logOutAction)
+        present(ac, animated: true)
     }
 }

@@ -194,6 +194,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        needToUpdate = false
         addButtonSelector()
         
         if !loadManager.isDownloadComplete {
