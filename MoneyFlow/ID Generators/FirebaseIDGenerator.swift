@@ -60,18 +60,18 @@ class FirebaseIDGenerator: CloudIDGenerator {
         let operationsRef = storageRef.child(Path.nextID)
         
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil {
-                if let data = data {
-                    if let value = (try? decoder.decode(Int.self, from: data)) {
-                        self.nextID = value
-                    }
+            if error == nil, let data = data {
+                if let value = (try? decoder.decode(Int.self, from: data)) {
+                    self.nextID = value
                 }
-                if self.nextID == nil { self.nextID = 0 }
-            } else if error!.localizedDescription == Path.doesNotExistError {
-                self.nextID = 0
             }
-            self.delegate?.generatorDownloadComplete(with: error)
-//            print("Firebase generator download complete")
+            if (error != nil && error?.localizedDescription == Path.doesNotExistError) || error == nil {
+                if self.nextID == nil { self.nextID = 0 }
+                self.delegate?.generatorDownloadComplete(with: nil)
+            } else {
+                self.delegate?.generatorDownloadComplete(with: error)
+            }
+            print("Generator's nextID is " + (self.nextID == nil ? "none" : "\(self.nextID!)"))
         }
         activeTasks.append(downloadTask)
     }

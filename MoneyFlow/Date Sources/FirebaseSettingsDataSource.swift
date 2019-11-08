@@ -104,16 +104,17 @@ class FirebaseSettingsDataSource: CloudSettingsDataSource {
 
         // Download in memory with a maximum allowed size of 1MB (5 * 1024 * 1024 bytes)
         let downloadTask = settingsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil {
+            if error == nil || (error?.localizedDescription == Path.doesNotExistError) {
                 if let data = data {
                     if let settings = (try? decoder.decode(Settings.self, from: data)) { self.settings = settings }
                 }
+                if self.settings.currencies.isEmpty { self.settings = Settings.defaultInit }
                 self.isDownloadComplete = true
                 self.thereAreUnsavedChanges = false
-            } else if error!.localizedDescription == Path.doesNotExistError {
-                self.currencies = Currency.all.map { CurrencySettingsEntity(currency: $0) }
+                self.delegate?.settingsDownloadComplete(with: nil)
+            } else {
+                self.delegate?.settingsDownloadComplete(with: error)
             }
-            self.delegate?.settingsDownloadComplete(with: error)
         }
         activeTasks.append(downloadTask)
     }
@@ -142,6 +143,18 @@ extension FirebaseSettingsDataSource {
         var currencies: [CurrencySettingsEntity]
         var emojiForCategory: [String: String]
         var emojiForContact: [String: String]
+        
+        static var defaultInit: Settings {
+            let currencies = Currency.all.map { CurrencySettingsEntity(currency: $0) }
+            return Settings(
+                outcomeCategories: [SettingsEntity(name: "Категория #1")],
+                incomeCategories: [SettingsEntity(name: "Инициализирующая категория")],
+                contacts: [SettingsEntity(name: "Контакт #1")],
+                accounts: [SettingsEntity(name: "Наличные")],
+                currencies: currencies,
+                emojiForCategory: [:],
+                emojiForContact: [:])
+        }
     }
     
     private var settings: Settings {

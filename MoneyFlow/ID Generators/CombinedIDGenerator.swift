@@ -66,11 +66,14 @@ class CombinedIDGenerator: CloudIDGenerator {
                 if let value = (try? decoder.decode(Int.self, from: data)) {
                     self.nextID = value
                 }
-            } else {
-                self.nextID = 0
             }
-            self.delegate?.generatorDownloadComplete(with: error)
-            print("Firebase generator download complete")
+            if (error != nil && error?.localizedDescription == Path.doesNotExistError) || error == nil {
+                if self.nextID == nil { self.nextID = 0 }
+                self.delegate?.generatorDownloadComplete(with: nil)
+            } else {
+                self.delegate?.generatorDownloadComplete(with: error)
+            }
+            print("Generator's nextID is " + (self.nextID == nil ? "none" : "\(self.nextID!)"))
         }
         activeTasks.append(downloadTask)
     }

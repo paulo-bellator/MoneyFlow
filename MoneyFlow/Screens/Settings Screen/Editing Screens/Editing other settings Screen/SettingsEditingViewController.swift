@@ -202,6 +202,7 @@ extension SettingsEditingViewController: DataSourceLoadManagerDelegate {
     private func showLoadingView(withProcessName name: String, animated: Bool = true) {
         loadingView = LoadingView(superview: self.view)
         tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         loadingView!.mainLabel.text = name
         loadingView!.breakButton.setTitle("Прервать", for: .normal)
         loadingView!.breakAction = { [weak self] in
@@ -212,6 +213,7 @@ extension SettingsEditingViewController: DataSourceLoadManagerDelegate {
     }
     private func removeLoadingView(animated: Bool = true) {
         tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
         loadingView?.remove(animated: animated, duration: 0.4)
         loadingView = nil
     }
