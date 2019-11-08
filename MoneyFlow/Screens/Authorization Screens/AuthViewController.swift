@@ -160,7 +160,9 @@ class AuthViewController: UIViewController {
         }
         if let tabBarVC = segue.destination as? UITabBarController {
             tabBarVC.selectedIndex = 1
-            DataSourceLoadManager.shared.updateData()
+            if DataSourceLoadManager.shared.isDownloadComplete {
+                DataSourceLoadManager.shared.updateData()
+            }
             for vc in tabBarVC.viewControllers ?? [] {
                 if var updatableVC = vc as? UpdatableViewController {
                     updatableVC.needToUpdate = true

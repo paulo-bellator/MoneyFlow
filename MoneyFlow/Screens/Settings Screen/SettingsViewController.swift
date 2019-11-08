@@ -268,8 +268,8 @@ extension SettingsViewController: DataSourceLoadManagerDelegate {
     }
     
     private func showErrorSaveDataAlertSheet() {
-        var message = "Данные могли быть не сохранены."
-        let ac = UIAlertController(title: "Ошибка сохранения.", message: message, preferredStyle: .alert)
+        var message = "Данные могли быть не сохранены. Все равно хотите выйти?"
+        let ac = UIAlertController(title: "Ошибка сохранения", message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Остаться", style: .cancel))
         let logOutAction = UIAlertAction(title: "Выйти", style: .destructive) { _ in
             try? Auth.auth().signOut()

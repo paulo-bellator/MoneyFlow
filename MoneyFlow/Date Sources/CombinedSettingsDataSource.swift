@@ -162,8 +162,10 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
         // Download in memory with a maximum allowed size of 1MB (5 * 1024 * 1024 bytes)
         let downloadTask = settingsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if error == nil || error?.localizedDescription == Path.doesNotExistError {
-                if let data = data {
-                    if let settings = (try? decoder.decode(Settings.self, from: data)) { self.settings = settings }
+                if let data = data, let settings = (try? decoder.decode(Settings.self, from: data))  {
+                    self.settings = settings
+                } else {
+                    self.settings = Settings.defaultInit
                 }
                 if self.settings.currencies.isEmpty { self.settings = Settings.defaultInit }
                 self.isSyncronized = true

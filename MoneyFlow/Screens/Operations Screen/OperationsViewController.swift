@@ -194,6 +194,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Operations ViewDidLoad")
         needToUpdate = false
         addButtonSelector()
         
@@ -215,8 +216,12 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Operations ViewWillAppear")
         loadManager.delegate = self
-        loadManager.newSession()
+        if loadManager.isDownloadComplete {
+            removeLoadingView()
+            loadManager.newSession()
+        }
         if needToUpdate {
             reloadFilterCollectionView()
             appliedFilterCells = [IndexPath(row: 0, section: 0)]

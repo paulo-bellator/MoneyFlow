@@ -188,10 +188,10 @@ class CombinedDataSource: CloudOperationDataSource {
         
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if error == nil || error?.localizedDescription == Path.doesNotExistError {
-                if let data = data {
-                    if let ops = (try? decoder.decode(Ops.self, from: data)) {
-                        self.operations = ops.flowOps + ops.debtOps
-                    }
+                if let data = data, let ops = (try? decoder.decode(Ops.self, from: data)) {
+                    self.operations = ops.flowOps + ops.debtOps
+                } else {
+                    self.operations = []
                 }
                 self.changesCounter = 0
                 self.downloadCompleted()
