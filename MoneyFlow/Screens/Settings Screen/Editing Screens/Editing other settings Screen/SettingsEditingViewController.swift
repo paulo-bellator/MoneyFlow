@@ -82,7 +82,10 @@ class SettingsEditingViewController: UIViewController, SettingsEditingNameViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        buttonSubstrateView.layer.cornerRadius = buttonSubstrateView.bounds.width / 2.0
+        let radius: CGFloat = buttonSubstrateView.bounds.width / 2.0
+        buttonSubstrateView.layer.cornerRadius = radius
+        buttonSubstrateView.addRoundedShadow(corners: .allCorners, radius: CGSize(width: radius, height: radius))
+        
         loadManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self

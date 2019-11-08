@@ -58,9 +58,19 @@ class DataSourceLoadManager: CloudSettingsDataSourceDelegate, CloudDataSourceDel
         }
     }
     
-    var isDownloadComplete: Bool = false { didSet { if isDownloadComplete { print("Download completed") } } }
+//    var isDownloadComplete: Bool = false { didSet { if isDownloadComplete { print("Download completed") } } }
     var isUploadComplete: Bool = false { didSet { if isUploadComplete { print("Upload completed") } } }
     
+    var isDownloadComplete: Bool {
+        get {
+            return source?.isDownloadComplete ?? true
+            && settings?.isDownloadComplete ?? true
+            && generator?.isDownloadComplete ?? true
+        }
+        set {
+            if newValue { print("Download completed")  }
+        }
+    }
     
     // MARK: Downloads
     

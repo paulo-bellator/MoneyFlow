@@ -198,7 +198,9 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         needToUpdate = false
         addButtonSelector()
         
-        if !loadManager.isDownloadComplete {
+        print(loadManager.isDownloadComplete)
+        if loadManager.isCloudDataSource && GlobalConstants.CloudDataSource.isFirstLoad {
+//        if !loadManager.isDownloadComplete {
             showLoadingView(withProcessName: "Загрузка", animated: false)
             tableView.isHidden = true
             collectionView.isHidden = true

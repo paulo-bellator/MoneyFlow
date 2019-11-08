@@ -62,10 +62,10 @@ class CombinedIDGenerator: CloudIDGenerator {
         let operationsRef = storageRef.child(Path.nextID)
         
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil, let data = data {
-                if let value = (try? decoder.decode(Int.self, from: data)) {
-                    self.nextID = value
-                }
+            if error == nil, let data = data, let value = (try? decoder.decode(Int.self, from: data)) {
+                self.nextID = value
+            } else {
+                self.nextID = nil
             }
             if (error != nil && error?.localizedDescription == Path.doesNotExistError) || error == nil {
                 if self.nextID == nil { self.nextID = 0 }
