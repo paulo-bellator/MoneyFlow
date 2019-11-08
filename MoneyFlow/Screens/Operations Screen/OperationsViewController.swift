@@ -328,7 +328,12 @@ extension OperationsViewController: DataSourceLoadManagerDelegate {
     var downloadProgress: Double {
         get { return 0 }
         set {
-            if loadingView == nil { showLoadingView(withProcessName: "Загрузка", animated: true) }
+            if loadingView == nil {
+                showLoadingView(withProcessName: "Загрузка", animated: true)
+                tableView.isHidden = true
+                collectionView.isHidden = true
+                buttonSelector.isHidden = true
+            }
             var progress = (100*newValue).rounded()
             if progress.isNaN { progress = 100.0 }
             print("Downloading: \(Int(progress)) %")

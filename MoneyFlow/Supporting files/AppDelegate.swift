@@ -14,15 +14,16 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    static let isThisNotFirstLaunch: Bool = UserDefaults().bool(forKey: Constants.firstLaunchDefaultsKey)
     private var authDidChangeHandle: AuthStateDidChangeListenerHandle?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        if !AppDelegate.isThisNotFirstLaunch {
+        let isFirstLaunch = !GlobalConstants.isThisNotFirstLaunch
+        if isFirstLaunch {
             let defaults = UserDefaults()
-            defaults.set(true, forKey: Constants.firstLaunchDefaultsKey)
-            defaults.set(true, forKey: GlobalConstants.securityEnablingDefaultsKey)
+            defaults.set(true, forKey: GlobalConstants.DefaultsKeys.isNotfirstLaunch)
+            defaults.set(true, forKey: GlobalConstants.DefaultsKeys.securityEnabling)
+            defaults.set(true, forKey: GlobalConstants.DefaultsKeys.isFirstLoadFromCloud)
+            print("isFirstLoad = true")
         }
         
         if let user = Auth.auth().currentUser, user.isEmailVerified {
@@ -33,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         authDidChangeHandle = Auth.auth().addStateDidChangeListener { [unowned self] (auth, user) in
             if user == nil || !(user?.isEmailVerified ?? false) {
+                UserDefaults().set(true, forKey: GlobalConstants.DefaultsKeys.isFirstLoadFromCloud)
+                print("isFirstLoad = true")
                 self.instantiateViewController(withIdentifier: Constants.greetingVCStoryboardID)
             }
             print("Auth did change its state. Current user is \(user?.email ?? "none")")
@@ -81,7 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private extension AppDelegate {
     struct Constants {
-        static let firstLaunchDefaultsKey = "firstLaunch"
         static let startVCStoryboardID = "startVC"
         static let greetingVCStoryboardID = "greetingVC"
     }

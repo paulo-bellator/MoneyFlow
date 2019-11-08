@@ -35,7 +35,7 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
     }
     @IBAction func securityEnablingSwitchDidChange(_ sender: UISwitch) {
         print("Switch's changed to \(sender.isOn)")
-        UserDefaults().set(sender.isOn, forKey: GlobalConstants.securityEnablingDefaultsKey)
+        UserDefaults().set(sender.isOn, forKey: GlobalConstants.DefaultsKeys.securityEnabling)
     }
     
     
@@ -43,7 +43,7 @@ class SettingsViewController: UITableViewController, SettingsEditingViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        let securityEnabled = UserDefaults().bool(forKey: GlobalConstants.securityEnablingDefaultsKey)
+        let securityEnabled = UserDefaults().bool(forKey: GlobalConstants.DefaultsKeys.securityEnabling)
         securityEnablingSwitch.setOn(securityEnabled, animated: false)
         SettingEditingPresenter.shared.configure()
     }

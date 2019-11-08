@@ -76,6 +76,7 @@ class VerifyEmailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tabBarVC = segue.destination as? UITabBarController {
             tabBarVC.selectedIndex = 1
+            DataSourceLoadManager.shared.updateData()
         }
     }
     

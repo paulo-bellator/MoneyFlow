@@ -30,11 +30,15 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     
     private func downloadCompleted() {
         isDownloadComplete = true
-        let areAllEmpty = outcomeCategories.isEmpty
-            && incomeCategories.isEmpty
-            && contacts.isEmpty
-            && accounts.isEmpty
-        areAllEmpty ? getDataFromDefaults() : save()
+        if GlobalConstants.CloudDataSource.isFirstLoad {
+            GlobalConstants.CloudDataSource.firstLoadComplete()
+        }
+
+//        let areAllEmpty = outcomeCategories.isEmpty
+//            && incomeCategories.isEmpty
+//            && contacts.isEmpty
+//            && accounts.isEmpty
+//        areAllEmpty ? getDataFromDefaults() : save()
     }
     
     
@@ -96,9 +100,10 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     
     private init() {
         // (isDownloadComplete = true) calls getDataFromDefaults()
-        if AppDelegate.isThisNotFirstLaunch { downloadCompleted() }
+        if GlobalConstants.CloudDataSource.isFirstLoad { getDataFromStorage() }
         else {
-            getDataFromStorage()
+            getDataFromDefaults()
+            downloadCompleted()
         }
         print("combined settings init")
     }
@@ -156,13 +161,16 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
         
         // Download in memory with a maximum allowed size of 1MB (5 * 1024 * 1024 bytes)
         let downloadTask = settingsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil {
+            if error == nil || error?.localizedDescription == Path.doesNotExistError {
                 if let data = data {
                     if let settings = (try? decoder.decode(Settings.self, from: data)) { self.settings = settings }
                 }
-                self.thereAreUnsavedChanges = true
+                if self.settings.currencies.isEmpty { self.settings = Settings.defaultInit }
                 self.isSyncronized = true
                 self.downloadCompleted()
+                self.saveDataToDefaults()
+                self.delegate?.settingsDownloadComplete(with: nil)
+            } else {
                 self.delegate?.settingsDownloadComplete(with: error)
             }
         }
@@ -175,11 +183,12 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
 extension CombinedSettingDataSource {
     private struct Path {
         static let settingsFile = "settings.json"
-        static var deviceFolder: String {
-            return UIDevice.current.identifierForVendor!.uuidString
+        static var userFolder: String {
+            //            return UIDevice.current.identifierForVendor!.uuidString
+            return Auth.auth().currentUser!.email!
         }
         static var settings: String {
-            return "\(deviceFolder)/\(settingsFile)"
+            return "\(userFolder)/\(settingsFile)"
         }
         static var doesNotExistError: String {
             return "Object " + settings + " does not exist."
@@ -195,6 +204,18 @@ extension CombinedSettingDataSource {
         var currencies: [CurrencySettingsEntity]
         var emojiForCategory: [String: String]
         var emojiForContact: [String: String]
+        
+        static var defaultInit: Settings {
+            let currencies = Currency.all.map { CurrencySettingsEntity(currency: $0) }
+            return Settings(
+                outcomeCategories: [SettingsEntity(name: "Категория #1")],
+                incomeCategories: [SettingsEntity(name: "Инициализирующая категория")],
+                contacts: [SettingsEntity(name: "Контакт #1")],
+                accounts: [SettingsEntity(name: "Наличные")],
+                currencies: currencies,
+                emojiForCategory: [:],
+                emojiForContact: [:])
+        }
     }
     
     private var settings: Settings {

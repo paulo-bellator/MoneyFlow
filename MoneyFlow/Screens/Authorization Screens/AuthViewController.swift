@@ -160,6 +160,7 @@ class AuthViewController: UIViewController {
         }
         if let tabBarVC = segue.destination as? UITabBarController {
             tabBarVC.selectedIndex = 1
+            DataSourceLoadManager.shared.updateData()
         }
     }
 

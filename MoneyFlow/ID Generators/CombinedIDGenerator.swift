@@ -45,9 +45,9 @@ class CombinedIDGenerator: CloudIDGenerator {
     func configure() {}
     
     private init() {
-        if AppDelegate.isThisNotFirstLaunch { getDataFromDefaults() }
+        if GlobalConstants.CloudDataSource.isFirstLoad { getDataFromStorage() }
         else {
-            getDataFromStorage()
+            getDataFromDefaults()
         }
     }
     
@@ -69,7 +69,11 @@ class CombinedIDGenerator: CloudIDGenerator {
             }
             if (error != nil && error?.localizedDescription == Path.doesNotExistError) || error == nil {
                 if self.nextID == nil { self.nextID = 0 }
+                self.saveDataToDefaults()
                 self.delegate?.generatorDownloadComplete(with: nil)
+                if GlobalConstants.CloudDataSource.isFirstLoad {
+                    GlobalConstants.CloudDataSource.firstLoadComplete()
+                }
             } else {
                 self.delegate?.generatorDownloadComplete(with: error)
             }
@@ -105,11 +109,12 @@ extension CombinedIDGenerator {
     private struct Path {
         static let nextIDFile = "nextID.json"
         
-        static var deviceFolder: String {
-            return UIDevice.current.identifierForVendor!.uuidString
+        static var userFolder: String {
+            //            return UIDevice.current.identifierForVendor!.uuidString
+            return Auth.auth().currentUser!.email!
         }
         static var nextID: String {
-            return "\(deviceFolder)/\(nextIDFile)"
+            return "\(userFolder)/\(nextIDFile)"
         }
         static var doesNotExistError: String {
             return "Object " + nextID + " does not exist."

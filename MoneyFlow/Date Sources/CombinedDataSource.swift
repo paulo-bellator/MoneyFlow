@@ -27,10 +27,13 @@ class CombinedDataSource: CloudOperationDataSource {
     
     private func downloadCompleted() {
         isDownloadComplete = true
-        // emptiness means no data in cloud storage, so get from defaults
-        // if not empty, we trying to save data (in defaults)
-        // in save(), we save only if we get fresh data from cloud storage
-        operations.isEmpty ? getDataFromDefaults() : save()
+        if GlobalConstants.CloudDataSource.isFirstLoad {
+            GlobalConstants.CloudDataSource.firstLoadComplete()
+        }
+//        // emptiness means no data in cloud storage, so get from defaults
+//        // if not empty, we trying to save data (in defaults)
+//        // in save(), we save only if we get fresh data from cloud storage
+//        operations.isEmpty ? getDataFromDefaults() : save()
     }
     
     // MARK: Public API
@@ -75,8 +78,8 @@ class CombinedDataSource: CloudOperationDataSource {
     }
     
     func save() {
-        cloudGenerator?.save()
         if changesCounter >= Constants.changesValueToSyncronize {
+            cloudGenerator?.save()
             saveDataToStorage()
         }
         if thereAreUnsavedChanges {
@@ -104,9 +107,10 @@ class CombinedDataSource: CloudOperationDataSource {
         changesCounter = defaults.integer(forKey: UserDefaultsKeys.changesCounter)
         
         // (isDownloadComplete = true) calls getDataFromDefaults()
-        if AppDelegate.isThisNotFirstLaunch { downloadCompleted() }
+        if GlobalConstants.CloudDataSource.isFirstLoad { getDataFromStorage() }
         else {
-            getDataFromStorage()
+            getDataFromDefaults()
+            downloadCompleted()
         }
         
         if let generator = MainGenerator.generator as? CloudIDGenerator {
@@ -178,15 +182,18 @@ class CombinedDataSource: CloudOperationDataSource {
         let operationsRef = storageRef.child(Path.operations)
         
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if error == nil {
+            if error == nil || error?.localizedDescription == Path.doesNotExistError {
                 if let data = data {
                     if let ops = (try? decoder.decode(Ops.self, from: data)) {
                         self.operations = ops.flowOps + ops.debtOps
-                        self.thereAreUnsavedChanges = true
-                        self.changesCounter = 0
                     }
                 }
+                self.changesCounter = 0
                 self.downloadCompleted()
+                self.saveDataToDefaults()
+                self.delegate?.downloadComplete(with: nil)
+            } else {
+                self.delegate?.downloadComplete(with: error)
             }
             // TODO: handle errors 
             // if we have fresh data in cloud storage, and can't get it
@@ -194,7 +201,6 @@ class CombinedDataSource: CloudOperationDataSource {
             // so i'll get not actual data from defaults and may be
             // resave it into storage, so i'll lose fresh data
             // need to fix it
-            self.delegate?.downloadComplete(with: error)
         }
         activeTasks.append(downloadTask)
         downloadTask.observe(.progress) { snapshot in
@@ -208,11 +214,12 @@ extension CombinedDataSource {
     private struct Path {
         static let operationsFile = "operations.json"
         
-        static var deviceFolder: String {
-            return UIDevice.current.identifierForVendor!.uuidString
+        static var userFolder: String {
+//            return UIDevice.current.identifierForVendor!.uuidString
+            return Auth.auth().currentUser!.email!
         }
         static var operations: String {
-            return "\(deviceFolder)/\(operationsFile)"
+            return "\(userFolder)/\(operationsFile)"
         }
         static var doesNotExistError: String {
             return "Object " + operations + " does not exist."
