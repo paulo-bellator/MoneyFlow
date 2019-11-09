@@ -13,6 +13,8 @@ import FirebaseAuth
 class StartViewController: UIViewController {
 
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var labelAndButtonContainer: UIStackView!
     
     private let greetingSegueIdentifier = "greeingVCSegue"
     private let tabBarSegueIdentifier = "tabBarSegue"
@@ -30,14 +32,23 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         
         logInButton.isHidden = true
+        errorLabel.isHidden = true
         Auth.auth().currentUser!.reload { [weak self] error in
             if let self = self {
                 if let error = error, !error.localizedDescription.contains("Network error") {
-                    print(error.localizedDescription)
+                    self.errorLabel.text = error.localizedDescription
+                    self.errorLabel.isHidden = false
                     if Auth.auth().currentUser == nil {
                         self.performSegue(withIdentifier: self.greetingSegueIdentifier, sender: nil)
                     }
                 } else {
+                    // we can't execute first load witout net connetion, so we do return
+                    if (error?.localizedDescription.contains("Network error") ?? false)
+                        && GlobalConstants.CloudDataSource.isFirstLoad {
+                        self.errorLabel.text = "Для первой загрузки требуется интернет соединение"
+                        self.errorLabel.isHidden = false
+                        return
+                    }
                     let biometricAuthEnabled = UserDefaults().bool(forKey: GlobalConstants.DefaultsKeys.securityEnabling)
                     if biometricAuthEnabled {
                         self.checkBiometricAuthPossibilities()
