@@ -85,7 +85,13 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             var value: String?
             if isItFlowOperation {
                 value = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
-            } else { value = presenter.contacts.first }
+                currentPickerRowForAccount = max(0, currentPickerRowForAccount - 1)
+                accountTextField.text = presenter.accounts[currentPickerRowForAccount]
+            } else {
+                value = presenter.contacts.first
+                accountTextField.text = presenter.accounts[currentPickerRowForAccount]
+                currentPickerRowForAccount += 1
+            }
             categoryOrContactTextField.text = value
             pickerView.selectRow(0, inComponent: 0, animated: false)
         }
@@ -151,6 +157,8 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         
         valueSignButton.superview!.isHidden = false
         debtDirectionSegmentedControl.isHidden = true
+        debtDirectionSegmentedControl.setTitle(Constants.debtGiveTitle, forSegmentAt: 0)
+        debtDirectionSegmentedControl.setTitle(Constants.debtGetTitle, forSegmentAt: 1)
         
         if #available(iOS 13.0, *) {
             operationTypeSegmentedControl.selectedSegmentTintColor = Constants.incomeOperationTypeColor
@@ -206,6 +214,10 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 debtDirectionSegmentedControl.selectedSegmentIndex = (operation.value >= 0) ? 1 : 0
                 debtDirectionSegmentedControl.isHidden = false
                 valueSignButton.superview!.isHidden = true
+                let title0 = operation.account.isEmpty ? Constants.debtWillGiveTitle : Constants.debtGiveTitle
+                let title1 = operation.account.isEmpty ? Constants.debtWillGetTitle : Constants.debtGetTitle
+                debtDirectionSegmentedControl.setTitle(title0, forSegmentAt: 0)
+                debtDirectionSegmentedControl.setTitle(title1, forSegmentAt: 1)
             }
             let valueString = operation.value.currencyFormattedDescription(Currency.rub).filter { "0123456789".contains($0) }
             let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
@@ -213,16 +225,18 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             dateTextField.text = operation.date.formattedDescription
             datePicker.date = operation.date
             valueTextField.text = valueString
-            accountTextField.text = operation.account
+            accountTextField.text = operation.account.isEmpty ? Constants.emptyAccountTitle : operation.account
             currentPickerRowForAccount = presenter.accounts.firstIndex(of: operation.account) ?? 0
             categoryOrContactTextField.text = categoryOrContact
             if operation is FlowOperation {
+                currentPickerRowForAccount = presenter.accounts.firstIndex(of: accountTextField.text!) ?? 0
                 if operation.value < 0 {
                     currentPickerRowForCategoryOrContact = presenter.outcomeCategories.firstIndex(of: categoryOrContact) ?? 0
                 } else {
                     currentPickerRowForCategoryOrContact = presenter.incomeCategories.firstIndex(of: categoryOrContact) ?? 0
                 }
             } else {
+                currentPickerRowForAccount = accountsForDebts.firstIndex(of: accountTextField.text!) ?? 0
                 currentPickerRowForCategoryOrContact = presenter.contacts.firstIndex(of: categoryOrContact) ?? 0
             }
             currencySignButton.setTitle(operation.currency.rawValue, for: .normal)
@@ -302,7 +316,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         let stringValue = (valueTextField.text ?? "").filter { "0123456789.".contains($0) }
         let value = (Double(stringValue) ?? 0.0) * valueSign
         let currency = Currency(rawValue: currencySignButton.currentTitle!) ?? presenter.currencies.first!
-        let account = accountTextField.text!
+        let account = accountTextField.text! == Constants.emptyAccountTitle ? "" : accountTextField.text!
         let categoryOrContact = categoryOrContactTextField.text!
         var comment = commentTextField.text
         if comment != nil { if comment!.isEmpty { comment = nil } }
@@ -359,6 +373,11 @@ extension AddOperationViewController {
         static let valueTitle = "Значение"
         static let accountTitle = "Счет"
         static let commentTitle = "Комментарий"
+        static let emptyAccountTitle = "Без счета"
+        static let debtGiveTitle = "Выдал"
+        static let debtGetTitle = "Принял"
+        static let debtWillGiveTitle = "Отдам"
+        static let debtWillGetTitle = "Получу"
         static let pickerViewTitlePlaceHolder = "Empty"
         static let viewsOffsetSpeed: CGFloat = 250 / 0.4
         static let viewsOffsetMinimumDuration = 0.3

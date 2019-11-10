@@ -10,13 +10,17 @@ import UIKit
 
 extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var accountsForDebts: [String] {
+        return [Constants.emptyAccountTitle] + presenter.accounts
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if accountTextField.isFirstResponder {
-            return presenter.accounts.count
+            return isItFlowOperation ? presenter.accounts.count : accountsForDebts.count
         } else if categoryOrContactTextField.isFirstResponder {
             let categoriesCount = isItIncomeOperation ? presenter.incomeCategories.count : presenter.outcomeCategories.count
             return isItFlowOperation ? categoriesCount : presenter.contacts.count
@@ -26,7 +30,7 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if accountTextField.isFirstResponder {
-            return presenter.accounts[row]
+            return isItFlowOperation ? presenter.accounts[row] : accountsForDebts[row]
         } else if categoryOrContactTextField.isFirstResponder {
             let categories = isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories
             return isItFlowOperation ? categories[row] : presenter.contacts[row]
@@ -36,7 +40,15 @@ extension AddOperationViewController: UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if accountTextField.isFirstResponder {
-            accountTextField.text = presenter.accounts[row]
+            if !isItFlowOperation {
+                let switchedToEmpty = currentPickerRowForAccount != 0 && row == 0
+                let title0 = switchedToEmpty ? Constants.debtWillGiveTitle : Constants.debtGiveTitle
+                let title1 = switchedToEmpty ? Constants.debtWillGetTitle : Constants.debtGetTitle
+                debtDirectionSegmentedControl.setTitle(title0, forSegmentAt: 0)
+                debtDirectionSegmentedControl.setTitle(title1, forSegmentAt: 1)
+            }
+            let title = isItFlowOperation ? presenter.accounts[row] : accountsForDebts[row]
+            accountTextField.text = title
             currentPickerRowForAccount = row
         } else if categoryOrContactTextField.isFirstResponder {
             currentPickerRowForCategoryOrContact = row

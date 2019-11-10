@@ -22,11 +22,21 @@ class AccountsPresenter {
     var currencySignes: [String] { currencies.map({ $0.rawValue }) }
     
     func availableMoney(in currency: Currency) -> Double {
-        return operations.valuesSum(currency)
+        let operationsWithoutDebtsWithoutAccounts: [Operation] = operations.compactMap { op in
+            if let debtOp = op as? DebtOperation, debtOp.account.isEmpty { return nil }
+            else { return op }
+        }
+        return operationsWithoutDebtsWithoutAccounts.valuesSum(currency)
     }
+    
     func totalMoney(in currency: Currency) -> Double {
-        return presenter.filter(debtOperations: false, flowOperations: true).valuesSum(currency)
+        let operationsWithoutDebtsWithAccounts: [Operation] = operations.compactMap { op in
+            if let debtOp = op as? DebtOperation, !debtOp.account.isEmpty { return nil }
+            else { return op }
+        }
+        return operationsWithoutDebtsWithAccounts.valuesSum(currency)
     }
+    
     func availableMoneyString(in currency: Currency) -> String {
         return availableMoney(in: currency).currencyFormattedDescription(currency)
     }
@@ -40,10 +50,11 @@ class AccountsPresenter {
         let ops = presenter.filter(flowOperations: false, currencies: [currency]) as! [DebtOperation]
         
         for op in ops {
+            let value = op.account.isEmpty ? -op.value : op.value
             if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += op.value
+                contactsBalance[op.contact]! += value
             } else {
-                contactsBalance[op.contact] = op.value
+                contactsBalance[op.contact] = value
             }
         }
         let balancesArray = contactsBalance.values
@@ -61,10 +72,11 @@ class AccountsPresenter {
         let ops = presenter.filter(flowOperations: false, currencies: [currency]) as! [DebtOperation]
         
         for op in ops {
+            let value = op.account.isEmpty ? -op.value : op.value
             if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += op.value
+                contactsBalance[op.contact]! += value
             } else {
-                contactsBalance[op.contact] = op.value
+                contactsBalance[op.contact] = value
             }
         }
         let balancesArray = contactsBalance.values
@@ -108,10 +120,11 @@ class AccountsPresenter {
         
         debtOperations.forEach {
             if $0.currency == currency {
+                let value = $0.account.isEmpty ? -$0.value : $0.value
                 if dictionary[$0.contact] != nil {
-                    dictionary[$0.contact]! += $0.value
+                    dictionary[$0.contact]! += value
                 } else {
-                    dictionary[$0.contact] = $0.value
+                    dictionary[$0.contact] = value
                 }
             }
         }
@@ -134,10 +147,11 @@ class AccountsPresenter {
         
         debtOperations.forEach {
             if $0.currency == currency {
+                let value = $0.account.isEmpty ? -$0.value : $0.value
                 if dictionary[$0.contact] != nil {
-                    dictionary[$0.contact]! += $0.value
+                    dictionary[$0.contact]! += value
                 } else {
-                    dictionary[$0.contact] = $0.value
+                    dictionary[$0.contact] = value
                 }
             }
         }

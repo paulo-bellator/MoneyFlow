@@ -237,7 +237,7 @@ extension CombinedDataSource {
     }
     
     private struct Constants {
-        static let changesValueToSyncronize = 5
+        static let changesValueToSyncronize = 15
     }
     
     private struct Ops: Codable {

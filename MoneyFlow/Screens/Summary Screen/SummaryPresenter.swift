@@ -20,11 +20,23 @@ class SummaryPresenter {
     var operationListIsEmpty: Bool { return operations.isEmpty }
     
     func availableMoney(in currency: Currency, at date: Date? = nil) -> Double {
-        return presenter.filter(until: date).valuesSum(currency)
+        let operations = presenter.filter(until: date)
+        let operationsWithoutDebtsWithoutAccounts: [Operation] = operations.compactMap { op in
+            if let debtOp = op as? DebtOperation, debtOp.account.isEmpty { return nil }
+            else { return op }
+        }
+        return operationsWithoutDebtsWithoutAccounts.valuesSum(currency)
     }
+    
     func totalMoney(in currency: Currency, at date: Date? = nil) -> Double {
-        return presenter.filter(until: date, debtOperations: false, flowOperations: true).valuesSum(currency)
+        let operations = presenter.filter(until: date)
+        let operationsWithoutDebtsWithAccounts: [Operation] = operations.compactMap { op in
+            if let debtOp = op as? DebtOperation, !debtOp.account.isEmpty { return nil }
+            else { return op }
+        }
+        return operationsWithoutDebtsWithAccounts.valuesSum(currency)
     }
+    
     func availableMoneyString(in currency: Currency) -> String {
         return availableMoney(in: currency).currencyFormattedDescription(currency)
     }
@@ -134,10 +146,11 @@ class SummaryPresenter {
             contacts: contacts) as! [DebtOperation]
         
         for op in ops {
+            let value = op.account.isEmpty ? -op.value : op.value
             if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += op.value
+                contactsBalance[op.contact]! += value
             } else {
-                contactsBalance[op.contact] = op.value
+                contactsBalance[op.contact] = value
             }
         }
         let balancesArray = contactsBalance.values
@@ -162,10 +175,11 @@ class SummaryPresenter {
             contacts: contacts) as! [DebtOperation]
         
         for op in ops {
+            let value = op.account.isEmpty ? -op.value : op.value
             if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += op.value
+                contactsBalance[op.contact]! += value
             } else {
-                contactsBalance[op.contact] = op.value
+                contactsBalance[op.contact] = value
             }
         }
         let balancesArray = contactsBalance.values
