@@ -1,50 +1,46 @@
 //
-//  DebtOperation.swift
+//  TransferOperation.swift
 //  MoneyFlow
 //
-//  Created by Никита Гончаров on 01/09/2019.
+//  Created by Никита Гончаров on 10/11/2019.
 //  Copyright © 2019 Никита Гончаров. All rights reserved.
 //
 
 import Foundation
 
-class DebtOperation: Operation, Codable
+class TransferOperation: Operation, Codable
 {
     let id: Int
     var date: Date
     var value: Double
     var currency: Currency = .rub
-    var contact: String
     var account: String
-    var comment: String?
+    var destinationAccount: String
     
-    init(_ value: Double, contact: String, with account: String) {
+    init(_ value: Double, from account: String, to destinationAccount: String) {
         id = MainGenerator.generator.generateID()
         date = Date()
         self.value = value
-        self.contact = contact
         self.account = account
+        self.destinationAccount = destinationAccount
     }
     
-    convenience init(date: Date, value: Double, currency: Currency = .rub, contact: String, account: String, comment: String? = nil ) {
-        self.init(value, contact: contact, with: account)
+    convenience init(date: Date, value: Double, currency: Currency = .rub, fromAccount: String, toAccount: String) {
+        self.init(value, from: fromAccount, to: toAccount)
         self.currency = currency
-        self.comment = comment
         self.date = date
     }
-    
 }
 
-extension DebtOperation {
+extension TransferOperation {
     var description: String {
         var result = "\n"
         result += "ID: \(id)\n"
         result += "Date: \(date.formattedDescription)\n"
         result += "Value: \(value.rounded())\n"
         result += "Currency: \(currency.rawValue)\n"
-        result += "Account: \(account.isEmpty ? "Без счета" : account)\n"
-        result += "Contact: \(contact)\n"
-        result += comment != nil ? "Comment: \(comment!)\n" : ""
+        result += "From account: \(account)\n"
+        result += "To account: \(destinationAccount)\n"
         
         return result
     }

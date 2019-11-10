@@ -121,7 +121,7 @@ class Presenter {
         }
     }
     
-    /// Return the array of tuples, containg period (Date) and array [Operation] included in period
+    /// Return the array of tuples, containg period (DateInterval) and array [Operation] included in period
     func operationsSorted(by period: DateFilterUnit, operations ops: [Operation]? = nil) -> [(period: DateInterval, ops: [Operation])] {
         var result = [ ( DateInterval, [Operation] ) ]()
         

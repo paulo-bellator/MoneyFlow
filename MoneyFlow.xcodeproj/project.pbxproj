@@ -22,6 +22,7 @@
 		F9172DD32345058A0067B9AE /* CombinedSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9172DD2234505890067B9AE /* CombinedSettingsDataSource.swift */; };
 		F91871EB23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */; };
 		F91871ED23268E2C00F0F9A6 /* ManagingPickerView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */; };
+		F92F5F7C23781CD4005876DF /* TransferOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92F5F7B23781CD4005876DF /* TransferOperation.swift */; };
 		F942E650233E01F00031ADDF /* CenturyGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E642233E01F00031ADDF /* CenturyGothic.ttf */; };
 		F942E651233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E643233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf */; };
 		F942E657233E01F00031ADDF /* CenturyGothic-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F942E649233E01F00031ADDF /* CenturyGothic-Italic.ttf */; };
@@ -114,6 +115,7 @@
 		F9172DD2234505890067B9AE /* CombinedSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedSettingsDataSource.swift; sourceTree = "<group>"; };
 		F91871EA23268DE800F0F9A6 /* InputAccessoryForTextFieldsVC Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputAccessoryForTextFieldsVC Extension.swift"; sourceTree = "<group>"; };
 		F91871EC23268E2C00F0F9A6 /* ManagingPickerView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagingPickerView Extension.swift"; sourceTree = "<group>"; };
+		F92F5F7B23781CD4005876DF /* TransferOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferOperation.swift; sourceTree = "<group>"; };
 		F942E642233E01F00031ADDF /* CenturyGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CenturyGothic.ttf; sourceTree = "<group>"; };
 		F942E643233E01F00031ADDF /* CenturyGothic-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-BoldItalic.ttf"; sourceTree = "<group>"; };
 		F942E649233E01F00031ADDF /* CenturyGothic-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CenturyGothic-Italic.ttf"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				F9063DD6232139FE00F08E84 /* DebtOperation.swift */,
 				F9063DD7232139FE00F08E84 /* FlowOperation.swift */,
+				F92F5F7B23781CD4005876DF /* TransferOperation.swift */,
 				F9063DD8232139FE00F08E84 /* Operation.swift */,
 				F97ECAB8236E00DD000BF62D /* SettingsModel.swift */,
 			);
@@ -671,6 +674,7 @@
 				F986847E233270FC00FAD863 /* CircleGraphView.swift in Sources */,
 				F9B2FE68231B227400ABF7AC /* AppDelegate.swift in Sources */,
 				F9D49F91235A007B00ADE93D /* DataSourceLoadManager.swift in Sources */,
+				F92F5F7C23781CD4005876DF /* TransferOperation.swift in Sources */,
 				F9629860236DEA1F00A18EE7 /* SettingsEditingCurrenciesViewController.swift in Sources */,
 				F96C4093233CCB41008670B2 /* SummaryMonthData.swift in Sources */,
 				F907D3D4232BE87200E9E3C2 /* ChartColumnView.swift in Sources */,
