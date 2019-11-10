@@ -35,16 +35,24 @@ class Presenter {
     }
     
     /// Return debt operations operations in given boundaries (included)
-    func debtOperations(since: Date? = nil, until: Date? = nil) -> [Operation] {
-        return filter(since: since, until: until, debtOperations: true, flowOperations: false)
+    func debtOperations(since: Date? = nil, until: Date? = nil) -> [DebtOperation] {
+        return filter(since: since, until: until, flowOperations: false, transferOperations: false) as! [DebtOperation]
     }
     
     /// Return flow operations in given boundaries (included)
-    func flowOperations(since: Date? = nil, until: Date? = nil) -> [Operation] {
-        return filter(since: since, until: until, debtOperations: false, flowOperations: true)
+    func flowOperations(since: Date? = nil, until: Date? = nil) -> [FlowOperation] {
+        return filter(since: since, until: until, debtOperations: false, transferOperations: false) as! [FlowOperation]
     }
     
-    func filter(since: Date? = nil, until: Date? = nil, debtOperations: Bool = true, flowOperations: Bool = true, currencies: [Currency]? = nil, categories: [String]? = nil, contacts: [String]? = nil, accounts: [String]? = nil) -> [Operation] {
+    /// Return transfer operations in given boundaries (included)
+    func flowOperations(since: Date? = nil, until: Date? = nil) -> [TransferOperation] {
+        return filter(since: since, until: until, debtOperations: false, flowOperations: false) as! [TransferOperation]
+    }
+    
+    func filter(since: Date? = nil, until: Date? = nil,
+                debtOperations: Bool = true, flowOperations: Bool = true, transferOperations: Bool = true,
+                currencies: [Currency]? = nil, categories: [String]? = nil, contacts: [String]? = nil, accounts: [String]? = nil) -> [Operation] {
+        
         var result = operations
         if let startDate = since {
             result = result.filter { $0.date >= startDate }
@@ -54,6 +62,7 @@ class Presenter {
         }
         if !debtOperations { result = result.filter { !($0 is DebtOperation) } }
         if !flowOperations { result = result.filter { !($0 is FlowOperation) } }
+        if !transferOperations { result = result.filter { !($0 is TransferOperation) } }
         if let requiredCurrencies = currencies {
             if !requiredCurrencies.isEmpty {
                 result = result.filter { requiredCurrencies.contains($0.currency) }
@@ -61,7 +70,11 @@ class Presenter {
         }
         if let requiredAccounts = accounts {
             if !requiredAccounts.isEmpty {
-                result = result.filter { requiredAccounts.contains($0.account) }
+                result = result.filter { op in
+                    if requiredAccounts.contains(op.account) { return true }
+                    if let transferOp = op as? TransferOperation, requiredAccounts.contains(transferOp.destinationAccount) { return true }
+                    return false
+                }
             }
         }
         var filtredWithCategories: [Operation]?
