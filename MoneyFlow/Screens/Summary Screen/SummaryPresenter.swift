@@ -20,7 +20,7 @@ class SummaryPresenter {
     var operationListIsEmpty: Bool { return operations.isEmpty }
     
     func availableMoney(in currency: Currency, at date: Date? = nil) -> Double {
-        let operations = presenter.filter(until: date)
+        let operations = presenter.filter(until: date, transferOperations: false)
         let operationsWithoutDebtsWithoutAccounts: [Operation] = operations.compactMap { op in
             if let debtOp = op as? DebtOperation, debtOp.account.isEmpty { return nil }
             else { return op }
@@ -29,7 +29,7 @@ class SummaryPresenter {
     }
     
     func totalMoney(in currency: Currency, at date: Date? = nil) -> Double {
-        let operations = presenter.filter(until: date)
+        let operations = presenter.filter(until: date, transferOperations: false)
         let operationsWithoutDebtsWithAccounts: [Operation] = operations.compactMap { op in
             if let debtOp = op as? DebtOperation, !debtOp.account.isEmpty { return nil }
             else { return op }
@@ -120,13 +120,13 @@ class SummaryPresenter {
     }
     
     func income(for period: DateInterval?, from categories: [String]? = nil, in currency: Currency) -> Double {
-        var resultOps = presenter.filter(since: period?.start, until: period?.end, debtOperations: false, categories: categories)
+        var resultOps = presenter.filter(since: period?.start, until: period?.end, debtOperations: false, transferOperations: false, categories: categories)
         resultOps = resultOps.filter { $0.value > 0 }
         return resultOps.valuesSum(currency)
     }
     
     func outcome(for period: DateInterval?, from categories: [String]? = nil, in currency: Currency) -> Double {
-        var resultOps = presenter.filter(since: period?.start, until: period?.end, debtOperations: false, categories: categories)
+        var resultOps = presenter.filter(since: period?.start, until: period?.end, debtOperations: false, transferOperations: false, categories: categories)
         resultOps = resultOps.filter { $0.value < 0 }
         return resultOps.valuesSum(currency)
     }
@@ -142,16 +142,13 @@ class SummaryPresenter {
             since: since,
             until: until,
             flowOperations: false,
+            transferOperations: false,
             currencies: [currency],
             contacts: contacts) as! [DebtOperation]
         
         for op in ops {
             let value = op.account.isEmpty ? -op.value : op.value
-            if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += value
-            } else {
-                contactsBalance[op.contact] = value
-            }
+            contactsBalance.sumToCurrentValue(value, for: op.contact)
         }
         let balancesArray = contactsBalance.values
         balancesArray.forEach { if $0 < 0 { result += $0 } }
@@ -171,16 +168,13 @@ class SummaryPresenter {
             since: since,
             until: until,
             flowOperations: false,
+            transferOperations: false,
             currencies: [currency],
             contacts: contacts) as! [DebtOperation]
         
         for op in ops {
             let value = op.account.isEmpty ? -op.value : op.value
-            if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += value
-            } else {
-                contactsBalance[op.contact] = value
-            }
+            contactsBalance.sumToCurrentValue(value, for: op.contact)
         }
         let balancesArray = contactsBalance.values
         balancesArray.forEach { if $0 > 0 { result += $0 } }
@@ -189,11 +183,11 @@ class SummaryPresenter {
     }
     
     func incomes(since: Date? = nil, until: Date? = nil, from categories: [String]? = nil, in currency: Currency) -> [Double] {
-        let ops = presenter.filter(since: since, until: until, debtOperations: false, currencies: [currency], categories: categories)
+        let ops = presenter.filter(since: since, until: until, debtOperations: false, transferOperations: false, currencies: [currency], categories: categories)
         return ops.compactMap { $0.value > 0.0 ? $0.value : nil }
     }
     func outcomes(since: Date? = nil, until: Date? = nil, from categories: [String]? = nil, in currency: Currency) -> [Double] {
-        let ops = presenter.filter(since: since, until: until, debtOperations: false, currencies: [currency], categories: categories)
+        let ops = presenter.filter(since: since, until: until, debtOperations: false, transferOperations: false, currencies: [currency], categories: categories)
         return ops.compactMap { $0.value < 0.0 ? $0.value : nil }
     }
     

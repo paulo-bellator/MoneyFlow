@@ -49,9 +49,15 @@ class OperationPresenter {
         return operation.account
     }()
     
+    lazy var destinationAccountString: String? = {
+        if let op = operation as? TransferOperation { return op.destinationAccount }
+        else { return nil }
+    }()
+    
     lazy var commentString: String? = {
         if let op = operation as? FlowOperation { return op.comment }
         if let op = operation as? DebtOperation { return op.comment }
+        if let op = operation as? TransferOperation { return nil }
         return nil
 //        return idString + " " + dateString
     }()

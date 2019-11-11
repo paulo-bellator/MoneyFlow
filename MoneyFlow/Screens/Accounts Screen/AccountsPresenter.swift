@@ -24,7 +24,8 @@ class AccountsPresenter {
     func availableMoney(in currency: Currency) -> Double {
         let operationsWithoutDebtsWithoutAccounts: [Operation] = operations.compactMap { op in
             if let debtOp = op as? DebtOperation, debtOp.account.isEmpty { return nil }
-            else { return op }
+            if op is TransferOperation { return nil }
+            return op
         }
         return operationsWithoutDebtsWithoutAccounts.valuesSum(currency)
     }
@@ -32,7 +33,8 @@ class AccountsPresenter {
     func totalMoney(in currency: Currency) -> Double {
         let operationsWithoutDebtsWithAccounts: [Operation] = operations.compactMap { op in
             if let debtOp = op as? DebtOperation, !debtOp.account.isEmpty { return nil }
-            else { return op }
+            if op is TransferOperation { return nil }
+            return op
         }
         return operationsWithoutDebtsWithAccounts.valuesSum(currency)
     }
@@ -47,15 +49,11 @@ class AccountsPresenter {
     func oweMe(in currency: Currency) -> Double {
         var result = 0.0
         var contactsBalance = [String: Double]()
-        let ops = presenter.filter(flowOperations: false, currencies: [currency]) as! [DebtOperation]
+        let ops = presenter.filter(flowOperations: false, transferOperations: false, currencies: [currency]) as! [DebtOperation]
         
         for op in ops {
             let value = op.account.isEmpty ? -op.value : op.value
-            if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += value
-            } else {
-                contactsBalance[op.contact] = value
-            }
+            contactsBalance.sumToCurrentValue(value, for: op.contact)
         }
         let balancesArray = contactsBalance.values
         balancesArray.forEach { if $0 < 0 { result += $0 } }
@@ -69,15 +67,11 @@ class AccountsPresenter {
     func iOwe(in currency: Currency) -> Double {
         var result = 0.0
         var contactsBalance = [String: Double]()
-        let ops = presenter.filter(flowOperations: false, currencies: [currency]) as! [DebtOperation]
+        let ops = presenter.filter(flowOperations: false, transferOperations: false, currencies: [currency]) as! [DebtOperation]
         
         for op in ops {
             let value = op.account.isEmpty ? -op.value : op.value
-            if contactsBalance[op.contact] != nil {
-                contactsBalance[op.contact]! += value
-            } else {
-                contactsBalance[op.contact] = value
-            }
+            contactsBalance.sumToCurrentValue(value, for: op.contact)
         }
         let balancesArray = contactsBalance.values
         balancesArray.forEach { if $0 > 0 { result += $0 } }
@@ -94,10 +88,11 @@ class AccountsPresenter {
         var dictionary = [String: Double]()
         operations.forEach {
             if $0.currency == currency {
-                if dictionary[$0.account] != nil {
-                    dictionary[$0.account]! += $0.value
+                if let transfer = $0 as? TransferOperation {
+                    dictionary.sumToCurrentValue(-transfer.value, for: transfer.account)
+                    dictionary.sumToCurrentValue(transfer.value, for: transfer.destinationAccount)
                 } else {
-                    dictionary[$0.account] = $0.value
+                    dictionary.sumToCurrentValue($0.value, for: $0.account)
                 }
             }
         }
@@ -116,16 +111,12 @@ class AccountsPresenter {
     func moneyByLenders(in currency: Currency) -> [(contact: String, amount: Double)] {
         var result = [(String, Double)]()
         var dictionary = [String: Double]()
-        let debtOperations = presenter.debtOperations() as! [DebtOperation]
+        let debtOperations = presenter.debtOperations()
         
         debtOperations.forEach {
             if $0.currency == currency {
                 let value = $0.account.isEmpty ? -$0.value : $0.value
-                if dictionary[$0.contact] != nil {
-                    dictionary[$0.contact]! += value
-                } else {
-                    dictionary[$0.contact] = value
-                }
+                dictionary.sumToCurrentValue(value, for: $0.contact)
             }
         }
         for contact in settings.enabledContacts {
@@ -143,16 +134,12 @@ class AccountsPresenter {
     func moneyByDebtors(in currency: Currency) -> [(contact: String, amount: Double)] {
         var result = [(String, Double)]()
         var dictionary = [String: Double]()
-        let debtOperations = presenter.debtOperations() as! [DebtOperation]
+        let debtOperations = presenter.debtOperations()
         
         debtOperations.forEach {
             if $0.currency == currency {
                 let value = $0.account.isEmpty ? -$0.value : $0.value
-                if dictionary[$0.contact] != nil {
-                    dictionary[$0.contact]! += value
-                } else {
-                    dictionary[$0.contact] = value
-                }
+                dictionary.sumToCurrentValue(value, for: $0.contact)
             }
         }
         for contact in settings.enabledContacts {
@@ -169,4 +156,14 @@ class AccountsPresenter {
         return moneyByDebtors(in: currency).map { ($0.contact, $0.amount.currencyFormattedDescription(currency)) }
     }
     
+}
+
+extension Dictionary where Key == String, Value == Double {
+    mutating func sumToCurrentValue(_ value: Double, for key: String) {
+        if self[key] != nil {
+            self[key]! += value
+        } else {
+            self[key] = value
+        }
+    }
 }
