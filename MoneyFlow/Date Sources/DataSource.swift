@@ -11,7 +11,7 @@ import Foundation
 protocol OperationDataSource {
     var operations: [Operation] { get }
     func add(operation: Operation)
-    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, categoryOrContact: String, account: String, comment: String?)
+    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, account: String, comment: String?, specialField: String)
     func removeOperation(with identifier: Int)
     func save()
 }

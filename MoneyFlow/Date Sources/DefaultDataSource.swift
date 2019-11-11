@@ -23,23 +23,30 @@ class DefaultDataSource: OperationDataSource {
 //            save()
         }
     }
-    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, categoryOrContact: String, account: String, comment: String? = nil) {
+    /// - parameter specialField: This is category, contact or destinationAccount for appropriate operation's type
+    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, account: String, comment: String? = nil, specialField: String) {
         for operation in operations {
             if operation.id == identifier {
                 if let flowOp = operation as? FlowOperation {
                     flowOp.date = date
                     flowOp.value = value
                     flowOp.currency = currency
-                    flowOp.category = categoryOrContact
+                    flowOp.category = specialField
                     flowOp.account = account
                     flowOp.comment = comment
                 } else if let debtOp = operation as? DebtOperation {
                     debtOp.date = date
                     debtOp.value = value
                     debtOp.currency = currency
-                    debtOp.contact = categoryOrContact
+                    debtOp.contact = specialField
                     debtOp.account = account
                     debtOp.comment = comment
+                } else if let transferOp = operation as? TransferOperation {
+                    transferOp.date = date
+                    transferOp.value = value
+                    transferOp.currency = currency
+                    transferOp.account = account
+                    transferOp.destinationAccount = specialField
                 }
                 thereAreUnsavedChanges = true
             }

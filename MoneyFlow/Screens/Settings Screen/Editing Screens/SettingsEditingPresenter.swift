@@ -95,7 +95,7 @@ class SettingEditingPresenter {
             if let flowOp = operation as? FlowOperation,
                 flowOp.value >= 0,
                 flowOp.category == currentCategory {
-                edit(operation: operation, categoryOrContact: newCategory)
+                edit(operation: operation, specialField: newCategory)
             }
         }
         if syncronize { MainData.source.save() }
@@ -107,7 +107,7 @@ class SettingEditingPresenter {
             if let flowOp = operation as? FlowOperation,
                 flowOp.value < 0,
                 flowOp.category == currentCategory {
-                edit(operation: operation, categoryOrContact: newCategory)
+                edit(operation: operation, specialField: newCategory)
             }
         }
         if syncronize { MainData.source.save() }
@@ -119,6 +119,9 @@ class SettingEditingPresenter {
             if operation.account == currentAccount {
                 edit(operation: operation, account: newAccount)
             }
+            if let transferOp = operation as? TransferOperation, transferOp.destinationAccount == currentAccount {
+                edit(operation: operation, specialField: newAccount)
+            }
         }
         if syncronize { MainData.source.save() }
     }
@@ -127,25 +130,30 @@ class SettingEditingPresenter {
         let operations = MainData.source.operations
         for operation in operations {
             if let debtOp = operation as? DebtOperation, debtOp.contact == currentContact {
-                edit(operation: operation, categoryOrContact: newContact)
+                edit(operation: operation, specialField: newContact)
             }
         }
         if syncronize { MainData.source.save() }
     }
     
-    private func edit(operation: Operation, date: Date? = nil, value: Double? = nil, currency: Currency? = nil, categoryOrContact: String? = nil, account: String? = nil, comment: String? = Constants.unspecifiedCommentValue) {
+    private func edit(operation: Operation, date: Date? = nil, value: Double? = nil, currency: Currency? = nil, account: String? = nil, specialField: String? = nil, comment: String? = Constants.unspecifiedCommentValue) {
         var resultComment = comment
         if comment == Constants.unspecifiedCommentValue {
             resultComment = ((operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment)
         }
+        var specialFieldCurrentValue: String = ""
+        if let flowOp = operation as? FlowOperation { specialFieldCurrentValue = flowOp.category }
+        if let debtOp = operation as? DebtOperation { specialFieldCurrentValue = debtOp.contact }
+        if let transferOp = operation as? TransferOperation { specialFieldCurrentValue = transferOp.destinationAccount }
+        
         MainData.source.editOperation(
             with: operation.id,
             date: date ?? operation.date,
             value: value ?? operation.value,
             currency: currency ?? operation.currency,
-            categoryOrContact: categoryOrContact ?? ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!,
             account: account ?? operation.account,
-            comment: resultComment
+            comment: resultComment,
+            specialField: specialField ?? specialFieldCurrentValue
         )
     }
     

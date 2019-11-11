@@ -173,7 +173,7 @@ extension AddingViewController: AddOperationViewControllerDelegate {
           updateTableView()
       }
       func edittedOperation(_ operation: Operation) {
-          let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
+          let specialField = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact) ?? (operation as? TransferOperation)?.destinationAccount
           let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
           for op in operations {
               if op.id == operation.id {
@@ -181,16 +181,22 @@ extension AddingViewController: AddOperationViewControllerDelegate {
                       flowOp.date = operation.date
                       flowOp.value = operation.value
                       flowOp.currency = operation.currency
-                      flowOp.category = categoryOrContact
+                      flowOp.category = specialField ?? ""
                       flowOp.account = operation.account
                       flowOp.comment = comment
                   } else if let debtOp = operation as? DebtOperation {
                       debtOp.date = operation.date
                       debtOp.value = operation.value
                       debtOp.currency = operation.currency
-                      debtOp.contact = categoryOrContact
+                      debtOp.contact = specialField ?? ""
                       debtOp.account = operation.account
                       debtOp.comment = comment
+                  } else if let transferOp = operation as? TransferOperation {
+                      transferOp.date = operation.date
+                      transferOp.value = operation.value
+                      transferOp.currency = operation.currency
+                      transferOp.account = operation.account
+                      transferOp.destinationAccount = specialField ?? ""
                   }
               }
               break
