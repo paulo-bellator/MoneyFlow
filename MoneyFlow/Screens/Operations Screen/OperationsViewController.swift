@@ -146,16 +146,22 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         updateData()
     }
     func edittedOperation(_ operation: Operation) {
-        let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
+        let specialField: String
+        switch operation {
+        case let flowOp as FlowOperation: specialField = flowOp.category
+        case let debtOp as DebtOperation: specialField = debtOp.contact
+        case let transferOp as TransferOperation: specialField = transferOp.destinationAccount
+        default: specialField = ""
+        }
         let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
         presenter.editOperation(
             with: operation.id,
             date: operation.date,
             value: operation.value,
             currency: operation.currency,
-            categoryOrContact: categoryOrContact,
             account: operation.account,
-            comment: comment)
+            comment: comment,
+            specialField: specialField)
         updateData()
         if let indexPath = indexPathToScroll {
             tableView.scrollToRow(at: indexPath, at: .middle, animated: false)

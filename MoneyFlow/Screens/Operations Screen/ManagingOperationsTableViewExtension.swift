@@ -27,17 +27,19 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCleanDesignCellIdentifier, for: indexPath) as! OperationCleanDesignTableViewCell
         
         cell.valueLabel.text = operationPresenter.valueString
-        cell.mainLabel.text = operationPresenter.categoryString ?? operationPresenter.contactString
         cell.accountLabel.text = operationPresenter.accountString
         cell.commentLabel.text = operationPresenter.commentString
         
         switch operation {
-        case _ where operation is DebtOperation:
+        case is FlowOperation:
+            cell.mainLabel.text = operationPresenter.categoryString
+            cell.typeIndicatorColor = (operation.value >= 0.0) ? #colorLiteral(red: 0.7725490196, green: 0.8784313725, blue: 0.7058823529, alpha: 1) : #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+        case is DebtOperation:
+            cell.mainLabel.text = operationPresenter.contactString
             cell.typeIndicatorColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9490196078, alpha: 1)
-        case _ where operation is FlowOperation && (operation.value >= 0.0):
-            cell.typeIndicatorColor = #colorLiteral(red: 0.7725490196, green: 0.8784313725, blue: 0.7058823529, alpha: 1)
-        case _ where operation is FlowOperation && (operation.value < 0.0):
-            cell.typeIndicatorColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+        case is TransferOperation:
+            cell.mainLabel.text = operationPresenter.destinationAccountString
+            cell.typeIndicatorColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
         default:
             break
         }
@@ -61,7 +63,13 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         if operationListIsEmpty { return nil }
         let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell
         header.periodLabel.text = operationsByDays[section].formattedPeriod
-        let sum = operationsByDays[section].ops.valuesSum(mainCurrency)
+        
+        let sum = operationsByDays[section].ops.filter({ op in
+            if op is TransferOperation { return false }
+            if let debtOp = op as? DebtOperation, debtOp.account.isEmpty { return false }
+            return true
+        }).valuesSum(mainCurrency)
+        
         header.sumLabel.text = (sum > 0 ? "+" : "") + sum.currencyFormattedDescription(mainCurrency)
         
         return header.contentView

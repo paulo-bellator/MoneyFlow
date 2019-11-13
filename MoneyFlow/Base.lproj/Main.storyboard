@@ -867,6 +867,7 @@
                             <constraint firstItem="WdA-Ly-bbg" firstAttribute="trailing" secondItem="LTc-65-qFo" secondAttribute="trailing" constant="36" id="gI2-7u-Dk4"/>
                             <constraint firstItem="aZc-PM-bMu" firstAttribute="height" secondItem="fBY-fQ-E4e" secondAttribute="height" id="hf9-SV-Jfl"/>
                             <constraint firstItem="fBY-fQ-E4e" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="bottom" constant="13" id="iSa-RK-ghD"/>
+                            <constraint firstItem="fBY-fQ-E4e" firstAttribute="leading" secondItem="fOT-ZC-NdF" secondAttribute="leading" priority="750" constant="36" id="lo2-QO-6uN"/>
                             <constraint firstItem="MI1-E8-GpS" firstAttribute="top" secondItem="LTc-65-qFo" secondAttribute="bottom" constant="20" id="mOr-au-aDl"/>
                             <constraint firstItem="fOT-ZC-NdF" firstAttribute="top" secondItem="WdA-Ly-bbg" secondAttribute="top" id="mii-OL-FhM"/>
                             <constraint firstItem="xxV-6z-M34" firstAttribute="top" secondItem="egJ-Le-ow5" secondAttribute="bottom" constant="13" id="nhX-BG-Lml"/>
@@ -887,12 +888,13 @@
                                 <action selector="cancelButtonTouched:" destination="K04-P4-qdx" id="V8s-ni-zI9"/>
                             </connections>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="PNN-6U-aR6">
-                            <rect key="frame" x="107" y="11.666666666666664" width="200" height="33"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="PNN-6U-aR6">
+                            <rect key="frame" x="91" y="11.666666666666664" width="238" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Операция"/>
                                 <segment title="Долг"/>
+                                <segment title="Перевод"/>
                             </segments>
                             <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -912,13 +914,14 @@
                     <connections>
                         <outlet property="accountTextField" destination="XL3-ON-Aeh" id="l5K-Oj-lHM"/>
                         <outlet property="bottomViewTopSafeAreaConstraint" destination="mii-OL-FhM" id="vSw-3r-pVH"/>
-                        <outlet property="categoryOrContactLabel" destination="QKV-SD-Dyi" id="5AZ-AX-lYc"/>
-                        <outlet property="categoryOrContactTextField" destination="kl9-GC-f20" id="LSG-wb-m2A"/>
+                        <outlet property="commentLabel" destination="MI1-E8-GpS" id="Dxr-jK-v9a"/>
                         <outlet property="commentTextField" destination="NQl-Mo-lty" id="pxd-zd-9Na"/>
                         <outlet property="currencySignButton" destination="azf-rC-Ozf" id="7a6-LP-2Lb"/>
                         <outlet property="dateTextField" destination="nSl-PZ-pgD" id="9Fa-B2-eNh"/>
                         <outlet property="debtDirectionSegmentedControl" destination="s7C-pa-R0F" id="fcT-3k-loT"/>
                         <outlet property="operationTypeSegmentedControl" destination="PNN-6U-aR6" id="CZX-gT-2b1"/>
+                        <outlet property="specialFieldLabel" destination="QKV-SD-Dyi" id="5AZ-AX-lYc"/>
+                        <outlet property="specialFieldTextField" destination="kl9-GC-f20" id="LSG-wb-m2A"/>
                         <outlet property="valueSignButton" destination="uAc-Cq-UZV" id="Rnv-oG-Srf"/>
                         <outlet property="valueTextField" destination="wGE-Ms-heb" id="8Xx-RN-I8d"/>
                     </connections>

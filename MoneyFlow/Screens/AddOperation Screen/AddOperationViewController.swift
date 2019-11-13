@@ -24,13 +24,14 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var accountTextField: UITextField!
-    @IBOutlet weak var categoryOrContactTextField: UITextField!
+    @IBOutlet weak var specialFieldTextField: UITextField!
     @IBOutlet weak var currencySignButton: UIButton!
     @IBOutlet weak var valueSignButton: UIButton!
     @IBOutlet weak var debtDirectionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var commentTextField: UITextField!
-    @IBOutlet weak var categoryOrContactLabel: UILabel!
+    @IBOutlet weak var specialFieldLabel: UILabel!
     @IBOutlet weak var bottomViewTopSafeAreaConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentLabel: UILabel!
     
     
     // MARK: Properties
@@ -39,7 +40,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     var operationToBeEditted: Operation?
     let presenter = AddOperationPresenter()
     
-    var currentPickerRowForCategoryOrContact = 0
+    var currentPickerRowForSpecialField = 0
     var currentPickerRowForAccount = 0
     private lazy var viewFrameOriginY: CGFloat = self.view.frame.origin.y
     
@@ -61,39 +62,9 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         return picker
     }()
     
-    private(set) var isItIncomeOperation = true {
+    private(set) var operationType: OperationType = .flow(sign: .positive) {
         didSet {
-            if isItIncomeOperation != oldValue && isItFlowOperation {
-                let color = isItIncomeOperation ? Constants.incomeOperationTypeColor : Constants.outcomeOperationTypeColor
-                if #available(iOS 13.0, *) { operationTypeSegmentedControl.selectedSegmentTintColor = color }
-                currentPickerRowForCategoryOrContact = 0
-                categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
-                if categoryOrContactTextField.isFirstResponder {
-                    pickerView.reloadAllComponents()
-                    pickerView.selectRow(0, inComponent: 0, animated: true)
-                }
-            }
-        }
-    }
-    private(set) var isItFlowOperation = true {
-        didSet {
-            debtDirectionSegmentedControl.isHidden.toggle()
-            valueSignButton.superview!.isHidden.toggle()
-            
-            currentPickerRowForCategoryOrContact = 0
-            categoryOrContactLabel.text = isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle
-            var value: String?
-            if isItFlowOperation {
-                value = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
-                currentPickerRowForAccount = max(0, currentPickerRowForAccount - 1)
-                accountTextField.text = presenter.accounts[currentPickerRowForAccount]
-            } else {
-                value = presenter.contacts.first
-                accountTextField.text = presenter.accounts[currentPickerRowForAccount]
-                currentPickerRowForAccount += 1
-            }
-            categoryOrContactTextField.text = value
-            pickerView.selectRow(0, inComponent: 0, animated: false)
+            operationTypeChanged(from: oldValue, to: operationType)
         }
     }
     private var currentCurrencyIndex = 0 {
@@ -105,29 +76,26 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     // MARK: Outlet functions
     
     @IBAction func operationTypeSwitched(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            isItFlowOperation = true
-            let color = isItIncomeOperation ? Constants.incomeOperationTypeColor : Constants.outcomeOperationTypeColor
-            if #available(iOS 13.0, *) { sender.selectedSegmentTintColor = color }
-        } else {
-            isItFlowOperation = false
-            if #available(iOS 13.0, *) { sender.selectedSegmentTintColor = Constants.debtOperationTypeColor }
+        switch sender.selectedSegmentIndex {
+        case 0:
+            if valueSignButton.titleLabel?.text == "+" { operationType = .flow(sign: .positive) }
+            else { operationType = .flow(sign: .negative) }
+        case 1: operationType = .debt
+        case 2: operationType = .transfer
+        default: break
         }
     }
     
     @IBAction func valueSignButtonTouched(_ sender: UIButton) {
         let currentSign = valueSignButton.titleLabel?.text ?? ""
-        print(currentSign)
         switch currentSign {
         case "+":
             sender.setTitle("-", for: .normal)
-            isItIncomeOperation = false
+            operationType = .flow(sign: .negative)
         case "-":
             sender.setTitle("+", for: .normal)
-            isItIncomeOperation = true
-        default:
-            sender.setTitle("+", for: .normal)
-            isItIncomeOperation = true
+            operationType = .flow(sign: .positive)
+        default: return
         }
     }
     
@@ -143,7 +111,6 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             valueTextField.becomeFirstResponder()
         } else {
             addOperation()
-            print("done")
         }
     }
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
@@ -157,11 +124,11 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         
         valueSignButton.superview!.isHidden = false
         debtDirectionSegmentedControl.isHidden = true
-        debtDirectionSegmentedControl.setTitle(Constants.debtGiveTitle, forSegmentAt: 0)
-        debtDirectionSegmentedControl.setTitle(Constants.debtGetTitle, forSegmentAt: 1)
+        debtDirectionSegmentedControl.setTitle(Constants.titles.debtGive, forSegmentAt: 0)
+        debtDirectionSegmentedControl.setTitle(Constants.titles.debtGet, forSegmentAt: 1)
         
         if #available(iOS 13.0, *) {
-            operationTypeSegmentedControl.selectedSegmentTintColor = Constants.incomeOperationTypeColor
+            operationTypeSegmentedControl.selectedSegmentTintColor = Constants.operationTypeColors.income
             operationTypeSegmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         }
         
@@ -173,9 +140,9 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         accountTextField.inputView = pickerView
         accountTextField.text = presenter.accounts.first
         accountTextField.delegate = self
-        categoryOrContactTextField.inputView = pickerView
-        categoryOrContactTextField.text = (isItIncomeOperation ? presenter.incomeCategories : presenter.outcomeCategories).first
-        categoryOrContactTextField.delegate = self
+        specialFieldTextField.inputView = pickerView
+        specialFieldTextField.text = (operationType.sign! == .positive ? presenter.incomeCategories : presenter.outcomeCategories).first
+        specialFieldTextField.delegate = self
         currencySignButton.setTitle(presenter.currenciesSignes.first, for: .normal)
         commentTextField.text = nil
         commentTextField.delegate = self
@@ -186,61 +153,150 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 self?.valueTextField.becomeFirstResponder()
             }
         }
-        
-        addInputAccessoryForTextFields(
-            textFields: [valueTextField, accountTextField, categoryOrContactTextField, dateTextField, commentTextField],
-            titles: [Constants.valueTitle,
-                     Constants.accountTitle,
-                     isItFlowOperation ? Constants.categoryTitle : Constants.contactTitle,
-                     Constants.dataTitle,
-                     Constants.commentTitle],
-            dismissable: true,
-            previousNextable: true,
-            doneAction: #selector(AddOperationViewController.dismissKeyboard))
-        
-         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        addInputAccessoryForTextFields()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func addInputAccessoryForTextFields() {
+        var textFields: [UITextField] = [valueTextField, accountTextField, specialFieldTextField, dateTextField]
+        var titles = [Constants.titles.value, Constants.titles.account]
+        switch operationType {
+        case .flow:
+            titles += [Constants.titles.category, Constants.titles.data, Constants.titles.comment]
+            textFields.append(commentTextField)
+        case .debt:
+            titles += [Constants.titles.contact, Constants.titles.data, Constants.titles.comment]
+            textFields.append(commentTextField)
+        case .transfer:
+            titles += [Constants.titles.toAccount, Constants.titles.data]
+        }
+        addInputAccessoryForTextFields(textFields: textFields, titles: titles, dismissable: true, previousNextable: true,
+        doneAction: #selector(AddOperationViewController.dismissKeyboard))
     }
     
     private func initializeIfEditMode() {
         if let operation = operationToBeEditted {
             operationTypeSegmentedControl.isHidden = true
-            isItFlowOperation = (operation is FlowOperation)
-            if isItFlowOperation {
-                isItIncomeOperation = (operation.value >= 0)
-                valueSignButton.setTitle(isItIncomeOperation ? "+" : "-", for: .normal)
-                debtDirectionSegmentedControl.isHidden = true
-                valueSignButton.superview!.isHidden = false
-            } else {
+            
+            switch operation {
+            case let flowOp as FlowOperation:
+                if flowOp.value < 0 {
+                    operationType = .flow(sign: .negative)
+                    currentPickerRowForSpecialField = presenter.outcomeCategories.firstIndex(of: flowOp.category) ?? 0
+                } else {
+                    operationType = .flow(sign: .positive)
+                    currentPickerRowForSpecialField = presenter.incomeCategories.firstIndex(of: flowOp.category) ?? 0
+                }
+                specialFieldTextField.text = flowOp.category
+                commentTextField.text = flowOp.comment
+                accountTextField.text = flowOp.account
+                currentPickerRowForAccount = presenter.accounts.firstIndex(of: flowOp.account) ?? 0
+                
+            case let debtOp as DebtOperation:
+                operationType = .debt
                 debtDirectionSegmentedControl.selectedSegmentIndex = (operation.value >= 0) ? 1 : 0
-                debtDirectionSegmentedControl.isHidden = false
-                valueSignButton.superview!.isHidden = true
-                let title0 = operation.account.isEmpty ? Constants.debtWillGiveTitle : Constants.debtGiveTitle
-                let title1 = operation.account.isEmpty ? Constants.debtWillGetTitle : Constants.debtGetTitle
+                let title0 = operation.account.isEmpty ? Constants.titles.debtWillGive : Constants.titles.debtGive
+                let title1 = operation.account.isEmpty ? Constants.titles.debtWillGet : Constants.titles.debtGet
                 debtDirectionSegmentedControl.setTitle(title0, forSegmentAt: 0)
                 debtDirectionSegmentedControl.setTitle(title1, forSegmentAt: 1)
+                specialFieldTextField.text = debtOp.contact
+                commentTextField.text = debtOp.comment
+                accountTextField.text = debtOp.account.isEmpty ? Constants.titles.emptyAccount : debtOp.account
+                currentPickerRowForAccount = accountsForDebts.firstIndex(of: accountTextField.text!) ?? 0
+                currentPickerRowForSpecialField = presenter.contacts.firstIndex(of: debtOp.contact) ?? 0
+                
+            case let transferOp as TransferOperation:
+                operationType = .transfer
+                specialFieldTextField.text = transferOp.destinationAccount
+                accountTextField.text = transferOp.account
+                currentPickerRowForAccount = presenter.accounts.firstIndex(of: transferOp.account) ?? 0
+                currentPickerRowForSpecialField = presenter.accounts.firstIndex(of: transferOp.destinationAccount) ?? 0
+            default: return
             }
-            let valueString = operation.value.currencyFormattedDescription(Currency.rub).filter { "0123456789".contains($0) }
-            let categoryOrContact = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact)!
-            let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
+            
+            let valueString = operation.value.currencyFormattedDescription(.rub).filter { "0123456789".contains($0) }
+            valueTextField.text = valueString
             dateTextField.text = operation.date.formattedDescription
             datePicker.date = operation.date
-            valueTextField.text = valueString
-            accountTextField.text = operation.account.isEmpty ? Constants.emptyAccountTitle : operation.account
-            currentPickerRowForAccount = presenter.accounts.firstIndex(of: operation.account) ?? 0
-            categoryOrContactTextField.text = categoryOrContact
-            if operation is FlowOperation {
-                currentPickerRowForAccount = presenter.accounts.firstIndex(of: accountTextField.text!) ?? 0
-                if operation.value < 0 {
-                    currentPickerRowForCategoryOrContact = presenter.outcomeCategories.firstIndex(of: categoryOrContact) ?? 0
-                } else {
-                    currentPickerRowForCategoryOrContact = presenter.incomeCategories.firstIndex(of: categoryOrContact) ?? 0
-                }
-            } else {
-                currentPickerRowForAccount = accountsForDebts.firstIndex(of: accountTextField.text!) ?? 0
-                currentPickerRowForCategoryOrContact = presenter.contacts.firstIndex(of: categoryOrContact) ?? 0
-            }
             currencySignButton.setTitle(operation.currency.rawValue, for: .normal)
-            commentTextField.text = comment
+        }
+    }
+    
+    private func operationTypeChanged(from lastType: OperationType, to newType: OperationType) {
+        guard lastType != newType else { return }
+        var segmentedControlColor: UIColor
+        switch (lastType, newType) {
+            
+        // Case when only flowOp's sign changed
+        case let (.flow, .flow(newSign)):
+            segmentedControlColor = newSign == .positive ?
+                Constants.operationTypeColors.income :
+                Constants.operationTypeColors.outcome
+            
+            currentPickerRowForSpecialField = 0
+            let specialValue = (newSign == .positive ? presenter.incomeCategories : presenter.outcomeCategories).first
+            specialFieldTextField.text = specialValue
+        
+            
+        // Switched to flowOp
+        case let (_, .flow(sign)):
+            segmentedControlColor = sign == .positive ?
+                Constants.operationTypeColors.income :
+                Constants.operationTypeColors.outcome
+            
+            debtDirectionSegmentedControl.isHidden = true
+            valueSignButton.superview!.isHidden = false
+            commentTextField.superview!.isHidden = false
+            commentLabel.isHidden = false
+            valueSignButton.setTitle((sign == .positive ? "+" : "-"), for: .normal)
+            currentPickerRowForSpecialField = 0
+            specialFieldLabel.text = Constants.titles.category
+            
+            let specialValue = (sign == .positive ? presenter.incomeCategories : presenter.outcomeCategories).first
+            specialFieldTextField.text = specialValue
+            if lastType == .debt {
+                currentPickerRowForAccount = max(0, currentPickerRowForAccount - 1)
+                accountTextField.text = presenter.accounts[currentPickerRowForAccount]
+            }
+            
+            
+        // Switched to debtOp
+        case (_, .debt):
+            segmentedControlColor = Constants.operationTypeColors.debt
+            debtDirectionSegmentedControl.isHidden = false
+            valueSignButton.superview!.isHidden = true
+            commentTextField.superview!.isHidden = false
+            commentLabel.isHidden = false
+            currentPickerRowForSpecialField = 0
+            specialFieldLabel.text = Constants.titles.contact
+            specialFieldTextField.text = presenter.contacts.first
+            accountTextField.text = presenter.accounts[currentPickerRowForAccount]
+            currentPickerRowForAccount += 1
+            
+            
+        // Switched to transferOp
+        case (_, .transfer):
+            segmentedControlColor = Constants.operationTypeColors.transfer
+            debtDirectionSegmentedControl.isHidden = true
+            valueSignButton.superview!.isHidden = true
+            commentTextField.superview!.isHidden = true
+            commentLabel.isHidden = true
+            currentPickerRowForSpecialField = 0
+            specialFieldLabel.text = Constants.titles.toAccount
+            specialFieldTextField.text = presenter.accounts.first
+            if lastType == .debt {
+                currentPickerRowForAccount = max(0, currentPickerRowForAccount - 1)
+                accountTextField.text = presenter.accounts[currentPickerRowForAccount]
+            }
+        }
+        
+        if #available(iOS 13.0, *) {
+            operationTypeSegmentedControl.selectedSegmentTintColor = segmentedControlColor
+        }
+        addInputAccessoryForTextFields()
+        if specialFieldTextField.isFirstResponder {
+            pickerView.reloadAllComponents()
+            pickerView.selectRow(0, inComponent: 0, animated: true)
         }
     }
     
@@ -262,22 +318,22 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
             pickerView.selectRow(currentPickerRowForAccount, inComponent: 0, animated: false)
             offsetFields(by: 0)
         }
-        if categoryOrContactTextField.isFirstResponder {
-            pickerView.selectRow(currentPickerRowForCategoryOrContact, inComponent: 0, animated: false)
-            offsetFields(by: Constants.offsetForCategoryField)
+        if specialFieldTextField.isFirstResponder {
+            pickerView.selectRow(currentPickerRowForSpecialField, inComponent: 0, animated: false)
+            offsetFields(by: Constants.offsetingViews.offsetForCategoryField)
         }
         if dateTextField.isFirstResponder  {
-            offsetFields(by: Constants.offsetForDateField)
+            offsetFields(by: Constants.offsetingViews.offsetForDateField)
         }
         if commentTextField.isFirstResponder {
-            offsetFields(by: Constants.offsetForCommentField)
+            offsetFields(by: Constants.offsetingViews.offsetForCommentField)
         }
     }
     
     private func offsetFields(by offset: CGFloat) {
         let currentOffset = bottomViewTopSafeAreaConstraint.constant
-        var duration = Double(abs(offset - currentOffset) / Constants.viewsOffsetSpeed)
-        duration = max(duration, Constants.viewsOffsetMinimumDuration)
+        var duration = Double(abs(offset - currentOffset) / Constants.offsetingViews.speed)
+        duration = max(duration, Constants.offsetingViews.minimumDuration)
         UIView.animate(withDuration: duration) {
             self.bottomViewTopSafeAreaConstraint.constant = offset
             self.view.layoutIfNeeded()
@@ -308,16 +364,19 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     @objc func addOperation() {
         let date = datePicker.date
         
-        var sign = "-"
-        if isItFlowOperation { sign = valueSignButton.titleLabel?.text ?? "-" }
-        else { sign = debtDirectionSegmentedControl.selectedSegmentIndex == 0 ? "-" : "+" }
+        var sign: String
+        switch operationType {
+        case .flow: sign = valueSignButton.titleLabel?.text ?? "+"
+        case .debt: sign = debtDirectionSegmentedControl.selectedSegmentIndex == 0 ? "-" : "+"
+        case .transfer: sign = "+"
+        }
         let valueSign = (sign == "+") ? 1.0 : -1.0
         
         let stringValue = (valueTextField.text ?? "").filter { "0123456789.".contains($0) }
         let value = (Double(stringValue) ?? 0.0) * valueSign
         let currency = Currency(rawValue: currencySignButton.currentTitle!) ?? presenter.currencies.first!
-        let account = accountTextField.text! == Constants.emptyAccountTitle ? "" : accountTextField.text!
-        let categoryOrContact = categoryOrContactTextField.text!
+        let account = accountTextField.text! == Constants.titles.emptyAccount ? "" : accountTextField.text!
+        let specialField = specialFieldTextField.text!
         var comment = commentTextField.text
         if comment != nil { if comment!.isEmpty { comment = nil } }
         
@@ -326,24 +385,30 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 flowOp.date = date
                 flowOp.value = value
                 flowOp.currency = currency
-                flowOp.category = categoryOrContact
+                flowOp.category = specialField
                 flowOp.account = account
                 flowOp.comment = comment
             } else if let debtOp = operation as? DebtOperation {
                 debtOp.date = date
                 debtOp.value = value
                 debtOp.currency = currency
-                debtOp.contact = categoryOrContact
+                debtOp.contact = specialField
                 debtOp.account = account
                 debtOp.comment = comment
+            } else if let transferOp = operation as? TransferOperation {
+                transferOp.date = date
+                transferOp.value = value
+                transferOp.currency = currency
+                transferOp.account = account
+                transferOp.destinationAccount = specialField
             }
             delegate?.edittedOperation(operation)
         } else {
             var operation: Operation
-            if isItFlowOperation {
-                operation = FlowOperation(date: date, value: value, currency: currency, category: categoryOrContact, account: account, comment: comment)
-            } else {
-                operation = DebtOperation(date: date, value: value, currency: currency, contact: categoryOrContact, account: account, comment: comment)
+            switch operationType {
+            case .flow: operation = FlowOperation(date: date, value: value, currency: currency, category: specialField, account: account, comment: comment)
+            case .debt: operation = DebtOperation(date: date, value: value, currency: currency, contact: specialField, account: account, comment: comment)
+            case .transfer: operation = TransferOperation(date: date, value: value, currency: currency, fromAccount: account, toAccount: specialField)
             }
             print(operation)
             delegate?.addedOperation(operation)
@@ -360,31 +425,64 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
 
 extension AddOperationViewController {
     struct Constants {
-        static let incomeOperationTypeColor = #colorLiteral(red: 0.7333333333, green: 0.8352941176, blue: 0.6705882353, alpha: 1)
-        static let outcomeOperationTypeColor = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
-        static let debtOperationTypeColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9529411765, alpha: 1)
+        struct operationTypeColors {
+            static let income = #colorLiteral(red: 0.7333333333, green: 0.8352941176, blue: 0.6705882353, alpha: 1)
+            static let outcome = #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+            static let debt = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9529411765, alpha: 1)
+            static let transfer = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+        }
+        struct titles {
+            static let category = "Категория"
+            static let contact = "Контакт"
+            static let data = "Дата"
+            static let value = "Значение"
+            static let account = "Счет"
+            static let toAccount = "Cчет зачисления"
+            static let comment = "Комментарий"
+            static let emptyAccount = "Без счета"
+            static let debtGive = "Выдал"
+            static let debtGet = "Принял"
+            static let debtWillGive = "Отдам"
+            static let debtWillGet = "Получу"
+            static let pickerViewTitlePlaceHolder = "Empty"
+        }
+        struct offsetingViews {
+            static let speed: CGFloat = 250 / 0.4
+            static let minimumDuration = 0.3
+            static let returnToOriginStateDuration = 0.2
+            static let offsetForCategoryField: CGFloat = -100
+            static let offsetForDateField: CGFloat = -200
+            static let offsetForCommentField: CGFloat = -250
+        }
         static let pickerHeight: CGFloat = 226
         static let becomeFirstResponderDelay: TimeInterval = 0.4
         static let operationTypeAnimationTransitionDuration: TimeInterval = 0.45
         static let localeIdentifier = "ru_RU"
-        static let categoryTitle = "Категория"
-        static let contactTitle = "Контакт"
-        static let dataTitle = "Дата"
-        static let valueTitle = "Значение"
-        static let accountTitle = "Счет"
-        static let commentTitle = "Комментарий"
-        static let emptyAccountTitle = "Без счета"
-        static let debtGiveTitle = "Выдал"
-        static let debtGetTitle = "Принял"
-        static let debtWillGiveTitle = "Отдам"
-        static let debtWillGetTitle = "Получу"
-        static let pickerViewTitlePlaceHolder = "Empty"
-        static let viewsOffsetSpeed: CGFloat = 250 / 0.4
-        static let viewsOffsetMinimumDuration = 0.3
-        static let returnToOriginStateOffsetDuration = 0.2
-        static let offsetForCategoryField: CGFloat = -100
-        static let offsetForDateField: CGFloat = -200
-        static let offsetForCommentField: CGFloat = -250
+    }
+    
+    enum OperationType {
+        enum Sign { case positive, negative }
+        case flow(sign: Sign), debt, transfer
+        var sign: Sign? {
+            switch self {
+            case .flow(let sign): return sign
+            case .debt: return nil
+            case .transfer: return nil
+            }
+        }
+        
+        static func ==(lhs: OperationType, rhs: OperationType) -> Bool {
+            switch (lhs, rhs) {
+            case let (.flow(a), .flow(b)): return a == b
+            case (.debt, .debt): return true
+            case (.transfer, .transfer): return true
+            default: return false
+            }
+        }
+        static func !=(lhs: OperationType, rhs: OperationType) -> Bool {
+            return !(lhs == rhs)
+        }
+        
     }
 }
 

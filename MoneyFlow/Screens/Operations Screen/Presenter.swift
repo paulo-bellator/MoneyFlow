@@ -19,8 +19,8 @@ class Presenter {
     func add(operation: Operation) {
         MainData.source.add(operation: operation)
     }
-    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, categoryOrContact: String, account: String, comment: String? = nil) {
-        MainData.source.editOperation(with: identifier, date: date, value: value, currency: currency, categoryOrContact: categoryOrContact, account: account, comment: comment)
+    func editOperation(with identifier: Int, date: Date, value: Double, currency: Currency, account: String, comment: String? = nil, specialField: String) {
+        MainData.source.editOperation(with: identifier, date: date, value: value, currency: currency, account: account, comment: comment, specialField: specialField)
     }
     func removeOperationWith(identifier: Int) {
         MainData.source.removeOperation(with: identifier)
