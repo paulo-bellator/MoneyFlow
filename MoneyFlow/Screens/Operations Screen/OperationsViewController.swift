@@ -145,7 +145,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
         operations.forEach { presenter.add(operation: $0) }
         updateData()
     }
-    func edittedOperation(_ operation: Operation) {
+    func editedOperation(_ operation: Operation) {
         let specialField: String
         switch operation {
         case let flowOp as FlowOperation: specialField = flowOp.category

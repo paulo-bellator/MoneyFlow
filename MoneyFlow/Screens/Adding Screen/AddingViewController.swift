@@ -172,7 +172,7 @@ extension AddingViewController: AddOperationViewControllerDelegate {
           operations.append(operation)
           updateTableView()
       }
-      func edittedOperation(_ operation: Operation) {
+      func editedOperation(_ operation: Operation) {
           let specialField = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact) ?? (operation as? TransferOperation)?.destinationAccount
           let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
           for op in operations {

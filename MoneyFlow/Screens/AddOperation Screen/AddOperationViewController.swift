@@ -10,10 +10,10 @@ import UIKit
 
 protocol AddOperationViewControllerDelegate: class {
     func addedOperation(_ operation: Operation)
-    func edittedOperation(_ operation: Operation)
+    func editedOperation(_ operation: Operation)
 }
 extension AddOperationViewControllerDelegate {
-    func edittedOperation(_ operation: Operation) {}
+    func editedOperation(_ operation: Operation) {}
 }
 
 class AddOperationViewController: UIViewController, UITextFieldDelegate {
@@ -402,7 +402,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 transferOp.account = account
                 transferOp.destinationAccount = specialField
             }
-            delegate?.edittedOperation(operation)
+            delegate?.editedOperation(operation)
         } else {
             var operation: Operation
             switch operationType {
