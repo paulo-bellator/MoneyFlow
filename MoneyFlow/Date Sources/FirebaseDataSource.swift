@@ -101,7 +101,8 @@ class FirebaseDataSource: CloudOperationDataSource {
         
         let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
         let debtOperations = operations.filter { $0 is DebtOperation } as! [DebtOperation]
-        let ops = Ops(flowOps: flowOperations, debtOps: debtOperations)
+        let transferOperations = operations.filter { $0 is TransferOperation } as! [TransferOperation]
+        let ops = Ops(flowOps: flowOperations, debtOps: debtOperations, transferOps: transferOperations)
         
         if let data = try? encoder.encode(ops) {
             let uploadTask = operationsRef.putData(data, metadata: metadata) { (metadata, error) in
@@ -129,7 +130,7 @@ class FirebaseDataSource: CloudOperationDataSource {
             if error == nil || (error?.localizedDescription == Path.doesNotExistError) {
                 if let data = data {
                     if let ops = (try? decoder.decode(Ops.self, from: data)) {
-                        self.operations = ops.flowOps + ops.debtOps
+                        self.operations = ops.flowOps + ops.debtOps + ops.transferOps
                         self.thereAreUnsavedChanges = false
                     }
                 }
@@ -170,8 +171,11 @@ extension FirebaseDataSource {
     }
     
     private struct Ops: Codable {
+        var uploadDate: Date = Date()
+        var uploadDateFormatted = Date().formattedDescription
         var flowOps: [FlowOperation]
         var debtOps: [DebtOperation]
+        var transferOps: [TransferOperation]
     }
 }
 

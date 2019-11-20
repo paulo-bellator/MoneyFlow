@@ -137,7 +137,8 @@ class CombinedDataSource: CloudOperationDataSource {
         let encoder = JSONEncoder()
         let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
         let debtOperations = operations.filter { $0 is DebtOperation } as! [DebtOperation]
-        let ops = Ops(flowOps: flowOperations, debtOps: debtOperations)
+        let transferOperations = operations.filter { $0 is TransferOperation } as! [TransferOperation]
+        let ops = Ops(flowOps: flowOperations, debtOps: debtOperations, transferOps: transferOperations)
         
         if let encoded = try? encoder.encode(ops) {
             defaults.set(encoded, forKey: UserDefaultsKeys.operations)
@@ -155,7 +156,8 @@ class CombinedDataSource: CloudOperationDataSource {
         
         let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
         let debtOperations = operations.filter { $0 is DebtOperation } as! [DebtOperation]
-        let ops = Ops(flowOps: flowOperations, debtOps: debtOperations)
+        let transferOperations = operations.filter { $0 is TransferOperation } as! [TransferOperation]
+        let ops = Ops(flowOps: flowOperations, debtOps: debtOperations, transferOps: transferOperations)
         
         if let data = try? encoder.encode(ops) {
             let uploadTask = operationsRef.putData(data, metadata: metadata) { (metadata, error) in
@@ -181,7 +183,7 @@ class CombinedDataSource: CloudOperationDataSource {
         
         if let data = defaults.data(forKey: UserDefaultsKeys.operations) {
             if let ops = (try? decoder.decode(Ops.self, from: data)) {
-                operations = ops.flowOps + ops.debtOps
+                operations = ops.flowOps + ops.debtOps + ops.transferOps
             }
         }
         thereAreUnsavedChanges = false
@@ -197,7 +199,7 @@ class CombinedDataSource: CloudOperationDataSource {
         let downloadTask = operationsRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if error == nil || error?.localizedDescription == Path.doesNotExistError {
                 if let data = data, let ops = (try? decoder.decode(Ops.self, from: data)) {
-                    self.operations = ops.flowOps + ops.debtOps
+                    self.operations = ops.flowOps + ops.debtOps + ops.transferOps
                 } else {
                     self.operations = []
                 }
@@ -253,6 +255,7 @@ extension CombinedDataSource {
         var uploadDateFormatted = Date().formattedDescription
         var flowOps: [FlowOperation]
         var debtOps: [DebtOperation]
+        var transferOps: [TransferOperation]
     }
 }
 

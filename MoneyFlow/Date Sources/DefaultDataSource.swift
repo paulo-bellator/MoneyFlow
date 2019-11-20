@@ -63,16 +63,17 @@ class DefaultDataSource: OperationDataSource {
     
     func save() {
         if thereAreUnsavedChanges {
-            print("\nsaved\n")
+            
             let encoder = JSONEncoder()
             let flowOperations = operations.filter { $0 is FlowOperation } as! [FlowOperation]
             let debtOperations = operations.filter { $0 is DebtOperation } as! [DebtOperation]
-            if let encoded = try? encoder.encode(flowOperations) {
-                defaults.set(encoded, forKey: UserDefaultsKeys.flowOperations)
+            let transferOperations = operations.filter { $0 is TransferOperation } as! [TransferOperation]
+            let ops = Ops(flowOps: flowOperations, debtOps: debtOperations, transferOps: transferOperations)
+            
+            if let encoded = try? encoder.encode(ops) {
+                defaults.set(encoded, forKey: UserDefaultsKeys.operations)
             }
-            if let encoded = try? encoder.encode(debtOperations) {
-                defaults.set(encoded, forKey: UserDefaultsKeys.debtOperations)
-            }
+            
             thereAreUnsavedChanges = false
         } else {
             print("not saved: Data is actual")
@@ -81,16 +82,12 @@ class DefaultDataSource: OperationDataSource {
     
     private init() {
         let decoder = JSONDecoder()
-        var flowOperations = [Operation]()
-        var debtOperations = [Operation]()
         
-        if let data = defaults.data(forKey: UserDefaultsKeys.flowOperations) {
-            flowOperations = (try? decoder.decode([FlowOperation].self, from: data)) ?? []
+        if let data = defaults.data(forKey: UserDefaultsKeys.operations) {
+            if let ops = (try? decoder.decode(Ops.self, from: data)) {
+                operations = ops.flowOps + ops.debtOps + ops.transferOps
+            }
         }
-        if let data = defaults.data(forKey: UserDefaultsKeys.debtOperations) {
-            debtOperations = (try? decoder.decode([DebtOperation].self, from: data)) ?? []
-        }
-        operations = flowOperations + debtOperations
         if operations.isEmpty { operations += generateFlowOperations() + generateDebtOperations(); thereAreUnsavedChanges = true  }
     }
     
@@ -98,8 +95,15 @@ class DefaultDataSource: OperationDataSource {
 
 extension DefaultDataSource {
     private struct UserDefaultsKeys {
-        static let flowOperations = "flowOperations"
-        static let debtOperations = "debtOperations"
+        static let operations = "operations"
+    }
+    
+    private struct Ops: Codable {
+        var uploadDate: Date = Date()
+        var uploadDateFormatted = Date().formattedDescription
+        var flowOps: [FlowOperation]
+        var debtOps: [DebtOperation]
+        var transferOps: [TransferOperation]
     }
 }
 
