@@ -31,6 +31,7 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
     let filterCollectionViewCellIdentifier = "filterCell"
+    let operationTransferTableViewCellIdentifier = "OperationTransferCell"
     let tableViewSectionHeaderHeight: CGFloat = 55
     let tableViewRowHeight: CGFloat = 100
     let filterPeriod: Presenter.DateFilterUnit = .days

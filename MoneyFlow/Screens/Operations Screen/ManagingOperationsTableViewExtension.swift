@@ -24,27 +24,39 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
         
         let operation = operationsByDays[indexPath.section].ops[indexPath.row]
         let operationPresenter = OperationPresenter(operation)
-        let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCleanDesignCellIdentifier, for: indexPath) as! OperationCleanDesignTableViewCell
         
-        cell.valueLabel.text = operationPresenter.valueString
-        cell.accountLabel.text = operationPresenter.accountString
-        cell.commentLabel.text = operationPresenter.commentString
+        var resultCell = UITableViewCell()
         
         switch operation {
         case is FlowOperation:
+            let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCleanDesignCellIdentifier, for: indexPath) as! OperationCleanDesignTableViewCell
+            cell.valueLabel.text = operationPresenter.valueString
+            cell.accountLabel.text = operationPresenter.accountString
+            cell.commentLabel.text = operationPresenter.commentString
             cell.mainLabel.text = operationPresenter.categoryString
             cell.typeIndicatorColor = (operation.value >= 0.0) ? #colorLiteral(red: 0.7725490196, green: 0.8784313725, blue: 0.7058823529, alpha: 1) : #colorLiteral(red: 0.9568627451, green: 0.6941176471, blue: 0.5137254902, alpha: 1)
+            resultCell = cell
+            
         case is DebtOperation:
+            let cell = tableView.dequeueReusableCell(withIdentifier: operationTableViewCleanDesignCellIdentifier, for: indexPath) as! OperationCleanDesignTableViewCell
+            cell.valueLabel.text = operationPresenter.valueString
+            cell.accountLabel.text = operationPresenter.accountString
+            cell.commentLabel.text = operationPresenter.commentString
             cell.mainLabel.text = operationPresenter.contactString
             cell.typeIndicatorColor = #colorLiteral(red: 0.4, green: 0.462745098, blue: 0.9490196078, alpha: 1)
+            resultCell = cell
+            
         case is TransferOperation:
-            cell.mainLabel.text = operationPresenter.destinationAccountString
-            cell.typeIndicatorColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
+            let cell = tableView.dequeueReusableCell(withIdentifier: operationTransferTableViewCellIdentifier, for: indexPath) as! OperationTransferTableViewCell
+            cell.valueLabel.text = operationPresenter.valueString
+            cell.fromAccountLabel.text = operationPresenter.accountString
+            cell.toAccountLabel.text = operationPresenter.destinationAccountString
+            resultCell = cell
         default:
             break
         }
         
-        return cell
+        return resultCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

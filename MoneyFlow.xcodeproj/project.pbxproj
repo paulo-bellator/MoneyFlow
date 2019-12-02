@@ -63,6 +63,7 @@
 		F99670B02371E30600A70591 /* AddSettingsEntityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99670AF2371E30600A70591 /* AddSettingsEntityViewController.swift */; };
 		F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */; };
 		F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A4F8952333D402008D606A /* SummaryPresenter.swift */; };
+		F9A750FB2395884E001DF200 /* OperationTransferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A750FA2395884E001DF200 /* OperationTransferTableViewCell.swift */; };
 		F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* OperationsViewController.swift */; };
 		F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */; };
 		F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981032321410900F630F9 /* OperationPresenter.swift */; };
@@ -157,8 +158,9 @@
 		F99670AF2371E30600A70591 /* AddSettingsEntityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSettingsEntityViewController.swift; sourceTree = "<group>"; };
 		F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationViewController.swift; sourceTree = "<group>"; };
 		F9A4F8952333D402008D606A /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
+		F9A750FA2395884E001DF200 /* OperationTransferTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationTransferTableViewCell.swift; sourceTree = "<group>"; };
 		F9A980FB2321409600F630F9 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
-		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OperationTableViewCell.swift; path = ../OperationTableViewCell.swift; sourceTree = "<group>"; };
+		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationTableViewCell.swift; sourceTree = "<group>"; };
 		F9A981032321410900F630F9 /* OperationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
 		F9A981052321416000F630F9 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		F9AED541236F428000CC1502 /* SettingsEditingNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditingNameViewController.swift; sourceTree = "<group>"; };
@@ -415,6 +417,18 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		F9A750F923958827001DF200 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */,
+				F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */,
+				F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */,
+				F9B4311B234F50D9002F28B5 /* OperationCleanDesignTableViewCell.swift */,
+				F9A750FA2395884E001DF200 /* OperationTransferTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		F9B2D6822341223900711F59 /* ImagePicker Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,11 +503,8 @@
 		F9D3A9F9232165BB00895A80 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				F9A750F923958827001DF200 /* Cells */,
 				F9D3A9F72321651700895A80 /* ManagingOperationsTableViewExtension.swift */,
-				F9C3D78E23269D1700C99482 /* OperationsHeaderTableViewCell.swift */,
-				F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */,
-				F942E65F233E0C9C0031ADDF /* OperationsDesignedTableViewCell.swift */,
-				F9B4311B234F50D9002F28B5 /* OperationCleanDesignTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -689,6 +700,7 @@
 				F98B1840235F50EC00FB7A48 /* AddedOperationTableViewCell.swift in Sources */,
 				F9E728DD2364E96A00393C2B /* CurrencyCollectionViewCell.swift in Sources */,
 				F97ECAB9236E00DD000BF62D /* SettingsModel.swift in Sources */,
+				F9A750FB2395884E001DF200 /* OperationTransferTableViewCell.swift in Sources */,
 				F9E728DF2364EA3C00393C2B /* ManagingAccountsCollectionViewExtension.swift in Sources */,
 				F9880BED2369BF8F00510E83 /* GreetingViewController.swift in Sources */,
 				F9833B852326CDFB0036B5EE /* AddOperationPresenter.swift in Sources */,
