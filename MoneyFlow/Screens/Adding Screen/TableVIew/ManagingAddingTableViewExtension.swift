@@ -90,9 +90,19 @@ extension AddingViewController: UITableViewDelegate, UITableViewDataSource  {
             
             if self.operationsByDays[indexPath.section].ops.isEmpty {
                 self.operationsByDays.remove(at: indexPath.section)
-                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+                
+                // If dataSource is empty (we deleted last of out sections(=days))
+                // then we just reload tableView to show emptyCell
+                // Else we deleteSection with tableView's native method
+                if self.operationsByDays.isEmpty {
+                    tableView.reloadData()
+                } else {
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+                }
+                
             } else {
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
             }
         }
         delete.backgroundColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
