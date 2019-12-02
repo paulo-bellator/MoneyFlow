@@ -183,9 +183,11 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
                 if flowOp.value < 0 {
                     operationType = .flow(sign: .negative)
                     currentPickerRowForSpecialField = presenter.outcomeCategories.firstIndex(of: flowOp.category) ?? 0
+                    valueSignButton.setTitle("-", for: .normal)
                 } else {
                     operationType = .flow(sign: .positive)
                     currentPickerRowForSpecialField = presenter.incomeCategories.firstIndex(of: flowOp.category) ?? 0
+                    valueSignButton.setTitle("+", for: .normal)
                 }
                 specialFieldTextField.text = flowOp.category
                 commentTextField.text = flowOp.comment
