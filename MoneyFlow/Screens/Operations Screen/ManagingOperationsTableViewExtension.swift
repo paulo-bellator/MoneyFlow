@@ -51,6 +51,7 @@ extension OperationsViewController: UITableViewDelegate, UITableViewDataSource  
             cell.valueLabel.text = operationPresenter.valueString
             cell.fromAccountLabel.text = operationPresenter.accountString
             cell.toAccountLabel.text = operationPresenter.destinationAccountString
+            cell.typeIndicatorColor = #colorLiteral(red: 0.1490196078, green: 0.1490196078, blue: 0.1490196078, alpha: 1)
             resultCell = cell
         default:
             break
