@@ -30,6 +30,7 @@ struct GlobalConstants {
             if isComplete {
                 defaults.set(false, forKey: DefaultsKeys.isFirstLoadFromCloud)
                 print("isFirstLoad = false")
+
             }
         }
     }
