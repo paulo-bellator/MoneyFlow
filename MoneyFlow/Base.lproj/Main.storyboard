@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="CenturyGothic-Bold.ttf">
+        <array key="CenturyGothic-HeavyBold.ttf">
             <string>CenturyGothic-Bold</string>
         </array>
         <array key="CenturyGothic.ttf">
@@ -1405,7 +1405,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="fpK-tt-jSG">
-                                    <rect key="frame" x="0.0" y="807" width="414" height="140"/>
+                                    <rect key="frame" x="0.0" y="899" width="414" height="140"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
@@ -1590,6 +1590,109 @@
                                             <outlet property="timeLabelSubstrateView" destination="4OL-cS-KLG" id="sYo-8z-IcE"/>
                                             <outlet property="typeIndicatorView" destination="qmY-c5-yqx" id="PfH-d8-hEO"/>
                                             <outlet property="valueLabel" destination="eLw-SG-nul" id="0PW-XQ-cqC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddedOperationTransferCell" rowHeight="92" id="ExJ-GI-XMt" customClass="AddedTransferOperationTableViewCell" customModule="MoneyFlow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="779" width="414" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ExJ-GI-XMt" id="H5p-Mn-aaQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vTi-23-gPW">
+                                                    <rect key="frame" x="282" y="38" width="100" height="16.333333333333329"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 724 ₽  " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfN-l1-czk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="16.333333333333332"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="3b5-yD-dZO"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="14"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="he5-T4-a81">
+                                                    <rect key="frame" x="47" y="29.666666666666668" width="114" height="42.666666666666657"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Наличные" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PB4-BV-bdk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="71" height="17.666666666666668"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yqi-dh-MeC">
+                                                            <rect key="frame" x="0.0" y="22.666666666666671" width="114" height="20"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.turn.down.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2gK-Ph-5gA">
+                                                                    <rect key="frame" x="0.0" y="3.6666666666666643" width="20" height="12.000000000000004"/>
+                                                                    <color key="tintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="2gK-Ph-5gA" secondAttribute="height" multiplier="1:1" id="jqa-BR-viq"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="jyE-11-p02"/>
+                                                                    </constraints>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сбербанк МСК" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klz-ej-OBh">
+                                                                    <rect key="frame" x="28" y="3" width="86" height="14"/>
+                                                                    <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="12"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6RO-Gl-RGR">
+                                                    <rect key="frame" x="23" y="46" width="10" height="10"/>
+                                                    <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="10" id="HmU-s6-rO7"/>
+                                                        <constraint firstAttribute="height" constant="10" id="lJt-1d-pVh"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NtV-Rk-vH6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="74" height="26"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvl-qp-Y8h">
+                                                            <rect key="frame" x="10" y="5" width="54" height="16"/>
+                                                            <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="9"/>
+                                                            <color key="textColor" red="0.37670526650000002" green="0.37670526650000002" blue="0.37670526650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="gvl-qp-Y8h" secondAttribute="trailing" constant="10" id="0ih-bH-97F"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gvl-qp-Y8h" secondAttribute="bottom" constant="5" id="BUt-wW-H4N"/>
+                                                        <constraint firstItem="gvl-qp-Y8h" firstAttribute="top" secondItem="NtV-Rk-vH6" secondAttribute="top" constant="5" id="H3s-KU-ILt"/>
+                                                        <constraint firstAttribute="width" constant="74" id="KEB-aS-Qda"/>
+                                                        <constraint firstAttribute="height" constant="26" id="X8C-qI-c2K"/>
+                                                        <constraint firstItem="gvl-qp-Y8h" firstAttribute="leading" secondItem="NtV-Rk-vH6" secondAttribute="leading" constant="10" id="Xy0-5V-JEU"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vTi-23-gPW" firstAttribute="centerY" secondItem="H5p-Mn-aaQ" secondAttribute="centerY" id="9Cs-Op-AAq"/>
+                                                <constraint firstItem="he5-T4-a81" firstAttribute="centerY" secondItem="H5p-Mn-aaQ" secondAttribute="centerY" constant="5" id="Fhh-KD-LEg"/>
+                                                <constraint firstItem="6RO-Gl-RGR" firstAttribute="centerY" secondItem="H5p-Mn-aaQ" secondAttribute="centerY" constant="5" id="HL9-aH-Q29"/>
+                                                <constraint firstItem="NtV-Rk-vH6" firstAttribute="leading" secondItem="H5p-Mn-aaQ" secondAttribute="leading" id="Ik7-UE-MMi"/>
+                                                <constraint firstItem="he5-T4-a81" firstAttribute="leading" secondItem="6RO-Gl-RGR" secondAttribute="trailing" constant="14" id="JAD-SU-oKq"/>
+                                                <constraint firstAttribute="trailing" secondItem="vTi-23-gPW" secondAttribute="trailing" constant="32" id="NaE-7i-Re1"/>
+                                                <constraint firstItem="vTi-23-gPW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="he5-T4-a81" secondAttribute="trailing" constant="20" id="VK3-Pc-j1N"/>
+                                                <constraint firstItem="6RO-Gl-RGR" firstAttribute="leading" secondItem="H5p-Mn-aaQ" secondAttribute="leading" constant="23" id="cMm-aC-B1A"/>
+                                                <constraint firstItem="NtV-Rk-vH6" firstAttribute="top" secondItem="H5p-Mn-aaQ" secondAttribute="top" id="kbO-tR-OUC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="fromAccountLabel" destination="PB4-BV-bdk" id="TPr-kv-JiC"/>
+                                            <outlet property="timeLabel" destination="gvl-qp-Y8h" id="j36-tE-TJL"/>
+                                            <outlet property="timeLabelSubstrateView" destination="NtV-Rk-vH6" id="3mw-GW-0Oo"/>
+                                            <outlet property="toAccountLabel" destination="Klz-ej-OBh" id="OkJ-2N-Skb"/>
+                                            <outlet property="typeIndicatorView" destination="6RO-Gl-RGR" id="zG8-6I-sKI"/>
+                                            <outlet property="valueLabel" destination="hfN-l1-czk" id="Z0o-XO-oI9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3524,7 +3627,7 @@ Cgo
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kiN-LQ-ZrA"/>
-        <segue reference="ge5-nE-AiN"/>
+        <segue reference="CGj-uN-xFe"/>
         <segue reference="Kho-Py-wFp"/>
         <segue reference="mP2-ek-aAk"/>
         <segue reference="YKV-tg-zEK"/>

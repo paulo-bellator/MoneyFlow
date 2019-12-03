@@ -164,10 +164,12 @@ class OperationsViewController: UIViewController, AddOperationViewControllerDele
             comment: comment,
             specialField: specialField)
         updateData()
-        if let indexPath = indexPathToScroll {
-            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-            indexPathToScroll = nil
-        }
+        
+        // это крашит приложение когда меняю дату у последнец операции в секции
+//        if let indexPath = indexPathToScroll {
+//            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+//            indexPathToScroll = nil
+//        }
     }
     
     func updateData() {

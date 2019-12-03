@@ -36,6 +36,7 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     let operationTableViewCellIdentifier = "OperationCleanDesignCell"
     let emptyListTableViewCellIdentifier = "emptyOperationsListCell"
     let operationsHeaderTableViewCellIdentifier = "HeaderCell"
+    let operationTransferTableViewCellIdentifier = "AddedOperationTransferCell"
     let tableViewSectionHeaderHeight: CGFloat = 55
     let tableViewRowHeight: CGFloat = 100
     let filterPeriod: Presenter.DateFilterUnit = .days
@@ -202,10 +203,11 @@ extension AddingViewController: AddOperationViewControllerDelegate {
               break
           }
           updateTableView()
-          if let indexPath = indexPathToScroll {
-              tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-              indexPathToScroll = nil
-          }
+        // это крашит приложение когда я меняю дату у последней операции в секции
+//        if let indexPath = indexPathToScroll {
+//            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+//            indexPathToScroll = nil
+//        }
       }
 }
 

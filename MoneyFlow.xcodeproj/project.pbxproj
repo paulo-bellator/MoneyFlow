@@ -64,6 +64,7 @@
 		F99B4AAA2325720200DAAD7E /* AddOperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */; };
 		F9A4F8962333D402008D606A /* SummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A4F8952333D402008D606A /* SummaryPresenter.swift */; };
 		F9A750FB2395884E001DF200 /* OperationTransferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A750FA2395884E001DF200 /* OperationTransferTableViewCell.swift */; };
+		F9A750FD2396889E001DF200 /* AddedTransferOperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A750FC2396889E001DF200 /* AddedTransferOperationTableViewCell.swift */; };
 		F9A980FF2321409700F630F9 /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FB2321409600F630F9 /* OperationsViewController.swift */; };
 		F9A981022321409700F630F9 /* OperationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */; };
 		F9A981042321410900F630F9 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A981032321410900F630F9 /* OperationPresenter.swift */; };
@@ -159,6 +160,7 @@
 		F99B4AA92325720200DAAD7E /* AddOperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperationViewController.swift; sourceTree = "<group>"; };
 		F9A4F8952333D402008D606A /* SummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPresenter.swift; sourceTree = "<group>"; };
 		F9A750FA2395884E001DF200 /* OperationTransferTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationTransferTableViewCell.swift; sourceTree = "<group>"; };
+		F9A750FC2396889E001DF200 /* AddedTransferOperationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedTransferOperationTableViewCell.swift; sourceTree = "<group>"; };
 		F9A980FB2321409600F630F9 /* OperationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
 		F9A980FE2321409600F630F9 /* OperationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationTableViewCell.swift; sourceTree = "<group>"; };
 		F9A981032321410900F630F9 /* OperationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				F98B1844235F678300FB7A48 /* ManagingAddingTableViewExtension.swift */,
 				F98B183F235F50EC00FB7A48 /* AddedOperationTableViewCell.swift */,
+				F9A750FC2396889E001DF200 /* AddedTransferOperationTableViewCell.swift */,
 			);
 			path = TableVIew;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				F9629859236C964800A18EE7 /* SettingsViewController.swift in Sources */,
 				F9063DE8232139FE00F08E84 /* DefaultIDGenerator.swift in Sources */,
 				F9E1F600234B6C93000B6DB4 /* AuthViewController.swift in Sources */,
+				F9A750FD2396889E001DF200 /* AddedTransferOperationTableViewCell.swift in Sources */,
 				F9C567BB236EE3A000D57969 /* SettingsEditingViewController.swift in Sources */,
 				F9063DE7232139FE00F08E84 /* IDGenerator.swift in Sources */,
 				F9C3D79123269E4E00C99482 /* RoundedSoaringView.swift in Sources */,
