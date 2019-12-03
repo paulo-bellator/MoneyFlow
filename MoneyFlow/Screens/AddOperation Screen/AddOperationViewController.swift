@@ -38,6 +38,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
     
     weak var delegate: AddOperationViewControllerDelegate?
     var operationToBeEditted: Operation?
+    var dateToBeSet: Date?
     let presenter = AddOperationPresenter()
     
     var currentPickerRowForSpecialField = 0
@@ -56,7 +57,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         picker.frame.size.height = Constants.pickerHeight
         picker.locale = Locale(identifier: Constants.localeIdentifier)
         picker.datePickerMode = .dateAndTime
-        picker.date = Date()
+        picker.date = dateToBeSet ?? Date()
         picker.maximumDate = Date() + 60*60
         picker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         return picker
@@ -133,7 +134,7 @@ class AddOperationViewController: UIViewController, UITextFieldDelegate {
         }
         
         dateTextField.inputView = datePicker
-        dateTextField.text = Date().formattedDescription
+        dateTextField.text = (dateToBeSet ?? Date()).formattedDescription
         dateTextField.delegate = self
         valueTextField.text = ""
         valueTextField.delegate = self

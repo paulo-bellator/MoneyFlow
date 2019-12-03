@@ -51,6 +51,7 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
     private var recognizedOps = [Operation]()
     private var operations = [Operation]()
     private var recognitionCounter = 0
+    private var lastUsedDate: Date?
     
     
     @IBAction func backButtonTouched(_ sender: UIButton) { dismiss(animated: true) }
@@ -160,6 +161,8 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
                 vc.delegate = self
                 if let indexPath = sender as? IndexPath {
                     vc.operationToBeEditted = operationsByDays[indexPath.section].ops[indexPath.row]
+                } else if let date = lastUsedDate {
+                    vc.dateToBeSet = date + 1*60
                 }
             }
         }
@@ -170,45 +173,47 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
 
 extension AddingViewController: AddOperationViewControllerDelegate {
     func addedOperation(_ operation: Operation) {
-          operations.append(operation)
-          updateTableView()
-      }
-      func editedOperation(_ operation: Operation) {
-          let specialField = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact) ?? (operation as? TransferOperation)?.destinationAccount
-          let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
-          for op in operations {
-              if op.id == operation.id {
-                  if let flowOp = operation as? FlowOperation {
-                      flowOp.date = operation.date
-                      flowOp.value = operation.value
-                      flowOp.currency = operation.currency
-                      flowOp.category = specialField ?? ""
-                      flowOp.account = operation.account
-                      flowOp.comment = comment
-                  } else if let debtOp = operation as? DebtOperation {
-                      debtOp.date = operation.date
-                      debtOp.value = operation.value
-                      debtOp.currency = operation.currency
-                      debtOp.contact = specialField ?? ""
-                      debtOp.account = operation.account
-                      debtOp.comment = comment
-                  } else if let transferOp = operation as? TransferOperation {
-                      transferOp.date = operation.date
-                      transferOp.value = operation.value
-                      transferOp.currency = operation.currency
-                      transferOp.account = operation.account
-                      transferOp.destinationAccount = specialField ?? ""
-                  }
-              }
-              break
-          }
-          updateTableView()
+        operations.append(operation)
+        updateTableView()
+        lastUsedDate = operation.date
+    }
+    func editedOperation(_ operation: Operation) {
+        let specialField = ((operation as? FlowOperation)?.category ?? (operation as? DebtOperation)?.contact) ?? (operation as? TransferOperation)?.destinationAccount
+        let comment: String? = (operation as? FlowOperation)?.comment ?? (operation as? DebtOperation)?.comment
+        for op in operations {
+            if op.id == operation.id {
+                if let flowOp = operation as? FlowOperation {
+                    flowOp.date = operation.date
+                    flowOp.value = operation.value
+                    flowOp.currency = operation.currency
+                    flowOp.category = specialField ?? ""
+                    flowOp.account = operation.account
+                    flowOp.comment = comment
+                } else if let debtOp = operation as? DebtOperation {
+                    debtOp.date = operation.date
+                    debtOp.value = operation.value
+                    debtOp.currency = operation.currency
+                    debtOp.contact = specialField ?? ""
+                    debtOp.account = operation.account
+                    debtOp.comment = comment
+                } else if let transferOp = operation as? TransferOperation {
+                    transferOp.date = operation.date
+                    transferOp.value = operation.value
+                    transferOp.currency = operation.currency
+                    transferOp.account = operation.account
+                    transferOp.destinationAccount = specialField ?? ""
+                }
+            }
+            break
+        }
+        updateTableView()
+        lastUsedDate = operation.date
         // это крашит приложение когда я меняю дату у последней операции в секции
-//        if let indexPath = indexPathToScroll {
-//            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-//            indexPathToScroll = nil
-//        }
-      }
+        //        if let indexPath = indexPathToScroll {
+        //            tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+        //            indexPathToScroll = nil
+        //        }
+    }
 }
 
 extension UIView {
