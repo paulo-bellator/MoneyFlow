@@ -80,7 +80,13 @@ extension AddingViewController: UITableViewDelegate, UITableViewDataSource  {
         if operationListIsEmpty { return nil }
         let header = tableView.dequeueReusableCell(withIdentifier: operationsHeaderTableViewCellIdentifier) as! OperationsHeaderTableViewCell
         header.periodLabel.text = operationsByDays[section].formattedPeriod
-        let sum = operationsByDays[section].ops.valuesSum(mainCurrency)
+        
+        let sum = operationsByDays[section].ops.filter({ op in
+            if op is TransferOperation { return false }
+            if let debtOp = op as? DebtOperation, debtOp.account.isEmpty { return false }
+            return true
+        }).valuesSum(mainCurrency)
+        
         header.sumLabel.text = (sum > 0 ? "+" : "") + sum.currencyFormattedDescription(mainCurrency)
         
         return header.contentView
