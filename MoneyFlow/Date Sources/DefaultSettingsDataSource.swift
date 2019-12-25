@@ -17,7 +17,7 @@ class DefaultSettingsDataSource: SettingsDataSource {
     var contacts = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
     var accounts = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
     var currencies = [CurrencySettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
-    
+    var categoryPatterns = [OperationCategoryPattern]() { didSet { thereAreUnsavedChanges = true } }
     var emojiForCategory = [String: String]() { didSet { thereAreUnsavedChanges = true } }
     var emojiForContact = [String: String]() { didSet { thereAreUnsavedChanges = true } }
 
@@ -38,6 +38,9 @@ class DefaultSettingsDataSource: SettingsDataSource {
     }
     func set(currencies: [CurrencySettingsEntity]) {
         self.currencies = currencies
+    }
+    func set(categoryPatterns: [OperationCategoryPattern]) {
+        self.categoryPatterns = categoryPatterns
     }
     func set(emoji: String?, forCategory category: String) {
         emojiForCategory[category] = emoji
@@ -87,6 +90,7 @@ extension DefaultSettingsDataSource {
         var contacts: [SettingsEntity]
         var accounts: [SettingsEntity]
         var currencies: [CurrencySettingsEntity]
+        var categoryPatterns: [OperationCategoryPattern]
         var emojiForCategory: [String: String]
         var emojiForContact: [String: String]
     }
@@ -99,6 +103,7 @@ extension DefaultSettingsDataSource {
                 contacts: self.contacts,
                 accounts: self.accounts,
                 currencies: self.currencies,
+                categoryPatterns: self.categoryPatterns,
                 emojiForCategory: self.emojiForCategory,
                 emojiForContact: self.emojiForContact)
         }
@@ -108,6 +113,7 @@ extension DefaultSettingsDataSource {
             self.contacts = newValue.contacts
             self.accounts = newValue.accounts
             self.currencies = newValue.currencies
+            self.categoryPatterns = newValue.categoryPatterns
             self.emojiForCategory = newValue.emojiForCategory
             self.emojiForContact = newValue.emojiForContact
         }

@@ -41,6 +41,7 @@ protocol SettingsDataSource {
     var contacts: [SettingsEntity] { get set }
     var accounts: [SettingsEntity] { get }
     var currencies: [CurrencySettingsEntity] { get }
+    var categoryPatterns: [OperationCategoryPattern] { get }
     var emojiForCategory: [String: String] { get }
     var emojiForContact: [String: String] { get }
     
@@ -49,6 +50,7 @@ protocol SettingsDataSource {
     func set(contacts: [SettingsEntity])
     func set(accounts: [SettingsEntity])
     func set(currencies: [CurrencySettingsEntity])
+    func set(categoryPatterns: [OperationCategoryPattern])
     func set(emoji: String?, forCategory category: String)
     func set(emoji: String?, forContact contact: String)
     func save()

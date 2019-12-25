@@ -49,6 +49,7 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     var contacts = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
     var accounts = [SettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
     var currencies = [CurrencySettingsEntity]() { didSet { thereAreUnsavedChanges = true } }
+    var categoryPatterns = [OperationCategoryPattern]() { didSet { thereAreUnsavedChanges = true } }
     
     var emojiForCategory = [String: String]() { didSet { thereAreUnsavedChanges = true } }
     var emojiForContact = [String: String]() { didSet { thereAreUnsavedChanges = true } }
@@ -67,6 +68,9 @@ class CombinedSettingDataSource: CloudSettingsDataSource {
     }
     func set(currencies: [CurrencySettingsEntity]) {
         self.currencies = currencies
+    }
+    func set(categoryPatterns: [OperationCategoryPattern]) {
+        self.categoryPatterns = categoryPatterns
     }
     func set(emoji: String?, forCategory category: String) {
         emojiForCategory[category] = emoji
@@ -204,6 +208,7 @@ extension CombinedSettingDataSource {
         var contacts: [SettingsEntity]
         var accounts: [SettingsEntity]
         var currencies: [CurrencySettingsEntity]
+        var categoryPatterns: [OperationCategoryPattern]
         var emojiForCategory: [String: String]
         var emojiForContact: [String: String]
         
@@ -215,6 +220,7 @@ extension CombinedSettingDataSource {
                 contacts: [SettingsEntity(name: "Контакт #1")],
                 accounts: [SettingsEntity(name: "Наличные")],
                 currencies: currencies,
+                categoryPatterns: [],
                 emojiForCategory: [:],
                 emojiForContact: [:])
         }
@@ -228,6 +234,7 @@ extension CombinedSettingDataSource {
                 contacts: self.contacts,
                 accounts: self.accounts,
                 currencies: self.currencies,
+                categoryPatterns: self.categoryPatterns,
                 emojiForCategory: self.emojiForCategory,
                 emojiForContact: self.emojiForContact)
         }
@@ -237,6 +244,7 @@ extension CombinedSettingDataSource {
             self.contacts = newValue.contacts
             self.accounts = newValue.accounts
             self.currencies = newValue.currencies
+            self.categoryPatterns = newValue.categoryPatterns
             self.emojiForCategory = newValue.emojiForCategory
             self.emojiForContact = newValue.emojiForContact
         }
