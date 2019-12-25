@@ -61,6 +61,14 @@ class SettingsPresenter {
         return enabledCurrencies.compactMap { $0.rawValue }
     }
     
+    var categoryPatterns: [OperationCategoryPattern] {
+        get { return MainData.settings.categoryPatterns }
+        set { MainData.settings.set(categoryPatterns: newValue) }
+    }
+    var enabledCategoryPatterns: [OperationCategoryPattern] {
+        return categoryPatterns.compactMap { $0.enable ? $0 : nil }
+    }
+    
     func emojiFor(category: String) -> String {
         return MainData.settings.emojiForCategory[category] ?? DefaultEmoji.category
     }

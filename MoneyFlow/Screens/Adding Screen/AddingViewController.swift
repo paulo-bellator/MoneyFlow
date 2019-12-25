@@ -128,10 +128,35 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         recognizingActivityIndicator.stopAnimating()
         recognizeButton.isHidden = false
         
+        checkAndReplaceCategoriesIfNeeded()
         operations = sumWithoutDuplicate(baseArray: operations, addingArray: recognizedOps)
         updateTableView()
         recognitionCounter = 0
     }
+    
+    
+    // replace recognized catagories with existing (if such as pattern exist)
+    // otherwise add new pattern with new raw category
+    private func checkAndReplaceCategoriesIfNeeded() {
+        var patternFound = false
+        for op in recognizedOps {
+            if let flowOp = op as? FlowOperation {
+                patternFound = false
+                for pattern in presenter.settings.categoryPatterns {
+                    if pattern.type == (flowOp.value < 0 ? .outcome : .income) && pattern.rawValue == flowOp.category {
+                        flowOp.category = pattern.existingCategory ?? flowOp.category
+                        patternFound = true
+                        break;
+                    }
+                }
+                if !patternFound {
+                    let newPattern = OperationCategoryPattern(rawValue: flowOp.category, type: (flowOp.value < 0 ? .outcome : .income))
+                    presenter.settings.categoryPatterns.append(newPattern)
+                }
+            }
+        }
+    }
+    
     
     private func sumWithoutDuplicate(baseArray: [Operation], addingArray: [Operation]) -> [Operation] {
         var duplicateIndices = [Int]()
