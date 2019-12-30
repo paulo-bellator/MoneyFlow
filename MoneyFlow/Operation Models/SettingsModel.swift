@@ -19,10 +19,9 @@ struct CurrencySettingsEntity: Codable, Equatable {
 }
 
 struct OperationCategoryPattern: Codable, Equatable {
-    var rawValue: String
-    var existingCategory: String?
+    var category: String
+    var substitution: String?
     var type: CategoryType
-    var enable: Bool = true
     
     enum CategoryType: String, Codable {
         case income = "+"

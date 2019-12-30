@@ -142,15 +142,15 @@ class AddingViewController: UIViewController, ImagePickerCollectionViewControlle
         for op in recognizedOps {
             if let flowOp = op as? FlowOperation {
                 patternFound = false
-                for pattern in presenter.settings.categoryPatterns {
-                    if pattern.type == (flowOp.value < 0 ? .outcome : .income) && pattern.rawValue == flowOp.category {
-                        flowOp.category = pattern.existingCategory ?? flowOp.category
+                for pattern in presenter.settings.enabledCategoryPatterns {
+                    if pattern.type == (flowOp.value < 0 ? .outcome : .income) && pattern.category == flowOp.category {
+                        flowOp.category = pattern.substitution ?? flowOp.category
                         patternFound = true
                         break;
                     }
                 }
                 if !patternFound {
-                    let newPattern = OperationCategoryPattern(rawValue: flowOp.category, type: (flowOp.value < 0 ? .outcome : .income))
+                    let newPattern = OperationCategoryPattern(category: flowOp.category, type: (flowOp.value < 0 ? .outcome : .income))
                     presenter.settings.categoryPatterns.append(newPattern)
                 }
             }

@@ -66,7 +66,7 @@ class SettingsPresenter {
         set { MainData.settings.set(categoryPatterns: newValue) }
     }
     var enabledCategoryPatterns: [OperationCategoryPattern] {
-        return categoryPatterns.compactMap { $0.enable ? $0 : nil }
+        return categoryPatterns.compactMap { $0.substitution == nil ? nil : $0 }
     }
     
     func emojiFor(category: String) -> String {
